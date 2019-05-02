@@ -1,0 +1,10 @@
+{
+  "name": "generater",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {
+    "@types/node": "^11.13.8",
+    "@types/puppeteer": "^1.12.3",
+    "puppeteer": "^1.15.0"
+  }
+}
