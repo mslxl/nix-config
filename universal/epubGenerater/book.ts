@@ -22,6 +22,7 @@ export interface Chapter{
 }
 
 export interface MainBody{
+    title:string
     link:string
     paragraph:Paragraph[]
 }
@@ -35,5 +36,15 @@ export interface Text extends Paragraph{
 }
 
 export interface Picture extends Paragraph{
-    url:string
+    url:string,
+    base64?:string
+}
+
+import * as puppeteer from 'puppeteer'
+import { puppeteerDev } from './puppeteerDevTools';
+export async function loadPicture(p:puppeteer.Page,pic:Picture):Promise<Picture>{
+    let url = await puppeteerDev.fillUrl(p,pic.url)
+    console.log("Image URL: "+url)
+    pic.base64 = await puppeteerDev.getResourceContent(p,url)
+    return pic
 }

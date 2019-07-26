@@ -28,46 +28,46 @@ export function hashCode(str: string) {
     return hash;
 }
 
-export module fsp {
-    export async function read(name: string): Promise<string> {
-        return new Promise((resolve, rejects) => {
-            fs.readFile(name, (err, data) => {
-                if (err != null) {
-                    resolve(data.toString())
-                } else {
-                    rejects(err)
-                }
-            })
-        })
-    }
-    export async function mkdir(name: string): Promise<void> {
-        return new Promise((resolve, rejects) => {
-            fs.mkdir(name, err => {
-                if (err == null) {
-                    resolve()
-                } else {
-                    rejects(err)
-                }
-            })
-        })
-    }
-    export async function write(name: string, data: string): Promise<void> {
-        return new Promise((resolve, rejects) => {
-            fs.writeFile(name,data,err=>{
-                if (err == null) {
-                    resolve()
-                } else {
-                    rejects(err)
-                }
-            })
-        })
-    }
-    export async function exists(name: string): Promise<boolean> {
-        return new Promise((resolve, rejects) => {
-            fs.exists(name,e=>{
-                resolve(e)
-            })
-        })
-    }
+// export module fsp {
+//     export async function read(name: string): Promise<string> {
+//         return new Promise((resolve, rejects) => {
+//             fs.readFile(name, (err, data) => {
+//                 if (err != null) {
+//                     resolve(data.toString())
+//                 } else {
+//                     rejects(err)
+//                 }
+//             })
+//         })
+//     }
+//     export async function mkdir(name: string): Promise<void> {
+//         return new Promise((resolve, rejects) => {
+//             fs.mkdir(name, err => {
+//                 if (err == null) {
+//                     resolve()
+//                 } else {
+//                     rejects(err)
+//                 }
+//             })
+//         })
+//     }
+//     export async function write(name: string, data: string): Promise<void> {
+//         return new Promise((resolve, rejects) => {
+//             fs.writeFile(name,data,err=>{
+//                 if (err == null) {
+//                     resolve()
+//                 } else {
+//                     rejects(err)
+//                 }
+//             })
+//         })
+//     }
+//     export async function exists(name: string): Promise<boolean> {
+//         return new Promise((resolve, rejects) => {
+//             fs.exists(name,e=>{
+//                 resolve(e)
+//             })
+//         })
+//     }
 
-}
+// }

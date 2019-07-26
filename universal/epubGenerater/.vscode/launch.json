@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch TypeScript",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/main.ts",
+            "sourceMaps": true,
+            "outDir": "${workspaceFolder}/dist",
+            "console": "integratedTerminal",
+            "args": [
+                "https://www.ciweimao.com/book/100019093",
+                "东方樱回录"
+            ],
+            "cwd": "${workspaceFolder}/dist/"
+        }
+    ]
+}
