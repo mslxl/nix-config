@@ -17,10 +17,10 @@ export function writeOebpsContent(oebps: string, info: Book, text: MainBody[]) {
 
     writeStyle(fileroute)
     writeTextPages(fileroute, info, text)
-    writeCoverpage(fileroute,info)
+    writeCoverpage(fileroute, info)
     let chapterNum = writeToc(fileroute, info)
     writeContentList(fileroute, info, chapterNum)
-   
+
     apply(oebps, fileroute)
 }
 
@@ -110,18 +110,19 @@ function writeContentList(fileroute: Map<string, string>, info: Book, chapterNum
             return pre + cur
         })
         }
+        <item href="toc.ncx" id="ncx"  media-type="application/x-dtbncx+xml"/>
     </manifest>
     <spine toc="ncx">
     <itemref idref="coverpage" linear="yes"/>
     ${
         (() => {
 
-            return filelist.filter(v=>{return filetype(v)=="application/xhtml+xml"})
-                           .map(v=>`<itemref idref="${hashCode(v)}" linear="yes"/>`)
-                           .reduce((pre,cur)=>pre+cur)
+            return filelist.filter(v => { return filetype(v) == "application/xhtml+xml" })
+                .map(v => `<itemref idref="${hashCode(v)}" linear="yes"/>`)
+                .reduce((pre, cur) => pre + cur)
 
         })()
-    }
+        }
   </spine>
   <guide>
     <reference href="Text/coverpage.html" title="封面" type="cover"/>
@@ -143,7 +144,7 @@ function writeToc(fileroute: Map<string, string>, info: Book): number {
             })
         })
     })
-
+    let playOrder = 0
     const filename = 'toc.ncx'
     const data = `<?xml version="1.0" encoding="utf-8" ?>
     <!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"
@@ -174,23 +175,28 @@ function writeToc(fileroute: Map<string, string>, info: Book): number {
         <content src="Text/coverpage.html"/>
     </navPoint>
     ${
-        chapterList.map((chapter, ord) => {
-            // 封面为 0
-            let playOrder = ord + 1
-            let path = chapter.path
-            let title = chapter.title
-            return `
-            <navPoint id="${hashCode(path)}" playOrder="${playOrder}">
-                <navLabel>
-                    <text>${title}</text>
-                </navLabel>
-                <content src="${path}"/>
-            </navPoint>
-            `
-        }).reduce((pre, cur) => {
-            return pre + '\n' + cur
+        info.chapterList.map((v)=>{
+            return `<navPoint>
+            <navLabel>
+                <text>${v.title}</text>
+            </navLabel>
+            ${
+                v.chapter.map(vv=>{
+                    return `<navPoint id="${hashCode('Text/'+hashCode(vv.link)+'.html')}" playOrder="${++playOrder}">
+                    <navLabel>
+                        <text>${vv.title}</text>
+                    </navLabel>
+                    <content src="${'Text/'+hashCode(vv.link)+'.html'}"/>
+                </navPoint>`
+                }).reduce((pre,cur) => {
+                    return pre + cur
+                })
+            }
+        </navPoint>`
+        }).reduce((pre,cur) => {
+            return pre + cur
         })
-        }
+    }
   </navMap>
   </ncx>`
     fileroute.set(filename, data)
@@ -201,7 +207,12 @@ function writeCoverpage(fileroute: Map<string, string>, _info: Book) {
     const data = `<?xml version="1.0" encoding="utf-8"?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
         "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-    <html></html>`
+        <link rel="stylesheet" type="text/css" href="../Styles/main.css"/>
+    <html>
+    <div>
+    <p>${_info.info.title}</p>
+    </div>
+    </html>`
     fileroute.set(filename, data)
 }
 function writeStyle(fileroute: Map<string, string>) {
