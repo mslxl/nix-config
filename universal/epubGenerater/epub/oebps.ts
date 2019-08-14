@@ -187,9 +187,9 @@ function writeToc(fileroute: Map<string, string>, info: Book): number {
                     </navLabel>
                     <content src="${'Text/'+hashCode(vv.link)+'.html'}"/>
                 </navPoint>`
-                }).reduce((pre,cur) => {
-                    return pre + cur
-                })
+                }).reduce((pree,cur) => {
+                    return pree + cur
+                },"")
             }
         </navPoint>`
         }).reduce((pre,cur) => {
