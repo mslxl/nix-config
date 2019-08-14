@@ -4,7 +4,10 @@
   "main": "app.js",
   "devDependencies": {
     "@types/node": "^11.13.8",
-    "@types/puppeteer": "^1.12.3",
+    "@types/puppeteer": "^1.12.3"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
     "puppeteer": "^1.15.0"
   }
 }

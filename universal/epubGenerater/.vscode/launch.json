@@ -10,8 +10,8 @@
             "outDir": "${workspaceFolder}/dist",
             "console": "integratedTerminal",
             "args": [
-                "https://www.ciweimao.com/book/100019093",
-                "东方樱回录"
+                "https://www.ciweimao.com/book/100046050",
+                "药师小姐的旅行"
             ],
             "cwd": "${workspaceFolder}/dist/"
         }

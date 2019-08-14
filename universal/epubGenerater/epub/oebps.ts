@@ -1,7 +1,6 @@
 import { Book, MainBody } from "../book";
 import * as fs from 'fs'
 import * as path from 'path'
-import { stringLiteral } from "@babel/types";
 import { hashCode } from "../util";
 export function writeOebpsContent(oebps: string, info: Book, text: MainBody[]) {
 
@@ -202,15 +201,24 @@ function writeToc(fileroute: Map<string, string>, info: Book): number {
     fileroute.set(filename, data)
     return chapterList.length
 }
-function writeCoverpage(fileroute: Map<string, string>, _info: Book) {
+function writeCoverpage(fileroute: Map<string, any>, _info: Book) {
+
     const filename = 'Text/coverpage.html'
+    let bitmap = Buffer.from(_info.info.picBase64, 'base64')
+    let path = 'Images/' + hashCode(_info.info.picBase64) + '.png'
+    fileroute.set(path,bitmap)
+
     const data = `<?xml version="1.0" encoding="utf-8"?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
         "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
         <link rel="stylesheet" type="text/css" href="../Styles/main.css"/>
     <html>
-    <div>
-    <p>${_info.info.title}</p>
+    <div style="text-align:center">
+    <div><br/><img class="cover" src="../${path}"/><hr/></div>
+    <h1>${_info.info.title}</h1>
+    <h2>${_info.info.aur}</h2>
+    <p>${_info.info.desc}</p>
+
     </div>
     </html>`
     fileroute.set(filename, data)
@@ -340,14 +348,14 @@ function writeTextPages(fileroute: Map<string, string>, info: Book, text: MainBo
             if (!mainBodyMap.has(chapter.link)) {
                 console.error(`Can not find ${chapter.title}(${chapter.link})  in local database!`)
             }
-            let pageText = mkTextPage(mainBodyMap.get(chapter.link))
+            let pageText = mkTextPage(fileroute,mainBodyMap.get(chapter.link))
 
             fileroute.set(filename, pageText)
         })
     })
 }
 
-function mkTextPage(body: MainBody): string {
+function mkTextPage(fileroute: Map<string, any>,body: MainBody): string {
     return `<?xml version="1.0" encoding="utf-8"?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
         "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -365,7 +373,12 @@ function mkTextPage(body: MainBody): string {
         body.paragraph.map(p => {
             let pa: any = p
             if (pa.url) {
-                return `<image src="data:image/png;base64,${pa.base64}"/>`
+                let bitmap = Buffer.from(pa.base64, 'base64')
+                let path = 'Images/' + hashCode(pa.base64) + '.png'
+                fileroute.set(path,bitmap)
+                return `<br/><img src="../${path}"/>`
+
+
             } else {
                 return `<p>${pa.text}</p>`
             }

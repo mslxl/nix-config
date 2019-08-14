@@ -5,6 +5,7 @@ import { url } from "inspector";
 import { resolve } from "url";
 import { rejects } from "assert";
 import { SubTitle, BookInfo, MainBody, Paragraph, Picture, loadPicture } from "../book";
+import { puppeteerDev } from "../puppeteerDevTools";
 
 const wait = true
 
@@ -68,15 +69,19 @@ export class Ciweimao implements IWebsite {
     //　获取图书信息
     info(page: puppeteer.Page): Promise<import("../book").BookInfo> {
         return new Promise(async (resolve, rejects) => {
-            resolve(await page.evaluate(() => {
+            let info = await page.evaluate(() => {
                 let info: BookInfo = {
                     title: document.querySelector('.book-info > .title').firstChild.textContent.trim(),
                     aur: document.querySelector('.book-info > .title').lastChild.textContent.trim(),
                     pic: document.querySelector('.ly-main > .book-hd > .cover > img').getAttribute('src'),
-                    desc: document.querySelector('.book-intro-cnt > .book-desc').textContent.split('\n').map(t => { return t.trim() }).filter(t => { return (t.length == 0 || t == "") }).reduce((pre, cur) => { return (pre + "\n" + cur) })
+                    desc: document.querySelector('.book-intro-cnt > .book-desc').textContent
                 }
                 return info
-            }))
+            })
+            let realUrl = await puppeteerDev.fillUrl(page,info.pic)
+            let base64 = await puppeteerDev.getResourceContent(page,realUrl)
+            info.picBase64 = base64
+            resolve(info)
         })
     }
     // 取正文（图片或文字）
