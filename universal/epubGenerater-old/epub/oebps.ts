@@ -90,7 +90,6 @@ function writeContentList(fileroute: Map<string, string>, info: Book, chapterNum
     <dc:rights></dc:rights>
     <dc:subject></dc:subject>
     <dc:contributor></dc:contributor>
-    <dc:type>[type]</dc:type>
     <dc:format></dc:format>
     <dc:relation></dc:relation>
     <dc:builder>epubGenerater</dc:builder>
@@ -112,7 +111,6 @@ function writeContentList(fileroute: Map<string, string>, info: Book, chapterNum
         <item href="toc.ncx" id="ncx"  media-type="application/x-dtbncx+xml"/>
     </manifest>
     <spine toc="ncx">
-    <itemref idref="coverpage" linear="yes"/>
     ${
         (() => {
 
@@ -123,9 +121,7 @@ function writeContentList(fileroute: Map<string, string>, info: Book, chapterNum
         })()
         }
   </spine>
-  <guide>
-    <reference href="Text/coverpage.html" title="封面" type="cover"/>
-  </guide>
+  <guide/>
 </package>
     `
     fileroute.set(filename, data)
@@ -211,8 +207,9 @@ function writeCoverpage(fileroute: Map<string, any>, _info: Book) {
     const data = `<?xml version="1.0" encoding="utf-8"?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
         "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-        <link rel="stylesheet" type="text/css" href="../Styles/main.css"/>
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+    <body>
+    <head><link rel="stylesheet" type="text/css" href="../Styles/main.css"/></head>
     <div style="text-align:center">
     <div><br/><img class="cover" src="../${path}"/><hr/></div>
     <h1>${_info.info.title}</h1>
@@ -220,6 +217,7 @@ function writeCoverpage(fileroute: Map<string, any>, _info: Book) {
     <p>${_info.info.desc}</p>
 
     </div>
+    </body>
     </html>`
     fileroute.set(filename, data)
 }
