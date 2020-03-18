@@ -1,0 +1,40 @@
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+dotfiles:
+  f_dotdrop.fish:
+    src: config/fish/functions/dotdrop.fish
+    dst: ~/.config/fish/functions/dotdrop.fish
+  f_xprofile:
+    src: xprofile
+    dst: ~/.xprofile
+  d_spacevim.d:
+    src: SpaceVim.d
+    dst: ~/.SpaceVim.d
+  f_config.fish:
+    src: config/fish/config.fish
+    dst: ~/.config/fish/config.fish
+  d_i3:
+    src: i3
+    dst: ~/.i3
+  f_xresources:
+    src: Xresources
+    dst: ~/.Xresources
+  f_config:
+    src: config/fcitx/config
+    dst: ~/.config/fcitx/config
+  f_i3status_config:
+    src: config/i3status/config
+    dst: ~/.config/i3status/config
+profiles:
+  mslxl-PC:
+    dotfiles:
+    - f_dotdrop.fish
+    - f_xprofile
+    - d_spacevim.d
+    - f_config.fish
+    - d_i3
+    - f_xresources
+    - f_config
+    - f_i3status_config
