@@ -12,9 +12,6 @@ dotfiles:
   d_spacevim.d:
     src: SpaceVim.d
     dst: ~/.SpaceVim.d
-  f_config.fish:
-    src: config/fish/config.fish
-    dst: ~/.config/fish/config.fish
   d_i3:
     src: i3
     dst: ~/.i3
@@ -27,14 +24,29 @@ dotfiles:
   f_i3status_config:
     src: config/i3status/config
     dst: ~/.config/i3status/config
+  f_init.fish:
+    src: config/omf/init.fish
+    dst: ~/.config/omf/init.fish
+  f_sakura.conf:
+    src: config/sakura/sakura.conf
+    dst: ~/.config/sakura/sakura.conf
+  f_xmodmap:
+    src: Xmodmap
+    dst: ~/.Xmodmap
+  f_compton.conf:
+    src: config/compton.conf
+    dst: ~/.config/compton.conf
 profiles:
   mslxl-PC:
     dotfiles:
     - f_dotdrop.fish
     - f_xprofile
     - d_spacevim.d
-    - f_config.fish
     - d_i3
     - f_xresources
     - f_config
     - f_i3status_config
+    - f_init.fish
+    - f_sakura.conf
+    - f_xmodmap
+    - f_compton.conf

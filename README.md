@@ -8,10 +8,11 @@
 * fish
 * [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
 * [dotdrop](https://github.com/deadc0de6/dotdrop)
-<> * vivaldi
+* vivaldi
 * firefox
 * Uninstall palemoon-bin
 * [deepin-wechat (need config manually)](https://aur.archlinux.org/packages/deepin-wine-wechat/)
+* [deepin.com.qq.office (need config manually)](https://aur.archlinux.org/packages/deepin.com.qq.office/)
 * lib32-freetype2-infinality-ultimate
 * wqy-microhei
 * ttf-font-awesome
@@ -27,4 +28,9 @@
 * nodejs
 * yarn
 * spacevim
-* aria2
+* typora
+* pandoc
+* texlive-core
+* texlive-lang (optional)
+* zathura
+* zathura-pdf-poppler

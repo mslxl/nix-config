@@ -16,6 +16,7 @@
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
+    
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
     statusline_separator = "arrow"
@@ -23,6 +24,9 @@
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
+    snippet_engine='ultisnips'
+    bootstrap_before = "bootstrap#before"
+    bootstrap_after = "bootstrap#after"
 
 # Enable autocomplete layer
 [[layers]]
@@ -34,6 +38,9 @@ auto-completion-tab-key-behavior = "smart"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+[[layers]]
+name = 'default'
 
 [[layers]]
 name = 'VersionControl'
@@ -52,6 +59,9 @@ node_pkgm='yarn'
 name = 'lang#sh'
 
 [[layers]]
+name = 'lang#vim'
+
+[[layers]]
 name = 'sudo'
 
 [[layers]]
@@ -59,3 +69,12 @@ name = 'chinese'
 
 [[layers]]
 name = 'colorscheme'
+
+[[layers]]
+name = 'ui'
+
+[[layers]]
+name = 'unite'
+
+[[layers]]
+name = 'lang#extra'
