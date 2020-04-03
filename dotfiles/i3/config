@@ -180,6 +180,9 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
+bindsym $mod+Tab exec fish -c "~/.i3/i3workspace.fish switch"
+bindsym $mod+Ctrl+Tab exec fish -c "~/.i3/i3workspace.fish move"
+bindsym $mod+Shift+Tab exec fish -c "~/.i3/i3workspace.fish ms"
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -214,6 +217,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="jetbrains-toolbox"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
