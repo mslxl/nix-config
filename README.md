@@ -1,3 +1,6 @@
+# .dotfile
+
+
 * `sudo timedatectl set-local-rtc true`
 * pacman-mirrors -c China
 * sakura
@@ -20,8 +23,9 @@
 * fcitx-im
 * fcitx-configtool
 * fcitx-mozc
-* fcitx-libpinyin
-* fcitx-cloudpinyin
+* fcitx-rime
+* rime-double-pinyin
+* rime-emoji
 * jdk
 * jre
 * jre8 (Aur)
