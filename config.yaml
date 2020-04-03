@@ -36,6 +36,12 @@ dotfiles:
   f_compton.conf:
     src: config/compton.conf
     dst: ~/.config/compton.conf
+  f_default.custom.yaml:
+    src: config/fcitx/rime/default.custom.yaml
+    dst: ~/.config/fcitx/rime/default.custom.yaml
+  f_mimeapps.list:
+    src: config/mimeapps.list
+    dst: ~/.config/mimeapps.list
 profiles:
   mslxl-PC:
     dotfiles:
@@ -50,3 +56,5 @@ profiles:
     - f_sakura.conf
     - f_xmodmap
     - f_compton.conf
+    - f_default.custom.yaml
+    - f_mimeapps.list
