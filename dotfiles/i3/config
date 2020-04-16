@@ -34,8 +34,8 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec rofi -show drun
-bindsym $mod+c exec rofi -show run
+bindsym $mod+d exec fish -c "rofi -show drun"
+bindsym $mod+c exec fish -c "rofi -show run"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -63,7 +63,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+F5 exec netease-cloud-music
+bindsym $mod+F5 exec terminal -e 'musicbox'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -73,46 +73,36 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 focus_follows_mouse yes
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
-# workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
+# workspace back and forth (with/without active container) !I do not like it!
+# workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
-# split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
-
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -134,8 +124,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+j workspace next
+bindsym $mod+Ctrl+k workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -149,7 +139,7 @@ set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
-
+set $ws9 9
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -159,30 +149,32 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
-
+bindsym $mod+9 workspace $ws9
 # Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
-
+bindsym $mod+Ctrl+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9; workspace $ws9
 # Move to workspace with focused container
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
 
 bindsym $mod+Tab exec fish -c "~/.i3/i3workspace.fish switch"
-bindsym $mod+Ctrl+Tab exec fish -c "~/.i3/i3workspace.fish move"
-bindsym $mod+Shift+Tab exec fish -c "~/.i3/i3workspace.fish ms"
+bindsym $mod+Ctrl+Tab exec fish -c "~/.i3/i3workspace.fish ms"
+bindsym $mod+Shift+Tab exec fish -c "~/.i3/i3workspace.fish move"
+bindsym $mod+mod1+Tab exec fish -c "rofi -show windowcd"
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -218,6 +210,9 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
+for_window [class="sun-awt-X11-XDialogPeer"] floating enable
+for_window [class="sun-awt-X11-XWindowPeer"] floating enable
+for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -231,49 +226,76 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# Lock screen
+# bindsym $mod+9 exec --no-startup-id blurlock
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+w mode "$mode_layout"
+set $mode_layout LAYOUT: (s)tack_ing, (t)abbed, <r>:toggle split
+mode "$mode_layout" {
+  bindsym s layout stacking; mode "default"; exec notify-send 'layout stacking'
+  bindsym t layout tabbed; mode "default"; exec notify-send 'layout tabbed'
+  bindsym r layout toggle split; mode "default"; exec notify 'layout split toggle'
+
+  # exit system mode: "Enter" or "Escape"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+
+# split orientation
+bindsym $mod+s mode "$mode_split"
+set $mode_split SPLIT: (h)orizontally tile, (v)ertically tile, (t)oggle
+mode "$mode_split" {
+  bindsym h split h; mode "default"; exec notify-send 'tile horizontally'
+  bindsym v split v; mode "default"; exec notify-send 'tile vertically'
+  bindsym t split toggle; mode "default"; exec notify-send 'split toggle'
+
+  # exit system mode: "Enter" or "Escape"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+  bindsym l exec --no-startup-id i3exit lock, mode "default"
+  bindsym s exec --no-startup-id i3exit suspend, mode "default"
+  bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+  bindsym e exec --no-startup-id i3exit logout, mode "default"
+  bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+  bindsym r exec --no-startup-id i3exit reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  # exit system mode: "Enter" or "Escape"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+  # These bindings trigger as soon as you enter the resize mode
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym l resize shrink width 5 px or 5 ppt
+  bindsym k resize grow height 5 px or 5 ppt
+  bindsym j resize shrink height 5 px or 5 ppt
+  bindsym h resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  # bindsym Left resize shrink width 10 px or 10 ppt
+  # bindsym Down resize grow height 10 px or 10 ppt
+  # bindsym Up resize shrink height 10 px or 10 ppt
+  # bindsym Right resize grow width 10 px or 10 ppt
 
-        # exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # exit resize mode: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
-
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

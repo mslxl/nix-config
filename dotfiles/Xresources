@@ -60,8 +60,8 @@ XTerm*selectToClipboard: true
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-URxvt.font:xft:Source Code Pro:antialias=True:pixelsize=18,xft:WenQuanYi Zen Hei:pixelsize=18
-URxvt.boldfont:xft:Source Code Pro:antialias=True:pixelsize=18,xft:WenQuanYi Zen Hei:pixelsize=18
+URxvt.font:xft:WenQuanYi Micro Hei Mono:pixelsize=18:antialias=True,xft:Source Code Pro:antialias=True:pixelsize=18
+URxvt.boldfont:xft:WenQuanYi Micro Hei Mono:pixelsize=18:antialias=True,xft:Source Code Pro:antialias=True:pixelsize=18
 
 URxvt.depth:                      32
 URxvt.background:                 [100]#222D31
@@ -235,7 +235,7 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
 
 ! rofi color 
-rofi.font: Monaco 12
+rofi.font: "Source Code Pro" 12
 rofi.color-enabled: true
 rofi.color-window: #3a4c54, #2a373e, #c3c6c8
 rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc

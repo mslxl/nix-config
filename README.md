@@ -1,8 +1,9 @@
 # .dotfile
 
 
+## Packages need to install
 * `sudo timedatectl set-local-rtc true`
-* pacman-mirrors -c China
+* `pacman-mirrors -c China`
 * sakura
 * [archlinuxcn source (need config manually)](https://mirror.tuna.tsinghua.edu.cn/help/archlinuxcn/)
 * neovim
@@ -11,7 +12,6 @@
 * fish
 * [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
 * [dotdrop](https://github.com/deadc0de6/dotdrop)
-* vivaldi
 * firefox
 * Uninstall palemoon-bin
 * [deepin-wechat (need config manually)](https://aur.archlinux.org/packages/deepin-wine-wechat/)
@@ -38,3 +38,4 @@
 * texlive-lang (optional)
 * zathura
 * zathura-pdf-poppler
+* trash-cli

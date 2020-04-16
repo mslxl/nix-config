@@ -42,6 +42,9 @@ dotfiles:
   f_mimeapps.list:
     src: config/mimeapps.list
     dst: ~/.config/mimeapps.list
+  d_functions:
+    src: config/fish/functions
+    dst: ~/.config/fish/functions
 profiles:
   mslxl-PC:
     dotfiles:
@@ -58,3 +61,4 @@ profiles:
     - f_compton.conf
     - f_default.custom.yaml
     - f_mimeapps.list
+    - d_functions
