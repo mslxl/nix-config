@@ -2,10 +2,14 @@
 
 alias vim="nvim"
 alias mkdirs="mkdir -p"
+
 alias untar.gz="tar -xzvf"
 alias untar="tar -xvf"
 alias ungz="gzip -d"
 alias untar.bz2="tar -xjvf"
+
+alias dl="axel -n 50"
+alias rm="trash"
 
 set -agx PATH "$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-8.8.2/bin"
 set -agx PATH "$HOME/bin"
