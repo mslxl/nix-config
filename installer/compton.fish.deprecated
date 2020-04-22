@@ -1,0 +1,37 @@
+#!/usr/bin/env fish
+
+set dep "libx11" "libxcomposite" "libxdamage" "libxfixes" "libxext" "libxrender" "libxrandr" "libxinerama" "make" "xorg-xprop" "xorg-xprop" "xwinfo" "lib32-pcre" "libconfig" "libdrm" "asciidoc" 
+
+function install
+  pacman -Qs $argv[1] > /dev/null
+  if test ! $status -eq 0
+    sudo pacman -S $argv[1]
+  end
+end
+
+if test ! -d ~/.program/
+  mkdir ~/.program/
+end
+
+set curDir (pwd)
+
+git clone https://github.com/tryone144/compton.git ~/.program/compton
+cd ~/.program/compton
+
+pacman -Qs compton > /dev/null
+if test $status -eq 0
+  echo "compton is already exist! Please remove it before install this one."
+  return 1
+end
+
+for pkg in $dep
+  echo "Install "$pkg
+  install $pkg
+end
+
+make
+make docs
+echo "Install compton"
+sudo make install
+
+cd $curDir
