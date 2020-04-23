@@ -27,15 +27,9 @@ dotfiles:
   f_init.fish:
     src: config/omf/init.fish
     dst: ~/.config/omf/init.fish
-  f_sakura.conf:
-    src: config/sakura/sakura.conf
-    dst: ~/.config/sakura/sakura.conf
   f_xmodmap:
     src: Xmodmap
     dst: ~/.Xmodmap
-  f_compton.conf:
-    src: config/compton.conf
-    dst: ~/.config/compton.conf
   f_default.custom.yaml:
     src: config/fcitx/rime/default.custom.yaml
     dst: ~/.config/fcitx/rime/default.custom.yaml
@@ -45,6 +39,18 @@ dotfiles:
   d_functions:
     src: config/fish/functions
     dst: ~/.config/fish/functions
+  f_alacritty.yml:
+    src: config/alacritty/alacritty.yml
+    dst: ~/.config/alacritty/alacritty.yml
+  d_alacritty:
+    src: config/alacritty
+    dst: ~/.config/alacritty
+  f_picom.conf:
+    src: config/picom.conf
+    dst: ~/.config/picom.conf
+  d_spacemacs.d:
+    src: spacemacs.d
+    dst: ~/.spacemacs.d
 profiles:
   mslxl-PC:
     dotfiles:
@@ -56,9 +62,11 @@ profiles:
     - f_config
     - f_i3status_config
     - f_init.fish
-    - f_sakura.conf
     - f_xmodmap
-    - f_compton.conf
     - f_default.custom.yaml
     - f_mimeapps.list
     - d_functions
+    - f_alacritty.yml
+    - d_alacritty
+    - f_picom.conf
+    - d_spacemacs.d

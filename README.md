@@ -4,7 +4,7 @@
 ## Packages need to install
 * `sudo timedatectl set-local-rtc true`
 * `pacman-mirrors -c China`
-* sakura
+* alacritty
 * [archlinuxcn source (need config manually)](https://mirror.tuna.tsinghua.edu.cn/help/archlinuxcn/)
 * neovim
 * xsel

@@ -1,4 +1,5 @@
 function! bootstrap#before() abort
+  " latex
   let g:vimtex_compiler_latexmk_engines = { '_' : '-xelatex' }
   let g:text_flavor='latex'
   let g:vimtex_view_method='zathura'
@@ -6,6 +7,8 @@ function! bootstrap#before() abort
   let g:tex_conceal='abdmg'
   set conceallevel=1
 
+  " snazzy
+  let g:SnazzyTransparent = 1
 endfunction
 
 function! bootstrap#after() abort

@@ -24,11 +24,19 @@ def userEdit(filename):
     os.system("vim "+filename)
 
 
-def testNetwork():
+def testNetwork() -> bool:
     ip = "114.114.114.114"
     print("Test network by ping " + ip)
     result = os.system("ping -c 5 -W 1 " + ip)
     return not bool(result)
+
+
+def exec(cmd:str) -> int:
+    return os.system(cmd)
+
+
+def chrootExec(cmd:str) -> int:
+    return os.system("arch-chroot /mnt " + cmd)
 
 # Steps
 
@@ -49,19 +57,19 @@ def subSetpConnectWifi():
     print("Warning: this script does not test due to I have not got wireless network card")
     hr()
     print("Network devices:")
-    os.system("ip link")
+    exec("ip link")
     hr()
     device = input("Which one is the device you want:")
     print("Set device %s on" % device)
-    os.system("ip link set %s up" % device)
+    exec("ip link set %s up" % device)
     print("Wifi SSID list:")
-    os.system('iwlist %s scan | grep ESSID' % device)
+    exec('iwlist %s scan | grep ESSID' % device)
     wifiName = input("SSID: ")
     wifiPwd = input("Password: ")
     print("Connecting...")
-    os.system("wpa_passphrase %s %s > /tmp/wpa_pass.conf" % (wifiName, wifiPwd))
-    os.system("wpa_supplicant -c /tmp/wpa_pass.conf -i %s &" % device)
-    os.system("dhcpcd")
+    exec("wpa_passphrase %s %s > /tmp/wpa_pass.conf" % (wifiName, wifiPwd))
+    exec("wpa_supplicant -c /tmp/wpa_pass.conf -i %s &" % device)
+    exec("dhcpcd")
 
 
 def stepConnectInternet():
@@ -74,7 +82,7 @@ def stepConnectInternet():
             print("Maybe you can use 'wifi-menu' to connect internet.")
             print("Type 'exit' to continue install")
             hr()
-            os.system("zsh")
+            exec("zsh")
         else:
             subSetpConnectWifi()
 
@@ -87,7 +95,7 @@ def stepChooseMirror():
     if input() == "skip":
         return
     userEdit("/etc/pacman.d/mirrorlist")
-    os.system("sudo pacman -Syy")
+    exec("pacman -Syy")
 
 
 def stepConfigPacman():
@@ -101,8 +109,8 @@ def stepConfigPacman():
 
 def stepSetTime():
     print("Switch to local time and sysnc")
-    os.system("timedatectl set-local-rtc true")
-    os.system("timedatectl set-ntp true")
+    exec("timedatectl set-local-rtc true")
+    exec("timedatectl set-ntp true")
 
 
 def stepPartDisk():
@@ -130,7 +138,7 @@ Help:
     with open('/tmp/partition.txt', 'w') as f:
         f.write(help)
     print(help)
-    os.system("zsh")
+    exec("zsh")
 
 
 def stepMountPartition():
@@ -144,7 +152,7 @@ def stepMountPartition():
     """
     print(help)
     hr()
-    os.system("zsh")
+    exec("zsh")
 
 
 def stepInstallBase():
@@ -153,12 +161,12 @@ def stepInstallBase():
     input()
     cls()
     print("Start install...")
-    os.system("pacstrap /mnt base linux linux-firmware")
+    exec("pacstrap /mnt base linux linux-firmware")
 
 
 def stepGenFstab():
     print("Generate fstab file...")
-    os.system("genfstab -U /mnt >> /mnt/etc/fstab")
+    exec("genfstab -U /mnt >> /mnt/etc/fstab")
 
 
 def stepChroot():
@@ -187,7 +195,7 @@ def stepChroot():
     print(help)
     with open('/mnt/chroot_help.txt', 'w') as f:
         f.write(help)
-    os.system("arch-chroot /mnt")
+    exec("arch-chroot /mnt")
     os.remove('/mnt/chroot_help.txt')
 
 
@@ -206,7 +214,7 @@ def stepSimpleSettings():
     with open('/mnt/etc/host', 'w') as f:
         f.write(host)
     print("Setup admin password")
-    os.system("arch-chroot /mnt passwd")
+    chrootExec("passwd")
 
 
 def stepInstallGrub():
@@ -223,32 +231,51 @@ def stepInstallGrub():
     else:
         ucode = "amd-ucode"
         print("AMD YES!")
-    os.system("arch-chroot /mnt pacman -S grub efibootmgr os-prober " + ucode)
+    chrootExec("pacman -S grub efibootmgr os-prober " + ucode)
     if not os.path.exists('/mnt/boot/grub'):
         os.makedirs("/mnt/boot/grub")
-    os.system("arch-chroot /mnt grub-mkconfig > /mnt/boot/grub/grub.cfg")
+    chrootExec("grub-mkconfig > /mnt/boot/grub/grub.cfg")
     retry = True
     while retry:
         print("Grub install target: [x86_64-efi/i386-pc]:")
         module = input("Your platfrom: ")
         retry = False
         if module == "x86_64-efi":
-            os.system("arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot")
+            chrootExec("grub-install --target=x86_64-efi --efi-directory=/boot")
         elif module == "i386-pc":
             disk = input("Your boot partition:")
-            os.system("arch-chroot /mnt grub-install --target=i386-pc " + disk)
+            chrootExec("arch-chroot /mnt grub-install --target=i386-pc " + disk)
         else:
             retry = True
 
 
+def stepAddUser():
+    hr()
+    print("Add user")
+    hr()
+    username = input("Username")
+    chrootExec("useradd -m -G wheel " + username)
+    chrootExec("passwd " + username)
+    print("Now you should enable user group wheel to run any command.")
+    print("The only thing you need to do is uncomment wheel statment.")
+    print("You can find it by search '%wheel' easily.")
+    print("Press <Enter> to edit sudo config")
+    input()
+    chrootExec("visudo")
+
+
 def stepInstallExtra():
+    hr()
+    print("Install devel")
+    chrootExec("pacman -S base-devel")
+    chrootExec("pacman -S man vi")
     hr()
     print("Install Network package")
     hr()
-    os.system("arch-chroot /mnt pacman -S wpa_supplicant dhcpcd networkmanager dhclient ")
+    chrootExec("pacman -S wpa_supplicant dhcpcd networkmanager dhclient ")
     # NetworkManager GUI
     # os.system("arch-chroot /mnt pacman -S nm-connection-editor")
-    os.system("arch-chroot /mnt systemctl enable NetworkManager")
+    chrootExec("systemctl enable NetworkManager")
 
 # Running
 
@@ -287,6 +314,7 @@ if __name__ == "__main__":
     reg(stepChroot)
     reg(stepInstallGrub)
     reg(stepInstallExtra)
+    reg(stepAddUser)
     startStep = 1
     if len(sys.argv) > 1:
         startStep = int(sys.argv[1])
