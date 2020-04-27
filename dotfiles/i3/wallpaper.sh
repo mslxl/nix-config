@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.wallpaper.png" ]; then
-  nitrogen --set-zoom-fill ~/.wallpaper.png
+if [ -f "$HOME/.wallpaper" ]; then
+  # nitrogen --set-zoom-fill ~/.wallpaper
+  feh --bg-fill ~/.wallpaper
 else
-  echo "Could not find ~/.wallpaper.png , skipped."
+  echo "Could not find ~/.wallpaper , skipped."
 fi

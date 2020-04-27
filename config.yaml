@@ -24,9 +24,6 @@ dotfiles:
   f_i3status_config:
     src: config/i3status/config
     dst: ~/.config/i3status/config
-  f_init.fish:
-    src: config/omf/init.fish
-    dst: ~/.config/omf/init.fish
   f_xmodmap:
     src: Xmodmap
     dst: ~/.Xmodmap
@@ -36,9 +33,6 @@ dotfiles:
   f_mimeapps.list:
     src: config/mimeapps.list
     dst: ~/.config/mimeapps.list
-  d_functions:
-    src: config/fish/functions
-    dst: ~/.config/fish/functions
   f_alacritty.yml:
     src: config/alacritty/alacritty.yml
     dst: ~/.config/alacritty/alacritty.yml
@@ -51,6 +45,21 @@ dotfiles:
   d_spacemacs.d:
     src: spacemacs.d
     dst: ~/.spacemacs.d
+  d_conky:
+    src: xmonad/conky
+    dst: ~/.xmonad/conky
+  f_xmonad.hs:
+    src: xmonad/xmonad.hs
+    dst: ~/.xmonad/xmonad.hs
+  f_taskrc:
+    src: taskrc
+    dst: ~/.taskrc
+  f_zshrc:
+    src: zshrc
+    dst: ~/.zshrc
+  d_zsh:
+    src: zsh
+    dst: ~/.zsh
 profiles:
   mslxl-PC:
     dotfiles:
@@ -61,12 +70,15 @@ profiles:
     - f_xresources
     - f_config
     - f_i3status_config
-    - f_init.fish
     - f_xmodmap
     - f_default.custom.yaml
     - f_mimeapps.list
-    - d_functions
     - f_alacritty.yml
     - d_alacritty
     - f_picom.conf
     - d_spacemacs.d
+    - d_conky
+    - f_xmonad.hs
+    - f_taskrc
+    - f_zshrc
+    - d_zsh
