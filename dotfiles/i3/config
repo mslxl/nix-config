@@ -8,16 +8,12 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
+default_border pixel 2
 default_floating_border normal
 
 # Hide borders
 hide_edge_borders none
 
-# change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -65,8 +61,8 @@ bindsym $mod+F1 exec alacritty -e fish -c ranger
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec netease-cloud-music
-bindsym $mod+t exec --no-startup-id pkill picom
-bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+# bindsym $mod+t exec --no-startup-id pkill picom
+# bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym mod1+Shift+A --release exec --no-startup-id deepin-screenshot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
@@ -100,7 +96,7 @@ bindsym $mod+Shift+l move right
 # workspace back and forth (with/without active container) !I do not like it!
 # workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+# bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -175,7 +171,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Tab exec fish -c "~/.i3/i3workspace.fish switch"
 bindsym $mod+Ctrl+Tab exec fish -c "~/.i3/i3workspace.fish ms"
 bindsym $mod+Shift+Tab exec fish -c "~/.i3/i3workspace.fish move"
-bindsym $mod+mod1+Tab exec fish -c "rofi -show windowcd"
+bindsym $mod+mod1+Tab exec fish -c "rofi -show window"
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -200,7 +196,6 @@ for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
@@ -299,6 +294,18 @@ mode "resize" {
   bindsym Escape mode "default"
 }
 
+# change borders
+set $mode_border Border: (u)none, (y)pixel 2, (n)normal
+bindsym $mod+Shift+b mode "$mode_border"
+mode "$mode_border" {
+  bindsym u border none, mode "default"
+  bindsym y border pixel 2, mode "default"
+  bindsym n border normal, mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id nitrogen --restore; sleep 1; compton -b
@@ -306,7 +313,7 @@ exec --no-startup-id picom -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+#exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id fcitx
 # exec --no-startup-id blueman-applet
@@ -399,7 +406,7 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 12
 gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.

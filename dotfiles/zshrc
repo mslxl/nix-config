@@ -1,18 +1,23 @@
+source $HOME/.zsh/init.zsh
 if [[ -f $HOME/.zplug/init.zsh ]] {
   source $HOME/.zplug/init.zsh
 
-  zplug "plugins/git", from:oh-my-zsh
+# zplug "plugins/git", from:oh-my-zsh
+  zplug "plugins/hitokoto", from:oh-my-zsh
   zplug "plugins/extract", from:oh-my-zsh
   zplug "plugins/z", from:oh-my-zsh
   zplug "plugins/vi-mode", from:oh-my-zsh
   zplug "plugins/colored-man-pages", from:oh-my-zsh
   zplug "plugins/safe-paste", from:oh-my-zsh
   zplug "plugins/git-open", from:oh-my-zsh
+  # zplug "plugins/thefuck", from:oh-my-zsh
 
   zplug "themes/ys", from:oh-my-zsh, as:theme
 
   zplug "zsh-users/zsh-syntax-highlighting"
   zplug "zsh-users/zsh-autosuggestions"
+
+  zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
   if ! zplug check --verbose; then
       echo 'Run "zplug install" to install'
@@ -23,31 +28,4 @@ if [[ -f $HOME/.zplug/init.zsh ]] {
   echo "\033[31mPlease install zplug.\033[0m"
   echo "\033[31mSee:https://github.com/zplug/zplug\033[0m"
 }
-source $HOME/.zsh/init.sh
 
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"

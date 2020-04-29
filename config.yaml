@@ -3,9 +3,6 @@ config:
   create: true
   dotpath: dotfiles
 dotfiles:
-  f_dotdrop.fish:
-    src: config/fish/functions/dotdrop.fish
-    dst: ~/.config/fish/functions/dotdrop.fish
   f_xprofile:
     src: xprofile
     dst: ~/.xprofile
@@ -63,7 +60,6 @@ dotfiles:
 profiles:
   mslxl-PC:
     dotfiles:
-    - f_dotdrop.fish
     - f_xprofile
     - d_spacevim.d
     - d_i3
