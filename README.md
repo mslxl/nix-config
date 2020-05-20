@@ -1,17 +1,18 @@
 # .dotfile
 
+## Setup
+```bash
+curl -L https://raw.githubusercontent.com/mslxl/.dotfile/master/installer/install_dotfile.sh | bash
+```
 
 ## Packages need to install
 * `sudo timedatectl set-local-rtc true`
-* `pacman-mirrors -c China`
 * alacritty
 * [archlinuxcn source (need config manually)](https://mirror.tuna.tsinghua.edu.cn/help/archlinuxcn/)
 * neovim
 * xsel
 * python-neovim
 * fish
-* [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
-* [dotdrop](https://github.com/deadc0de6/dotdrop)
 * firefox
 * Uninstall palemoon-bin
 * [deepin-wechat (need config manually)](https://aur.archlinux.org/packages/deepin-wine-wechat/)

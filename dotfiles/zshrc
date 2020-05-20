@@ -1,21 +1,27 @@
-source $HOME/.zsh/init.zsh
+SAVEHIST=500
+HISTFILE=~/.zsh_history
 if [[ -f $HOME/.zplug/init.zsh ]] {
   source $HOME/.zplug/init.zsh
+  source $HOME/.zsh/init.zsh
 
-# zplug "plugins/git", from:oh-my-zsh
-  zplug "plugins/hitokoto", from:oh-my-zsh
+  # zplug "plugins/git", from:oh-my-zsh
+  # zplug "plugins/hitokoto", from:oh-my-zsh
+  # zplug "plugins/vi-mode", from:oh-my-zsh
+  zplug "plugins/thefuck", from:oh-my-zsh
   zplug "plugins/extract", from:oh-my-zsh
   zplug "plugins/z", from:oh-my-zsh
-  zplug "plugins/vi-mode", from:oh-my-zsh
   zplug "plugins/colored-man-pages", from:oh-my-zsh
   zplug "plugins/safe-paste", from:oh-my-zsh
   zplug "plugins/git-open", from:oh-my-zsh
-  # zplug "plugins/thefuck", from:oh-my-zsh
+  zplug "plugins/web-search", from:oh-my-zsh
 
   zplug "themes/ys", from:oh-my-zsh, as:theme
 
   zplug "zsh-users/zsh-syntax-highlighting"
   zplug "zsh-users/zsh-autosuggestions"
+  zplug "kutsan/zsh-system-clipboard"
+
+  zplug "~/.zsh/script/vi-mode", from:local
 
   zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
@@ -25,7 +31,8 @@ if [[ -f $HOME/.zplug/init.zsh ]] {
   # Then, source plugins and add commands to $PATH
   zplug load
 } else {
-  echo "\033[31mPlease install zplug.\033[0m"
-  echo "\033[31mSee:https://github.com/zplug/zplug\033[0m"
+  print -P "%F{red}Please install zplug."
+  print -P "Run %U%Bgit clone https://github.com/zplug/zplug ~/.zplug%b%u to install"
+  print -P "See:https://github.com/zplug/zplug%f"
 }
 

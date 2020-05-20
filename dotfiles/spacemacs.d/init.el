@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(rust
+   '(html
+     ;; rust
      yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -40,35 +41,34 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-     better-defaults
+     ;; better-defaults
      emacs-lisp
      git
      helm
      lsp
      markdown
      multiple-cursors
-     ;; org
+     org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
+     ;; spell-checking
      syntax-checking
      version-control
      treemacs
-     yaml
-     (chinese :variables
-              chinese-enable-fcitx t
-              chinese-enable-youdao-dict t)
      python
      haskell
      markdown
-     java
-     evil-cursor
+     ;; java
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     javascript
+     ;; javascript
      shell-scripts
+     ;; My layers
+     evil-cursor
+     chinese-base
+
      )
 
    ;; List of additional packages that will be installed without being
@@ -226,7 +226,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 10.0
+                               :size 12.0
                                :weight normal
                                :width normal)
 
@@ -472,7 +472,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  ;; (spacemacs/load-spacemacs-env)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -513,7 +514,15 @@ before packages are loaded."
       (setq interprogram-cut-function 'xclip-cut-function)
       (setq interprogram-paste-function 'xclip-paste-function)
       ))
-  (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+) 
+
+  ;; config markdown
+  (setq-default markdown-command "/usr/bin/pandoc")
+
+  ;; config yas-snippets
+  (setq yas-snippet-dirs
+        '("~/.spacemacs.d/snippets"
+          "~/.emacs.d/private/snippets"
+          ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -530,7 +539,8 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (toml-mode racer helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo rust-mode yaml-mode dap-mode bui youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection spaceline-all-the-icons smeargle shell-pop restart-emacs rainbow-delimiters pytest pyim pyenv-mode py-isort prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox pangu-spacing overseer org-plus-contrib org-bullets open-junk-file nodejs-repl nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lsp-java lsp-haskell lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero insert-shebang indent-guide importmagic hybrid-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-lsp helm-ls-git helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-package flycheck-haskell flycheck-elsa flycheck-bashate flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fcitx fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish devdocs define-word dante cython-mode cpp-auto-include company-ycmd company-tern company-shell company-rtags company-ghci company-ghc company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format chinese-conv centered-cursor-mode ccls browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile attrap aggressive-indent ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode htmlize helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path toml-mode racer helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo rust-mode yaml-mode dap-mode bui youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection spaceline-all-the-icons smeargle shell-pop restart-emacs rainbow-delimiters pytest pyim pyenv-mode py-isort prettier-js popwin pippel pipenv pip-requirements pcre2el password-generator paradox pangu-spacing overseer org-plus-contrib org-bullets open-junk-file nodejs-repl nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lsp-java lsp-haskell lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero insert-shebang indent-guide importmagic hybrid-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-lsp helm-ls-git helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-package flycheck-haskell flycheck-elsa flycheck-bashate flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fcitx fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish devdocs define-word dante cython-mode cpp-auto-include company-ycmd company-tern company-shell company-rtags company-ghci company-ghc company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format chinese-conv centered-cursor-mode ccls browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile attrap aggressive-indent ace-pinyin ace-link ace-jump-helm-line ac-ispell)))
+ '(pyim-dicts nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

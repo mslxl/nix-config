@@ -16,7 +16,7 @@
   # Disable guicolors in basic mode, many terminal do not support 24bit
   # true colors
   enable_guicolors = true
-  
+ 
   # Disable statusline separator, if you want to use other value, please
   # install nerd fonts
   statusline_separator = "arrow"
@@ -24,10 +24,10 @@
   buffer_index_type = 4
   enable_tabline_filetype_icon = true
   enable_statusline_mode = false
+  filetree_direction="left"
   snippet_engine='ultisnips'
   bootstrap_before = "bootstrap#before"
   bootstrap_after = "bootstrap#after"
-  # Autocomplete
   # autocomplete_method="coc"
 
 # Enable autocomplete layer
@@ -78,6 +78,12 @@
 
 [[layers]]
   name = 'lang#haskell'
+
+[[layers]]
+  name = 'lang#csharp'
+
+[[layers]]
+  name = 'lang#fsharp'
 
 [[layers]]
   name = 'lang#python'

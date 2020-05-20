@@ -48,20 +48,19 @@ dotfiles:
   f_xmonad.hs:
     src: xmonad/xmonad.hs
     dst: ~/.xmonad/xmonad.hs
-  f_taskrc:
-    src: taskrc
-    dst: ~/.taskrc
   f_zshrc:
     src: zshrc
     dst: ~/.zshrc
   d_zsh:
     src: zsh
     dst: ~/.zsh
+  f_gitconfig:
+    src: gitconfig
+    dst: ~/.gitconfig
 profiles:
   mslxl-PC:
     dotfiles:
     - f_xprofile
-    - d_spacevim.d
     - d_i3
     - f_xresources
     - f_config
@@ -73,8 +72,11 @@ profiles:
     - d_alacritty
     - f_picom.conf
     - d_spacemacs.d
-    - d_conky
-    - f_xmonad.hs
-    - f_taskrc
     - f_zshrc
     - d_zsh
+    - f_gitconfig
+  disable:
+    dotfiles:
+    - f_xmonad.hs
+    - d_conky
+    - d_spacevim.d
