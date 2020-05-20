@@ -1,0 +1,9 @@
+#!/bin/bash
+git status
+echo "Are you sure to push it to origin?"
+echo "Press C-c to exit."
+read
+echo "Push to GitHub:"
+git push origin
+echo "Push to Gitee:"
+git push gitee

@@ -1,8 +1,16 @@
 # .dotfile
 
 ## Setup
+
+GitHub:
 ```bash
 curl -L https://raw.githubusercontent.com/mslxl/.dotfile/master/installer/install_dotfile.sh | bash
+```
+
+Gitee:
+
+```bash
+curl -L https://gitee.com/Mslxl/dotfile/raw/master/installer/install_dotfile.sh | bash
 ```
 
 ## Packages need to install
