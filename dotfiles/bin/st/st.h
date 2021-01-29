@@ -90,6 +90,7 @@ void toggleprinter(const Arg *);
 void copyurl(const Arg *);
 
 int tattrset(int);
+int tisaltscr(void);
 void tnew(int, int);
 void tresize(int, int);
 void tsetdirtattr(int);
