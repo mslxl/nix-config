@@ -2,7 +2,7 @@
 
 
 # EDITOR
-alias vim="nvim"
+# alias vim="nvim"
 
 _start_emacs_daemon(){
     ret=$(ps x | awk '{print $5$6}' | grep "emacs--daemon")
@@ -44,8 +44,8 @@ alias ps.fzf.pid="ps.fzf | awk '{print \$2}'"
 alias ps.fzf.kill="ps.fzf.pid | xargs kill"
 
 # Thefuck
-eval $(thefuck --alias)
-alias fix="fuck"
+# eval $(thefuck --alias)
+# alias fix="fuck"
 
 # Taskwarrior
 

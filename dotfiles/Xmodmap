@@ -1,5 +1,0 @@
-! clear KEY_TAB
-! keycode <keycode> = Key Shift+Key Mode_switch+Shift+Key
-clear lock
-
-keycode 66 = Escape Return
