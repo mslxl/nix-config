@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Source Code Pro:pixelsize=14:antialias=true:autohint=true";
+static char *font = "Source Code Pro:pixelsize=15:antialias=true:autohint=true";
 static int borderpx = 2;
 /*
  * What program is execed by st depends of these precedence rules:
@@ -93,7 +93,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 // bgopacity
-float alpha = 0xcc;
+float alpha = 0.85;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
   /* 8 normal colors */
@@ -207,6 +207,11 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
+	{ MODKEY,            	XK_k,		kscrollup,      {.i =  1} },
+	{ MODKEY,            	XK_j,		kscrolldown,    {.i =  1} },
+	{ MODKEY|ControlMask,	XK_k,		kscrollup,      {.i = -1} },
+	{ MODKEY|ControlMask,	XK_j,		kscrolldown,    {.i = -1} },
 };
 
 /*
