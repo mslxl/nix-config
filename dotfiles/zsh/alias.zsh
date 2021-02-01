@@ -34,6 +34,7 @@ alias ~="cd ~"
 alias ra="ranger"
 alias dotdrop="~/.dotfile/dotdrop.sh --cfg=~/.dotfile/config.yaml"
 alias g="git"
+alias pcs="proxychains"
 
 # ps
 alias ps.find="ps aux | grep -v 'grep' | grep"
@@ -49,25 +50,33 @@ alias ps.fzf.kill="ps.fzf.pid | xargs kill"
 
 # Taskwarrior
 
-alias ta="task add"
-alias tah="task add priority:H"
-alias tam="task add priority:M"
-alias tal="task add priority:L"
-alias t="task next"
+# alias ta="task add"
+# alias tah="task add priority:H"
+# alias tam="task add priority:M"
+# alias tal="task add priority:L"
+# alias t="task next"
 
-td() {
-  if (($# == 1)) {
-    task $1 done
-  } else {
-    echo "Arguments wrong."
-  }
-}
+# td() {
+#   if (($# == 1)) {
+#     task $1 done
+#   } else {
+#     echo "Arguments wrong."
+#   }
+# }
 
-tx() {
-  if (($# == 1)) {
-    task $1 delete
-  } else {
-    echo "Arguments wrong."
-  }
-}
+# tx() {
+#   if (($# == 1)) {
+#     task $1 delete
+#   } else {
+#     echo "Arguments wrong."
+#   }
+# }
 
+# Tmux
+alias t="tmux"
+alias tls="tmux ls"
+alias ta="tmux attach -t"
+alias tn="tmux new -t"
+alias tk="tmux kill-session -t"
+alias ts="tmux switch -t"
+alias trename="tmux rename-session -t"

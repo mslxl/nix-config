@@ -15,9 +15,6 @@ dotfiles:
   f_xresources:
     src: Xresources
     dst: ~/.Xresources
-  f_config:
-    src: config/fcitx/config
-    dst: ~/.config/fcitx/config
   f_i3status_config:
     src: config/i3status/config
     dst: ~/.config/i3status/config
@@ -54,18 +51,29 @@ dotfiles:
   d_dwm:
     src: bin/dwm
     dst: ~/bin/dwm
+  d_dwm_1:
+    src: dwm
+    dst: ~/.dwm
+  f_tmux.conf:
+    src: tmux.conf
+    dst: ~/.tmux.conf
+  d_doom.d:
+    src: doom.d
+    dst: ~/.doom.d
 profiles:
   mslxl-PC:
     dotfiles:
     - f_xprofile
     - f_xresources
-    - f_config
     - f_picom.conf
     - f_zshrc
     - d_zsh
     - f_gitconfig
     - d_st
     - d_dwm
+    - d_dwm_1
+    - f_tmux.conf
+    - d_doom.d
   disable:
     dotfiles:
     - f_xmonad.hs
