@@ -1,7 +1,9 @@
 #!/bin/bash
 print_volume() {
-	volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
-	if test "$volume" -gt 0
+	info="$(amixer get Master | tail -n1)"
+	volume="$(echo $info | sed -r 's/.*\[(.*)%\].*/\1/')"
+	status="$(echo $info | sed -r 's/.*\[.*%\].*\[(.*)\]/\1/')"
+	if [ "$volume" -gt 0 -a "$status" != "off" ]
 	then
 		echo -e "墳 ${volume}%"
 	else
