@@ -60,6 +60,13 @@ dotfiles:
   d_doom.d:
     src: doom.d
     dst: ~/.doom.d
+  f_mk-desktop:
+    src: bin/mk-desktop
+    dst: ~/bin/mk-desktop
+    chmod: '755'
+  d_rime:
+    src: local/share/fcitx5/rime
+    dst: ~/.local/share/fcitx5/rime
 profiles:
   mslxl-PC:
     dotfiles:
@@ -74,6 +81,8 @@ profiles:
     - d_dwm_1
     - f_tmux.conf
     - d_doom.d
+    - f_mk-desktop
+    - d_rime
   disable:
     dotfiles:
     - f_xmonad.hs

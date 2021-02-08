@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+function err() {
+    print -P "%F{red}$*%f" > /dev/stderr
+}
+
+function createDesktop() {
+    content="[Desktop Entry]"
+    dialog --inputbox "$1 - Name:" -1 -1 2>/tmp/name
+    content+="\nName=$(cat /tmp/name)"
+    content+="\nExec=\"$1\""
+    dialog --yesno "$1 - Terminal" -1 -1
+    result=$?
+    if (( $result == 0 )) {
+        content+="\nTerminal=true"
+    } else {
+        content+="\nTerminal=false"
+    }
+    content+="\nType=Application"
+
+    filename="$HOME/.local/share/applications/$(cat /tmp/name).desktop"
+    echo $content >$filename
+    chmod a+x $filename
+}
+
+if (( $# < 1 )) {
+    read cmd
+    createDesktop $cmd
+    return
+} else {
+    for item ($*) {
+        if [[ -f $item ]] {
+            createDesktop $(realpath $item)
+        } else {
+            createDesktop $item
+        }
+    }
+}

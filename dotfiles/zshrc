@@ -1,5 +1,6 @@
 SAVEHIST=500
 HISTFILE=~/.zsh_history
+
 if [[ -f $HOME/.zplug/init.zsh ]] {
   source $HOME/.zplug/init.zsh
   source $HOME/.zsh/init.zsh
@@ -21,7 +22,7 @@ if [[ -f $HOME/.zplug/init.zsh ]] {
   zplug "zsh-users/zsh-autosuggestions"
   zplug "kutsan/zsh-system-clipboard"
 
-  zplug "~/.zsh/script/vi-mode", from:local
+  # zplug "~/.zsh/script/vi-mode", from:local
 
   zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 

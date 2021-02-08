@@ -1,10 +1,12 @@
 #!/bin/sh
+xmodmap $HOME/.dwm/.xmodmap
+feh --bg-fill $HOME/.wallpaper
 picom -b &
-feh --bg-fill $HOME/Pictures/87326553_p0.jpg &
 $HOME/.dwm/dwm-status.sh &
 
 # Wait
-sleep 5
+sleep 3
 pulseaudio --start &
 nm-applet &
-fcitx5 -d
+fcitx5 -d &
+pcmanfm -d &
