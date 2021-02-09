@@ -67,6 +67,9 @@ dotfiles:
   d_rime:
     src: local/share/fcitx5/rime
     dst: ~/.local/share/fcitx5/rime
+  d_ranger:
+    src: config/ranger
+    dst: ~/.config/ranger
 profiles:
   mslxl-PC:
     dotfiles:
@@ -83,6 +86,7 @@ profiles:
     - d_doom.d
     - f_mk-desktop
     - d_rime
+    - d_ranger
   disable:
     dotfiles:
     - f_xmonad.hs

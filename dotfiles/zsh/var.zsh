@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
 export EDITOR="vim"
 export BROWSER="firefox"
@@ -7,6 +7,8 @@ export BROWSER="firefox"
 # export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export PATH=$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-8.8.2/bin:$PATH
 export PATH=$HOME/bin:$PATH
