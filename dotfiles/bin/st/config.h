@@ -5,7 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Source Code Pro:pixelsize=15:antialias=true:autohint=true";
+//static char *font = "Source Code Pro:pixelsize=15:antialias=true:autohint=true";
+static char *font = "SauceCodePro Nerd Font Mono:pixelsize=15:antialias=true:autohint=true";
 static int borderpx = 2;
 /*
  * What program is execed by st depends of these precedence rules:
@@ -73,7 +74,8 @@ static unsigned int cursorthickness = 2;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-256color";
+//char *termname = "st-256color";
+char *termname = "xterm-256color";
 
 /*
  * spaces per tab
@@ -107,7 +109,7 @@ static const char *colorname[] = {
   [7] = "#bbbbbb", /* white   */
 
   /* 8 bright colors */
-  [8]  = "#44475a", /* black   */
+  [8]  = "#66697d", /* black   */
   [9]  = "#ff5555", /* red     */
   [10] = "#50fa7b", /* green   */
   [11] = "#f1fa8c", /* yellow  */
