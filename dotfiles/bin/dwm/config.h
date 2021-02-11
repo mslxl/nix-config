@@ -27,7 +27,7 @@ static const unsigned int alphas[][3]      = {
  
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "Unu", "Du", "Tri", "Kvar", "Kvin", "Ses", "Sep", "Ok", "Naŭ" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -35,9 +35,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	 { "rofi",     NULL,       NULL,       0,            1,           -1 },
-	 { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-
+	{ "rofi",     NULL,       NULL,       0,            1,           -1 },
+	//  { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -63,15 +62,17 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/zsh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *rofiruncmd[] = {"zsh", "-c", "rofi -show run -theme $HOME/.dwm/slate.rasi"};
-static const char *rofidruncmd[] = { "zsh", "-c", "rofi -show drun -theme $HOME/.dwm/slate.rasi"};
-static const char *trayercmd[] = {"zsh", "-c", "$HOME/.dwm/trayer-toggle.sh"};
+static const char *rofiruncmd[] = {"zsh", "-c", "rofi -show run -theme $HOME/.dwm/slate.rasi", NULL };
+static const char *rofidruncmd[] = { "zsh", "-c", "rofi -show drun -theme $HOME/.dwm/slate.rasi", NULL };
+static const char *trayercmd[] = {"zsh", "-c", "$HOME/.dwm/trayer-toggle.sh", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *volupcmd[] = {"zsh", "-c", "$HOME/.dwm/vol-up.sh"};
-static const char *voldowncmd[] = {"zsh", "-c", "$HOME/.dwm/vol-down.sh"};
-static const char *voltogglecmd[] = {"zsh", "-c", "$HOME/.dwm/vol-toggle.sh"};
+static const char *volupcmd[] = {"zsh", "-c", "$HOME/.dwm/vol-up.sh", NULL };
+static const char *voldowncmd[] = {"zsh", "-c", "$HOME/.dwm/vol-down.sh", NULL };
+static const char *voltogglecmd[] = {"zsh", "-c", "$HOME/.dwm/vol-toggle.sh", NULL };
+static const char *slockcmd[] = {"slock", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+
 
 
 static Key keys[] = {
@@ -87,6 +88,7 @@ static Key keys[] = {
 	{ MODKEY,				-1,			XF86XK_AudioLowerVolume,	spawn,          {.v = voldowncmd } },
 	{ MODKEY,				-1,			XF86XK_AudioMute,			spawn,          {.v = voltogglecmd } },
 	{ MODKEY,				-1,			XK_grave,  					togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,		-1,			XK_l,      					spawn,          {.v = slockcmd } },
 //	{ MODKEY,				-1,			XK_b,      					togglebar,      {0} },
 	{ MODKEY|ShiftMask,		-1,			XK_j,      					rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,		-1,			XK_k,      					rotatestack,    {.i = -1 } },
@@ -111,7 +113,7 @@ static Key keys[] = {
 	{ MODKEY,				-1,			XK_period, 					focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,		-1,			XK_comma,  					tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,		-1,			XK_period, 					tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,     -1,			XK_q,      					quit,           {0} },
+	{ MODKEY|ShiftMask,     XK_q,	    XK_q,      					quit,           {0} },
 	TAGKEYS(                -1,			XK_1,                      0)
 	TAGKEYS(                -1,			XK_2,                      1)
 	TAGKEYS(                -1,			XK_3,                      2)
