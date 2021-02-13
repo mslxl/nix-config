@@ -95,7 +95,7 @@ char *termname = "xterm-256color";
 unsigned int tabspaces = 8;
 
 // bgopacity
-float alpha = 0.85;
+float alpha = 0.90;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
   /* 8 normal colors */
@@ -209,6 +209,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ TERMMOD,              XK_Escape,      keyboard_select,{.i =  0} },
 	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
 	{ MODKEY,            	XK_k,		kscrollup,      {.i =  1} },
 	{ MODKEY,            	XK_j,		kscrolldown,    {.i =  1} },
