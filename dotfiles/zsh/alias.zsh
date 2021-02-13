@@ -2,20 +2,14 @@
 
 
 # EDITOR
-# alias vim="nvim"
+alias vim="nvim"
+alias vi="nvim"
 
-_start_emacs_daemon(){
-    ret=$(ps x | awk '{print $5$6}' | grep "emacs--daemon")
-    if (( $? != 0 )) {
-           echo "Wait for emacs daemon start..."
-           emacs --daemon
-    }
-    return 0
-}
-alias e="_start_emacs_daemon && emacsclient"
-alias ew="_start_emacs_daemon && emacsclient -nc"
-alias ee="emacs -nw"
-alias eew="emacs"
+alias e="emacsclient -a \"\" -c"
+alias en="emacsclient -a \"\" -c -nw"
+alias ec="emacs"
+alias ecn="emacs -nw"
+alias todo="emacs -nw ~/todo.org"
 
 # Basic
 alias ls="ls --color"
@@ -44,34 +38,6 @@ alias ps.fzf="ps aux | fzf"
 alias ps.fzf.cmd="ps.fzf | awk '{print \$11\" \"\$12}'"
 alias ps.fzf.pid="ps.fzf | awk '{print \$2}'"
 alias ps.fzf.kill="ps.fzf.pid | xargs kill"
-
-# Thefuck
-# eval $(thefuck --alias)
-# alias fix="fuck"
-
-# Taskwarrior
-
-# alias ta="task add"
-# alias tah="task add priority:H"
-# alias tam="task add priority:M"
-# alias tal="task add priority:L"
-# alias t="task next"
-
-# td() {
-#   if (($# == 1)) {
-#     task $1 done
-#   } else {
-#     echo "Arguments wrong."
-#   }
-# }
-
-# tx() {
-#   if (($# == 1)) {
-#     task $1 delete
-#   } else {
-#     echo "Arguments wrong."
-#   }
-# }
 
 # Tmux
 alias t="tmux"
