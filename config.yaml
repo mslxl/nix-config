@@ -87,6 +87,14 @@ profiles:
     - f_mk-desktop
     - d_rime
     - d_ranger
+  termux:
+    dotfiles:
+    - f_zshrc
+    - d_zsh
+    - f_gitconfig
+    - f_tmux.conf
+    - d_doom.d
+    - d_ranger
   disable:
     dotfiles:
     - f_xmonad.hs
