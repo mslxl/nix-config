@@ -4,6 +4,7 @@
 
 [alias]
 	lg = log --color --graph
+	lz = !lazygit
 	cm = commit -m
 	a = add -p
 	st = status

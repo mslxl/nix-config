@@ -28,7 +28,6 @@ alias ~="cd ~"
 alias ra="ranger"
 alias dotdrop="~/.dotfile/dotdrop.sh --cfg=~/.dotfile/config.yaml"
 alias g="git"
-alias lg="lazygit"
 alias pcs="proxychains"
 
 # ps
