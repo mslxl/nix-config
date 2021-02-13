@@ -7,22 +7,21 @@ if [[ -f $HOME/.zplug/init.zsh ]] {
 
   # zplug "plugins/git", from:oh-my-zsh
   # zplug "plugins/hitokoto", from:oh-my-zsh
-  # zplug "plugins/vi-mode", from:oh-my-zsh
-  # zplug "plugins/thefuck", from:oh-my-zsh
+  # zplug "~/.zsh/script/vi-mode", from:local
+  zplug "plugins/vi-mode", from:oh-my-zsh
+  zplug "kutsan/zsh-system-clipboard"
+
   zplug "plugins/extract", from:oh-my-zsh
   zplug "plugins/z", from:oh-my-zsh
   zplug "plugins/colored-man-pages", from:oh-my-zsh
   zplug "plugins/safe-paste", from:oh-my-zsh
-  zplug "plugins/git-open", from:oh-my-zsh
+  zplug "paulirish/git-open", as:plugin
   # zplug "plugins/web-search", from:oh-my-zsh
 
   zplug "themes/ys", from:oh-my-zsh, as:theme
 
   zplug "zsh-users/zsh-syntax-highlighting"
   zplug "zsh-users/zsh-autosuggestions"
-  zplug "kutsan/zsh-system-clipboard"
-
-  # zplug "~/.zsh/script/vi-mode", from:local
 
   zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
