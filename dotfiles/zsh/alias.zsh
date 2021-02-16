@@ -9,7 +9,7 @@ alias e="emacsclient -a \"\" -c"
 alias en="emacsclient -a \"\" -c -nw"
 alias ec="emacs"
 alias ecn="emacs -nw"
-alias todo="emacs -nw ~/todo.org"
+alias todo="emacs -nw ~/org/todo.org"
 
 # Basic
 alias ls="ls --color"
@@ -23,6 +23,7 @@ alias df="df -h"
 alias free="free -m"
 alias more=less
 alias ~="cd ~"
+alias :q="exit"
 
 # Misc Program
 alias ra="ranger"
@@ -41,8 +42,5 @@ alias ps.fzf.kill="ps.fzf.pid | xargs kill"
 # Tmux
 alias t="tmux"
 alias tls="tmux ls"
-alias ta="tmux attach -t"
-alias tn="tmux new -t"
-alias tk="tmux kill-session -t"
-alias ts="tmux switch -t"
-alias trename="tmux rename-session -t"
+alias tatt="tmux attach -t"
+alias tnew="tmux new -t"

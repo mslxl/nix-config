@@ -12,3 +12,7 @@
 	ck = checkout
 	br = branch
 	cl = clone
+[init]
+	defaultBranch = master
+[core]
+	autocrlf = input

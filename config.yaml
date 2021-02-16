@@ -70,6 +70,9 @@ dotfiles:
   d_ranger:
     src: config/ranger
     dst: ~/.config/ranger
+  f_p10k.zsh:
+    src: p10k.zsh
+    dst: ~/.p10k.zsh
 profiles:
   mslxl-PC:
     dotfiles:
@@ -87,6 +90,7 @@ profiles:
     - f_mk-desktop
     - d_rime
     - d_ranger
+    - f_p10k.zsh
   termux:
     dotfiles:
     - f_zshrc
