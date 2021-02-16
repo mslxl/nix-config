@@ -36,7 +36,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "rofi",     NULL,       NULL,       0,            1,           -1 },
-	//  { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -71,7 +71,7 @@ static const char *voldowncmd[] = {"zsh", "-c", "$HOME/.dwm/vol-down.sh", NULL }
 static const char *voltogglecmd[] = {"zsh", "-c", "$HOME/.dwm/vol-toggle.sh", NULL };
 static const char *slockcmd[] = {"slock", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "zsh", "-c", "$HOME/.dwm/scratchpad-init.sh", scratchpadname, NULL };
 
 
 
