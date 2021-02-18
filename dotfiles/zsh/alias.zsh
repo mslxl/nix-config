@@ -29,6 +29,7 @@ alias :q="exit"
 alias ra="ranger"
 alias dotdrop="~/.dotfile/dotdrop.sh --cfg=~/.dotfile/config.yaml"
 alias g="git"
+alias docker="sudo docker"
 alias pcs="proxychains"
 
 # ps

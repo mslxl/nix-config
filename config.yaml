@@ -1,3 +1,9 @@
+actions:
+  install_doom: git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+    && ~/.emacs.d/bin/doom install
+  install_tmux_powerline: mkdir ~/.tmux/ ; git clone https://github.com/erikw/tmux-powerline.git
+    ~/.tmux/powerline --depth 1
+  init_zathura: xdg-mime default org.pwmt.zathura.desktop application/pdf
 config:
   backup: true
   create: true
@@ -57,9 +63,13 @@ dotfiles:
   f_tmux.conf:
     src: tmux.conf
     dst: ~/.tmux.conf
+    actions:
+    - install_tmux_powerline
   d_doom.d:
     src: doom.d
     dst: ~/.doom.d
+    actions:
+    - install_doom
   f_mk-desktop:
     src: bin/mk-desktop
     dst: ~/bin/mk-desktop
@@ -73,6 +83,11 @@ dotfiles:
   f_p10k.zsh:
     src: p10k.zsh
     dst: ~/.p10k.zsh
+  f_zathurarc:
+    src: config/zathura/zathurarc
+    dst: ~/.config/zathura/zathurarc
+    actions:
+      - init_zathura
 profiles:
   mslxl-PC:
     dotfiles:
@@ -91,6 +106,7 @@ profiles:
     - d_rime
     - d_ranger
     - f_p10k.zsh
+    - f_zathurarc
   termux:
     dotfiles:
     - f_zshrc
@@ -99,6 +115,7 @@ profiles:
     - f_tmux.conf
     - d_doom.d
     - d_ranger
+    - f_p10k.zsh
   disable:
     dotfiles:
     - f_xmonad.hs
