@@ -69,10 +69,29 @@
 
 
 (use-package! evil-terminal-cursor-changer
-    :init
-    (unless (display-graphic-p)
-      (require 'evil-terminal-cursor-changer)
-      (evil-terminal-cursor-changer-activate)))
+  :init
+  (unless (display-graphic-p)
+    (require 'evil-terminal-cursor-changer)
+    (evil-terminal-cursor-changer-activate)))
 (use-package! centered-cursor-mode
-    :init
-    (global-centered-cursor-mode +1))
+  :init
+  (global-centered-cursor-mode +1))
+
+
+(use-package! rime
+  :custom
+  (default-input-method "rime")
+  :config
+  (setq rime-disable-predicates
+        '(rime-predicate-evil-mode-p
+          rime-predicate-after-alphabet-char-p
+          rime-predicate-prog-in-code-p
+          rime-predicate-space-after-cc-p
+          rime-predicate-current-uppercase-letter-p))
+  (setq rime-user-data-dir "~/.doom.d/rime")
+  (setq rime-show-candidate 'posframe))
+
+(use-package! nov
+  :config
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+ 

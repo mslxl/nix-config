@@ -87,7 +87,10 @@ dotfiles:
     src: config/zathura/zathurarc
     dst: ~/.config/zathura/zathurarc
     actions:
-      - init_zathura
+    - init_zathura
+  f_config.rasi:
+    src: config/rofi/config.rasi
+    dst: ~/.config/rofi/config.rasi
 profiles:
   mslxl-PC:
     dotfiles:
@@ -107,6 +110,7 @@ profiles:
     - d_ranger
     - f_p10k.zsh
     - f_zathurarc
+    - f_config.rasi
   termux:
     dotfiles:
     - f_zshrc

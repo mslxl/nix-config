@@ -51,3 +51,5 @@
 
 (package! evil-terminal-cursor-changer)
 (package! centered-cursor-mode)
+(package! rime)
+(package! nov) ;; epub support: https://depp.brause.cc/nov.el/

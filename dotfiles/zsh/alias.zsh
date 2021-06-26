@@ -1,5 +1,13 @@
 #!/usr/bin/env zsh
 
+function l(){
+    echo Load pkg...
+    echo ---
+    cat ~/.zsh/pkg/$1.zsh | highlight --src-lang=zsh --out-format=xterm256
+    echo ---
+    source ~/.zsh/pkg/$1.zsh
+    echo Fin
+}
 
 # EDITOR
 alias vim="nvim"
@@ -31,6 +39,11 @@ alias dotdrop="~/.dotfile/dotdrop.sh --cfg=~/.dotfile/config.yaml"
 alias g="git"
 alias docker="sudo docker"
 alias pcs="proxychains"
+alias qrsd="qrcp send"
+alias qrrv="qrcp receive"
+
+alias setpro="ALL_PROXY=socks5://127.0.0.1:1080 ; http_proxy=http://127.0.0.1:1081 ; https_proxy=http://127.0.0.1:1081"
+alias unsetpro="unset ALL_PROXY http_proxy https_proxy"
 
 # ps
 alias ps.find="ps aux | grep -v 'grep' | grep"

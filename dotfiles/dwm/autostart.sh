@@ -1,6 +1,6 @@
 #!/bin/sh
 xmodmap $HOME/.dwm/.xmodmap
-feh --bg-fill $HOME/.wallpaper
+feh --bg-scale $HOME/.wallpaper
 picom -b &
 $HOME/.dwm/dwm-status.sh &
 
@@ -9,6 +9,7 @@ $HOME/.dwm/dwm-status.sh &
 	sleep 3
 	pulseaudio --start &
 	nm-applet &
+	tmux new -d -s v2ray 'v2ray -c ~/v2ray.json' &
 	fcitx5 -d &
 	pcmanfm -d &
 }&
