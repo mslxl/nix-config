@@ -7,24 +7,17 @@ fi
 
 setopt histignorealldups sharehistory
 
-SAVEHIST=1000
-HISTSIZE=1000
+SAVEHIST=5000
+HISTSIZE=5000
 HISTFILE=~/.zsh_history
 
 if [[ -f $HOME/.zplug/init.zsh ]] {
+  autoload -Uz compinit && compinit
+
   source $HOME/.zplug/init.zsh
   source $HOME/.zsh/init.zsh
 
-  zplug "~/.zsh/plugins/x", from:local
-  zplug "plugins/vi-mode", from:oh-my-zsh
-  zplug "kutsan/zsh-system-clipboard"
-
-  zplug "plugins/z", from:oh-my-zsh
-  zplug "plugins/colored-man-pages", from:oh-my-zsh
-  zplug "plugins/safe-paste", from:oh-my-zsh
-  zplug "paulirish/git-open", as:plugin
-  # zplug "plugins/web-search", from:oh-my-zsh
-
+  # Theme
   if [[ "$DISPLAY" == "" ]] {
        zplug "themes/ys", from:oh-my-zsh, as:theme
   } else {
@@ -33,22 +26,48 @@ if [[ -f $HOME/.zplug/init.zsh ]] {
        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
   }
 
-
+  zplug "~/.zsh/plugins/x", from:local
+  zplug "plugins/vi-mode", from:oh-my-zsh
+  zplug "plugins/z", from:oh-my-zsh
+  zplug "plugins/colored-man-pages", from:oh-my-zsh
+  zplug "plugins/safe-paste", from:oh-my-zsh
   zplug "zsh-users/zsh-syntax-highlighting"
   zplug "zsh-users/zsh-autosuggestions"
-  autoload -Uz compinit && compinit
+  zplug "kutsan/zsh-system-clipboard"
+  # Adds autocomplete options for all adb commands.
+  zplug "plugins/adb", from:oh-my-zsh
+
+  # zsh history substring search
+  zplug "zsh-users/zsh-history-substring-search"
+  bindkey -v
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  bindkey "$terminfo[kcuu1]" history-substring-search-up
+  bindkey "$terminfo[kcud1]" history-substring-search-down
+  bindkey '\eOA' history-substring-search-up
+  bindkey '\eOB' history-substring-search-down
+  bindkey -M vicmd 'k' history-substring-search-up
+  bindkey -M vicmd 'j' history-substring-search-down
+  # -------------------------
 
 
+  # load plugin by zplug
   zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
   if ! zplug check --verbose; then
-      echo 'Run "zplug install" to install'
+    printf "Install? [y/N]: "
+    if read -q; then
+      echo; zplug install
+    fi
   fi
-  # Then, source plugins and add commands to $PATH
   zplug load
 } else {
   print -P "%F{red}Please install zplug."
   print -P "Run %U%Bgit clone https://github.com/zplug/zplug ~/.zplug%b%u to install"
   print -P "See:https://github.com/zplug/zplug%f"
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo
+    git clone https://github.com/zplug/zplug $HOME/.zplug
+  fi
 }
 

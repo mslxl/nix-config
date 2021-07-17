@@ -41,9 +41,31 @@ alias docker="sudo docker"
 alias pcs="proxychains"
 alias qrsd="qrcp send"
 alias qrrv="qrcp receive"
+alias pbcopy="xsel --clipboard --input"
+alias pbpaste="xsel --clipboard --output"
 
-alias setpro="ALL_PROXY=socks5://127.0.0.1:1080 ; http_proxy=http://127.0.0.1:1081 ; https_proxy=http://127.0.0.1:1081"
-alias unsetpro="unset ALL_PROXY http_proxy https_proxy"
+function wine-use-container(){
+    prefix=$1
+    prog=$2
+    echo -n "Args: "
+    read -A args
+    eval "WINEPREFIX=\"$HOME/.wine/$prefix\" wine $prog $args"
+
+}
+alias wine-in-common='wine-use-container common'
+
+function setpro(){
+	ALL_PROXY="socks5://127.0.0.1:1080"
+	http_proxy="http://127.0.0.1:1081"
+	https_proxy="http://127.0.0.1:1081"
+	git config --global http.proxy "$http_proxy"
+	git config --global https.proxy "$https_proxy"
+}
+function unsetpro(){
+	git config --global --unset http.proxy
+	git config --global --unset https.proxy
+	unset ALL_PROXY http_proxy https_proxy
+}
 
 # ps
 alias ps.find="ps aux | grep -v 'grep' | grep"

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Misc
-export EDITOR="emacsclient -a \"\" -c -nw"
+export EDITOR="emacs -nw"
 export BROWSER="firefox"
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/bin:$PATH
@@ -25,3 +25,6 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # Nodejs
 export PATH=$(yarn global bin):$PATH
+
+# Android SDK
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
