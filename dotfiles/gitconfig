@@ -12,6 +12,7 @@
 	ck = checkout
 	br = branch
 	cl = clone
+	cl1 = clone --depth 1
 [init]
 	defaultBranch = master
 [core]
