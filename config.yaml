@@ -1,6 +1,7 @@
 actions:
   install_doom: git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-    && ~/.emacs.d/bin/doom install
+    && ~/.emacs.d/bin/doom install 
+    && ln -s ~/.local/share/fcitx5/rime ~/.doom.d/rime
   install_tmux_powerline: mkdir ~/.tmux/ ; git clone https://github.com/erikw/tmux-powerline.git
     ~/.tmux/powerline --depth 1
   init_zathura: xdg-mime default org.pwmt.zathura.desktop application/pdf
@@ -8,6 +9,12 @@ config:
   backup: true
   create: true
   dotpath: dotfiles
+  cmpignore:
+  - '*.log'
+  upignore:
+  - '*.log'
+  instignore:
+  - '*.log'
 dotfiles:
   f_xprofile:
     src: xprofile
@@ -36,7 +43,7 @@ dotfiles:
   d_spacemacs.d:
     src: spacemacs.d
     dst: ~/.spacemacs.d
-  d_conky:
+  d_xmonad_conky:
     src: xmonad/conky
     dst: ~/.xmonad/conky
   f_xmonad.hs:
@@ -54,10 +61,22 @@ dotfiles:
   d_st:
     src: bin/st
     dst: ~/bin/st
+    upignore:
+    - /*.orig
+    - /*.rej
+    - /*.o
+    - /*.1
+    - st
   d_dwm:
     src: bin/dwm
     dst: ~/bin/dwm
-  d_dwm_1:
+    upignore:
+    - /*.orig
+    - /*.rej
+    - /*.o
+    - /*.1
+    - dwm
+  d_dwm_script:
     src: dwm
     dst: ~/.dwm
   f_tmux.conf:
@@ -70,6 +89,8 @@ dotfiles:
     dst: ~/.doom.d
     actions:
     - install_doom
+    upignore:
+    - '*rime'
   f_mk-desktop:
     src: bin/mk-desktop
     dst: ~/bin/mk-desktop
@@ -77,6 +98,15 @@ dotfiles:
   d_rime:
     src: local/share/fcitx5/rime
     dst: ~/.local/share/fcitx5/rime
+    upignore:
+    - '*/LOG'
+    - '*/LOCK'
+    - '*/LOG.old'
+    - '*/LOCK.old'
+    - '*/user.yaml'
+    - installation.yaml
+    - '*sync'
+    - build/*
   d_ranger:
     src: config/ranger
     dst: ~/.config/ranger
@@ -86,6 +116,9 @@ dotfiles:
   f_config.rasi:
     src: config/rofi/config.rasi
     dst: ~/.config/rofi/config.rasi
+  f_xinitrc:
+    src: xinitrc
+    dst: ~/.xinitrc
 profiles:
   mslxl-PC:
     dotfiles:
@@ -97,7 +130,7 @@ profiles:
     - f_gitconfig
     - d_st
     - d_dwm
-    - d_dwm_1
+    - d_dwm_script
     - f_tmux.conf
     - d_doom.d
     - f_mk-desktop
@@ -105,6 +138,7 @@ profiles:
     - d_ranger
     - f_p10k.zsh
     - f_config.rasi
+    - f_xinitrc
   termux:
     dotfiles:
     - f_zshrc
@@ -117,7 +151,7 @@ profiles:
   disable:
     dotfiles:
     - f_xmonad.hs
-    - d_conky
+    - d_xmonad_conky
     - d_spacemacs.d
     - d_spacevim.d
     - f_i3status_config

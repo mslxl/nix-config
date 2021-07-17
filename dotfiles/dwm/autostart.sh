@@ -1,6 +1,12 @@
 #!/bin/sh
 xmodmap $HOME/.dwm/.xmodmap
-feh --bg-scale $HOME/.wallpaper
+
+if [[ -f $HOME/.wallpaper_fill ]]; then
+	feh --bg-fill $HOME/.wallpaper_fill
+elif [[ -f $HOME/.wallpaper_scale ]]; then
+	feh --bg-scale $HOME/.wallpaper_scale
+fi
+
 picom -b &
 $HOME/.dwm/dwm-status.sh &
 
