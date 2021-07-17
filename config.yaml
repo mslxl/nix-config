@@ -1,7 +1,6 @@
 actions:
   install_doom: git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
     && ~/.emacs.d/bin/doom install 
-    && ln -s ~/.local/share/fcitx5/rime ~/.doom.d/rime
   install_tmux_powerline: mkdir ~/.tmux/ ; git clone https://github.com/erikw/tmux-powerline.git
     ~/.tmux/powerline --depth 1
   init_zathura: xdg-mime default org.pwmt.zathura.desktop application/pdf
