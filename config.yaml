@@ -83,11 +83,6 @@ dotfiles:
   f_p10k.zsh:
     src: p10k.zsh
     dst: ~/.p10k.zsh
-  f_zathurarc:
-    src: config/zathura/zathurarc
-    dst: ~/.config/zathura/zathurarc
-    actions:
-    - init_zathura
   f_config.rasi:
     src: config/rofi/config.rasi
     dst: ~/.config/rofi/config.rasi
@@ -109,7 +104,6 @@ profiles:
     - d_rime
     - d_ranger
     - f_p10k.zsh
-    - f_zathurarc
     - f_config.rasi
   termux:
     dotfiles:
