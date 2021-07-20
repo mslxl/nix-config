@@ -54,6 +54,8 @@ dotfiles:
   d_zsh:
     src: zsh
     dst: ~/.zsh
+    upignore:
+    - /*.zwc
   f_gitconfig:
     src: gitconfig
     dst: ~/.gitconfig
