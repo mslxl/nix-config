@@ -66,7 +66,6 @@ dotfiles:
     - /*.orig
     - /*.rej
     - /*.o
-    - /*.1
     - st
   d_dwm:
     src: bin/dwm
@@ -75,7 +74,6 @@ dotfiles:
     - /*.orig
     - /*.rej
     - /*.o
-    - /*.1
     - dwm
   d_dwm_script:
     src: dwm
@@ -122,6 +120,25 @@ dotfiles:
     dst: ~/.xinitrc
 profiles:
   mslxl-PC:
+    dotfiles:
+    - f_xprofile
+    - f_xresources
+    - f_picom.conf
+    - f_zshrc
+    - d_zsh
+    - f_gitconfig
+    - d_st
+    - d_dwm
+    - d_dwm_script
+    - f_tmux.conf
+    - d_doom.d
+    - f_mk-desktop
+    - d_rime
+    - d_ranger
+    - f_p10k.zsh
+    - f_config.rasi
+    - f_xinitrc
+  mslxl-laptop:
     dotfiles:
     - f_xprofile
     - f_xresources
