@@ -8,7 +8,7 @@ elif [[ -f $HOME/.wallpaper_scale ]]; then
 fi
 
 picom -b &
-$HOME/.dwm/dwm-status.sh &
+python $HOME/.dwm/dwm-status-refresh.py loop &
 
 # Wait
 {
