@@ -52,6 +52,7 @@ static const Rule rules[] = {
 	{ "Android Emulator", NULL,       NULL,       0,            1,           -1 },
 	{ "Emulator", NULL,       NULL,       0,            1,           -1 },
 	{ "quemu-system-i386", NULL,       NULL,       0,            1,           -1 },
+	{ "tim.exe", NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -86,11 +87,14 @@ static const char *upvol[]   = { "zsh", "-c", "$HOME/.dwm/vol-up.sh",  NULL };
 static const char *downvol[] = { "zsh", "-c", "$HOME/.dwm/vol-down.sh",  NULL };
 static const char *mutevol[] = { "zsh", "-c", "$HOME/.dwm/vol-toggle.sh",  NULL };
 
+static const char *upbright[] = { "zsh", "-c", "$HOME/.dwm/dwm-brightness-adjust up",  NULL };
+static const char *downbright[] = { "zsh", "-c", "$HOME/.dwm/dwm-brightness-adjust down",  NULL };
+
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 
 
-static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
 
 static Key keys[] = {
 	/* modifier            key                      function        argument */
@@ -99,12 +103,16 @@ static Key keys[] = {
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
+	{ 0,                   XF86XK_MonBrightnessUp,  spawn,          {.v = upbright } },
+	{ 0,                   XF86XK_MonBrightnessDown,spawn,          {.v = downbright } },
 	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
 	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
 	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
 	{ 0,                   XK_Print,                spawn,          {.v = screenshotcmd } },
-	{ MODKEY|ShiftMask,    XK_j,                    focusstackhid,    {.i = +1 } },
-	{ MODKEY|ShiftMask,    XK_k,                    focusstackhid,    {.i = -1 } },
+//	{ MODKEY|ShiftMask,    XK_j,                    focusstackhid,    {.i = +1 } },
+//	{ MODKEY|ShiftMask,    XK_k,                    focusstackhid,    {.i = -1 } },
+	{ MODKEY|ShiftMask,    XK_j,                    rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,    XK_k,                    rotatestack,    {.i = -1 } },
 	{ MODKEY,              XK_j,                    focusstackvis,     {.i = +1 } },
 	{ MODKEY,              XK_k,                    focusstackvis,     {.i = -1 } },
 	{ MODKEY,              XK_n,                    viewtoleft,     {0} },
@@ -123,7 +131,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_q,                    quit,     {0} },
 	{ MODKEY,              XK_t,                    setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,              XK_m,                    setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,    XK_f,                    fullscreen,     {0} },
+	{ MODKEY,    XK_f,                    fullscreen,     {0} },
 	{ MODKEY,              XK_space,                setlayout,      {0} },
 	{ MODKEY|ShiftMask,    XK_space,                togglefloating, {0} },
 	{ MODKEY,              XK_grave,           togglescratch,  {.v = scratchpadcmd } },

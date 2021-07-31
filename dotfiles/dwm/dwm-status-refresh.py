@@ -33,7 +33,9 @@ def BatteryLine():
         if text[0:8] == "Charging":
             return icons[10] + SPACE_CHAR + str(battery)
         elif text[0:4] == "Full":
-            return icons[10] + SPACE_CHAR + "UPS"
+            return icons[10] + SPACE_CHAR + "AC"
+        elif text[0:7] == "Unknown":
+            return "" + SPACE_CHAR + str(battery) 
         else:
             return icons[battery // 10 - 1] + SPACE_CHAR + str(battery)
 
