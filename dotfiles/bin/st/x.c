@@ -34,7 +34,6 @@ typedef struct {
 	void (*func)(const Arg *);
 	const Arg arg;
 	uint  release;
-	int  altscrn;  /* 0: don't care, -1: not alt screen, 1: alt screen */
 } MouseShortcut;
 
 typedef struct {
@@ -49,7 +48,7 @@ typedef struct {
 /* X modifiers */
 #define XK_ANY_MOD    UINT_MAX
 #define XK_NO_MOD     0
-#define XK_SWITCH_MOD (1<<13)
+#define XK_SWITCH_MOD (1<<13|1<<14)
 
 /* function definitions used in config.h */
 static void clipcopy(const Arg *);
@@ -112,7 +111,6 @@ typedef struct {
 	int pointerisvisible;
 	int scr;
 	int isfixed; /* is fixed geometry? */
-	int depth; /* bit depth */
 	int l, t; /* left and top offset */
 	int gm; /* geometry mask */
 } XWindow;
@@ -164,7 +162,7 @@ static void xresize(int, int);
 static void xhints(void);
 static int xloadcolor(int, const char *, Color *);
 static int xloadfont(Font *, FcPattern *);
-static void xloadfonts(char *, double);
+static void xloadfonts(const char *, double);
 static void xunloadfont(Font *);
 static void xunloadfonts(void);
 static void xsetenv(void);
@@ -251,7 +249,6 @@ static char *usedfont = NULL;
 static double usedfontsize = 0;
 static double defaultfontsize = 0;
 
-static char *opt_alpha = NULL;
 static char *opt_class = NULL;
 static char **opt_cmd  = NULL;
 static char *opt_embed = NULL;
@@ -396,7 +393,9 @@ mousereport(XEvent *e)
 			button = 3;
 		} else {
 			button -= Button1;
-			if (button >= 3)
+			if (button >= 7)
+				button += 128 - 7;
+			else if (button >= 3)
 				button += 64 - 3;
 		}
 		if (e->xbutton.type == ButtonPress) {
@@ -455,7 +454,6 @@ mouseaction(XEvent *e, uint release)
 	for (ms = mshortcuts; ms < mshortcuts + LEN(mshortcuts); ms++) {
 		if (ms->release == release &&
 		    ms->button == e->xbutton.button &&
-		    (!ms->altscrn || (ms->altscrn == (tisaltscr() ? 1 : -1))) &&
 		    (match(ms->mod, state) ||  /* exact or forced */
 		     match(ms->mod, state & ~forcemousemod))) {
 			ms->func(&(ms->arg));
@@ -754,7 +752,7 @@ xresize(int col, int row)
 
 	XFreePixmap(xw.dpy, xw.buf);
 	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h,
-			xw.depth);
+			DefaultDepth(xw.dpy, xw.scr));
 	XftDrawChange(xw.draw, xw.buf);
 	xclear(0, 0, win.w, win.h);
 
@@ -814,13 +812,6 @@ xloadcols(void)
 			else
 				die("could not allocate color %d\n", i);
 		}
-
-	/* set alpha value of bg color */
-	if (opt_alpha)
-		alpha = strtof(opt_alpha, NULL);
-	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * alpha);
-	dc.col[defaultbg].pixel &= 0x00FFFFFF;
-	dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
 	loaded = 1;
 }
 
@@ -865,8 +856,8 @@ xhints(void)
 	sizeh->flags = PSize | PResizeInc | PBaseSize | PMinSize;
 	sizeh->height = win.h;
 	sizeh->width = win.w;
-	sizeh->height_inc = win.ch;
-	sizeh->width_inc = win.cw;
+	sizeh->height_inc = 1;
+	sizeh->width_inc = 1;
 	sizeh->base_height = 2 * borderpx;
 	sizeh->base_width = 2 * borderpx;
 	sizeh->min_height = win.ch + 2 * borderpx;
@@ -977,7 +968,7 @@ xloadfont(Font *f, FcPattern *pattern)
 }
 
 void
-xloadfonts(char *fontstr, double fontsize)
+xloadfonts(const char *fontstr, double fontsize)
 {
 	FcPattern *pattern;
 	double fontval;
@@ -985,7 +976,7 @@ xloadfonts(char *fontstr, double fontsize)
 	if (fontstr[0] == '-')
 		pattern = XftXlfdParse(fontstr, False, False);
 	else
-		pattern = FcNameParse((FcChar8 *)fontstr);
+		pattern = FcNameParse((const FcChar8 *)fontstr);
 
 	if (!pattern)
 		die("can't open font %s\n", fontstr);
@@ -1130,23 +1121,11 @@ xinit(int cols, int rows)
 	pid_t thispid = getpid();
 	XColor xmousefg, xmousebg;
 	Pixmap blankpm;
-	XWindowAttributes attr;
-	XVisualInfo vis;
 
 	if (!(xw.dpy = XOpenDisplay(NULL)))
 		die("can't open display\n");
 	xw.scr = XDefaultScreen(xw.dpy);
-
-	if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0)))) {
-		parent = XRootWindow(xw.dpy, xw.scr);
-		xw.depth = 32;
-	} else {
-		XGetWindowAttributes(xw.dpy, parent, &attr);
-		xw.depth = attr.depth;
-	}
-
-	XMatchVisualInfo(xw.dpy, xw.scr, xw.depth, TrueColor, &vis);
-	xw.vis = vis.visual;
+	xw.vis = XDefaultVisual(xw.dpy, xw.scr);
 
 	/* font */
 	if (!FcInit())
@@ -1156,12 +1135,12 @@ xinit(int cols, int rows)
 	xloadfonts(usedfont, 0);
 
 	/* colors */
-	xw.cmap = XCreateColormap(xw.dpy, parent, xw.vis, None);
+	xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
 	xloadcols();
 
 	/* adjust fixed window geometry */
-	win.w = 2 * win.hborderpx + cols * win.cw;
-	win.h = 2 * win.vborderpx + rows * win.ch;
+	win.w = 2 * win.hborderpx + 2 * borderpx + cols * win.cw;
+	win.h = 2 * win.vborderpx + 2 * borderpx + rows * win.ch;
 	if (xw.gm & XNegative)
 		xw.l += DisplayWidth(xw.dpy, xw.scr) - win.w - 2;
 	if (xw.gm & YNegative)
@@ -1176,15 +1155,19 @@ xinit(int cols, int rows)
 		| ButtonMotionMask | ButtonPressMask | ButtonReleaseMask;
 	xw.attrs.colormap = xw.cmap;
 
+	if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0))))
+		parent = XRootWindow(xw.dpy, xw.scr);
 	xw.win = XCreateWindow(xw.dpy, parent, xw.l, xw.t,
-			win.w, win.h, 0, xw.depth, InputOutput,
+			win.w, win.h, 0, XDefaultDepth(xw.dpy, xw.scr), InputOutput,
 			xw.vis, CWBackPixel | CWBorderPixel | CWBitGravity
 			| CWEventMask | CWColormap, &xw.attrs);
 
 	memset(&gcvalues, 0, sizeof(gcvalues));
 	gcvalues.graphics_exposures = False;
-	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h, xw.depth);
-	dc.gc = XCreateGC(xw.dpy, xw.buf, GCGraphicsExposures, &gcvalues);
+	dc.gc = XCreateGC(xw.dpy, parent, GCGraphicsExposures,
+			&gcvalues);
+	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h,
+			DefaultDepth(xw.dpy, xw.scr));
 	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
 	XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, win.w, win.h);
 
@@ -1482,7 +1465,7 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 			((winy + win.ch >= win.vborderpx + win.th)? win.h : (winy + win.ch)));
 	}
 	if (y == 0)
-		xclear(winx, 0, winx + width, win.hborderpx);
+		xclear(winx, 0, winx + width, win.vborderpx);
 	if (winy + win.ch >= win.vborderpx + win.th)
 		xclear(winx, winy + win.ch, winx + width, win.h);
 
@@ -1648,8 +1631,8 @@ xsettitle(char *p)
 int
 xstartdraw(void)
 {
-//	if (IS_SET(MODE_VISIBLE))
-//		XCopyArea(xw.dpy, xw.win, xw.buf, dc.gc, 0, 0, win.w, win.h, 0, 0);
+	if (IS_SET(MODE_VISIBLE))
+		XCopyArea(xw.dpy, xw.win, xw.buf, dc.gc, 0, 0, win.w, win.h, 0, 0);
 	return IS_SET(MODE_VISIBLE);
 }
 
@@ -1863,12 +1846,6 @@ kpress(XEvent *ev)
 		len = XmbLookupString(xw.ime.xic, e, buf, sizeof buf, &ksym, &status);
 	else
 		len = XLookupString(e, buf, sizeof buf, &ksym, NULL);
-	if ( IS_SET(MODE_KBDSELECT) ) {
-		if ( match(XK_NO_MOD, e->state) ||
-		     (XK_Shift_L | XK_Shift_R) & e->state )
-			win.mode ^= trt_kbdselect(ksym, buf, len);
-		return;
-	}
 	/* 1. shortcuts */
 	for (bp = shortcuts; bp < shortcuts + LEN(shortcuts); bp++) {
 		if (ksym == bp->keysym && match(bp->mod, e->state)) {
@@ -2046,14 +2023,6 @@ usage(void)
 	    " [stty_args ...]\n", argv0, argv0);
 }
 
-void toggle_winmode(int flag) {
-	win.mode ^= flag;
-}
-
-void keyboard_select(const Arg *dummy) {
-	win.mode ^= trt_kbdselect(-1, NULL, 0);
-}
-
 int
 main(int argc, char *argv[])
 {
@@ -2064,9 +2033,6 @@ main(int argc, char *argv[])
 	ARGBEGIN {
 	case 'a':
 		allowaltscreen = 0;
-		break;
-	case 'A':
-		opt_alpha = EARGF(usage());
 		break;
 	case 'c':
 		opt_class = EARGF(usage());
