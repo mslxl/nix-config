@@ -39,13 +39,23 @@ def BatteryLine():
         else:
             return icons[battery // 10 - 1] + SPACE_CHAR + str(battery)
 
+def formatMem(num):
+    value = int(num) // 1024
+    if value > 1024:
+        return str(round(value / 1024,2)) + "G"
+    else:
+        return str(value) + "M"
+
+
 def MemLine():
     memFree = 0
+    memAvail = 0
     icon=''
     with open("/proc/meminfo") as f:
         f.readline()
-        memFree = int(f.readline()[9:-3].strip()) // 1024
-    return icon + SPACE_CHAR + str(memFree) + "M"
+        memFree = int(f.readline()[9:-3].strip())
+        memAvail = int(f.readline()[14:-3].strip())
+    return icon + SPACE_CHAR + ""+ formatMem(memFree) +"+" + formatMem(memAvail)
 
 def VolumeLine():
     icons=['墳', 'ﱝ']
