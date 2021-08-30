@@ -16,8 +16,4 @@ wmname compiz
 # export MOZ_WEBRENDER=1
 optimus-manager-qt &
 
-exec dwm 2>&1 > .dwm.log
-
-{
-sudo /usr/bin/prime-switch >/tmp/.prime-switch-console
-} &
+exec dwm

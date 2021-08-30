@@ -91,7 +91,7 @@ static const char *upbright[] = { "zsh", "-c", "$HOME/.dwm/dwm-brightness-adjust
 static const char *downbright[] = { "zsh", "-c", "$HOME/.dwm/dwm-brightness-adjust down",  NULL };
 
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x64", NULL };
 
 
 static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
