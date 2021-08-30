@@ -29,6 +29,7 @@ if [[ -f $HOME/.zplug/init.zsh ]] {
   }
 
   zplug "~/.zsh/plugins/x", from:local
+  zplug "~/.zsh/plugins/load_local_script", from:local
   zplug "plugins/vi-mode", from:oh-my-zsh
   zplug "plugins/z", from:oh-my-zsh
   zplug "plugins/colored-man-pages", from:oh-my-zsh
