@@ -29,7 +29,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/code/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -81,14 +81,23 @@
 (use-package! rime
   :custom
   (default-input-method "rime")
+  :bind (("M-n" . 'rime-force-enable))
   :config
   (setq rime-disable-predicates
         '(rime-predicate-evil-mode-p
           rime-predicate-after-alphabet-char-p
           rime-predicate-prog-in-code-p
           rime-predicate-space-after-cc-p
+          ;; rime-predicate-after-ascii-char-p
+          ;; rime-predicate-space-after-ascii-p
+          rime-predicate-tex-math-or-command-p
+          rime-predicate-punctuation-line-begin-p
+          rime-predicate-punctuation-after-space-cc-p
+          rime-predicate-punctuation-after-ascii-p
           rime-predicate-current-uppercase-letter-p))
   (setq rime-user-data-dir "~/.doom.d/rime")
+  (setq rime-translate-keybindings
+        '("C-`" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
   (setq rime-show-candidate 'posframe))
 
 (use-package! nov
