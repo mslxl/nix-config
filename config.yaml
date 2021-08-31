@@ -4,6 +4,12 @@ actions:
   install_tmux_powerline: mkdir ~/.tmux/ ; git clone https://github.com/erikw/tmux-powerline.git
     ~/.tmux/powerline --depth 1
   init_zathura: xdg-mime default org.pwmt.zathura.desktop application/pdf
+trans_write:
+  encrypt_file: "python ~/.dotfile/script/secret.py --ef {0} {1}"
+  encrypt_line: "python ~/.dotfile/script/secret.py --el {0} {1}"
+trans_read:
+  decrypt_file: "python ~/.dotfile/script/secret.py --df {0} {1}"
+  decrypt_line: "python ~/.dotfile/script/secret.py --dl {0} {1}"
 config:
   backup: true
   create: true
@@ -56,6 +62,12 @@ dotfiles:
     dst: ~/.zsh
     upignore:
     - /*.zwc
+    - "*/var.zsh"
+  f_zsh_var:
+    src: zsh/var.zsh
+    dst: ~/.zsh/var.zsh
+    trans_read: decrypt_line
+    trans_write: encrypt_line
   f_gitconfig:
     src: gitconfig
     dst: ~/.gitconfig
@@ -145,6 +157,7 @@ profiles:
     - f_picom.conf
     - f_zshrc
     - d_zsh
+    - f_zsh_var
     - f_gitconfig
     - d_st
     - d_dwm
@@ -161,6 +174,7 @@ profiles:
     dotfiles:
     - f_zshrc
     - d_zsh
+    - f_zsh_var
     - f_gitconfig
     - f_tmux.conf
     - d_doom.d
