@@ -5,11 +5,11 @@ actions:
     ~/.tmux/powerline --depth 1
   init_zathura: xdg-mime default org.pwmt.zathura.desktop application/pdf
 trans_write:
-  encrypt_file: "python ~/.dotfile/script/secret.py --ef {0} {1}"
-  encrypt_line: "python ~/.dotfile/script/secret.py --el {0} {1}"
+  encrypt_file: python ~/.dotfile/script/secret.py --ef {0} {1}
+  encrypt_line: python ~/.dotfile/script/secret.py --el {0} {1}
 trans_read:
-  decrypt_file: "python ~/.dotfile/script/secret.py --df {0} {1}"
-  decrypt_line: "python ~/.dotfile/script/secret.py --dl {0} {1}"
+  decrypt_file: python ~/.dotfile/script/secret.py --df {0} {1}
+  decrypt_line: python ~/.dotfile/script/secret.py --dl {0} {1}
 config:
   backup: true
   create: true
@@ -62,7 +62,7 @@ dotfiles:
     dst: ~/.zsh
     upignore:
     - /*.zwc
-    - "*/var.zsh"
+    - '*/var.zsh'
   f_zsh_var:
     src: zsh/var.zsh
     dst: ~/.zsh/var.zsh
@@ -130,6 +130,11 @@ dotfiles:
   f_xinitrc:
     src: xinitrc
     dst: ~/.xinitrc
+  f_v2ray.json:
+    src: v2ray.json
+    dst: ~/v2ray.json
+    trans_read: decrypt_file
+    trans_write: encrypt_file
 profiles:
   mslxl-PC:
     dotfiles:
@@ -170,6 +175,7 @@ profiles:
     - f_p10k.zsh
     - f_config.rasi
     - f_xinitrc
+    - f_v2ray.json
   termux:
     dotfiles:
     - f_zshrc

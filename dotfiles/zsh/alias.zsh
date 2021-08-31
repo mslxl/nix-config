@@ -1,14 +1,5 @@
 #!/usr/bin/env zsh
 
-function l(){
-    echo Load pkg...
-    echo ---
-    cat ~/.zsh/pkg/$1.zsh | highlight --src-lang=zsh --out-format=xterm256
-    echo ---
-    source ~/.zsh/pkg/$1.zsh
-    echo Fin
-}
-
 # EDITOR
 alias vim="nvim"
 alias vi="nvim"
@@ -58,13 +49,21 @@ function setpro(){
 	ALL_PROXY="socks5://127.0.0.1:1080"
 	http_proxy="http://127.0.0.1:1081"
 	https_proxy="http://127.0.0.1:1081"
-	git config --global http.proxy "$http_proxy"
-	git config --global https.proxy "$https_proxy"
+	# git config --global http.proxy "$http_proxy"
+	# git config --global https.proxy "$https_proxy"
+    systemctl status cgproy > /dev/null
+    if [[ "$?" -ne 0 ]]; then
+        systemctl start cgproxy
+    fi
 }
 function unsetpro(){
-	git config --global --unset http.proxy
-	git config --global --unset https.proxy
+	# git config --global --unset http.proxy
+	# git config --global --unset https.proxy
 	unset ALL_PROXY http_proxy https_proxy
+    systemctl status cgproxy > /dev/null
+    if [[ "$?" -eq 0 ]]; then
+        systemctl stop cgproxy
+    fi
 }
 
 # ps
