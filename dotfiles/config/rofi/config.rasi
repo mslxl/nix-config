@@ -1,6 +1,6 @@
 configuration {
 	font: ""Source Code Pro" 12";
-	modi: "window,drun,file-browser";
+	modi: "window,drun,filebrowser";
 	theme: "/usr/share/rofi/themes/slate.rasi";
 	color-normal: "#455a64, #fafbfc, #455a64, #00bcd4, #fafbfc";
 	color-urgent: "#455a64, #ff5252, #455a64, #ff5252, #fdf6e3";
