@@ -82,6 +82,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "zsh", "-c", "rofi -show drun -theme $HOME/.dwm/slate.rasi", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *dunstpop[]  = { "dunstctl", "history-pop", NULL };
 
 static const char *upvol[]   = { "zsh", "-c", "$HOME/.dwm/vol-up.sh",  NULL };
 static const char *downvol[] = { "zsh", "-c", "$HOME/.dwm/vol-down.sh",  NULL };
@@ -90,8 +91,10 @@ static const char *mutevol[] = { "zsh", "-c", "$HOME/.dwm/vol-toggle.sh",  NULL 
 static const char *upbright[] = { "zsh", "-c", "$HOME/.dwm/dwm-brightness-adjust up",  NULL };
 static const char *downbright[] = { "zsh", "-c", "$HOME/.dwm/dwm-brightness-adjust down",  NULL };
 
+static const char *lockscreen[] = { "zsh", "-c", "$HOME/.dwm/dwm-lockscreen.sh",  NULL };
+
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x64", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x40", NULL };
 
 
 static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
@@ -105,22 +108,23 @@ static Key keys[] = {
 	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ 0,                   XF86XK_MonBrightnessUp,  spawn,          {.v = upbright } },
 	{ 0,                   XF86XK_MonBrightnessDown,spawn,          {.v = downbright } },
-	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
-	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
-	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
+	// { MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
+	// { MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
+	// { MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
 	{ 0,                   XK_Print,                spawn,          {.v = screenshotcmd } },
-//	{ MODKEY|ShiftMask,    XK_j,                    focusstackhid,    {.i = +1 } },
-//	{ MODKEY|ShiftMask,    XK_k,                    focusstackhid,    {.i = -1 } },
+	{ MODKEY,    XK_j,                    focusstackhid,    {.i = +1 } },
+	{ MODKEY,    XK_k,                    focusstackhid,    {.i = -1 } },
 	{ MODKEY|ShiftMask,    XK_j,                    rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,    XK_k,                    rotatestack,    {.i = -1 } },
-	{ MODKEY,              XK_j,                    focusstackvis,     {.i = +1 } },
-	{ MODKEY,              XK_k,                    focusstackvis,     {.i = -1 } },
+	// { MODKEY,              XK_j,                    focusstackvis,     {.i = +1 } },
+	// { MODKEY,              XK_k,                    focusstackvis,     {.i = -1 } },
 	{ MODKEY,              XK_n,                    viewtoleft,     {0} },
 	{ MODKEY,              XK_i,                    viewtoright,    {0} },
+	{ MODKEY,              XK_backslash,            spawn,    		{.v = dunstpop} },
 	{ MODKEY|ShiftMask,    XK_n,                    tagtoleft,      {0} },
 	{ MODKEY|ShiftMask,    XK_p,                    tagtoright,     {0} },
-	{ MODKEY|ShiftMask,    XK_h,                    incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,    XK_l,                    incnmaster,     {.i = -1 } },
+	// { MODKEY|ShiftMask,    XK_h,                    incnmaster,     {.i = +1 } },
+	// { MODKEY|ShiftMask,    XK_l,                    incnmaster,     {.i = -1 } },
 	{ MODKEY,              XK_h,                    setmfact,       {.f = -0.05} },
 	{ MODKEY,              XK_l,                    setmfact,       {.f = +0.05} },
 	{ MODKEY,              XK_apostrophe,           hide,        {0} },
@@ -131,7 +135,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_q,                    quit,     {0} },
 	{ MODKEY,              XK_t,                    setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,              XK_m,                    setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,    XK_f,                    fullscreen,     {0} },
+	{ MODKEY,              XK_f,                    fullscreen,     {0} },
 	{ MODKEY,              XK_space,                setlayout,      {0} },
 	{ MODKEY|ShiftMask,    XK_space,                togglefloating, {0} },
 	{ MODKEY,              XK_grave,           togglescratch,  {.v = scratchpadcmd } },

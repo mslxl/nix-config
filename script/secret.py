@@ -31,7 +31,7 @@ def decryptFile(input, output):
 
 
 def encryptText(text):
-    print("Encrypt block: {}".format(text))
+    # print("Encrypt block: {}".format(text))
     fileName = "/tmp/{}.tmp".format(str(random.randint(10**3, 10**8)))
     resultFile = fileName + ".encrypt"
     # print(fileName)

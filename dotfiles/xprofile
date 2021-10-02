@@ -1,3 +1,21 @@
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
+
+xrdb -merge ~/.Xresources
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=\@im=fcitx
+export SDL_IM_MODULE=fcitx
+
+# Java
+export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT=MToolkit
+wmname compiz
+
+# Firefox
+# export MOZ_X11_EGL=1
+# export MOZ_WEBRENDER=1
+
+# optimus-manager-qt &

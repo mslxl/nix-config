@@ -102,10 +102,6 @@ dotfiles:
     - install_doom
     upignore:
     - '*rime'
-  f_mk-desktop:
-    src: bin/mk-desktop
-    dst: ~/bin/mk-desktop
-    chmod: '755'
   d_rime:
     src: local/share/fcitx5/rime
     dst: ~/.local/share/fcitx5/rime
@@ -135,6 +131,9 @@ dotfiles:
     dst: ~/v2ray.json
     trans_read: decrypt_file
     trans_write: encrypt_file
+  d_dunst:
+    src: config/dunst
+    dst: ~/.config/dunst
 profiles:
   mslxl-PC:
     dotfiles:
@@ -143,13 +142,13 @@ profiles:
     - f_picom.conf
     - f_zshrc
     - d_zsh
+    - f_zsh_var
     - f_gitconfig
     - d_st
     - d_dwm
     - d_dwm_script
     - f_tmux.conf
     - d_doom.d
-    - f_mk-desktop
     - d_rime
     - d_ranger
     - f_p10k.zsh
@@ -169,13 +168,13 @@ profiles:
     - d_dwm_script
     - f_tmux.conf
     - d_doom.d
-    - f_mk-desktop
     - d_rime
     - d_ranger
     - f_p10k.zsh
     - f_config.rasi
     - f_xinitrc
     - f_v2ray.json
+    - d_dunst
   termux:
     dotfiles:
     - f_zshrc

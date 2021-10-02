@@ -1,7 +1,9 @@
 #!/bin/zsh
 
 # Misc
-export EDITOR="emacs -nw"
+hash emacs 2>/dev/null && {
+    export EDITOR="emacs -nw"
+}
 export BROWSER="firefox"
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/bin:$PATH
@@ -24,9 +26,14 @@ export PATH=$HOME/.emacs.d/bin/:$PATH
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # Nodejs
-export PATH=$(yarn global bin):$PATH
+hash yarn 2>/dev/null && {
+    export PATH=$(yarn global bin):$PATH
+}
 
 # Android SDK
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 
-#secret[senstive data]{jA0EBwMCp82/9aItjxfu0sAQAeRhFswIbL0PrYcfSgV6TE0jqrGyoES56CgxwTnsq3rXvIuFvlSMoh2Nvrh8wmgpC2t8Tsk+k7yZHglEHF4lTSflBmaEzxOkmbVXqpWnHKmL472JUxRSagK6aHbEgqddROTJ+jc31CaCbUX/XXKDsR9PG1o7ifgwkRUt18PIegE7EAEovNpu5r63XUyyTFDOsvzaQfY5Q8UWSxI8LGIe82PJ4XbQQIwU482M5XaoIMwaSQIcB3TFHoOSk7BXSkS+830WHIJg6/jOhIYsLjRgWg==}
+# Hide GStreamer warnings
+export OPENCV_LOG_LEVEL=ERROR
+
+#secret[senstive data]{jA0EBwMCBIGgNc7MWtD/0sAQAXv0miE7vHOj8a+x6PjD2tkhqIUpdxP9p4nOUoEj1tK6G2nF5yFmgNDQEgynrxADNiEzgIyGLtV26fzeLOWQPGCgV89+dsqm6LiRiPdE81ALglJW4yLZxAsJuc5tuiQCGhjHKiVdyShVH3xhCyOL35MGTSaNu/851iHrCh65WLmBJ+63sAzbCp31zDggpw0IHkivoZmf7nvQZo0zGXF2pIZScdZLJkNTzVpTVDXVJNw8FF5eq8OJIrxWImkvxHogw23YGInl4tx7imstnieOLA==}

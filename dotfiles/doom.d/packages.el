@@ -53,3 +53,5 @@
 (package! centered-cursor-mode)
 (package! rime)
 (package! nov) ;; epub support: https://depp.brause.cc/nov.el/
+
+(package! graphviz-dot-mode) ;; graphivz support: https://ppareit.github.io/graphviz-dot-mode/
