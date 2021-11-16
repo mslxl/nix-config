@@ -56,12 +56,20 @@ function wine-use-container(){
 alias wine-in-common='wine-use-container common'
 
 function setpro(){
-	ALL_PROXY="socks5://127.0.0.1:1080"
-	http_proxy="http://127.0.0.1:1081"
-	https_proxy="http://127.0.0.1:1081"
+
+	host_name="127.0.0.1"
+	if [[ "$HOST" -eq "mslxl-LAPTOP" ]]; then
+		host_name="mslxl-LAPTOP.local"
+	fi
+    echo "Set proxy as $host_name:1080/1081"
+	export ALL_PROXY="socks5://$host_name:1080"
+    export all_proxy="socks5://$host_name:1080"
+	export http_proxy="http://$host_name:1081"
+	export https_proxy="http://$host_name:1081"
 	# git config --global http.proxy "$http_proxy"
 	# git config --global https.proxy "$https_proxy"
     hash cgproxy 2>/dev/null && {
+        echo "Start cgproxy"
         systemctl status cgproxy > /dev/null
         if [[ "$?" -ne 0 ]]; then
             sudo systemctl start cgproxy
@@ -72,7 +80,7 @@ function unsetpro(){
 	# git config --global --unset http.proxy
 	# git config --global --unset https.proxy
 	unset ALL_PROXY http_proxy https_proxy
-    hash cgproxy 2>/dev/null && {
+    	hash cgproxy 2>/dev/null && {
         systemctl status cgproxy > /dev/null
         if [[ "$?" -eq 0 ]]; then
             sudo systemctl stop cgproxy

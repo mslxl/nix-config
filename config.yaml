@@ -185,6 +185,16 @@ profiles:
     - d_doom.d
     - d_ranger
     - f_p10k.zsh
+  mslxl-wsl:
+    dotfiles:
+    - f_zshrc
+    - d_zsh
+    - f_zsh_var
+    - f_gitconfig
+    - d_rime
+    - d_doom.d
+    - d_ranger
+    - f_p10k.zsh
   disable:
     dotfiles:
     - f_xmonad.hs
