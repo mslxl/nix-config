@@ -134,6 +134,9 @@ dotfiles:
   d_dunst:
     src: config/dunst
     dst: ~/.config/dunst
+  d_nvim:
+    src: config/nvim
+    dst: ~/.config/nvim
 profiles:
   mslxl-PC:
     dotfiles:
@@ -195,6 +198,7 @@ profiles:
     - d_doom.d
     - d_ranger
     - f_p10k.zsh
+    - d_nvim
   disable:
     dotfiles:
     - f_xmonad.hs
