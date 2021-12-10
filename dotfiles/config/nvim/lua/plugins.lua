@@ -48,7 +48,6 @@ return require('packer').startup(function()
 
   use 'windwp/nvim-autopairs'
   
-
   use {
       'neovim/nvim-lspconfig',
       'williamboman/nvim-lsp-installer',
