@@ -43,10 +43,27 @@ return require('packer').startup(function()
     "sirver/ultisnips"
   }
 
+  use 'godlygeek/tabular'
+  use 'plasticboy/vim-markdown'
+  
+
   use {
       'neovim/nvim-lspconfig',
       'williamboman/nvim-lsp-installer',
   }
+
+  use {
+    'scalameta/nvim-metals',
+    requires = "nvim-lua/plenary.nvim" 
+  }
+
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

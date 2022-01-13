@@ -103,7 +103,7 @@ snippet iff "iff" Ai
 \iff
 endsnippet
 
-snippet im "Math" wA
+snippet mk "Math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
 	snip.rv = ' '
@@ -270,7 +270,7 @@ snippet taylor "taylor" w
 endsnippet
 
 snippet lim "limit" w
-\lim_{${1:n} \to ${2:\infty}} 
+\lim \limits_{${1:n} \to ${2:\infty}} 
 endsnippet
 
 snippet limsup "limsup" w
@@ -438,8 +438,8 @@ endsnippet
 
 priority 100
 context "math()"
-snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
-\\`!p snip.rv = match.group(1)`
+snippet '(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+\\`!p snip.rv = match.group(1) + ' ' `
 endsnippet
 
 priority 300
@@ -451,7 +451,7 @@ endsnippet
 priority 200
 context "math()"
 snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
-\\`!p snip.rv = match.group(1)`
+\\`!p snip.rv = match.group(1) + ' '`
 endsnippet
 
 

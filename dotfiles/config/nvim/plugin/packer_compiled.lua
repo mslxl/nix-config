@@ -74,6 +74,31 @@ _G.packer_plugins = {
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-ultisnips"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
+    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
   ["gruvbox.nvim"] = {
     loaded = true,
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
@@ -84,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/lush.nvim",
     url = "https://github.com/rktjmp/lush.nvim"
   },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -93,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-metals"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/nvim-metals",
+    url = "https://github.com/scalameta/nvim-metals"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -114,10 +149,25 @@ _G.packer_plugins = {
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  tabular = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/tabular",
+    url = "https://github.com/godlygeek/tabular"
+  },
   ultisnips = {
     loaded = true,
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/ultisnips",
     url = "https://github.com/sirver/ultisnips"
+  },
+  ["vim-markdown"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/vim-markdown",
+    url = "https://github.com/plasticboy/vim-markdown"
   },
   vimtex = {
     loaded = false,
@@ -126,14 +176,19 @@ _G.packer_plugins = {
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/opt/vimtex",
     url = "https://github.com/lervag/vimtex"
   },
-  wal = {
+  ["zephyr-nvim"] = {
+    config = { "\27LJ\1\0025\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\22hi! clear Conceal\bcmd\bvim\0" },
     loaded = true,
-    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/wal",
-    url = "https://github.com/dylanaraps/wal"
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/zephyr-nvim",
+    url = "https://github.com/glepnir/zephyr-nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: zephyr-nvim
+time([[Config for zephyr-nvim]], true)
+try_loadstring("\27LJ\1\0025\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\22hi! clear Conceal\bcmd\bvim\0", "config", "zephyr-nvim")
+time([[Config for zephyr-nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
