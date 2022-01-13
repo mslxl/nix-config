@@ -55,7 +55,7 @@ function wine-use-container(){
 }
 alias wine-in-common='wine-use-container common'
 
-function setpro(){
+function setpxy(){
 
 	host_name="127.0.0.1"
 	if [[ "$HOST" -eq "mslxl-LAPTOP" ]]; then
@@ -76,7 +76,7 @@ function setpro(){
         fi
     }
 }
-function unsetpro(){
+function unsetpxy(){
 	# git config --global --unset http.proxy
 	# git config --global --unset https.proxy
 	unset ALL_PROXY http_proxy https_proxy
