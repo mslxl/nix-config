@@ -1,5 +1,4 @@
 #!/bin/sh
-xmodmap $HOME/.dwm/.xmodmap
 
 # screen lock
 # linux-enable-ir-emitter run &
@@ -26,4 +25,7 @@ python $HOME/.dwm/dwm-status-refresh.py loop &
 	/usr/lib/kdeconnectd &
 	kdeconnect-indicator &
 	optimus-manager-qt &
+	bash -c "sleep 20; xmodmap $HOME/.dwm/.xmodmap" &
+	v2ray -c $HOME/.v2ray.json &
 }&
+

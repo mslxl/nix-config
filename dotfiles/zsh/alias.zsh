@@ -56,9 +56,8 @@ function wine-use-container(){
 alias wine-in-common='wine-use-container common'
 
 function setpxy(){
-
 	host_name="127.0.0.1"
-	if [[ "$HOST" -eq "mslxl-LAPTOP" ]]; then
+	if [[ "$HOST" == "mslxl-LAPTOP" ]]; then
 		host_name="mslxl-LAPTOP.local"
 	fi
     echo "Set proxy as $host_name:1080/1081"

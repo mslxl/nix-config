@@ -1,9 +1,10 @@
 configuration {
 	font: ""Source Code Pro" 12";
 	modi: "window,drun,filebrowser";
-	theme: "/usr/share/rofi/themes/slate.rasi";
 	color-normal: "#455a64, #fafbfc, #455a64, #00bcd4, #fafbfc";
 	color-urgent: "#455a64, #ff5252, #455a64, #ff5252, #fdf6e3";
 	color-active: "#455a64, #00bcd4, #455a64, #009688, #fdf6e3";
 	color-window: "#3a4c54, #2a373e, #c3c6c8";
 }
+
+@theme "/home/mslxl/.dwm/slate.rasi"
