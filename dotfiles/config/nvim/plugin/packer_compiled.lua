@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/lush.nvim",
     url = "https://github.com/rktjmp/lush.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/mslxl/.local/share/nvim/site/pack/packer/start/nvim-cmp",

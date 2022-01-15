@@ -45,6 +45,8 @@ return require('packer').startup(function()
 
   use 'godlygeek/tabular'
   use 'plasticboy/vim-markdown'
+
+  use 'windwp/nvim-autopairs'
   
 
   use {
