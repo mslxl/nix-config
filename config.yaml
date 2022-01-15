@@ -126,11 +126,6 @@ dotfiles:
   f_xinitrc:
     src: xinitrc
     dst: ~/.xinitrc
-  f_v2ray.json:
-    src: v2ray.json
-    dst: ~/v2ray.json
-    trans_read: decrypt_file
-    trans_write: encrypt_file
   d_dunst:
     src: config/dunst
     dst: ~/.config/dunst
@@ -176,7 +171,6 @@ profiles:
     - f_p10k.zsh
     - f_config.rasi
     - f_xinitrc
-    - f_v2ray.json
     - d_dunst
   termux:
     dotfiles:
