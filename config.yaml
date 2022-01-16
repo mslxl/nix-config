@@ -114,6 +114,7 @@ dotfiles:
     - installation.yaml
     - '*sync'
     - build/*
+    - '*/*.userdb/*'
   d_ranger:
     src: config/ranger
     dst: ~/.config/ranger
@@ -132,6 +133,9 @@ dotfiles:
   d_nvim:
     src: config/nvim
     dst: ~/.config/nvim
+  f_classicui.conf:
+    src: config/fcitx5/conf/classicui.conf
+    dst: ~/.config/fcitx5/conf/classicui.conf
 profiles:
   mslxl-PC:
     dotfiles:
@@ -172,6 +176,7 @@ profiles:
     - f_config.rasi
     - f_xinitrc
     - d_dunst
+    - f_classicui.conf
   termux:
     dotfiles:
     - f_zshrc
