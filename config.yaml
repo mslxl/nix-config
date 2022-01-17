@@ -73,7 +73,7 @@ dotfiles:
     dst: ~/.gitconfig
   d_st:
     src: bin/st
-    dst: ~/bin/st
+    dst: ~/.bin/st
     upignore:
     - /*.orig
     - /*.rej
@@ -81,7 +81,7 @@ dotfiles:
     - st
   d_dwm:
     src: bin/dwm
-    dst: ~/bin/dwm
+    dst: ~/.bin/dwm
     upignore:
     - /*.orig
     - /*.rej

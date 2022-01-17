@@ -6,7 +6,7 @@ hash emacs 2>/dev/null && {
 }
 export BROWSER="firefox"
 export PATH=$HOME/.local/bin/:$PATH
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/script:$PATH
 
 # Flutter
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
