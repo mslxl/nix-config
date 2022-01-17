@@ -136,6 +136,9 @@ dotfiles:
   f_classicui.conf:
     src: config/fcitx5/conf/classicui.conf
     dst: ~/.config/fcitx5/conf/classicui.conf
+  d_script:
+    src: script
+    dst: ~/script
 profiles:
   mslxl-PC:
     dotfiles:
@@ -177,6 +180,7 @@ profiles:
     - f_xinitrc
     - d_dunst
     - f_classicui.conf
+    - d_script
   termux:
     dotfiles:
     - f_zshrc
@@ -187,6 +191,7 @@ profiles:
     - d_doom.d
     - d_ranger
     - f_p10k.zsh
+    - d_script
   mslxl-wsl:
     dotfiles:
     - f_zshrc
@@ -198,6 +203,7 @@ profiles:
     - d_ranger
     - f_p10k.zsh
     - d_nvim
+    - d_script
   disable:
     dotfiles:
     - f_xmonad.hs
