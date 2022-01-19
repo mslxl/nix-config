@@ -115,3 +115,4 @@
   ;; (setq org-mind-map-engine "circo")  ; Circular Layout
   )
 
+(use-package! mermaid-mode)
