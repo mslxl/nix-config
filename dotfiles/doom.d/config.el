@@ -85,9 +85,9 @@
           rime-predicate-punctuation-after-space-cc-p
           rime-predicate-punctuation-after-ascii-p
           rime-predicate-current-uppercase-letter-p))
-  (setq rime-user-data-dir "~/.doom.d/rime")
+  (setq rime-user-data-dir "~/.local/share/fcitx5/rime/")
   (setq rime-translate-keybindings
-        '("C-`" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
+        '("C-`" "C-<grave>" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
   (setq rime-show-candidate 'posframe))
 
 

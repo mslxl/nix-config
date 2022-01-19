@@ -60,14 +60,14 @@ function setpxy(){
 	if [[ "$HOST" == "mslxl-LAPTOP" ]]; then
 		host_name="mslxl-LAPTOP.local"
 	fi
-    echo "Set proxy as $host_name:1080/1081"
+    	echo "Set proxy as $host_name:1080/1081"
 	export ALL_PROXY="socks5://$host_name:1080"
-    export all_proxy="socks5://$host_name:1080"
+    	export all_proxy="socks5://$host_name:1080"
 	export http_proxy="http://$host_name:1081"
 	export https_proxy="http://$host_name:1081"
 	# git config --global http.proxy "$http_proxy"
 	# git config --global https.proxy "$https_proxy"
-    hash cgproxy 2>/dev/null && {
+    	hash cgproxy 2>/dev/null && {
         echo "Start cgproxy"
         systemctl status cgproxy > /dev/null
         if [[ "$?" -ne 0 ]]; then

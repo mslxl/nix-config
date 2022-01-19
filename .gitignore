@@ -1,1 +1,4 @@
 dotfiles/local/share/fcitx5/rime/japanese.userdb
+
+dotfiles/script/.vscode
+dotfiles/script/.gitignore
