@@ -16,4 +16,4 @@ wmname compiz
 # export MOZ_WEBRENDER=1
 optimus-manager-qt &
 
-exec dwm 2>&1 | tee .dwm_output
+exec dwm > .dwm_output
