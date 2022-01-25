@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+echo "Check yadm remote url..."
+github_ssh_url="git@github.com:mslxl/.dotfile.git"
+yadm_url=$(yadm remote get-url origin 2>&1)
+if [[ "$?" != "0" ]]; then
+    echo "Add remote url to $github_ssh_url"
+    yadm remote add origin $github_ssh_url
+elif [[ "$yadm_url" != "$github_ssh_url" ]]; then
+    echo "Set remote url to $github_ssh_url"
+    yadm remote set-url origin $github_ssh_url
+fi
+echo "Done"
+
+
+echo "Check bootstrap depentences..."
+hash amm 2>/dev/null || {
+    echo "ammonite misssing. Installing..."
+    hash pacman 2>/dev/null
+    if [[ "$?" == "0" ]]; then
+        sudo pacman -S ammonite
+    else
+        sudo sh -c '(echo "#!/usr/bin/env sh" && curl -L https://github.com/com-lihaoyi/Ammonite/releases/download/2.5.1/2.13-2.5.1) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm'
+    fi
+}
+echo "Done"
+
+echo "Execuate ammonite script..."
+amm $HOME/.config/yadm/bootstrap.d/init.sc
+echo "Done"

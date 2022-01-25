@@ -1,0 +1,4 @@
+/.metals/
+/.ammonite/
+/.scalafmt.conf
+/*.class
