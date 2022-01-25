@@ -1,0 +1,19 @@
+[user]
+	email = i@mslxl.com
+	name = mslxl
+
+[alias]
+	lg = log --color --graph
+	lz = !lazygit
+	cm = commit -m
+	a = add -p
+	st = status
+	ps = push
+	ck = checkout
+	br = branch
+	cl = clone
+	cl1 = clone --depth 1
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input

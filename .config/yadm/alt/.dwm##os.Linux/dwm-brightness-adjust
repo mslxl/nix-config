@@ -1,0 +1,11 @@
+#!/bin/bash
+
+op=""
+
+if [[ "$1" == "up" ]]; then
+    op="+"
+elif [[ "$1" == "down" ]]; then
+    op="-"
+fi
+
+amm ~/.dwm/dwm-brightness-adjust.sc $op
