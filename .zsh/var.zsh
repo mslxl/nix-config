@@ -9,6 +9,11 @@ export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/script:$PATH
 export PATH=$HOME/.local/share/coursier/bin:$PATH
 
+if [[ -f "$HOME/.ghcup/env" ]]; then
+  source "$HOME/.ghcup/env"
+fi
+
+
 # Flutter
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
