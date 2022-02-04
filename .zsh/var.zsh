@@ -43,6 +43,8 @@ hash yarn 2>/dev/null && {
 # Hide GStreamer warnings
 export OPENCV_LOG_LEVEL=ERROR
 
-{% if env("YADM_OS") == "WSL" %}
-export DISPLAY={{ env("YADM_HOSTNAME") }}.local:0
-{% endif %}
+
+if [[ "${WSL_DISTRO_NAME}" != "" ]]; then
+  export WIN_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+  export DISPLAY=$WIN_IP:0
+fi
