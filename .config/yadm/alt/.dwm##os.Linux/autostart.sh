@@ -16,6 +16,7 @@ python $HOME/.dwm/dwm-status-refresh.py loop &
 # Wait
 {
 	sleep 3
+  picom --experimental-backends -b &
   emacs --daemon --with-x-toolkit=lucid &
 	pulseaudio --start &
 	nm-applet &
