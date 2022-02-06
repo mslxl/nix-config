@@ -16,4 +16,7 @@ wmname compiz
 # export MOZ_WEBRENDER=1
 optimus-manager-qt &
 
+xset dpms 180 &
+xss-lock -- slock &
+
 exec dwm > .dwm_output
