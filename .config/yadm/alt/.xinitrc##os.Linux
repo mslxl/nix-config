@@ -17,6 +17,8 @@ wmname compiz
 optimus-manager-qt &
 
 xset dpms 180 &
-xss-lock -- slock &
+xss-lock -- bash ~/.dwm/lock.sh &
 
+
+xrandr --output eDP --scale 0.85
 exec dwm > .dwm_output

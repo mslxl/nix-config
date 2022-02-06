@@ -16,6 +16,7 @@ python $HOME/.dwm/dwm-status-refresh.py loop &
 # Wait
 {
 	sleep 3
+  emacs --daemon --with-x-toolkit=lucid &
 	pulseaudio --start &
 	nm-applet &
 	tmux new -d -s v2ray 'v2ray -c ~/v2ray.json' &
