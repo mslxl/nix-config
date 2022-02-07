@@ -1,7 +1,7 @@
 #!/usr/bin/env amm
 import os._
 
-val gpu = root / "sys" / "class" / "backlight" / "amdgpu_bl0"
+val gpu = root / "sys" / "class" / "backlight" / "amdgpu_bl1"
 
 def getMax(): Int = read(gpu / "max_brightness").trim().toInt
 

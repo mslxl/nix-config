@@ -136,7 +136,7 @@ inactive-opacity-override = false;
 active-opacity = 0.95
 
 # Dim inactive windows. (0.0 - 1.0, defaults to 0.0)
-inactive-dim = 0.1
+inactive-dim = 0
 
 # Specify a list of conditions of windows that should always be considered focused.
 # focus-exclude = []
@@ -422,7 +422,7 @@ log-level = "warn";
 #     set, and doesn't want certain window to cause unnecessary screen redirection, 
 #     you can set this to `true`.
 #
-corner-radius: 30
+corner-radius: 15
 wintypes:
 {
   tooltip = { fade = true; shadow = true; opacity = 0.75; focus = true; full-shadow = false; };
