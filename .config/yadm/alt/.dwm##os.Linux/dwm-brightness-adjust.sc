@@ -1,15 +1,13 @@
 #!/usr/bin/env amm
 import os._
 
-val gpu = root / "sys" / "class" / "backlight" / "amdgpu_bl1"
-
-def getMax(): Int = read(gpu / "max_brightness").trim().toInt
+def getMax(gpu: Path): Int = read(gpu / "max_brightness").trim().toInt
 
 def getMin() = 0
 
-def getCur(): Int = read(gpu / "brightness").trim().toInt
+def getCur(gpu: Path): Int = read(gpu / "brightness").trim().toInt
 
-def requestPermission(): Unit = {
+def requestPermission(gpu: Path): Unit = {
   if (!(gpu / "brightness").toIO.canWrite) {
     proc(
       "st",
@@ -21,20 +19,28 @@ def requestPermission(): Unit = {
   }
 }
 
+def adjust(gpu: Path, opter: (Int, Int) => Int) = {
+  requestPermission(gpu)
+  write.over(gpu / "brightness", opter(getCur(gpu), 10).toString)
+  proc(
+    "notify-send",
+    s"${gpu.baseName.capitalize} brightness changed",
+    s"Current: ${getCur(gpu)}/${getMax(gpu)}",
+    "--icon=dialog-information"
+  ).call()
+}
+
 @main
 def main(action: String): Unit = {
-  requestPermission
+  val gpu = root / "sys" / "class" / "backlight"
+
   val opter: (Int, Int) => Int = action match {
     case "+" => (a, b) => a + b
     case "-" => (a, b) => a - b
   }
 
-  write.over(gpu / "brightness", opter(getCur, 10).toString)
+  list(gpu).foreach({ g =>
+    adjust(g, opter)
+  })
 
-  proc(
-    "notify-send",
-    "Brightness Changed",
-    s"Current: ${getCur}/${getMax}",
-    "--icon=dialog-information"
-  ).call()
 }
