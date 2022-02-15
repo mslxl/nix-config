@@ -3,7 +3,14 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    hackage: dbus-1.2.17@sha256:e92cc314a41ffb4466a116d3f93e8b1d777e397beea2acdb6557f6719cc7915e,5096
+    pantry-tree:
+      size: 2795
+      sha256: 39133a4c80c417de6dc225badacd4af5696f9fb163ef09672360a18255a81d4e
+  original:
+    hackage: dbus-1.2.17
 snapshots:
 - completed:
     size: 587393

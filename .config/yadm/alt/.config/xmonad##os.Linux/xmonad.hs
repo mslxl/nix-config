@@ -1,16 +1,22 @@
+import qualified Codec.Binary.UTF8.String as UTF8
 import Control.Monad
+import qualified DBus as D
+import qualified DBus.Client as D
 import qualified Data.Map as M
 import System.Directory (doesFileExist)
 import System.Environment (getEnv)
 import System.Exit
 import System.FilePath ((</>))
 import XMonad
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet as W
 import XMonad.Util.Dmenu
 import XMonad.Util.EZConfig
+import qualified XMonad.Util.Hacks as Hacks
+import XMonad.Util.Scratchpad (scratchpadManageHook, scratchpadSpawnActionCustom)
 import XMonad.Util.SpawnOnce
 
 myModMask :: KeyMask
@@ -34,19 +40,27 @@ myClickJustFocuses = False
 --
 myBorderWidth = 2
 
-confirm :: String -> X () -> X ()
-confirm msg f = do
-  ans <- dmenu [msg, "YES", "NE"]
-  when (ans == "YES") f
+confirmAction :: String -> X () -> X ()
+confirmAction msg f = do
+  selectAction msg [("Yes", f), ("No", return ())]
 
-myLayoutHook = avoidStruts $ tiled ||| Full
+selectAction :: String -> [(String, X ())] -> X ()
+selectAction msg acts = do
+  let mp = M.fromList $ (msg, return ()) : acts
+  ans <- dmenuMap mp
+  case ans of
+    Just x -> x
+    Nothing -> return ()
+
+myLayoutHook = (avoidStruts $ tiled) ||| Full
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1 -- Default number of windows in the master pane
     ratio = 1 / 2 -- Default proportion of screen occupied by master pane
     delta = 3 / 100 -- Percent of screen to increment by when resizing panes
 
-myKeyMaps conf@(XConfig {XMonad.modMask = modm}) =
+myKeyMaps :: D.Client -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList
     [ ((m .|. modm, k), windows $ f i)
       | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
@@ -54,6 +68,9 @@ myKeyMaps conf@(XConfig {XMonad.modMask = modm}) =
     ]
     `M.union` mkKeymap conf emacsKeyMap
   where
+    closeDbus = io $ D.disconnect dbus
+    actXRestart = closeDbus >> spawn "notify-send \"XMonad compiler\" \"Start compile xmonad.hs\" && xmonad --recompile && xmonad --restart && notify-send \"XMonad compiler\" \"XMonad restart successfully\""
+    actXExit = closeDbus >> (io $ exitWith ExitSuccess)
     emacsKeyMap =
       [ -- Launcher
         ("M-v", spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"),
@@ -70,9 +87,9 @@ myKeyMaps conf@(XConfig {XMonad.modMask = modm}) =
         ("M-S-k", windows $ W.swapUp),
         -- Windows controller
         ("M-S-c", kill),
+        ("M-`", scratchpadSpawnActionCustom $ "st -n scratchpad"),
         -- XMonad
-        ("M-S-q q", confirm "Are you sure to exit XMonad?" $ io (exitWith ExitSuccess)),
-        ("M-S-q r", confirm "Are you sure to restart XMonad?" $ spawn "notify-send \"Start compile xmonad.hs\" && xmonad --recompile && xmonad --restart && notify-send \"XMonad restart successfully\""),
+        ("M-S-q", selectAction "Cancel" [("Restart", actXRestart), ("Exit", actXExit)]),
         -- Brightness controller
         ("<XF86MonBrightnessUp>", spawnAndNotify "brightnessctl s +5%"),
         ("<XF86MonBrightnessDown>", spawnAndNotify "brightnessctl s 5-%"),
@@ -85,7 +102,7 @@ myKeyMaps conf@(XConfig {XMonad.modMask = modm}) =
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
         ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%")
       ]
-    spawnAndNotify cmd = spawn $ cmd ++ " | xargs -0 notify-send"
+    spawnAndNotify cmd = spawn $ cmd ++ " | xargs -0 notify-send \"Brightness changed\""
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
@@ -109,10 +126,18 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
     ]
 
 myStartupHook = do
+  spawnOnce "polybar main"
   io $ setupWallpaper
   spawn "xsetroot -cursor_name left_ptr"
   spawnOnce "picom --experimental-backends"
   spawnOnce "dunst"
+  spawnOnce "/usr/lib/kdeconnectd"
+  spawnOnce "kdeconnect-indicator"
+  spawnOnce "fcitx -d"
+  spawnOnce "emacs --daemon --with-x-toolkit=lucid"
+  spawnOnce "nm-applet"
+  spawnOnce "dida"
+  spawnOnce "v2ray -c ~/.v2ray.json"
   spawnOnce "greenclip daemon"
   where
     setupWallpaper :: IO ()
@@ -124,30 +149,97 @@ myStartupHook = do
           else spawn "feh --bg-scale ~/.wallpaper_scale"
 
 myManageHook =
-  manageDocks
+  scratchpad <+> manageDocks
     <+> composeAll
       [ className =? "MPlayer" --> doFloat,
         resource =? "desktop_window" --> doIgnore,
         resource =? "kdesktop" --> doIgnore,
         isFullscreen --> doFullFloat
       ]
+  where
+    scratchpad = scratchpadManageHook $ W.RationalRect 0.25 0.1 0.5 0.8
 
-myConfig =
-  ewmhFullscreen . ewmh $
+myConfig dbus =
+  ewmhFullscreen . ewmh . Hacks.javaHack $
     def
       { modMask = myModMask,
+        terminal = myTerminal,
         focusFollowsMouse = myFocusFollowsMouse,
         clickJustFocuses = myClickJustFocuses,
         normalBorderColor = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
         -- keybinding
-        keys = myKeyMaps,
+        keys = myKeyMaps dbus,
         mouseBindings = myMouseBindings,
         -- hooks
+        startupHook = myStartupHook,
         layoutHook = myLayoutHook,
         manageHook = myManageHook,
-        startupHook = myStartupHook
+        handleEventHook = handleEventHook def <+> Hacks.windowedFullscreenFixEventHook,
+        logHook = dynamicLogWithPP (myLogHook dbus)
       }
 
+fg = "#ebdbb2"
+
+bg = "#282828"
+
+gray = "#a89984"
+
+bg1 = "#3c3836"
+
+bg2 = "#504945"
+
+bg3 = "#665c54"
+
+bg4 = "#7c6f64"
+
+green = "#b8bb26"
+
+darkgreen = "#98971a"
+
+red = "#fb4934"
+
+darkred = "#cc241d"
+
+yellow = "#fabd2f"
+
+blue = "#83a598"
+
+purple = "#d3869b"
+
+aqua = "#8ec07c"
+
+-- Override the PP values as you would otherwise, adding colors etc depending
+-- on  the statusbar used
+myLogHook :: D.Client -> PP
+myLogHook dbus =
+  def
+    { ppOutput = dbusOutput dbus,
+      ppCurrent = wrap ("%{B" ++ bg2 ++ "} ") " %{B-}",
+      ppVisible = wrap ("%{B" ++ bg1 ++ "} ") " %{B-}",
+      ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}",
+      ppHidden = wrap " " " ",
+      ppWsSep = "",
+      ppSep = "λ=",
+      ppTitle = const ""
+    }
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+  let signal =
+        (D.signal objectPath interfaceName memberName)
+          { D.signalBody = [D.toVariant $ UTF8.decodeString str]
+          }
+  D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
+
 main :: IO ()
-main = xmonad $ myConfig
+main = do
+  -- Request access to the DBus name
+  dbus <- D.connectSession
+  D.requestName dbus (D.busName_ "org.xmonad.Log") [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+  xmonad $ myConfig dbus

@@ -22,13 +22,15 @@ executable xmonad
   main-is: xmonad.hs
   other-modules:
       Paths_xmonad_config
-  ghc-options: -Wall -fwarn-tabs -threaded -O2 -with-rtsopts=-N4
+  ghc-options: -Wall -fwarn-tabs -threaded -O3 -with-rtsopts=-N4
   build-depends:
       X11
     , base
     , containers
+    , dbus
     , directory
     , filepath
+    , utf8-string
     , xmonad
     , xmonad-contrib
   default-language: Haskell2010

@@ -13,6 +13,8 @@ dependencies:
   - containers
   - directory
   - filepath
+  - utf8-string
+  - dbus
 executables:
   xmonad:
     main: xmonad.hs
@@ -20,5 +22,5 @@ executables:
       - -Wall
       - -fwarn-tabs
       - -threaded
-      - -O2
+      - -O3
       - -with-rtsopts=-N4
