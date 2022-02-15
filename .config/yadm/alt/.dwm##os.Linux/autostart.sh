@@ -24,8 +24,6 @@ python $HOME/.dwm/dwm-status-refresh.py loop &
     kdeconnect-indicator &
   fi
 
-  xmodmap $HOME/.dwm/.xmodmap &
-  
   type dida >/dev/null 2>&1 && dida &
   type optimus-manager-qt >/dev/null 2>&1 && optimus-manager-qt &
   type v2ray >/dev/null 2>&1 && v2ray -c $HOME/.v2ray.json &

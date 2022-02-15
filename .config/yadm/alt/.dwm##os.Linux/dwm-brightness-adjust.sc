@@ -26,7 +26,6 @@ def adjust(gpu: Path, opter: (Int, Int) => Int) = {
     "notify-send",
     s"${gpu.baseName.capitalize} brightness changed",
     s"Current: ${getCur(gpu)}/${getMax(gpu)}",
-    "--icon=dialog-information"
   ).call()
 }
 
