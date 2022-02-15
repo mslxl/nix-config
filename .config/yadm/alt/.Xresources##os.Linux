@@ -6,13 +6,6 @@ Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-XTerm*background:        #222D31
-XTerm*foreground:        #d8d8d8
-XTerm*pointerColor:      #1ABB9B
-XTerm*faceName:          Fixed
-XTerm*faceSize:          11
-XTerm*reverseVideo:      on
-XTerm*selectToClipboard: true
 
 *fading:                          8
 *fadeColor:                       black
@@ -56,14 +49,6 @@ XTerm*selectToClipboard: true
 *color15: #fdf6e3
 
 
-
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-! rofi color
-rofi.font: "Source Code Pro" 12
-rofi.color-enabled: true
-rofi.color-window: #3a4c54, #2a373e, #c3c6c8
-rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
-rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
-rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3

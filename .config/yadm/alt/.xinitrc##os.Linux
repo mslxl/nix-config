@@ -22,4 +22,6 @@ xss-lock -- bash ~/.dwm/lock.sh &
 
 xrandr --output eDP --scale 0.85
 setxkbmap -option caps:escape
-exec dwm > .dwm_output
+
+# exec dwm
+exec xmonad
