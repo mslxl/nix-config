@@ -1,23 +1,58 @@
+{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
+
 import qualified Codec.Binary.UTF8.String as UTF8
 import Control.Monad
 import qualified DBus as D
 import qualified DBus.Client as D
+import XMonad.Layout.OneBig
 import qualified Data.Map as M
 import System.Directory (doesFileExist)
 import System.Environment (getEnv)
 import System.Exit
 import System.FilePath ((</>))
 import XMonad
+import XMonad.Actions.CycleWS (toggleWS)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.Tabbed
 import qualified XMonad.StackSet as W
 import XMonad.Util.Dmenu
 import XMonad.Util.EZConfig
 import qualified XMonad.Util.Hacks as Hacks
-import XMonad.Util.Scratchpad (scratchpadManageHook, scratchpadSpawnActionCustom)
+import XMonad.Util.Scratchpad (scratchpadFilterOutWorkspace, scratchpadManageHook, scratchpadSpawnActionCustom)
 import XMonad.Util.SpawnOnce
+
+fg = "#ebdbb2"
+
+bg = "#282828"
+
+gray = "#a89984"
+
+bg1 = "#3c3836"
+
+bg2 = "#504945"
+
+bg3 = "#665c54"
+
+bg4 = "#7c6f64"
+
+green = "#b8bb26"
+
+darkgreen = "#98971a"
+
+red = "#fb4934"
+
+darkred = "#cc241d"
+
+yellow = "#fabd2f"
+
+blue = "#83a598"
+
+purple = "#d3869b"
+
+aqua = "#8ec07c"
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -52,7 +87,7 @@ selectAction msg acts = do
     Just x -> x
     Nothing -> return ()
 
-myLayoutHook = (avoidStruts $ tiled) ||| Full
+myLayoutHook = avoidStrutsOn [D] $ tiled ||| Full ||| simpleTabbedLeftAlways ||| OneBig (3/4) (3/4)
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1 -- Default number of windows in the master pane
@@ -85,6 +120,9 @@ myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
         ("M-k", windows $ W.focusUp),
         ("M-S-j", windows $ W.swapDown),
         ("M-S-k", windows $ W.swapUp),
+        ("M-f", sendMessage ToggleStruts),
+        ("M-<Tab>", toggleWS),
+        ("M-t", withFocused (windows . W.sink)),
         -- Windows controller
         ("M-S-c", kill),
         ("M-`", scratchpadSpawnActionCustom $ "st -n scratchpad"),
@@ -131,14 +169,14 @@ myStartupHook = do
   spawn "xsetroot -cursor_name left_ptr"
   spawnOnce "picom --experimental-backends"
   spawnOnce "dunst"
-  spawnOnce "/usr/lib/kdeconnectd"
-  spawnOnce "kdeconnect-indicator"
-  spawnOnce "fcitx -d"
+  spawnOnce "fcitx5 -d"
   spawnOnce "emacs --daemon --with-x-toolkit=lucid"
   spawnOnce "nm-applet"
-  spawnOnce "dida"
   spawnOnce "v2ray -c ~/.v2ray.json"
   spawnOnce "greenclip daemon"
+  spawnOnce "setxkbmap -option caps:escape"
+
+  spawnOnce "/usr/lib/kdeconnectd && sleep 4 && kdeconnect-indicator"
   where
     setupWallpaper :: IO ()
     setupWallpaper = do
@@ -160,7 +198,7 @@ myManageHook =
     scratchpad = scratchpadManageHook $ W.RationalRect 0.25 0.1 0.5 0.8
 
 myConfig dbus =
-  ewmhFullscreen . ewmh . Hacks.javaHack $
+  docks . ewmhFullscreen . ewmh . Hacks.javaHack $
     def
       { modMask = myModMask,
         terminal = myTerminal,
@@ -179,36 +217,6 @@ myConfig dbus =
         logHook = dynamicLogWithPP (myLogHook dbus)
       }
 
-fg = "#ebdbb2"
-
-bg = "#282828"
-
-gray = "#a89984"
-
-bg1 = "#3c3836"
-
-bg2 = "#504945"
-
-bg3 = "#665c54"
-
-bg4 = "#7c6f64"
-
-green = "#b8bb26"
-
-darkgreen = "#98971a"
-
-red = "#fb4934"
-
-darkred = "#cc241d"
-
-yellow = "#fabd2f"
-
-blue = "#83a598"
-
-purple = "#d3869b"
-
-aqua = "#8ec07c"
-
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
 myLogHook :: D.Client -> PP
@@ -220,8 +228,9 @@ myLogHook dbus =
       ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}",
       ppHidden = wrap " " " ",
       ppWsSep = "",
-      ppSep = "λ=",
-      ppTitle = const ""
+      ppSep = "| ",
+      ppTitle = const "",
+      ppSort = (\x -> scratchpadFilterOutWorkspace . x) <$> ppSort def
     }
 
 -- Emit a DBus signal on log updates
