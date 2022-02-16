@@ -4,7 +4,6 @@ import qualified Codec.Binary.UTF8.String as UTF8
 import Control.Monad
 import qualified DBus as D
 import qualified DBus.Client as D
-import XMonad.Layout.OneBig
 import qualified Data.Map as M
 import System.Directory (doesFileExist)
 import System.Environment (getEnv)
@@ -16,6 +15,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.OneBig
 import XMonad.Layout.Tabbed
 import qualified XMonad.StackSet as W
 import XMonad.Util.Dmenu
@@ -87,7 +87,7 @@ selectAction msg acts = do
     Just x -> x
     Nothing -> return ()
 
-myLayoutHook = avoidStrutsOn [D] $ tiled ||| Full ||| simpleTabbedLeftAlways ||| OneBig (3/4) (3/4)
+myLayoutHook = avoidStrutsOn [D] $ tiled ||| Full ||| simpleTabbedLeftAlways ||| OneBig (3 / 4) (3 / 4)
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1 -- Default number of windows in the master pane
@@ -129,8 +129,8 @@ myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
         -- XMonad
         ("M-S-q", selectAction "Cancel" [("Restart", actXRestart), ("Exit", actXExit)]),
         -- Brightness controller
-        ("<XF86MonBrightnessUp>", spawnAndNotify "brightnessctl s +5%"),
-        ("<XF86MonBrightnessDown>", spawnAndNotify "brightnessctl s 5-%"),
+        ("<XF86MonBrightnessUp>", spawnAndNotify "brightnessctl s +5%" "Brightness changed"),
+        ("<XF86MonBrightnessDown>", spawnAndNotify "brightnessctl s 5-%" "Brightness changed"),
         -- Audio player controller
         ("<XF86AudioPlay>", spawn "playerctl play-pause"),
         ("<XF86AudioPrev>", spawn "playerctl previous"),
@@ -138,9 +138,12 @@ myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
         -- Audio volume controller
         ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -5%"),
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
-        ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%")
+        ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%"),
+        -- Print screen
+        ("<Print>", spawn "maim ~/pictures/screencap/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to ~/pictures/screencap directory\" -i flameshot"),
+        ("M-S-s", spawn "maim -s ~/pictures/screencap/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to ~/pictures/screencap directory\" -i flameshot")
       ]
-    spawnAndNotify cmd = spawn $ cmd ++ " | xargs -0 notify-send \"Brightness changed\""
+    spawnAndNotify cata cmd = spawn $ cmd ++ " | xargs -0 notify-send \"" ++ cata ++ "\""
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
@@ -175,8 +178,7 @@ myStartupHook = do
   spawnOnce "v2ray -c ~/.v2ray.json"
   spawnOnce "greenclip daemon"
   spawnOnce "setxkbmap -option caps:escape"
-
-  spawnOnce "sleep 30; /usr/lib/kdeconnectd && sleep 2 && kdeconnect-indicator"
+  spawn "/usr/lib/kdeconnectd && sleep 2 && kdeconnect-indicator"
   where
     setupWallpaper :: IO ()
     setupWallpaper = do
