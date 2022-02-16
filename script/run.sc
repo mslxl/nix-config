@@ -12,6 +12,8 @@ def exec(src: os.Path, stdin: os.ProcessInput) {
         "-g",
         "-Wall",
         // "-Werror",
+        "-fsanitize=address,undefined",
+        "-DLo",
         src,
         "-o",
         "/tmp/a.out"

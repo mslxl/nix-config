@@ -13,6 +13,7 @@ export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/script:$PATH
 export PATH=$HOME/.local/share/coursier/bin:$PATH
 
+
 if [[ -f "$HOME/.ghcup/env" ]]; then
   source "$HOME/.ghcup/env"
 fi

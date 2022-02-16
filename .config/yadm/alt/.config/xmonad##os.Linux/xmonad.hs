@@ -58,7 +58,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myTerminal :: String
-myTerminal = "st"
+myTerminal = "alacritty"
 
 myWorkspace = [show num | num <- [1 .. 10]]
 
@@ -122,10 +122,10 @@ myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
         ("M-S-k", windows $ W.swapUp),
         ("M-f", sendMessage ToggleStruts),
         ("M-<Tab>", toggleWS),
-        ("M-t", withFocused (windows . W.sink)),
+        ("M-", withFocused (windows . W.sink)),
         -- Windows controller
         ("M-S-c", kill),
-        ("M-`", scratchpadSpawnActionCustom $ "st -n scratchpad"),
+        ("M-`", scratchpadSpawnActionCustom $ "alacritty --class scratchpad"),
         -- XMonad
         ("M-S-q", selectAction "Cancel" [("Restart", actXRestart), ("Exit", actXExit)]),
         -- Brightness controller
@@ -176,7 +176,7 @@ myStartupHook = do
   spawnOnce "greenclip daemon"
   spawnOnce "setxkbmap -option caps:escape"
 
-  spawnOnce "/usr/lib/kdeconnectd && sleep 4 && kdeconnect-indicator"
+  spawnOnce "sleep 30; /usr/lib/kdeconnectd && sleep 2 && kdeconnect-indicator"
   where
     setupWallpaper :: IO ()
     setupWallpaper = do
