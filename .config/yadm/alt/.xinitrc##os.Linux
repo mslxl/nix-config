@@ -1,4 +1,3 @@
-prime-offload
 xrdb -merge ~/.Xresources
 
 export GTK_IM_MODULE=fcitx
@@ -14,14 +13,11 @@ wmname compiz
 # Firefox
 # export MOZ_X11_EGL=1
 # export MOZ_WEBRENDER=1
-optimus-manager-qt &
 
 xset dpms 180 &
-xss-lock -- bash ~/.dwm/lock.sh &
-
+xss-lock -- bash ~/.config/wmscript/lock.sh &
 
 xrandr --output eDP --scale 0.85
 setxkbmap -option caps:escape
 
-# exec dwm
 exec xmonad
