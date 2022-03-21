@@ -1,4 +1,9 @@
+/usr/bin/prime-offload
+linux-enable-ir-emitter run
+
 xrdb -merge ~/.Xresources
+
+
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -17,7 +22,8 @@ wmname compiz
 xset dpms 180 &
 xss-lock -- bash ~/.config/wmscript/lock.sh &
 
-xrandr --output eDP --scale 0.85
+xrandr | grep " connected" | awk -e '{print $1}' | xargs -I display xrandr --output display --scale 0.85
+
 setxkbmap -option caps:escape
 
 exec xmonad

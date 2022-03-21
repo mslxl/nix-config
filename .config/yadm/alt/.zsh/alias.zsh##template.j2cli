@@ -6,8 +6,15 @@
 
 # EDITOR
 hash nvim 2>/dev/null && {
-    alias vim="nvim"
-    alias vi="nvim"
+  alias vim="nvim"
+  alias vi="nvim"
+  hash neovide 2>/dev/null && {
+    alias vide="neovide"
+    if [[ "$DISPLAY" != "" ]] {
+      alias vim="neovide --nofork"
+      alias vi="neovide --nofork"
+    }
+  }
 }
 
 hash emacs 2>/dev/null && {
