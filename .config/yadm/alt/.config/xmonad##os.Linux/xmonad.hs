@@ -11,11 +11,13 @@ import System.Exit
 import System.FilePath ((</>))
 import XMonad
 import XMonad.Actions.CycleWS (toggleWS)
+import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.OneBig
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Tabbed
 import qualified XMonad.StackSet as W
 import XMonad.Util.Dmenu
@@ -60,7 +62,9 @@ myModMask = mod4Mask
 myTerminal :: String
 myTerminal = "alacritty"
 
-myWorkspace = [show num | num <- [1 .. 10]]
+myWindowVM = "bash ~/script/start_winvm.sh"
+
+myWorkspace = [show num | num <- [1 .. 9]] ++ ["Win"]
 
 myNormalBorderColor = "#3b4252"
 
@@ -87,7 +91,7 @@ selectAction msg acts = do
     Just x -> x
     Nothing -> return ()
 
-myLayoutHook = avoidStrutsOn [D] $ tiled ||| Full ||| simpleTabbedLeftAlways ||| OneBig (3 / 4) (3 / 4)
+myLayoutHook = onWorkspace "Win" Full $ avoidStrutsOn [D] $ tiled ||| Full ||| simpleTabbedLeftAlways ||| OneBig (3 / 4) (3 / 4)
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1 -- Default number of windows in the master pane
@@ -98,19 +102,26 @@ myKeyMaps :: D.Client -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList
     [ ((m .|. modm, k), windows $ f i)
-      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
+      | (i, k) <- zip (take 9 (XMonad.workspaces conf)) [xK_1 .. xK_9],
         (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
     ]
     `M.union` mkKeymap conf emacsKeyMap
   where
+    viewWinVM = do
+      windows (W.greedyView "Win")
+      spawnOn "Win" myWindowVM
+      return ()
     closeDbus = io $ D.disconnect dbus
     actXRestart = closeDbus >> spawn "notify-send \"XMonad compiler\" \"Start compile xmonad.hs\" && xmonad --recompile && xmonad --restart && notify-send \"XMonad compiler\" \"XMonad restart successfully\""
     actXExit = closeDbus >> (io $ exitWith ExitSuccess)
+    actXLock = spawn "bash ~/.config/wmscript/lock.sh"
     emacsKeyMap =
       [ -- Launcher
         ("M-v", spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"),
         ("M-r", spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" "),
         ("M-<Return>", spawn myTerminal),
+        ("<XF86Calculator>", spawn "alacritty -e python"),
+        ("M-0", viewWinVM),
         -- Layout
         ("M-<Space>", sendMessage NextLayout),
         ("M-S-<Space>", setLayout $ XMonad.layoutHook conf),
@@ -122,12 +133,12 @@ myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
         ("M-S-k", windows $ W.swapUp),
         ("M-f", sendMessage ToggleStruts),
         ("M-<Tab>", toggleWS),
-        ("M-", withFocused (windows . W.sink)),
+        ("M-t", withFocused (windows . W.sink)),
         -- Windows controller
         ("M-S-c", kill),
         ("M-`", scratchpadSpawnActionCustom $ "alacritty --class scratchpad"),
         -- XMonad
-        ("M-S-q", selectAction "Cancel" [("Restart", actXRestart), ("Exit", actXExit)]),
+        ("M-S-q", selectAction "Cancel" [("Restart", actXRestart), ("Exit", actXExit), ("Lock", actXLock)]),
         -- Brightness controller
         ("<XF86MonBrightnessUp>", spawnAndNotify "brightnessctl s +5%" "Brightness changed"),
         ("<XF86MonBrightnessDown>", spawnAndNotify "brightnessctl s 5-%" "Brightness changed"),
@@ -141,9 +152,10 @@ myKeyMaps dbus conf@(XConfig {XMonad.modMask = modm}) =
         ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +5%"),
         -- Print screen
         ("<Print>", spawn "maim ~/pictures/screencap/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to ~/pictures/screencap directory\" -i flameshot"),
-        ("M-S-s", spawn "maim -s ~/pictures/screencap/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to ~/pictures/screencap directory\" -i flameshot")
+        ("M-S-s", spawn "maim -s ~/pictures/screencap/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to ~/pictures/screencap directory\" -i flameshot"),
+        ("M-<Print>", spawn "maim -s | xclip -selection clipboard -t image/png && notify-send \"Screenshot\" \"Copied to Clipboard\" -i flameshot")
       ]
-    spawnAndNotify cata cmd = spawn $ cmd ++ " | xargs -0 notify-send \"" ++ cata ++ "\""
+    spawnAndNotify cmd cata = spawn $ cmd ++ " | xargs -0 notify-send \"" ++ cata ++ "\""
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
@@ -168,8 +180,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 
 myStartupHook = do
   spawnOnce "polybar main"
-  io $ setupWallpaper
+  io setupWallpaper
   spawn "xsetroot -cursor_name left_ptr"
+  spawn "setxkbmap -option caps:escape"
   spawnOnce "picom --experimental-backends"
   spawnOnce "dunst"
   spawnOnce "fcitx5 -d"
@@ -177,8 +190,9 @@ myStartupHook = do
   spawnOnce "nm-applet"
   spawnOnce "v2ray -c ~/.v2ray.json"
   spawnOnce "greenclip daemon"
-  spawnOnce "setxkbmap -option caps:escape"
-  spawn "/usr/lib/kdeconnectd && sleep 2 && kdeconnect-indicator"
+  spawnOnce "optimus-manager-qt"
+  spawn "/usr/lib/kdeconnectd "
+  spawn "sleep 30 && notify-send \"Phone\" \"KDE connnect started!\" -i ethernet && kdeconnect-indicator"
   where
     setupWallpaper :: IO ()
     setupWallpaper = do
@@ -189,7 +203,7 @@ myStartupHook = do
           else spawn "feh --bg-scale ~/.wallpaper_scale"
 
 myManageHook =
-  scratchpad <+> manageDocks
+  manageSpawn <+> scratchpad <+> manageDocks
     <+> composeAll
       [ className =? "MPlayer" --> doFloat,
         resource =? "desktop_window" --> doIgnore,
@@ -208,6 +222,7 @@ myConfig dbus =
         clickJustFocuses = myClickJustFocuses,
         normalBorderColor = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
+        workspaces = myWorkspace,
         -- keybinding
         keys = myKeyMaps dbus,
         mouseBindings = myMouseBindings,
