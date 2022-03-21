@@ -42,21 +42,22 @@
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
-
-
-;; AUCTEX Latex
-
-;; (add-hook 'LaTeX-mode-hook (lambda()
-;;                              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
-;;                              (setq TeX-command-default "XeLaTeX")
-;;                              (setq TeX-save-query nil)
-;;                              (setq TeX-show-compilation t)
-;;                              ))
-
 (setq-default TeX-engine 'xetex)
 (setq-default TeX-PDF-mode t)
 (add-hook 'TeX-mode-hook
           (lambda ()
-            (setq TeX-command-extra-options "-shell-escape")
-            )
-          )
+            (setq TeX-command-extra-options "-shell-escape")))
+
+
+;; (add-hook 'TeX-mode-hook
+;;           (lambda ()
+;;             (setq yas-buffer-local-condition
+;;                   '(if (texmathp)
+;;                        '(require-snippet-condition . auto)
+;;                      t))))
+
+ (defun my-yas-try-expanding-auto-snippets ()
+    (when (and (boundp 'yas-minor-mode) yas-minor-mode)
+      (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
+        (yas-expand))))
+  (add-hook 'post-command-hook #'my-yas-try-expanding-auto-snippets)
