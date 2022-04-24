@@ -188,7 +188,7 @@ myStartupHook = do
   spawnOnce "fcitx5 -d"
   spawnOnce "emacs --daemon --with-x-toolkit=lucid"
   spawnOnce "nm-applet"
-  spawnOnce "v2ray -c ~/.v2ray.json"
+  -- spawnOnce "v2ray -c ~/.v2ray.json"
   spawnOnce "greenclip daemon"
   spawnOnce "optimus-manager-qt"
   spawn "/usr/lib/kdeconnectd "

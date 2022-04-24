@@ -13,6 +13,7 @@
 	br = branch
 	cl = clone
 	cl1 = clone --depth 1
+  pl = pull
 [init]
 	defaultBranch = main
 [core]
