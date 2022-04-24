@@ -8,12 +8,12 @@
 hash nvim 2>/dev/null && {
   alias vim="nvim"
   alias vi="nvim"
-  hash neovide 2>/dev/null && {
-    alias vide="neovide"
-    if [[ "$DISPLAY" != "" ]] {
-      alias vim="neovide --nofork"
-      alias vi="neovide --nofork"
-    }
+  if [[ -f "$HOME/.local/bin/lvim" ]] {
+    alias vim="lvim"
+    alias vi="lvim"
+  } else {
+    alias vim="nvide --no-fork"
+    alias vi="nvide --no-fork"
   }
 }
 
