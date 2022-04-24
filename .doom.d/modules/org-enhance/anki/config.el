@@ -4,7 +4,7 @@
   (customize-set-variable 'org-anki-default-deck "Default")
 
   (when (getenv "WIN_IP") ;; for wsl user
-    (customize-set-variable 'org-anki-ankiconnect-request-address (concat "http://" (getenv "WIN_IP") ":8765")))
+    (customize-set-variable 'org-anki-ankiconnnect-listen-address (concat "http://" (getenv "WIN_IP") ":8765")))
 
   (map! :map org-mode-map
       :localleader
