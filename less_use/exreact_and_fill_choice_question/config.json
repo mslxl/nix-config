@@ -1,0 +1,21 @@
+{
+    "loop": true,
+
+    "editor": "code -w \"%s\"",
+    "encode": "UTF-8",
+
+    "input-COMMENT": "edit|file",
+    "input": "file",
+    "inputQuestFile": "D:\\script\\less_use\\exreact_and_fill_option\\testDataQuest.txt",
+    "inputAnsFile": "D:\\script\\less_use\\exreact_and_fill_option\\testDataAns.txt",
+
+    "target-COMMENT": "dir|anki|console",
+    "target": "anki",
+    "outputDir": ".\\output",
+    "ankiClozeFormat": true,
+    "anki": {
+        "address": "http://127.0.0.1:8765",
+        "deck": "中国近现代史纲要",
+        "tags": []
+    }
+}
