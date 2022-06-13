@@ -7,7 +7,7 @@ import requests
 
 
 REGEX_QUESTION = re.compile(
-    r"(^(\d+)、.*?D(?=.)[^\n]*?$)", re.IGNORECASE | re.DOTALL | re.MULTILINE | re.UNICODE)
+    r"\s*?((\d+)、?.*?D(?=.)[^\n]*?$)", re.IGNORECASE | re.DOTALL | re.MULTILINE | re.UNICODE)
 REGEX_ANSWER = re.compile(
     r"(\d+)(?:.*?)([ABCD]+)", re.IGNORECASE | re.DOTALL | re.MULTILINE | re.UNICODE)
 REGEX_BRACKET = re.compile(

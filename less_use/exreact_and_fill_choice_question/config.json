@@ -5,7 +5,7 @@
     "encode": "UTF-8",
 
     "input-COMMENT": "edit|file",
-    "input": "file",
+    "input": "edit",
     "inputQuestFile": "D:\\script\\less_use\\exreact_and_fill_option\\testDataQuest.txt",
     "inputAnsFile": "D:\\script\\less_use\\exreact_and_fill_option\\testDataAns.txt",
 
