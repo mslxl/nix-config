@@ -1,0 +1,5 @@
+/*.userdb/
+/user.yaml
+/installation.yaml
+/build/
+/flypy.scheme.yaml

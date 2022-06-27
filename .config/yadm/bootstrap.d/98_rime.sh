@@ -1,45 +1,34 @@
 #!/bin/bash
 
-RIME_CONFIG_DIR="$HOME/.config/yadm/alt/.local/share/fcitx5##os.Linux/rime"
-XK_CONFIG_DIR="$RIME_CONFIG_DIR/xkinput"
+PATH_DOWNLOAD="$HOME/.local/share/fcitx5"
+URL_DOWNLOAD="http://ys-f.ysepan.com/116124349/318792795/TLsJx8l571H8N4GJ4PH26b/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2%E2%80%9C%E9%BC%A0%E9%A1%BB%E7%AE%A1%E2%80%9Dfor%20macOS.zip"
 
-echo "Rime config: $RIME_CONFIG_DIR"
-echo "xkinput install: $XK_CONFIG_DIR"
-
-if [[ ! -d "$XK_CONFIG_DIR" ]]; then
-  git clone --depth 1 https://gitee.com/xkinput/Rime_JD.git "$XK_CONFIG_DIR" 
+PATH_COMPRESS="$PATH_DOWNLOAD/flypy.zip"
+if [[ ! -f "$PATH_COMPRESS" ]]; then
+	wget "$URL_DOWNLOAD" -O "$PATH_COMPRESS"
 fi
 
+7z t "$PATH_COMPRESS" >/dev/null
+PATH_RIME="$PATH_DOWNLOAD/rime"
 
-# link basic config file
-ln -sf "$XK_CONFIG_DIR/Tools/SystemTools/rime/Linux/xkjd6.schema.yaml" "$RIME_CONFIG_DIR/"
-ln -sf "$XK_CONFIG_DIR/Tools/SystemTools/rime/Linux/xkjd6dz.schema.yaml" "$RIME_CONFIG_DIR/"
-for entry in "$XK_CONFIG_DIR"/rime/xkjd6*
+mkdir -p "$PATH_RIME/build"
+
+PATH_STAGE=$(pwd)
+
+mkdir -p "$PATH_DOWNLOAD/flypy"
+cd "$PATH_DOWNLOAD/flypy"
+yes | 7z e $PATH_COMPRESS  > /dev/null
+
+
+for entry in $(find "$PATH_DOWNLOAD/flypy/" -name "*.bin" -type f) ;
 do
   if [[ -f "$entry" ]]; then
-    ln -sf "$entry" "$RIME_CONFIG_DIR/"
+    ln -sf "$entry" "$PATH_RIME/build/"
   fi
 done
 
-# link lua
-ln -sf "$XK_CONFIG_DIR/rime/rime.lua" "$RIME_CONFIG_DIR/lua/xkinput.lua"
 
-for entry in "$XK_CONFIG_DIR"/rime/lua/*
-do
-  if [[ -f "$entry" ]]; then
-    ln -sf "$entry" "$RIME_CONFIG_DIR/lua/"
-  fi
-done
+ln -sf "$PATH_DOWNLOAD/flypy/flypy.schema.yaml" "$PATH_RIME/"
 
-# linke opencc
 
-if [[ ! -d "$RIME_CONFIG_DIR/opencc/" ]]; then
-  mkdir "$RIME_CONFIG_DIR/opencc/"
-fi
-
-for entry in "$XK_CONFIG_DIR"/rime/opencc/*
-do
-  if [[ -f "$entry" ]]; then
-    ln -sf "$entry" "$RIME_CONFIG_DIR/opencc/"
-  fi
-done
+cd "$PATH_STAGE"
