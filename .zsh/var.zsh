@@ -10,7 +10,7 @@ hash emacs 2>/dev/null && {
 }
 export BROWSER="firefox"
 export PATH=$HOME/.local/bin/:$PATH
-export PATH=$HOME/script:$PATH
+export PATH=$HOME/scripts:$HOME/scripts/linux:$PATH
 export PATH=$HOME/.local/share/coursier/bin:$PATH
 
 
