@@ -1,0 +1,11 @@
+{
+    "workbench.colorTheme": "Sublime Text 4 Theme",
+    "window.menuBarVisibility": "compact",
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "keyboard.dispatch": "keyCode",
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    }
+}
