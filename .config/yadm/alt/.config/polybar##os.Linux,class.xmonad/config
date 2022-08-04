@@ -80,11 +80,11 @@ tray-padding = 3
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/xmonad]
-type = custom/script
-exec = xmonad-log
+;[module/xmonad]
+;type = custom/script
+;exec = xmonad-log
 
-tail = true
+;tail = true
 
 [module/xwindow]
 type = internal/xwindow

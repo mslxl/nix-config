@@ -1,0 +1,8 @@
+/.stack-work/
+/xmonad/
+/xmonad-contrib/
+
+*.errors
+*.hi
+*.o
+*.log

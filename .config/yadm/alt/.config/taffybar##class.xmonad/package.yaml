@@ -1,0 +1,26 @@
+name: xmonad-config
+version: 0.1.0
+synopsis: xmonad setting
+github: mslxl/.dotfiles
+author: mslxl
+maintainer: i@mslxl.com
+license: AGPL
+dependencies:
+  - X11
+  - base
+  - xmonad
+  - xmonad-contrib
+  - containers
+  - directory
+  - filepath
+  - utf8-string
+  - dbus
+executables:
+  xmonad:
+    main: xmonad.hs
+    ghc-options:
+      - -Wall
+      - -fwarn-tabs
+      - -threaded
+      - -O3
+      - -with-rtsopts=-N4

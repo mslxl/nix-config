@@ -9,6 +9,7 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=\@im=fcitx
 export SDL_IM_MODULE=fcitx
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -25,5 +26,3 @@ xss-lock -- bash ~/.config/wmscript/lock.sh &
 xrandr | grep " connected" | awk -e '{print $1}' | xargs -I display xrandr --output display --scale 0.85
 
 setxkbmap -option caps:escape
-
-exec xmonad

@@ -1,0 +1,36 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           xmonad-config
+version:        0.1.0
+synopsis:       xmonad setting
+homepage:       https://github.com/mslxl/.dotfiles#readme
+bug-reports:    https://github.com/mslxl/.dotfiles/issues
+author:         mslxl
+maintainer:     i@mslxl.com
+license:        AGPL
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/mslxl/.dotfiles
+
+executable xmonad
+  main-is: xmonad.hs
+  other-modules:
+      Paths_xmonad_config
+  ghc-options: -Wall -fwarn-tabs -threaded -O3 -with-rtsopts=-N4
+  build-depends:
+      X11
+    , base
+    , containers
+    , dbus
+    , directory
+    , filepath
+    , utf8-string
+    , xmonad
+    , xmonad-contrib
+  default-language: Haskell2010
