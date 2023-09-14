@@ -11,5 +11,6 @@
   home.file.".config/waybar/config".source = ./config;
   home.packages = with pkgs; [
     pavucontrol
+    wlogout
   ];
 }
