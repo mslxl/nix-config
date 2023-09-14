@@ -143,8 +143,14 @@
   # services.dockerRegistry.extraConfig = {
   #   utsc = "http://mirrors.ustc.edu.cn/"
   # };
+
+  environment.shellAliases = {
+    rm = "trash"; # 这条配置来自一个悲伤的历史
+  };
+
   environment.localBinInPath = true;
   environment.systemPackages = with pkgs; [
+    trashy
     xdg-user-dirs
 
     connect
