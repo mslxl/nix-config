@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./shell
+    # ./scripts
     ./desktop/gtk.nix
     ./desktop/hyprland
     ./programs/media
@@ -19,6 +20,7 @@ in
     ./programs/devtool
     ./programs/jetbrains-ide
     ./programs/neovim
+    ./programs/zathura.nix
     ./programs/obs-studio.nix
 
     ./programs/tencent/wemeet.nix
