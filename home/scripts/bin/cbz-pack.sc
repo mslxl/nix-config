@@ -1,4 +1,4 @@
-#!/bin/env amm
+#!/usr/bin/env amm
 @main
 def main(dir: os.Path = os.pwd): Unit = {
   if (hasFile(dir) && !hasSubFolder(dir)) {

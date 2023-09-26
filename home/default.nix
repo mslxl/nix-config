@@ -16,6 +16,7 @@ in
     ./programs/office
 
     ./programs/git.nix
+    ./programs/anki.nix
     ./programs/browsers
     ./programs/devtool
     ./programs/jetbrains-ide

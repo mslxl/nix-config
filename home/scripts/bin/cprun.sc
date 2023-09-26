@@ -1,4 +1,4 @@
-#!/bin/env amm
+#!/usr/bin/env amm
 import scala.io._
 
 def withTime(tag: String = "program", code: () => Unit): Unit = {
