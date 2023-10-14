@@ -5,12 +5,13 @@
 }: {
   imports = [
     ../server
+    ./office
     ./gtk.nix
 
     ./mpv.nix
     ./vivaldi.nix
     ./kdeconnect.nix
-    ./terminal/foot.nix
+    ./zathura.nix
   ];
 
 }

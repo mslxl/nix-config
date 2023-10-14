@@ -1,9 +1,8 @@
-{ username, lib, ... }: {
+{ pkgs, username, lib, ... }: {
   imports = [
     ./base/desktop
 
-    ./prog/terminal/foot.nix
-    ./hyprland
+    ./prog/terminal/wezterm
     ./install-apps.nix
   ];
 
@@ -26,4 +25,5 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
 }

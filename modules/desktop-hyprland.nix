@@ -1,4 +1,5 @@
 {pkgs, hyprland, ...}: {
+  
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -43,12 +44,6 @@
 
     # monitor backlight control
     light.enable = true;
-
-    # thunar file manager(part of xfce) related options
-    thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -74,8 +69,6 @@
     # mpc-cli # command-line mpd client
     # ncmpcpp # a mpd client with a UI
     networkmanagerapplet # provide GUI app: nm-connection-editor
-
-    xfce.thunar # xfce4's file manager
   ];
 
   # fix https://github.com/ryan4yin/nix-config/issues/10

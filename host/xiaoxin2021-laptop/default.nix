@@ -14,7 +14,8 @@
 
 
   # for Nvidia GPU
-  services.xserver.videoDrivers = [ "nvidia" ];
+  # services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
   hardware.opengl = {
     enable = true;
     driSupport = true;

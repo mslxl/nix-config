@@ -26,7 +26,7 @@
           inherit system specialArgs;
           modules = [
             ./host/xiaoxin2021-laptop
-            ./modules/hyprland.nix
+            ./modules/desktop-plasma5.nix
 
             home-manager.nixosModules.home-manager
             {
@@ -34,7 +34,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = specialArgs;
-                users.${username} = import ./home/desktop-hyprland.nix;
+                users.${username} = import ./home/desktop-plasma5.nix;
               };
             }
           ];
