@@ -83,6 +83,7 @@
     aria2
     git # used by nix flakes
     git-lfs # used by huggingface models
+    connect
 
     # create a fhs environment by command `fhs`, so we can run non-nixos packages in nixos!
     (
