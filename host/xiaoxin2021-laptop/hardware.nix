@@ -14,6 +14,40 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # Bootloader.
+  boot.supportedFilesystems = [ "ntfs" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = null;
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub = {
+    device = "nodev";
+    default = "0";
+    efiSupport = true;
+
+    useOSProber = false;
+
+    extraEntries = ''
+      menuentry "Microsoft Windows 11" --class windows {
+        search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+        chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+      }
+    '';
+  };
+
+  boot.loader.grub.theme = pkgs.stdenv.mkDerivation {
+    pname = "distro-grub-themes";
+    version = "3.2";
+    src = pkgs.fetchFromGitHub {
+      owner = "AdisonCavani";
+      repo = "distro-grub-themes";
+      rev = "v3.2";
+      hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+    };
+    installPhase = "cp -r customize/nixos $out";
+  };
+
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/6ee4d6db-b30b-4f3a-9aba-75a4230449f2";
@@ -26,7 +60,12 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/var/swapfile";
+      size = 1024 * 16;
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
