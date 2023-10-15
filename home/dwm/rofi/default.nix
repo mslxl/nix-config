@@ -3,5 +3,6 @@
 {
   programs.rofi = {
     enable = true;
+    theme = ./style.rasi;
   };
 }

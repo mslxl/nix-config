@@ -1,6 +1,7 @@
 {pkgs, ...}: {
 
   imports = [
-    ./rofi.nix
+    ./rofi
+    ./picom
   ];
 }
