@@ -2,14 +2,19 @@
   description = "Mslxl's Nix Config";
 
 
-  outputs = { nixpkgs, home-manager, nur, ... }:
+  outputs = { nixpkgs, home-manager, nur, xddxdd, ... }:
     let
       username = "mslxl";
       userFullname = "mslxl";
       useremail = "i@mslxl.com";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-        overlays = (import ./overlays {});
+        overlays = (import ./overlays {}) ++ [nur.overlay];
+        system = system;
+        config.allowUnfree = true;
+      };
+      pkgs-xddxdd = import xddxdd {
+        inherit pkgs;
         system = system;
         config.allowUnfree = true;
       };
@@ -20,6 +25,7 @@
         specialArgs = {
           inherit username userFullname useremail;
           inherit pkgs;
+          inherit pkgs-xddxdd;
         };
       in {
         mslxl-laptop = nixpkgs.lib.nixosSystem {
@@ -53,6 +59,7 @@
       flake = false;
     };
     nur.url = "github:nix-community/NUR";
+    xddxdd.url = "github:xddxdd/nur-packages";
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
