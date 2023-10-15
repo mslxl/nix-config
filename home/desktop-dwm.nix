@@ -2,6 +2,7 @@
   imports = [
     ./base/desktop
 
+    ./dwm
     ./prog/terminal/wezterm
     ./install-apps.nix
   ];

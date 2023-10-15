@@ -32,7 +32,7 @@
           inherit system specialArgs;
           modules = [
             ./host/xiaoxin2021-laptop
-            ./modules/desktop-plasma5.nix
+            ./modules/desktop-dwm
 
             home-manager.nixosModules.home-manager
             {
@@ -40,7 +40,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = specialArgs;
-                users.${username} = import ./home/desktop-plasma5.nix;
+                users.${username} = import ./home/desktop-dwm.nix;
               };
             }
           ];
