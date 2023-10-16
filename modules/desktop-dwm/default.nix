@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
-
-{
+let 
+  dwm = pkgs.callPackage ./dwm.derv.nix {};
+in {
 
   xdg.portal = {
     enable = true;
@@ -14,9 +15,7 @@
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
-      windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-        src = ./src;
-      };
+      windowManager.dwm.package = dwm;
       displayManager = {
         gdm = {
           enable = true;
