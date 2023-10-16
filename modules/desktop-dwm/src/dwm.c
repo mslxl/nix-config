@@ -73,7 +73,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeHov, SchemeHid }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -146,7 +146,6 @@ struct Monitor {
 	int hidsel;
 	Client *clients;
 	Client *sel;
-	Client *hov;
 	Client *stack;
 	Monitor *next;
 	Window barwin;
@@ -507,7 +506,7 @@ buttonpress(XEvent *e)
 		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
 			click = ClkLtSymbol;
 		/* 2px right padding */
-		else if(ev->x > selmon->ww - TEXTW(stext) + lrpad - 2)
+		else if (ev->x > selmon->ww - TEXTW(stext) + lrpad - 2)
 			click = ClkStatusText;
 		else {
 			x += TEXTW(selmon->ltsymbol);
@@ -903,9 +902,7 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				if (m->hov == c)
-					scm = SchemeHov;
-				else if (m->sel == c)
+				if (m->sel == c)
 					scm = SchemeSel;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
@@ -1427,76 +1424,18 @@ monocle(Monitor *m)
 void
 motionnotify(XEvent *e)
 {
-	int x, i;
 	static Monitor *mon = NULL;
-	Client *c;
 	Monitor *m;
 	XMotionEvent *ev = &e->xmotion;
 
-	if (ev->window != selmon->barwin) {
-		if (selmon->hov) {
-			if (selmon->hov != selmon->sel)
-				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeNorm][ColBorder].pixel);
-			else
-				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeSel][ColBorder].pixel);
-			
-			selmon->hov = NULL;
-			c = wintoclient(ev->window);
-			m = c ? c->mon : wintomon(ev->window);
-			drawbar(m);
-		}
-
-		if (ev->window == root) {
-			if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
-				unfocus(selmon->sel, 1);
-				selmon = m;
-				focus(NULL);
-			}
-			mon = m;
-		}
-	
+	if (ev->window != root)
 		return;
+	if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
+		unfocus(selmon->sel, 1);
+		selmon = m;
+		focus(NULL);
 	}
-
-	c = wintoclient(ev->window);
-	m = c ? c->mon : wintomon(ev->window);
-	c = m->clients;
-
-	x = 0, i = 0;
-	do
-		x += TEXTW(tags[i]);
-	while (ev->x >= x && ++i < LENGTH(tags));
-	if (i < LENGTH(tags) || ev->x < x + TEXTW(selmon->ltsymbol) || ev->x > selmon->ww - TEXTW(stext) + lrpad - 2) {
-		if (selmon->hov) {
-			if (selmon->hov != selmon->sel)
-				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeNorm][ColBorder].pixel);
-			else
-				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeSel][ColBorder].pixel);
-			selmon->hov = NULL;
-			drawbar(m);
-		}
-	} else {
-		x += TEXTW(selmon->ltsymbol);
-		if (c) {
-			do {
-				if (!ISVISIBLE(c))
-					continue;
-				else
-					x +=(1.0 / (double)m->bt) * m->btw;
-			} while (ev->x > x && (c = c->next));
-			if (c) {
-				if (selmon->hov) {
-					if (selmon->hov != selmon->sel)
-						XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeNorm][ColBorder].pixel);
-					else
-						XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeSel][ColBorder].pixel);
-				}
-				selmon->hov = c;
-				XSetWindowBorder(dpy, c->win, scheme[SchemeHov][ColBorder].pixel);
-			}
-		}
-		drawbar(m);
-	}
+	mon = m;
 }
 
 void
@@ -2397,7 +2336,6 @@ updatebars(void)
 		if (showsystray && m == systraytomon(m))
 			XMapRaised(dpy, systray->win);
 		XMapRaised(dpy, m->barwin);
-		XSelectInput(dpy, m->barwin, ButtonPressMask|PointerMotionMask);
 		XSetClassHint(dpy, m->barwin, &ch);
 	}
 }

@@ -1,17 +1,16 @@
 diff --git a/config.def.h b/config.def.h
-index 061ad66..82a3ed2 100644
+index 061ad66..05f18e5 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -16,6 +16,8 @@ static const char *colors[][3]      = {
+@@ -16,6 +16,7 @@ static const char *colors[][3]      = {
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
  	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-+	[SchemeHov]  = { col_gray4, col_cyan,  col_cyan  },
 +	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
  };
  
  /* tagging */
-@@ -64,8 +66,10 @@ static const Key keys[] = {
+@@ -64,8 +65,10 @@ static const Key keys[] = {
  	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
  	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -24,7 +23,7 @@ index 061ad66..82a3ed2 100644
  	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
  	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
  	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-@@ -84,6 +88,9 @@ static const Key keys[] = {
+@@ -84,6 +87,9 @@ static const Key keys[] = {
  	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
  	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
@@ -34,7 +33,7 @@ index 061ad66..82a3ed2 100644
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
-@@ -102,6 +109,7 @@ static const Button buttons[] = {
+@@ -102,6 +108,7 @@ static const Button buttons[] = {
  	/* click                event mask      button          function        argument */
  	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
  	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
@@ -43,7 +42,7 @@ index 061ad66..82a3ed2 100644
  	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
  	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 diff --git a/dwm.c b/dwm.c
-index e5efb6a..8cb5171 100644
+index e5efb6a..0d18e1b 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -50,6 +50,7 @@
@@ -59,7 +58,7 @@ index e5efb6a..8cb5171 100644
  /* enums */
  enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 -enum { SchemeNorm, SchemeSel }; /* color schemes */
-+enum { SchemeNorm, SchemeSel, SchemeHov, SchemeHid }; /* color schemes */
++enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
  enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
         NetWMFullscreen, NetActiveWindow, NetWMWindowType,
         NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -72,18 +71,15 @@ index e5efb6a..8cb5171 100644
  	int mx, my, mw, mh;   /* screen size */
  	int wx, wy, ww, wh;   /* window area  */
  	unsigned int seltags;
-@@ -124,8 +127,10 @@ struct Monitor {
+@@ -124,6 +127,7 @@ struct Monitor {
  	unsigned int tagset[2];
  	int showbar;
  	int topbar;
 +	int hidsel;
  	Client *clients;
  	Client *sel;
-+	Client *hov;
  	Client *stack;
- 	Monitor *next;
- 	Window barwin;
-@@ -168,13 +173,17 @@ static void expose(XEvent *e);
+@@ -168,13 +172,17 @@ static void expose(XEvent *e);
  static void focus(Client *c);
  static void focusin(XEvent *e);
  static void focusmon(const Arg *arg);
@@ -102,7 +98,7 @@ index e5efb6a..8cb5171 100644
  static void incnmaster(const Arg *arg);
  static void keypress(XEvent *e);
  static void killclient(const Arg *arg);
-@@ -204,6 +213,9 @@ static void setlayout(const Arg *arg);
+@@ -204,6 +212,9 @@ static void setlayout(const Arg *arg);
  static void setmfact(const Arg *arg);
  static void setup(void);
  static void seturgent(Client *c, int urg);
@@ -112,7 +108,7 @@ index e5efb6a..8cb5171 100644
  static void showhide(Client *c);
  static void sigchld(int unused);
  static void spawn(const Arg *arg);
-@@ -214,6 +226,7 @@ static void togglebar(const Arg *arg);
+@@ -214,6 +225,7 @@ static void togglebar(const Arg *arg);
  static void togglefloating(const Arg *arg);
  static void toggletag(const Arg *arg);
  static void toggleview(const Arg *arg);
@@ -120,7 +116,7 @@ index e5efb6a..8cb5171 100644
  static void unfocus(Client *c, int setfocus);
  static void unmanage(Client *c, int destroyed);
  static void unmapnotify(XEvent *e);
-@@ -442,10 +455,25 @@ buttonpress(XEvent *e)
+@@ -442,10 +454,25 @@ buttonpress(XEvent *e)
  			arg.ui = 1 << i;
  		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
  			click = ClkLtSymbol;
@@ -149,7 +145,7 @@ index e5efb6a..8cb5171 100644
  	} else if ((c = wintoclient(ev->window))) {
  		focus(c);
  		restack(selmon);
-@@ -455,7 +483,7 @@ buttonpress(XEvent *e)
+@@ -455,7 +482,7 @@ buttonpress(XEvent *e)
  	for (i = 0; i < LENGTH(buttons); i++)
  		if (click == buttons[i].click && buttons[i].func && buttons[i].button == ev->button
  		&& CLEANMASK(buttons[i].mask) == CLEANMASK(ev->state))
@@ -158,7 +154,7 @@ index e5efb6a..8cb5171 100644
  }
  
  void
-@@ -699,7 +727,7 @@ dirtomon(int dir)
+@@ -699,7 +726,7 @@ dirtomon(int dir)
  void
  drawbar(Monitor *m)
  {
@@ -167,7 +163,7 @@ index e5efb6a..8cb5171 100644
  	int boxs = drw->fonts->h / 9;
  	int boxw = drw->fonts->h / 6 + 2;
  	unsigned int i, occ = 0, urg = 0;
-@@ -716,6 +744,8 @@ drawbar(Monitor *m)
+@@ -716,6 +743,8 @@ drawbar(Monitor *m)
  	}
  
  	for (c = m->clients; c; c = c->next) {
@@ -176,7 +172,7 @@ index e5efb6a..8cb5171 100644
  		occ |= c->tags;
  		if (c->isurgent)
  			urg |= c->tags;
-@@ -736,16 +766,38 @@ drawbar(Monitor *m)
+@@ -736,16 +765,36 @@ drawbar(Monitor *m)
  	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
  
  	if ((w = m->ww - tw - x) > bh) {
@@ -191,9 +187,7 @@ index e5efb6a..8cb5171 100644
 +			for (c = m->clients; c; c = c->next) {
 +				if (!ISVISIBLE(c))
 +					continue;
-+				if (m->hov == c)
-+					scm = SchemeHov;
-+				else if (m->sel == c)
++				if (m->sel == c)
 +					scm = SchemeSel;
 +				else if (HIDDEN(c))
 +					scm = SchemeHid;
@@ -220,7 +214,7 @@ index e5efb6a..8cb5171 100644
  	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
  }
  
-@@ -791,9 +843,17 @@ void
+@@ -791,9 +840,17 @@ void
  focus(Client *c)
  {
  	if (!c || !ISVISIBLE(c))
@@ -240,7 +234,7 @@ index e5efb6a..8cb5171 100644
  	if (c) {
  		if (c->mon != selmon)
  			selmon = c->mon;
-@@ -837,28 +897,52 @@ focusmon(const Arg *arg)
+@@ -837,28 +894,52 @@ focusmon(const Arg *arg)
  }
  
  void
@@ -262,11 +256,11 @@ index e5efb6a..8cb5171 100644
 -	if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 +	// if no client selected AND exclude hidden client; if client selected but fullscreened
 +	if ((!selmon->sel && !hid) || (selmon->sel && selmon->sel->isfullscreen && lockfullscreen))
-+		return;
-+	if (!selmon->clients)
  		return;
 -	if (arg->i > 0) {
 -		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
++	if (!selmon->clients)
++		return;
 +	if (inc > 0) {
 +		if (selmon->sel)
 +			for (c = selmon->sel->next;
@@ -303,7 +297,7 @@ index e5efb6a..8cb5171 100644
  	}
  }
  
-@@ -968,6 +1052,36 @@ grabkeys(void)
+@@ -968,6 +1049,36 @@ grabkeys(void)
  	}
  }
  
@@ -340,7 +334,7 @@ index e5efb6a..8cb5171 100644
  void
  incnmaster(const Arg *arg)
  {
-@@ -1070,12 +1184,14 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1070,12 +1181,14 @@ manage(Window w, XWindowAttributes *wa)
  	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
  		(unsigned char *) &(c->win), 1);
  	XMoveResizeWindow(dpy, c->win, c->x + 2 * sw, c->y, c->w, c->h); /* some windows require this */
@@ -357,90 +351,7 @@ index e5efb6a..8cb5171 100644
  	focus(NULL);
  }
  
-@@ -1119,18 +1235,76 @@ monocle(Monitor *m)
- void
- motionnotify(XEvent *e)
- {
-+	int x, i;
- 	static Monitor *mon = NULL;
-+	Client *c;
- 	Monitor *m;
- 	XMotionEvent *ev = &e->xmotion;
- 
--	if (ev->window != root)
-+	if (ev->window != selmon->barwin) {
-+		if (selmon->hov) {
-+			if (selmon->hov != selmon->sel)
-+				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeNorm][ColBorder].pixel);
-+			else
-+				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeSel][ColBorder].pixel);
-+			
-+			selmon->hov = NULL;
-+			c = wintoclient(ev->window);
-+			m = c ? c->mon : wintomon(ev->window);
-+			drawbar(m);
-+		}
-+
-+		if (ev->window == root) {
-+			if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
-+				unfocus(selmon->sel, 1);
-+				selmon = m;
-+				focus(NULL);
-+			}
-+			mon = m;
-+		}
-+	
- 		return;
--	if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
--		unfocus(selmon->sel, 1);
--		selmon = m;
--		focus(NULL);
- 	}
--	mon = m;
-+
-+	c = wintoclient(ev->window);
-+	m = c ? c->mon : wintomon(ev->window);
-+	c = m->clients;
-+
-+	x = 0, i = 0;
-+	do
-+		x += TEXTW(tags[i]);
-+	while (ev->x >= x && ++i < LENGTH(tags));
-+	if (i < LENGTH(tags) || ev->x < x + TEXTW(selmon->ltsymbol) || ev->x > selmon->ww - TEXTW(stext) + lrpad - 2) {
-+		if (selmon->hov) {
-+			if (selmon->hov != selmon->sel)
-+				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeNorm][ColBorder].pixel);
-+			else
-+				XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeSel][ColBorder].pixel);
-+			selmon->hov = NULL;
-+			drawbar(m);
-+		}
-+	} else {
-+		x += TEXTW(selmon->ltsymbol);
-+		if (c) {
-+			do {
-+				if (!ISVISIBLE(c))
-+					continue;
-+				else
-+					x +=(1.0 / (double)m->bt) * m->btw;
-+			} while (ev->x > x && (c = c->next));
-+			if (c) {
-+				if (selmon->hov) {
-+					if (selmon->hov != selmon->sel)
-+						XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeNorm][ColBorder].pixel);
-+					else
-+						XSetWindowBorder(dpy, selmon->hov->win, scheme[SchemeSel][ColBorder].pixel);
-+				}
-+				selmon->hov = c;
-+				XSetWindowBorder(dpy, c->win, scheme[SchemeHov][ColBorder].pixel);
-+			}
-+		}
-+		drawbar(m);
-+	}
- }
- 
- void
-@@ -1196,7 +1370,7 @@ movemouse(const Arg *arg)
+@@ -1196,7 +1309,7 @@ movemouse(const Arg *arg)
  Client *
  nexttiled(Client *c)
  {
@@ -449,7 +360,7 @@ index e5efb6a..8cb5171 100644
  	return c;
  }
  
-@@ -1249,6 +1423,16 @@ propertynotify(XEvent *e)
+@@ -1249,6 +1362,16 @@ propertynotify(XEvent *e)
  void
  quit(const Arg *arg)
  {
@@ -466,7 +377,7 @@ index e5efb6a..8cb5171 100644
  	running = 0;
  }
  
-@@ -1610,6 +1794,42 @@ seturgent(Client *c, int urg)
+@@ -1610,6 +1733,42 @@ seturgent(Client *c, int urg)
  	XFree(wmh);
  }
  
@@ -509,7 +420,7 @@ index e5efb6a..8cb5171 100644
  void
  showhide(Client *c)
  {
-@@ -1744,6 +1964,23 @@ toggleview(const Arg *arg)
+@@ -1744,6 +1903,23 @@ toggleview(const Arg *arg)
  	}
  }
  
@@ -533,11 +444,3 @@ index e5efb6a..8cb5171 100644
  void
  unfocus(Client *c, int setfocus)
  {
-@@ -1815,6 +2052,7 @@ updatebars(void)
- 				CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa);
- 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
- 		XMapRaised(dpy, m->barwin);
-+		XSelectInput(dpy, m->barwin, ButtonPressMask|PointerMotionMask);
- 		XSetClassHint(dpy, m->barwin, &ch);
- 	}
- }
