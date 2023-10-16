@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     libnotify
   ];
-  home.file.".config/dunst/images" = {
+  xdg.configFile.".config/dunst/images" = {
     source = ./images;
     recursive = true;
     executable = false;

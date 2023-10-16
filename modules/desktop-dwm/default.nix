@@ -22,8 +22,15 @@ in {
           wayland = false;
         };
       };
+      libinput = {
+        enable = true;
+        touchpad = {
+          naturalScrolling = true; 
+        };
+      };
     };
   };
+
 
   programs = {
     # monitor backlight control

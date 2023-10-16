@@ -2,7 +2,7 @@
   description = "Mslxl's Nix Config";
 
 
-  outputs = { nixpkgs, home-manager, nur, xddxdd, ... }:
+  outputs = inputs @ { nixpkgs, home-manager, nur, xddxdd, astronvim, ... }:
     let
       username = "mslxl";
       userFullname = "mslxl";
@@ -26,7 +26,7 @@
           inherit username userFullname useremail;
           inherit pkgs;
           inherit pkgs-xddxdd;
-        };
+        } // inputs;
       in {
         mslxl-laptop = nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
@@ -49,7 +49,6 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,9 +57,24 @@
       url = "github:inclyc/flake-compat";
       flake = false;
     };
+
+    # pkgs
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     xddxdd.url = "github:xddxdd/nur-packages";
+
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    astronvim = {
+      url = "github:AstroNvim/AstroNvim";
+      flake = false;
+    };
+
+    wallpaper = {
+      url = "./wallpaper";
+      flake = false;
+    };
   };
 
   nixConfig = {

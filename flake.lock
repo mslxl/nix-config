@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "astronvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697064365,
+        "narHash": "sha256-LHGH6kAxiBQwy1uA8oSa8cuI+OBQF0b+cTtmLPNbgvs=",
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "rev": "fb497c6739f5d368fcba2357b02303a8c82e3ec5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -166,10 +182,12 @@
     },
     "root": {
       "inputs": {
+        "astronvim": "astronvim",
         "flake-compat": "flake-compat",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
+        "wallpaper": "wallpaper",
         "xddxdd": "xddxdd"
       }
     },
@@ -186,6 +204,19 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "wallpaper": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-lHjo/1uQ7Mxs5al1VdYSytWad0OgwBqqMniVSoErLa8=",
+        "path": "./wallpaper",
+        "type": "path"
+      },
+      "original": {
+        "path": "./wallpaper",
+        "type": "path"
       }
     },
     "xddxdd": {

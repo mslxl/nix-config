@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, wallpaper, ...}: {
 
   imports = [
     ./wofi
@@ -8,7 +8,7 @@
 
 
   # hyprland configs, based on https://github.com/notwidow/hyprland
-  home.file.".config/hypr" = {
+  xdg.configFile.".config/hypr" = {
     source = ./hypr-conf;
     # copy the scripts directory recursively
     recursive = true;
@@ -35,9 +35,9 @@
     hyprpaper
   ];
 
-  home.file.".config/hypr/wallpaper/".source = ../../wallpaper;
+  xdg.configFile.".config/hypr/wallpaper/".source = wallpaper;
 
-  home.file.".config/hypr/hyprpaper.conf".text = ''
+  xdg.configFile.".config/hypr/hyprpaper.conf".text = ''
     preload = ~/.config/hypr/wallpaper/nix-wallpaper-dracula.png
     wallpaper = eDP-1,~/.config/hypr/wallpaper/nix-wallpaper-dracula.png
   '';

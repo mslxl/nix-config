@@ -44,7 +44,7 @@
     enableZshIntegration = true;
   };
 
-  home.file.".config/starship.toml".source = ./starship.toml;
+  xdg.configFile.".config/starship.toml".source = ./starship.toml;
 
   programs.tmux = {
     enable = true;

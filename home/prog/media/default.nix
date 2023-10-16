@@ -8,7 +8,7 @@
     grim
     slurp
   ];
-  home.file.".local/bin/screenshot" =  {
+  xdg.configFile.".local/bin/screenshot" =  {
     source = ./screenshot.sh;
     executable = true;
   };

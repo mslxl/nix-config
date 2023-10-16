@@ -2,3 +2,4 @@
 
 dwmblocks &
 dunst &
+nm-applet &
