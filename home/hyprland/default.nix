@@ -35,6 +35,8 @@
     hyprpaper
   ];
 
+  home.file.".config/hypr/wallpaper/".source = ../../wallpaper;
+
   home.file.".config/hypr/hyprpaper.conf".text = ''
     preload = ~/.config/hypr/wallpaper/nix-wallpaper-dracula.png
     wallpaper = eDP-1,~/.config/hypr/wallpaper/nix-wallpaper-dracula.png
