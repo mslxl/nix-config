@@ -85,6 +85,8 @@
     git-lfs # used by huggingface models
     connect
 
+    unzip
+
     # create a fhs environment by command `fhs`, so we can run non-nixos packages in nixos!
     (
       let

@@ -3,18 +3,19 @@
   imports = [
     ./rofi
     ./picom
+    ./status
   ];
 
-  xdg.configFile.".dwm/wallpaper" = {
+  home.file.".dwm/wallpaper" = {
     source = wallpaper;
     recursive = true;
   };
 
-  xdg.configFile.".dwm/autostart.sh" = {
+  home.file.".dwm/autostart.sh" = {
     source = ./autostart.sh;
     executable = true;
   };
-  xdg.configFile.".dwm/autostart_blocking.sh" = {
+  home.file.".dwm/autostart_blocking.sh" = {
     source = ./autostart_blocking.sh;
     executable = true;
   };
