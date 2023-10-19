@@ -3,7 +3,7 @@
   imports = [
     ./rofi
     ./picom
-    ./status
+    ./polybar
   ];
 
   home.file.".dwm/wallpaper" = {
