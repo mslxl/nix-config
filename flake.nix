@@ -2,14 +2,14 @@
   description = "Mslxl's Nix Config";
 
 
-  outputs = inputs @ { nixpkgs, home-manager, nur, xddxdd, astronvim, ... }:
+  outputs = inputs @ { nixpkgs, home-manager, nur, xddxdd, astronvim, joshuto ,... }:
     let
       username = "mslxl";
       userFullname = "mslxl";
       useremail = "i@mslxl.com";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-        overlays = (import ./overlays {}) ++ [nur.overlay];
+        overlays = (import ./overlays {}) ++ [nur.overlay] ++ [joshuto.overlays.default];
         system = system;
         config.allowUnfree = true;
       };
@@ -63,8 +63,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     xddxdd.url = "github:xddxdd/nur-packages";
-
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+
+    # program
+    joshuto.url = "github:kamiyaa/joshuto";
 
     astronvim = {
       url = "github:AstroNvim/AstroNvim";

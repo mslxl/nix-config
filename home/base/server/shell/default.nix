@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
+let
 
-{
+in {
   # environment.pathsToLink = [ "/share/zsh" ];
   programs.zsh = {
     enable = true;
@@ -30,7 +31,7 @@
     shellAliases = {
       ll = "ls -l";
       la = "ls -al";
-      ra = "ranger";
+      ra = "joshuto";
       use = "nix-shell -p";
       more = "less";
       g = "git";
@@ -78,7 +79,7 @@
 
   home.packages = with pkgs; [
     neofetch
-    ranger
+    joshuto
     highlight
     bottom
   ];

@@ -8,10 +8,14 @@
     ./office
     ./gtk.nix
 
-    ./mpv.nix
     ./vivaldi.nix
     ./kdeconnect.nix
     ./zathura.nix
+  ];
+
+  home.packages = with pkgs; [
+    mpv
+    bitwarden
   ];
 
 }
