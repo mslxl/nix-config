@@ -41,6 +41,7 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xsel
+    scrot
     hyprpicker  # color picker
 
     # audio

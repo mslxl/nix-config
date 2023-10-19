@@ -12,6 +12,10 @@
       ./hardware.nix
     ];
 
+  environment.systemPackages = with pkgs; [
+    lshw
+  ];
+
 
   # for Nvidia GPU
   # services.xserver.videoDrivers = [ "nvidia" ];
@@ -22,11 +26,29 @@
     driSupport32Bit = true;
   };
 
+  services.logind = {
+    lidSwitchExternalPower = "lock";
+    lidSwitch = "suspend-then-hibernate";
+  };
+  
+
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
     open = false;
-    powerManagement.enable = true;
+    powerManagement = {
+      enable = true;
+      finegrained = false;
+    };
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      # Make sure to use the correct Bus ID values for your system!
+      amdgpuBusId = "PCI:1:0:0";
+      nvidiaBusId = "PCI:5:0:0";
+	  };
   };
 
   # Enable networking

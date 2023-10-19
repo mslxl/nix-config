@@ -10,4 +10,9 @@
     ./prog/calibre.nix
   ];
 
+  home.packages = [
+    pkgs.prismlauncher
+    pkgs.moc
+    pkgs.obsidian
+  ];
 }

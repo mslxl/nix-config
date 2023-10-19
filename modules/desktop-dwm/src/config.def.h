@@ -63,6 +63,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "wezterm", NULL };
 static const char *lockcmd[] = { "i3lock", NULL };
+static const char *screenshotcmd[] = { "scrot", "-s", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -89,6 +90,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -99,7 +101,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ControlMask|ShiftMask, XK_e,      quit,           {0} },
-	{ MODKEY|ShiftMask,             XK_e,      spawn,           {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = lockcmd } },
 };
 
 /* button definitions */

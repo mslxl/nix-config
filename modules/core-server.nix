@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  myscript,
   ...
 }: {
   imports = [
@@ -105,6 +106,10 @@
 
   # replace default editor with neovim
   environment.variables.EDITOR = "nvim";
+
+  environment.sessionVariables.PATH = [
+    (builtins.toString myscript)
+  ];
 
   virtualisation.docker = {
     enable = true;

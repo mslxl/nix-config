@@ -326,6 +326,19 @@
         "type": "github"
       }
     },
+    "myscript": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-A9QKcaOA09aKpDje5wFYedFuAtFu4waTHuJt3waGLoI=",
+        "path": "/nix/store/1j0isk9w3g0axfd87phq4pwwg1q903h0-source/script",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/1j0isk9w3g0axfd87phq4pwwg1q903h0-source/script",
+        "type": "path"
+      }
+    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -580,6 +593,7 @@
         "flake-compat": "flake-compat",
         "home-manager": "home-manager",
         "joshuto": "joshuto",
+        "myscript": "myscript",
         "nixpkgs": "nixpkgs_4",
         "nur": "nur",
         "wallpaper": "wallpaper",
@@ -656,11 +670,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-lHjo/1uQ7Mxs5al1VdYSytWad0OgwBqqMniVSoErLa8=",
-        "path": "/nix/store/ijsjygi1dx9d6g71k3fj2gbknhs290vi-source/wallpaper",
+        "path": "/nix/store/1j0isk9w3g0axfd87phq4pwwg1q903h0-source/wallpaper",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/ijsjygi1dx9d6g71k3fj2gbknhs290vi-source/wallpaper",
+        "path": "/nix/store/1j0isk9w3g0axfd87phq4pwwg1q903h0-source/wallpaper",
         "type": "path"
       }
     },

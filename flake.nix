@@ -78,6 +78,10 @@
       url = "./wallpaper";
       flake = false;
     };
+    myscript = {
+      url = "./script";
+      flake = false;
+    };
   };
 
   nixConfig = {
