@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs;[
-    wpsoffice
+    wpsoffice-cn
   ];
   programs.thunderbird = {
     enable = true;

@@ -211,11 +211,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-lHjo/1uQ7Mxs5al1VdYSytWad0OgwBqqMniVSoErLa8=",
-        "path": "./wallpaper",
+        "path": "/nix/store/kfgl3j52ffiqfi20x5xwaswgq51fbh94-source/wallpaper",
         "type": "path"
       },
       "original": {
-        "path": "./wallpaper",
+        "path": "/nix/store/kfgl3j52ffiqfi20x5xwaswgq51fbh94-source/wallpaper",
         "type": "path"
       }
     },

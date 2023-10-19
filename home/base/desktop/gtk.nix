@@ -25,6 +25,11 @@
     "Xft.rgba" = "rgb";
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
+
   # gtk's theme settings, generate files: 
   #   1. ~/.gtkrc-2.0
   #   2. ~/.config/gtk-3.0/settings.ini
@@ -46,13 +51,8 @@
 
     theme = {
       # https://github.com/catppuccin/gtk
-      name = "Catppuccin-Macchiato-Compact-Pink-dark";
-      package = pkgs.catppuccin-gtk.override {
-        # https://github.com/NixOS/nixpkgs/blob/nixos-23.05/pkgs/data/themes/catppuccin-gtk/default.nix
-        accents = [ "pink" ];
-        size = "compact";
-        variant = "mocha";
-      };
+      name = "vimix-dark-doder";
+      package = pkgs.vimix-gtk-themes;
     };
   };
 }
