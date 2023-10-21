@@ -33,6 +33,7 @@
           modules = [
             ./host/xiaoxin2021-laptop
             ./modules/desktop-dwm
+            ./modules/steam.nix
 
             home-manager.nixosModules.home-manager
             {

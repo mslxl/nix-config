@@ -19,4 +19,9 @@
     source = ./autostart_blocking.sh;
     executable = true;
   };
+
+  home.file.".dwm/restart_polybar.sh" = {
+    source = ./restart_polybar.sh;
+    executable = true;
+  };
 }

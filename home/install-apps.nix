@@ -8,11 +8,12 @@
     ./prog/anki.nix
     ./prog/vscode.nix
     ./prog/calibre.nix
+    ./prog/minecraft.nix
   ];
 
   home.packages = [
-    pkgs.prismlauncher
     pkgs.moc
     pkgs.obsidian
+    pkgs.olive-editor
   ];
 }

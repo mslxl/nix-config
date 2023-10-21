@@ -4,5 +4,5 @@ dunst &
 nm-applet &
 
 
-sleep 10
+sleep 20
 polybar &
