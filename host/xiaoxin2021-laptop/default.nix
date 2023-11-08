@@ -10,6 +10,7 @@
       # Include the results of the hardware scan.
       ../../modules/core-desktop.nix
       ./hardware.nix
+      ./tlp.nix
     ];
 
   environment.systemPackages = with pkgs; [
@@ -55,7 +56,11 @@
   networking = {
     hostName = "mslxl-laptop"; # Define your hostname.
     wireless.enable = false; # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "dnsmasq";
+      dhcp = "dhcpcd";
+    };
   };
 
   # Configure network proxy if necessary

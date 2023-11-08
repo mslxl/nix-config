@@ -112,11 +112,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-A9QKcaOA09aKpDje5wFYedFuAtFu4waTHuJt3waGLoI=",
-        "path": "/nix/store/hb2wq6fah0b5b75ll7vsi1z7sc4rwc1b-source/script",
+        "path": "/nix/store/x0h29x4v3nh2bzywm5zkb8yxpznfnyl0-source/script",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/hb2wq6fah0b5b75ll7vsi1z7sc4rwc1b-source/script",
+        "path": "/nix/store/x0h29x4v3nh2bzywm5zkb8yxpznfnyl0-source/script",
         "type": "path"
       }
     },
@@ -225,11 +225,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-lHjo/1uQ7Mxs5al1VdYSytWad0OgwBqqMniVSoErLa8=",
-        "path": "/nix/store/hb2wq6fah0b5b75ll7vsi1z7sc4rwc1b-source/wallpaper",
+        "path": "/nix/store/x0h29x4v3nh2bzywm5zkb8yxpznfnyl0-source/wallpaper",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/hb2wq6fah0b5b75ll7vsi1z7sc4rwc1b-source/wallpaper",
+        "path": "/nix/store/x0h29x4v3nh2bzywm5zkb8yxpznfnyl0-source/wallpaper",
         "type": "path"
       }
     },

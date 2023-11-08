@@ -2,6 +2,7 @@
 
 dunst &
 nm-applet &
+blueman-applet &
 
 
 sleep 20

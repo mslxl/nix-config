@@ -105,10 +105,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # security with polkit
-  services.power-profiles-daemon = {
-    enable = true;
-  };
   security.polkit.enable = true;
   services = {
     # Enable CUPS to print documents.
