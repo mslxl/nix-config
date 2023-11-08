@@ -2,20 +2,19 @@
   description = "Mslxl's Nix Config";
 
 
-  outputs = inputs @ { nixpkgs, home-manager, nur, xddxdd, astronvim, joshuto ,... }:
+  outputs = inputs @ { nixpkgs, home-manager, nur, xddxdd, astronvim, ... }:
     let
       username = "mslxl";
       userFullname = "mslxl";
       useremail = "i@mslxl.com";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-        overlays = (import ./overlays {}) ++ [nur.overlay] ++ [joshuto.overlays.default];
+        overlays = (import ./overlays {}) ++ [nur.overlay];
         system = system;
         config.allowUnfree = true;
       };
       pkgs-xddxdd = import xddxdd {
-        inherit pkgs;
-        system = system;
+        inherit pkgs system;
         config.allowUnfree = true;
       };
     in
@@ -24,6 +23,7 @@
       let 
         specialArgs = {
           inherit username userFullname useremail;
+          inherit system;
           inherit pkgs;
           inherit pkgs-xddxdd;
         } // inputs;
@@ -33,6 +33,7 @@
           modules = [
             ./host/xiaoxin2021-laptop
             ./modules/desktop-dwm
+            ./modules/virt.nix
             ./modules/steam.nix
 
             home-manager.nixosModules.home-manager
@@ -68,7 +69,6 @@
 
 
     # program
-    joshuto.url = "github:kamiyaa/joshuto";
 
     astronvim = {
       url = "github:AstroNvim/AstroNvim";

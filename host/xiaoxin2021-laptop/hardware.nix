@@ -43,9 +43,12 @@
       owner = "AdisonCavani";
       repo = "distro-grub-themes";
       rev = "v3.2";
-      hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+      hash = "sha256-U5QfwXn4WyCXvv6A/CYv9IkR/uDx4xfdSgbXDl5bp9M=";
     };
-    installPhase = "cp -r customize/nixos $out";
+    installPhase = ''
+      mkdir -p $out
+      tar xvf themes/nixos.tar -C $out
+    '';
   };
 
   fileSystems."/" =
