@@ -14,6 +14,7 @@
       ck = "checkout";
       br = "branch";
       st = "status";
+      lg = "log";
       lz = "!lazygit";
     };
 
@@ -46,4 +47,8 @@
     };
   };
   programs.git.lfs.enable = true;
+  home.packages = with pkgs; [
+    # cz-cli
+    commitizen
+  ];
 }

@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, yazi, system, ... }:
 let
-
+  yazi-pkg = import yazi {
+    inherit system pkgs;
+  };
 in {
   # environment.pathsToLink = [ "/share/zsh" ];
   programs.zsh = {
@@ -31,7 +33,7 @@ in {
     shellAliases = {
       ll = "ls -l";
       la = "ls -al";
-      ra = "joshuto";
+      ra = "yazi";
       use = "nix-shell -p";
       more = "less";
       g = "git";
@@ -77,9 +79,28 @@ in {
     enableZshIntegration = true;
   };
 
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    settings = {
+      log = {
+        enabled = false;
+      };
+      manager = {
+        show_hidden = false;
+        sort_by = "alphabetical";
+        sort_dir_first = true;
+        sort_reverse = false;
+      };
+    };
+  };
+  xdg.configFile."yazi/theme.toml".source =./yazi-theme.toml;
+
   home.packages = with pkgs; [
+    fd
     neofetch
-    joshuto
+    ripgrep
     highlight
     bottom
   ];
