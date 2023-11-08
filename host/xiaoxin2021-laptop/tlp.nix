@@ -15,6 +15,10 @@
             CPU_SCALING_GOVERNOR_ON_BAT="powersave";
             CPU_ENERGY_PERF_POLICY_ON_AC="balance_performance";
             CPU_ENERGY_PERF_POLICY_ON_BAT="power";
+
+            # max is 4463000
+            CPU_SCALING_MAX_FREQ_ON_BAT=2231500; 
+
             CPU_BOOST_ON_AC=1;
             CPU_BOOST_ON_BAT=0;
 
