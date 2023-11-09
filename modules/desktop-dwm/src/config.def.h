@@ -1,3 +1,4 @@
+#include <X11/XF86keysym.h>
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -63,7 +64,16 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "wezterm", NULL };
 static const char *lockcmd[] = { "i3lock", NULL };
-static const char *screenshotcmd[] = { "scrot", "-s", NULL };
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+static const char *brightness[2][4] = {
+	{ "light", "-A", "5", NULL },
+	{ "light", "-U", "5", NULL }
+};
+static const char *volume[3][5] = {
+	{ "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL },
+	{ "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL },
+	{ "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL }
+};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -92,6 +102,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd} },
+	{ 0,       XF86XK_MonBrightnessUp,         spawn,          {.v = brightness[0]} },
+	{ 0,       XF86XK_MonBrightnessDown,       spawn,          {.v = brightness[1]} },
+	{ 0,       XF86XK_AudioRaiseVolume,        spawn,          {.v = volume[0]} },
+    { 0,       XF86XK_AudioLowerVolume,        spawn,          {.v = volume[1]} },
+    { 0,       XF86XK_AudioMute,               spawn,          {.v = volume[2]} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

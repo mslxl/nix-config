@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs;[
     wpsoffice-cn
+    libreoffice-fresh
   ];
   programs.thunderbird = {
     enable = true;

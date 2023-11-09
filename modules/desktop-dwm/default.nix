@@ -21,6 +21,9 @@ in {
           enable = true;
           wayland = false;
         };
+        setupCommands = ''
+          ${pkgs.numlockx}/bin/numlockx on
+        '';
       };
       libinput = {
         enable = true;
@@ -41,8 +44,8 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xsel
-    scrot
-    hyprpicker  # color picker
+    flameshot
+    feh
 
     # audio
     alsa-utils # provides amixer/alsamixer/...

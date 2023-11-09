@@ -100,6 +100,7 @@ in {
   home.packages = with pkgs; [
     fd
     neofetch
+    eza
     ripgrep
     highlight
     bottom

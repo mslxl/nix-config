@@ -1,4 +1,7 @@
 {pkgs,... }: {
+    environment.systemPackages = with pkgs; [
+        smartmontools
+    ];
     services.tlp = {
         enable = true;
         settings = {
@@ -7,10 +10,12 @@
             TLP_PERSISTENT_DEFAULT=0;
 
             RADEON_DPM_PERF_LEVEL_ON_BAT="low";
+            RADEON_DPM_STATE_ON_BAT="battery";
 
             WIFI_PWR_ON_AC="off";
             WIFI_PWR_ON_BAT="off";
             WOL_DISABLE="Y";
+
             CPU_SCALING_GOVERNOR_ON_AC="performance";
             CPU_SCALING_GOVERNOR_ON_BAT="powersave";
             CPU_ENERGY_PERF_POLICY_ON_AC="balance_performance";
