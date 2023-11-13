@@ -27,6 +27,7 @@
   environment.systemPackages = with pkgs; [
     psmisc  # killall/pstree/prtstat/fuser/...
     pulseaudio  # provides `pactl`, which is required by some apps(e.g. sonic-pi)
+    glxinfo
   ];
 
   programs = {

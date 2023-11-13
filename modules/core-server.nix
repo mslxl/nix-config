@@ -79,6 +79,7 @@
     wget
     curl
     aria2
+    pciutils
     git # used by nix flakes
     git-lfs # used by huggingface models
     connect
@@ -103,6 +104,7 @@
 
   # replace default editor with neovim
   environment.variables.EDITOR = "nvim";
+  environment.variables.NIXPKGS_ALLOW_UNFREE="1";
 
   environment.sessionVariables.PATH = [
     (builtins.toString myscript)

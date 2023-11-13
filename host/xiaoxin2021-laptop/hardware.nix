@@ -16,7 +16,8 @@
 
   # Bootloader.
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = null;
   # boot.loader.systemd-boot.enable = true;

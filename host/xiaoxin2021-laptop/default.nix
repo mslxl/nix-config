@@ -18,30 +18,37 @@
   ];
 
 
+  services.logind = {
+    lidSwitchExternalPower = "lock";
+    lidSwitch = "suspend-then-hibernate";
+  };
+  # boot.initrd.kernelModules = [ "nvidia" ];
+  # boot.kernelParams = [ "module_blacklist=amdgpu" ];
+  # boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+
   # for Nvidia GPU
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" "modesetting"];
   # services.xserver.videoDrivers = [ "nvidia" ];
-  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
-
-  services.logind = {
-    lidSwitchExternalPower = "lock";
-    lidSwitch = "suspend-then-hibernate";
-  };
   
+  hardware.cpu.amd.updateMicrocode = true;
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
     modesetting.enable = true;
     open = false;
+    nvidiaSettings = true;
+    # nvidiaPersistenced = true;
     powerManagement = {
       enable = true;
-      finegrained = false;
+      finegrained = true;
     };
     prime = {
+      allowExternalGpu = true;
       offload = {
         enable = true;
         enableOffloadCmd = true;
