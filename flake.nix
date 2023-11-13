@@ -8,9 +8,9 @@
       userFullname = "mslxl";
       useremail = "i@mslxl.com";
       system = "x86_64-linux";
+      overlays = (import ./overlays {}) ++ [nur.overlay];
       pkgs = import nixpkgs {
-        overlays = (import ./overlays {}) ++ [nur.overlay];
-        system = system;
+        inherit overlays system;
         config.allowUnfree = true;
       };
       pkgs-xddxdd = import xddxdd {
@@ -62,6 +62,7 @@
 
     # pkgs
 
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     xddxdd.url = "github:xddxdd/nur-packages";

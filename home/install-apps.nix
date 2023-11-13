@@ -4,6 +4,7 @@
     ./prog/jetbrains-ide
     ./prog/social
     ./prog/typora
+    ./prog/apifox
     ./prog/anki.nix
     ./prog/vscode.nix
     ./prog/calibre.nix
