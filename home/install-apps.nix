@@ -15,6 +15,8 @@
     pkgs.moc
     pkgs.obsidian
     pkgs.olive-editor
+    pkgs.gimp
+    pkgs.ffmpeg
   ];
   # xdg-mime query filetype foo.pdf
   # xdg-mime query default application/pdf

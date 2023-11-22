@@ -7,12 +7,12 @@
  }:
 let
   pname = "qqnt";
-  version = "3.2.1";
+  version = "3.2.2";
   name = "${pname}-${version}";
-  hash = "sha256-+cduRaqCjnMYJ4erW3iR0NovErovE6xBQYHXXaEnt1Q=";
+  hash = "sha256-UUkuO5eY9kunPEc/uIcTVpUWi2awoUHb1vFPmzppR/o=";
 
   src = fetchurl {
-    url = "https://dldir1.qq.com/qqfile/qq/QQNT/5b1d2011/linuxqq_3.2.1-17260_x86_64.AppImage";
+    url = "https://dldir1.qq.com/qqfile/qq/QQNT/fd2e886e/linuxqq_3.2.2-18394_x86_64.AppImage";
     inherit hash;
   };
 

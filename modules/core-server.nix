@@ -83,6 +83,8 @@
     git # used by nix flakes
     git-lfs # used by huggingface models
     connect
+    file
+    nmap
 
     unzip
 
