@@ -15,6 +15,7 @@
 
   environment.systemPackages = with pkgs; [
     lshw
+    dnsmasq
   ];
 
 
@@ -68,6 +69,10 @@
       dns = "dnsmasq";
       dhcp = "dhcpcd";
     };
+  };
+  services.dnsmasq = {
+    enable = true;
+    resolveLocalQueries = true;
   };
 
   # Configure network proxy if necessary

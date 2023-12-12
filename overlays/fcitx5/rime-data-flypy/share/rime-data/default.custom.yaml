@@ -4,7 +4,8 @@ customization:
   rime_version: 1.5.3
 patch:
   schema_list:
-    - schema: flypy # 添加小鹤音形
+    - schema: flypy
+    - schema: japanese
 
 #
 # 可用的按键有 Caps_Lock, Shift_L, Shift_R, Control_L, control_R

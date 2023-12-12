@@ -14,7 +14,7 @@
   home.packages = [
     pkgs.moc
     pkgs.obsidian
-    pkgs.olive-editor
+    # pkgs.olive-editor
     pkgs.gimp
     pkgs.ffmpeg
   ];
