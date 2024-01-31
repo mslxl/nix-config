@@ -11,18 +11,24 @@ in {
       ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   boot.loader = {
     grub = {
       enable = true;
       device = "nodev";
       efiSupport = true;
+      configurationLimit = 15;
     };
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
+    useOSProber = false;
+    extraEntries = ''
+      menuentry "Microsoft Windows 11" --class windows {
+        search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+        chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+      }
+    '';
   };
 
   networking = {
@@ -39,22 +45,8 @@ in {
     # Or disable the firewall altogether.
   };
 
-
-  # Set your time zone.
-  time.timeZone = "Asian/Shanghai";
-
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -87,22 +79,6 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    tree
-    git
-
-    zip
-    xz
-    unzip
-    p7zip
-
-    neovim
-    emacs
-
-    curl
-    wget
-  ];
-  environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -112,21 +88,7 @@ in {
     enableSSHSupport = true;
   };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      X11Forwarding = true;
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-  };
-
-
   nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store"  ];
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

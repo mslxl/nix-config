@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
+    typora
 
     pfetch
   ];
