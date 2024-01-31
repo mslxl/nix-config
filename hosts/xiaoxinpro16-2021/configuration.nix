@@ -17,19 +17,21 @@ in {
       device = "nodev";
       efiSupport = true;
       configurationLimit = 15;
+      useOSProber = false;
+      extraEntries = ''
+        menuentry "Microsoft Windows 11" --class windows {
+          search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+          chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
     };
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-    useOSProber = false;
-    extraEntries = ''
-      menuentry "Microsoft Windows 11" --class windows {
-        search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
-        chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
-      }
-    '';
   };
+
+  time.hardwareClockInLocalTime = true;
 
   networking = {
     inherit hostName;

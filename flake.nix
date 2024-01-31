@@ -8,7 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+    let
+      constants = import ./constants.nix;
+    in {
     nixosConfigurations = {
       "mslxl-xiaoxinpro16-2021" = nixpkgs.lib.nixosSystem rec {
         system ="x86_64-linux";

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  time.timeZone = "Asian/Shanghai";
+  time.timeZone = "Asia/Shanghai";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
