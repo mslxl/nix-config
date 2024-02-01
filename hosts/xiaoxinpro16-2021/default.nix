@@ -9,6 +9,7 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./tlp.nix
     ];
 
   boot.loader = {
@@ -24,6 +25,20 @@ in {
           chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
+      theme = pkgs.stdenv.mkDerivation {
+        pname = "distro-grub-themes";
+        version = "3.2";
+        src = pkgs.fetchFromGitHub {
+          owner = "AdisonCavani";
+          repo = "distro-grub-themes";
+          rev = "v3.2";
+          hash = "sha256-U5QfwXn4WyCXvv6A/CYv9IkR/uDx4xfdSgbXDl5bp9M=";
+        };
+        installPhase = ''
+          mkdir -p $out
+          tar xvf themes/nixos.tar -C $out
+        '';
+      };
     };
     efi = {
       canTouchEfiVariables = true;
@@ -31,11 +46,18 @@ in {
     };
   };
 
+
   boot.supportedFilesystems = [ "ntfs" ];
 
-  # fix touchpad not work
-  # see https://discourse.nixos.org/t/touchpad-click-not-working/12276
-  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
+  boot.kernelParams = [
+    # fix touchpad not work
+    # see https://discourse.nixos.org/t/touchpad-click-not-working/12276
+    "psmouse.synaptics_intertouch=0"
+
+    # fix black screen when exit session
+    # see https://nixos.wiki/wiki/Nvidia#Graphical_Corruption_and_System_Crashes_on_Suspend.2FResume
+    # "module_blacklist=amdgpu"
+  ];
 
   time.hardwareClockInLocalTime = true;
 
@@ -64,25 +86,26 @@ in {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" "modesetting"];
-  hardware.nvidia = {
-    open = false;
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-      finegrained = true;
-    };
-    prime = {
-      allowExternalGpu = true;
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      amdgpuBusId = "PCI:1:0:0";
-      nvidiaBusId = "PCI:5:0:0";
-    };
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
+  # services.xserver.videoDrivers = [ "nvidia" "modesetting"];
+
+  # hardware.nvidia = {
+  #   open = false;
+  #   modesetting.enable = true;
+  #   powerManagement = {
+  #     enable = true;
+  #     finegrained = true;
+  #   };
+  #   prime = {
+  #     allowExternalGpu = true;
+  #     offload = {
+  #       enable = true;
+  #       enableOffloadCmd = true;
+  #     };
+  #     amdgpuBusId = "PCI:1:0:0";
+  #     nvidiaBusId = "PCI:5:0:0";
+  #   };
+  #   package = config.boot.kernelPackages.nvidiaPackages.production;
+  # };
   # virtualisation.docker.enableNvidia = true;
 
   hardware.opengl = {
