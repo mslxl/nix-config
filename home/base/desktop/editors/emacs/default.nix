@@ -43,5 +43,9 @@ in {
     ${pkgs.rsync}/bin/rsync -avz --chmod=D2755,F744 ${doomemacs}/ ${config.xdg.configHome}/emacs/
   '';
 
+  programs.git.aliases = {
+    ma = "!emacs -nw --eval \"(magit-status)\"";
+  };
+
 
 }
