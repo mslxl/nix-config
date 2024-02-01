@@ -8,18 +8,21 @@
     ./desktop
   ];
 
+  environment.systemPackages = with pkgs; [
+    (callPackage ../../pkgs/sddm-themes.nix {}).sddm-sugar-dark
+    libsForQt5.qt5.qtgraphicaleffects #required for sugar candy
+  ];
+
+  # TODO: make an options to swtich between hyprland and other compositor
   services.xserver = {
     enable = true;
     displayManager.sddm = {
       enable = true;
       # wayland.enable = true;
+      autoNumlock = true;
+      theme = "sugar-dark";
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    foot
-    wofi
-  ];
 
   xdg.portal = {
     enable = true;
@@ -34,5 +37,6 @@
     package = hyprland.packages.${system}.hyprland;
     xwayland.enable = true;
   };
+  security.pam.services.swaylock = {};
 
 }
