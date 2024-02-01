@@ -2,6 +2,8 @@ FLAKE_CFG := .\#$(shell cat /etc/hostname)
 
 build: sudo
 	nixos-rebuild switch --flake $(FLAKE_CFG)
+build-trace: sudo
+	nixos-rebuild switch --flake $(FLAKE_CFG) --show-trace --option eval-cache false
 
 sudo:
 ifneq ($(shell id -u), 0)

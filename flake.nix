@@ -3,36 +3,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
     let
       constants = import ./constants.nix;
-    in {
-    nixosConfigurations = {
-      "mslxl-xiaoxinpro16-2021" = nixpkgs.lib.nixosSystem rec {
-        system ="x86_64-linux";
-        specialArgs = {
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        };
-        modules = [
-          ./modules/base.nix
-          ./hosts/xiaoxinpro16-2021/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mslxl = import ./home.nix;
-          }
-        ];
-      };
-    };
-  };
-
+      forEachSystem = func: (nixpkgs.lib.genAttrs constants.allSystems func);
+      allSystemConfigurations = import ./systems {inherit self inputs constants;};
+    in allSystemConfigurations;
 }

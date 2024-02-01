@@ -6,19 +6,9 @@
 
   home.packages = with pkgs; [
     vivaldi
-    vivaldi-ffmpeg-codecs
     typora
-
-    pfetch
   ];
-
-  programs.git = {
-    enable = true;
-    userName = "Mslxl";
-    userEmail = "i@mslxl.com";
-  };
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
-
 }
