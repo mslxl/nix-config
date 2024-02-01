@@ -28,6 +28,12 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/nolebase" =
+    { device = "/dev/nvme0n1p4";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000"];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
