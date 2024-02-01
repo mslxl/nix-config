@@ -1,5 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 {
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.zsh.enable = true;
+  users.users.${username} = {
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    uid = 1000;
+    shell = pkgs.zsh;
+  };
+  environment.pathsToLink = ["/share/zsh"]; # get completion for system packages in zsh
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   time.timeZone = "Asia/Shanghai";
 
@@ -20,12 +30,7 @@
     unzip
     p7zip
 
-    gcc
-    cmake
-    libtool
-    gnumake
     neovim
-    emacs
 
     curl
     wget
