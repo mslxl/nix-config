@@ -1,3 +1,5 @@
-{myutils, ...}: {
-  imports = myutils.scanPaths ./desktop;
+{
+  imports = [
+    ./desktop
+  ];
 }

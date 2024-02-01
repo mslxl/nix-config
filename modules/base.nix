@@ -1,5 +1,12 @@
-{ config, lib, pkgs, username, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+} @args: {
+  nixpkgs.overlays = import ../overlays args;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.zsh.enable = true;
   users.users.${username} = {
