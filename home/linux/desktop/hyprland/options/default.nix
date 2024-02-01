@@ -1,3 +1,4 @@
-{myutils, ...}: {
+{myutils, ...}:
+{
   imports = myutils.scanPaths ./.;
 }

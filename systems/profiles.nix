@@ -8,12 +8,30 @@ let desktop_base = {
       ];
 };
 in {
-  xiaoxinpro16-2021 = {
+  xiaoxinpro16-2021 = let
+    hyprland = {
+      enable = true;
+      monitors = [",2560x1600,auto,1"];
+      extraConfig = '''';
+    };
+  in {
     nixos-modules =
       [
         ../hosts/xiaoxinpro16-2021
+        {
+          modules.desktop.hyprland = {
+            inherit (hyprland) enable;
+          };
+        }
       ]
       ++ desktop_base.nixos-modules;
-    home-module.imports = desktop_base.home-module.imports;
+    home-module.imports = [
+      {
+        modules.desktop.hyprland = {
+          inherit (hyprland) enable monitors extraConfig;
+        };
+      }
+    ]
+    ++ desktop_base.home-module.imports;
   };
 }
