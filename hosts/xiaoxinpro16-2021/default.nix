@@ -33,6 +33,10 @@ in {
 
   boot.supportedFilesystems = [ "ntfs" ];
 
+  # fix touchpad not work
+  # see https://discourse.nixos.org/t/touchpad-click-not-working/12276
+  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
+
   time.hardwareClockInLocalTime = true;
 
   networking = {
@@ -49,28 +53,43 @@ in {
     # Or disable the firewall altogether.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    lshw
+  ];
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" "modesetting"];
+  hardware.nvidia = {
+    open = false;
+    modesetting.enable = true;
+    powerManagement = {
+      enable = true;
+      finegrained = true;
+    };
+    prime = {
+      allowExternalGpu = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      amdgpuBusId = "PCI:1:0:0";
+      nvidiaBusId = "PCI:5:0:0";
+    };
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
+  # virtualisation.docker.enableNvidia = true;
 
-  nixpkgs.config.allowUnfree = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
   services.v2raya.enable = true;
 

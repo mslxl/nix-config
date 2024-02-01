@@ -5,7 +5,10 @@
   username,
   ...
 } @args: {
-  nixpkgs.overlays = import ../overlays args;
+  nixpkgs = {
+    overlays = import ../overlays args;
+    config.allowUnfree = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.zsh.enable = true;

@@ -16,6 +16,8 @@
       url = "github:doomemacs/doomemacs";
       flake = false;
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
     let
