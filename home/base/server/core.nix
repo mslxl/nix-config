@@ -6,5 +6,7 @@
     pfetch
     neofetch
     yazi
+    bottom
   ];
+
 }

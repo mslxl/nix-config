@@ -32,13 +32,9 @@
     // Modules Left
     "modules-left": [
         "custom/appmenu",
-        "custom/settings",
-        "custom/waybarthemes",
-        "custom/wallpaper",
         // START TASK TOOGLE
         "wlr/taskbar",
         // END TASK TOOGLE
-        "group/quicklinks",
         "hyprland/window"
     ],
 
@@ -49,7 +45,6 @@
 
     // Modules Right    
     "modules-right": [
-        "custom/updates",
         "pulseaudio",
         // START BT TOOGLE
         "bluetooth",
@@ -59,7 +54,6 @@
         "network",
         // END NETWORK TOOGLE
         "group/hardware",
-        "group/settings",
         "custom/cliphist",
         // START IDLE TOOGLE
         "idle_inhibitor",

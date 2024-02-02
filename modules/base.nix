@@ -40,6 +40,8 @@
   environment.systemPackages = with pkgs; [
     tree
     git
+    connect
+    htop
 
     zip
     xz

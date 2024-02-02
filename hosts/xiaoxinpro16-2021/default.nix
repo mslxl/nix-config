@@ -75,16 +75,9 @@ in {
     # Or disable the firewall altogether.
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   environment.systemPackages = with pkgs; [
     lshw
   ];
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # services.xserver.videoDrivers = [ "nvidia" "modesetting"];
 
@@ -113,10 +106,8 @@ in {
     driSupport = true;
     driSupport32Bit = true;
   };
-  hardware.bluetooth.enable = true;
 
   services.v2raya.enable = true;
-  services.blueman.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

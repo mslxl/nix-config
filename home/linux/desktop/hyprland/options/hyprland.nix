@@ -29,6 +29,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    xdg.configFile."hypr/script".source = ../conf/script;
     wayland.windowManager.hyprland = {
       enable = true;
       package = hyprland.packages.${system}.hyprland;

@@ -32,9 +32,6 @@
     // Modules Left
     "modules-left": [
         "custom/appmenu",
-        "custom/settings",
-        "custom/waybarthemes",
-        "custom/wallpaper",
         // START TASK TOOGLE
         "wlr/taskbar",
         // END TASK TOOGLE
@@ -49,7 +46,6 @@
 
     // Modules Right    
     "modules-right": [
-        "custom/updates",
         "pulseaudio",
         // START BT TOOGLE
         "bluetooth",

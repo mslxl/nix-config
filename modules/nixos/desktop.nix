@@ -23,8 +23,12 @@
 
   config = {
     environment.systemPackages = with pkgs; [
-      networkmanagerapplet
+      bottom
     ];
+    programs.nm-applet = {
+      enable = true;
+      indicator = true;
+    };
   }
   // mkIf config.modules.desktop.hyprland.enable {
     environment.systemPackages = with pkgs; [
@@ -32,6 +36,9 @@
         backgroundPicture = config.modules.desktop.sddm.bg;
       }).sddm-sugar-dark
       libsForQt5.qt5.qtgraphicaleffects #required for sugar candy
+      brightnessctl
+      wl-clipboard
+      cliphist
     ];
 
     services.xserver = {
