@@ -46,6 +46,9 @@ in {
     };
     themeIni = [
       { section = "General"; key = "background"; value = backgroundPicture; }
+      { section = "General"; key = "MainColor"; value = "white"; }
+      { section = "General"; key = "AccentColor"; value = "#fb884f"; }
+      { section = "General"; key = "BackgroundColor"; value = "#444"; }
     ];
   };
 }
