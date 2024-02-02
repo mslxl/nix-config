@@ -51,7 +51,7 @@
     curl
     wget
   ];
-  environment.variables.EDITOR = "nvim";
+  environment.variables.EDITOR = "emacs -nw";
 
   # Enable the OpenSSH daemon.
   services.openssh = {
