@@ -1,7 +1,7 @@
 {
   self,
   inputs,
-  constants
+  constants,
 }: let
   inherit (inputs.nixpkgs) lib;
   myutils = import ../utils {inherit lib;};
@@ -11,6 +11,7 @@
       inherit system;
       inherit (constants) username useremail;
       inherit myutils;
+      nix-colors = inputs.nix-colors;
       pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;

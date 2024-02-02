@@ -19,12 +19,11 @@
     environment.systemPackages = with pkgs; [
       networkmanagerapplet
     ];
-  } // mkIf config.modules.desktop.hyprland.enable {
-
+  }
+  // mkIf config.modules.desktop.hyprland.enable {
     environment.systemPackages = with pkgs; [
       (callPackage ../../pkgs/sddm-themes.nix {}).sddm-sugar-dark
       libsForQt5.qt5.qtgraphicaleffects #required for sugar candy
-      networkmanagerapplet
     ];
 
     services.xserver = {

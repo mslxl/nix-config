@@ -9,6 +9,7 @@
     })
 
     typora
+    trash-cli
   ];
 
   services.kdeconnect = {

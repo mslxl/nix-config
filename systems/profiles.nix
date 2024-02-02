@@ -27,8 +27,17 @@ in {
       ++ desktop_base.nixos-modules;
     home-module.imports = [
       {
-        modules.desktop.hyprland = {
-          inherit (hyprland) enable monitors extraConfig;
+        modules.desktop = {
+          background = {
+            source = ../wallpaper/explorer_green_day.jpg;
+            variant = "dark";
+          };
+          hyprland = {
+            inherit (hyprland) enable monitors extraConfig;
+            waybar = {
+              enable = true;
+            };
+          };
         };
       }
     ]

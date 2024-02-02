@@ -113,8 +113,10 @@ in {
     driSupport = true;
     driSupport32Bit = true;
   };
+  hardware.bluetooth.enable = true;
 
   services.v2raya.enable = true;
+  services.blueman.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -122,10 +124,6 @@ in {
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store"  ];
 

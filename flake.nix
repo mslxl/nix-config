@@ -4,6 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     # home-manager, used for managing user configuration
     home-manager = {
@@ -19,7 +20,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
   };
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-colors , ... }@inputs:
     let
       constants = import ./constants.nix;
       forEachSystem = func: (nixpkgs.lib.genAttrs constants.allSystems func);
