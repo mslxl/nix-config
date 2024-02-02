@@ -19,9 +19,13 @@ in {
       [
         ../hosts/xiaoxinpro16-2021
         {
-          modules.desktop.hyprland = {
-            inherit (hyprland) enable;
+          modules.desktop = {
+            hyprland = {
+              inherit (hyprland) enable;
+            };
+            sddm.bg = ../wallpaper/nix-wallpaper-dracula.png;
           };
+
         }
       ]
       ++ desktop_base.nixos-modules;

@@ -11,8 +11,14 @@
   ];
 
 
-  options.modules.desktop.hyprland = {
-    enable = mkEnableOption "Enable hyprland";
+  options.modules.desktop = {
+    hyprland = {
+      enable = mkEnableOption "Enable hyprland";
+    };
+    sddm.bg = mkOption {
+      type = types.path;
+      default = ../../wallpaper/adwaita-d.jpg;
+    };
   };
 
   config = {
@@ -22,7 +28,9 @@
   }
   // mkIf config.modules.desktop.hyprland.enable {
     environment.systemPackages = with pkgs; [
-      (callPackage ../../pkgs/sddm-themes.nix {}).sddm-sugar-dark
+      (callPackage ../../pkgs/sddm-themes.nix {
+        backgroundPicture = config.modules.desktop.sddm.bg;
+      }).sddm-sugar-dark
       libsForQt5.qt5.qtgraphicaleffects #required for sugar candy
     ];
 
