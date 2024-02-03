@@ -34,6 +34,7 @@ in {
       ]
       ++ desktop_base.nixos-modules;
     home-module.imports = [
+      ../hosts/xiaoxinpro16-2021/home.nix
       {
         modules.desktop = {
           background = {

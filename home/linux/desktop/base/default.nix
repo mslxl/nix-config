@@ -7,9 +7,6 @@
       proprietaryCodecs = true;
       enableWidevine = true;
     })
-
-    typora
-    trash-cli
   ];
 
   services.kdeconnect = {
