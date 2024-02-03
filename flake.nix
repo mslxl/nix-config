@@ -25,5 +25,10 @@
       constants = import ./constants.nix;
       forEachSystem = func: (nixpkgs.lib.genAttrs constants.allSystems func);
       allSystemConfigurations = import ./systems {inherit self inputs constants;};
-    in allSystemConfigurations;
+    in allSystemConfigurations
+       // {
+          formatter = forEachSystem (
+            system: nixpkgs.legacyPackages.${system}.alejandra
+          );
+       };
 }
