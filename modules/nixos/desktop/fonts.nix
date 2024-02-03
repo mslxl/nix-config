@@ -12,12 +12,15 @@
       # icons & emoji
       material-design-icons
       font-awesome
+      font-awesome_5
       noto-fonts-emoji
 
+      fira
       source-sans
       source-serif
       source-han-sans
       source-han-serif
+      liberation_ttf_v2
 
       (nerdfonts.override {
         fonts = [
