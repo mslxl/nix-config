@@ -228,7 +228,8 @@
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "wallpaper": "wallpaper"
       }
     },
     "systems": {
@@ -244,6 +245,23 @@
         "owner": "nix-systems",
         "repo": "default-linux",
         "type": "github"
+      }
+    },
+    "wallpaper": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706951556,
+        "narHash": "sha256-zBgx/KtR6v9wLBlFcpDRbIXFQR2WqIvepdTVhw5aN0I=",
+        "ref": "refs/heads/main",
+        "rev": "0589bd41f062f70b64faa21dbdf06da311afa173",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/mslxl/wallpaper.git"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/mslxl/wallpaper.git"
       }
     },
     "wlroots": {

@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  wallpaper,
   ...
 }@args : {
 
@@ -13,7 +14,7 @@
   options.modules.desktop.background = {
     source = lib.mkOption {
       type = lib.types.path;
-      default = ../../../wallpaper/lake-sunrise.jpg;
+      default = ../../../nix-wallpaper-dracula.png;
     };
     variant = lib.mkOption {
       type = with lib.types; enum ["dark" "light"];

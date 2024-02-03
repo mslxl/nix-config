@@ -1,5 +1,5 @@
 {
-  description = "Mslxl's NixOS Flake";
+  description = "Mslxl's NixOS Configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
@@ -18,9 +18,14 @@
       flake = false;
     };
 
+    wallpaper = {
+      url = "git+ssh://git@github.com/mslxl/wallpaper.git?shallow=1";
+      flake = false;
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
   };
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-colors , ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
     let
       constants = import ./constants.nix;
       forEachSystem = func: (nixpkgs.lib.genAttrs constants.allSystems func);

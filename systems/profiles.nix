@@ -1,3 +1,7 @@
+{
+  wallpaper,
+  ...
+}:
 let desktop_base = {
       nixos-modules = [
         ../modules/base.nix
@@ -23,7 +27,7 @@ in {
             hyprland = {
               inherit (hyprland) enable;
             };
-            sddm.bg = ../wallpaper/nix-wallpaper-dracula.png;
+            # sddm.bg = "${wallpaper}/nix-wallpaper-dracula.png";
           };
 
         }
@@ -33,7 +37,7 @@ in {
       {
         modules.desktop = {
           background = {
-            source = ../wallpaper/explorer_green_day.jpg;
+            source = wallpaper + /explorer_green_day.jpg;
             variant = "dark";
           };
           hyprland = {

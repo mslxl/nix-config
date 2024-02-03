@@ -5,7 +5,7 @@
 }: let
   inherit (inputs.nixpkgs) lib;
   myutils = import ../utils {inherit lib;};
-  profiles = import ./profiles.nix;
+  profiles = import ./profiles.nix { inherit (inputs) wallpaper; };
   specialArgsForSystem = system:
     {
       inherit system;

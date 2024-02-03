@@ -3,6 +3,7 @@
   pkgs,
   system,
   config,
+  wallpaper,
   lib,
   ...
 } : with lib; {
@@ -17,7 +18,7 @@
     };
     sddm.bg = mkOption {
       type = types.path;
-      default = ../../wallpaper/adwaita-d.jpg;
+      default = ../../nix-wallpaper-dracula.png;
     };
   };
 
