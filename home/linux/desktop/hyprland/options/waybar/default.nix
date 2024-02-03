@@ -28,6 +28,11 @@ in {
       enable = true;
     };
 
+    home.activation.waybar-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run ${pkgs.procps}/bin/pkill waybar
+    '';
+
+
     home.packages = with pkgs; [
       pavucontrol
       blueman

@@ -4,6 +4,7 @@
   fetchFromGitHub,
   crudini,
   backgroundPicture,
+  colors,
   ...
 }:
 let
@@ -46,9 +47,9 @@ in {
     };
     themeIni = [
       { section = "General"; key = "background"; value = backgroundPicture; }
-      { section = "General"; key = "MainColor"; value = "white"; }
-      { section = "General"; key = "AccentColor"; value = "#fb884f"; }
-      { section = "General"; key = "BackgroundColor"; value = "#444"; }
+      { section = "General"; key = "MainColor"; value = colors.main; }
+      { section = "General"; key = "AccentColor"; value = colors.accent; }
+      { section = "General"; key = "BackgroundColor"; value = colors.background; }
     ];
   };
 }

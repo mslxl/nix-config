@@ -87,7 +87,7 @@ in {
         exec-once = wl-paste --watch cliphist store
         exec-once = foot -s
         exec-once = kdeconnect-indicator
-        exec-once = waybar
+        exec-once = bash -c "while true; do waybar; sleep 2; done"
         # exec-once = fcitx5 -d
         exec-once = swww query || swww init
       '';

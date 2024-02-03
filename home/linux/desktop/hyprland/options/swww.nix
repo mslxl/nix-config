@@ -10,22 +10,8 @@ in {
     home.packages = with pkgs; [
       swww
     ];
-    systemd.user.services.swww-change = {
-      Unit = {
-        Description = "swww";
-        After = [ "graphical-session.target" "sww.unit" ];
-        PartOf = [ "graphical-session.target" ];
-      };
-      Service = {
-        ExecStart = "${pkgs.bash}/bin/sh -c '${pkgs.swww}/bin/swww img ${config.modules.desktop.background.source}'";
-        ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
-        Restart = "on-failure";
-        KillMode = "mixed";
-        PrivateTmp = true;
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
+    home.activation.swww-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run ${pkgs.swww}/bin/swww img ${config.modules.desktop.background.source}
+    '';
   };
 }
