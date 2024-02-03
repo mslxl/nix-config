@@ -88,6 +88,7 @@ in {
         exec-once = foot -s
         exec-once = kdeconnect-indicator
         exec-once = waybar
+        exec-once = fcitx5 -d
         exec-once = swww query || swww init
       '';
     };
