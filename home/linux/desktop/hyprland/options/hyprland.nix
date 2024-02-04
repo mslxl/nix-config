@@ -6,6 +6,7 @@
   config,
   nix-colors,
   myutils,
+  pkgs-stable,
   ...
 }: with lib; let
   cfg = config.modules.desktop.hyprland;
@@ -83,13 +84,13 @@ in {
         ${cfg.extraConfig}
 
         exec-once = hyprctl setcursor Bibata-Modern-Ice 24
-        exec-once = nm-applet
+        exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet
         exec-once = wl-paste --watch cliphist store
         exec-once = foot -s
         exec-once = kdeconnect-indicator
         exec-once = bash -c "while true; do waybar; sleep 2; done"
-        # exec-once = fcitx5 -d
         exec-once = swww query || swww init
+        exec-once = swww img ${config.modules.desktop.background.source}
       '';
     };
   };

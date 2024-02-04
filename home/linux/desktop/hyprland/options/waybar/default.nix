@@ -29,7 +29,7 @@ in {
     };
 
     home.activation.waybar-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run ${pkgs.procps}/bin/pkill waybar
+      run bash -c "${pkgs.procps}/bin/pkill waybar || true"
     '';
 
 

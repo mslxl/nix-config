@@ -74,6 +74,9 @@
       wlr.enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
+        (xdg-desktop-portal-hyprland.override {
+          hyprland = hyprland.packages.${system}.hyprland;
+        })
       ];
     };
 
