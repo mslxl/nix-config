@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     pfetch
     git
+    tokei
   ];
   programs.direnv = {
     enable = true;

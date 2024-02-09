@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-colors.url = "github:misterio77/nix-colors";
 
+    nur-mslxl.url = "github:mslxl/nur-pkgs";
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";

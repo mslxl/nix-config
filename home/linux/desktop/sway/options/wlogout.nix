@@ -5,14 +5,14 @@
   nix-colors,
   ...
 }: with lib; let
-  cfg = config.modules.desktop.hyprland;
+  cfg = config.modules.desktop.sway;
 in {
   config = mkIf cfg.enable {
     programs.wlogout.enable = true;
 
-    xdg.configFile."wlogout/icons".source = ./conf/icons;
-    xdg.configFile."wlogout/layout".source = ./conf/layout;
-    xdg.configFile."wlogout/noise.png".source = ./conf/noise.png;
+    xdg.configFile."wlogout/icons".source = ../../component/wlogout/icons;
+    xdg.configFile."wlogout/layout".source = ../../component/wlogout/layout;
+    xdg.configFile."wlogout/noise.png".source = ../../component/wlogout/noise.png;
     xdg.configFile."wlogout/style.css".text = let
       colors = ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
         path = config.modules.desktop.background.source;
@@ -43,9 +43,7 @@ in {
       @define-color color14 #${colors.base0E};
       @define-color color15 #${colors.base0F};
     ''
-    + builtins.readFile ./conf/style.css;
-
-
+    + builtins.readFile ../../component/wlogout/style.css;
   };
 
 }

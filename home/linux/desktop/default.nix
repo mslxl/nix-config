@@ -9,6 +9,7 @@
   imports = [
     ./base
     ./hyprland
+    ./sway
   ];
 
   options.modules.desktop.background = {

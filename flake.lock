@@ -220,6 +220,40 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1624561540,
+        "narHash": "sha256-izJ2PYZMGMsSkg+e7c9A1x3t/yOLT+qzUM6WQsc2tqo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c6a049a3d32293b24c0f894a840872cf67fd7c11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nur-mslxl": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1707219192,
+        "narHash": "sha256-Tz3+DLpEsiwG7s+erPIglWo5nNPBMSvZfbYX6Uw0T8Q=",
+        "owner": "mslxl",
+        "repo": "nur-pkgs",
+        "rev": "6f07e3b7761055e30290d84c6f6ae02bb1704d3f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mslxl",
+        "repo": "nur-pkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "doomemacs": "doomemacs",
@@ -229,6 +263,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur-mslxl": "nur-mslxl",
         "wallpaper": "wallpaper"
       }
     },

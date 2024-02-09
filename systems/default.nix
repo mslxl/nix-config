@@ -7,7 +7,7 @@
   myutils = import ../utils {inherit lib;};
   profiles = import ./profiles.nix { inherit (inputs) wallpaper; };
   specialArgsForSystem = system:
-    {
+    rec {
       inherit system;
       inherit (constants) username useremail;
       inherit myutils;
@@ -19,6 +19,9 @@
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
         config.allowUnfree = true;
+      };
+      nur-pkgs-mslxl = import inputs.nur-mslxl {
+        pkgs = pkgs-unstable;
       };
     } // inputs;
   allSystemSpecialArgs = myutils.attrs.mapAttrs (_: specialArgsForSystem) constants.allSystemAttrs;

@@ -15,5 +15,6 @@
 in {
   home.packages = [
     obsidian
+    pkgs.anki
   ];
 }

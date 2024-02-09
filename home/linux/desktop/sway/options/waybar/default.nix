@@ -5,10 +5,10 @@
   lib,
   ...
 }: with lib; let
-  cfg = config.modules.desktop.hyprland;
+  cfg = config.modules.desktop.sway;
 in {
 
-  options.modules.desktop.hyprland.waybar = {
+  options.modules.desktop.sway.waybar = {
     theme = mkOption {
       type = types.str;
       default = "ml4w";

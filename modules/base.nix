@@ -54,6 +54,7 @@
     wget
   ];
   environment.variables.EDITOR = "emacs -nw";
+  environment.variables.NIXPKGS_ALLOW_UNFREE="1";
 
   # Enable the OpenSSH daemon.
   services.openssh = {

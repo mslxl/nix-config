@@ -5,7 +5,7 @@
 let desktop_base = {
       nixos-modules = [
         ../modules/base.nix
-        ../modules/nixos/desktop.nix
+        ../modules/nixos/desktop
       ];
       home-module.imports = [
         ../home/linux/desktop.nix
@@ -13,10 +13,17 @@ let desktop_base = {
 };
 in {
   xiaoxinpro16-2021 = let
+    background = wallpaper + /nix-wallpaper-dracula.png;
     hyprland = {
       enable = true;
       monitors = [",2560x1600,auto,1"];
       extraConfig = '''';
+    };
+    sway = {
+      enable = false;
+    };
+    plasma = {
+      enable = true;
     };
   in {
     nixos-modules =
@@ -27,9 +34,17 @@ in {
             hyprland = {
               inherit (hyprland) enable;
             };
-            sddm.bg = wallpaper + /nix-wallpaper-dracula.png;
+            sddm = {
+              bg = background;
+              enable = true;
+            };
+            sway = {
+              inherit (sway) enable;
+            };
+            plasma = {
+              inherit (plasma) enable;
+            };
           };
-
         }
       ]
       ++ desktop_base.nixos-modules;
@@ -38,14 +53,14 @@ in {
       {
         modules.desktop = {
           background = {
-            source = wallpaper + /nix-wallpaper-dracula.png;
+            source = background;
             variant = "dark";
           };
           hyprland = {
             inherit (hyprland) enable monitors extraConfig;
-            waybar = {
-              enable = true;
-            };
+          };
+          sway = {
+            inherit (sway) enable;
           };
         };
       }
