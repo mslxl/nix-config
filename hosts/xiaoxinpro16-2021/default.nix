@@ -77,28 +77,35 @@ in {
 
   environment.systemPackages = with pkgs; [
     lshw
+    glxinfo
   ];
 
-  # services.xserver.videoDrivers = [ "nvidia" "modesetting"];
+  services.logind = {
+    lidSwitchExternalPower = "lock";
+    lidSwitch = "suspend-then-hibernate";
+  };
 
-  # hardware.nvidia = {
-  #   open = false;
-  #   modesetting.enable = true;
-  #   powerManagement = {
-  #     enable = true;
-  #     finegrained = true;
-  #   };
-  #   prime = {
-  #     allowExternalGpu = true;
-  #     offload = {
-  #       enable = true;
-  #       enableOffloadCmd = true;
-  #     };
-  #     amdgpuBusId = "PCI:1:0:0";
-  #     nvidiaBusId = "PCI:5:0:0";
-  #   };
-  #   package = config.boot.kernelPackages.nvidiaPackages.production;
-  # };
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+
+  hardware.nvidia = {
+    open = false;
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    powerManagement = {
+      enable = true;
+      finegrained = true;
+    };
+    prime = {
+      allowExternalGpu = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      amdgpuBusId = "PCI:1:0:0";
+      nvidiaBusId = "PCI:5:0:0";
+    };
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
   # virtualisation.docker.enableNvidia = true;
 
   hardware.opengl = {
