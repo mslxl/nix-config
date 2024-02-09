@@ -22,6 +22,28 @@
       lg = "log --graph --decorate --oneline";
       cm = "!cz commit";
       lz = "!lazygit";
+      ck = "checkout";
+      br = "branch";
+    };
+
+    ignores = [
+      "*~"
+      "*.swp"
+    ];
+
+    extraConfig = {
+      user = {
+        signingkey = useremail;
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      commit = {
+        gpgsign = true;
+      };
+      push = {
+        autoSetupRemote = true;
+      };
     };
   };
 }
