@@ -10,5 +10,5 @@
   options.modules.desktop.sway = {
     enable = mkEnableOption "Enable sway";
   };
-  config = mkIf config.modules.desktop.sway.enable (import ./values args);
+  config = mkIf config.modules.desktop.sway.enable ((import ./values args) // (import ../base-wayland-tile args));
 }
