@@ -15,15 +15,15 @@ in {
   xiaoxinpro16-2021 = let
     background = wallpaper + /nix-wallpaper-dracula.png;
     hyprland = {
-      enable = true;
+      enable = false;
       monitors = [",2560x1600,auto,1"];
       extraConfig = '''';
     };
     sway = {
-      enable = false;
+      enable = true;
     };
     plasma = {
-      enable = true;
+      enable = false;
     };
   in {
     nixos-modules =

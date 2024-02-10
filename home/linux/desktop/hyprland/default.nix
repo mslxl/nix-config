@@ -10,5 +10,5 @@
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "Enable hyprland";
   };
-  config = mkIf config.modules.desktop.hyprland.enable (import ./values args);
+  config = mkIf config.modules.desktop.hyprland.enable ((import ./values args) // (import ../base-wayland-tile args));
 }

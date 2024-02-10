@@ -10,9 +10,9 @@ in {
   config = mkIf cfg.enable {
     programs.wlogout.enable = true;
 
-    xdg.configFile."wlogout/icons".source = ../../component/wlogout/icons;
-    xdg.configFile."wlogout/layout".source = ../../component/wlogout/layout;
-    xdg.configFile."wlogout/noise.png".source = ../../component/wlogout/noise.png;
+    xdg.configFile."wlogout/icons".source = ../../base-wayland-tile/wlogout/icons;
+    xdg.configFile."wlogout/layout".source = ../../base-wayland-tile/wlogout/layout;
+    xdg.configFile."wlogout/noise.png".source = ../../base-wayland-tile/wlogout/noise.png;
     xdg.configFile."wlogout/style.css".text = let
       colors = ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
         path = config.modules.desktop.background.source;
@@ -43,7 +43,7 @@ in {
       @define-color color14 #${colors.base0E};
       @define-color color15 #${colors.base0F};
     ''
-    + builtins.readFile ../../component/wlogout/style.css;
+    + builtins.readFile ../../base-wayland-tile/wlogout/style.css;
   };
 
 }

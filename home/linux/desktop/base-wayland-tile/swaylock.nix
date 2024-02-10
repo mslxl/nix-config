@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     grim
+    swayidle
   ];
   programs.swaylock = {
     enable = true;
