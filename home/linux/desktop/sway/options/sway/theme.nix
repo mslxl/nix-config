@@ -13,30 +13,14 @@ in {
   window = {
     border = 3;
   };
-  gaps = {
-    inner = 10;
-    outer = 14;
-  };
+  # gaps = {
+  #   inner = 10;
+  #   outer = 14;
+  # };
   fonts = {
     names = [ "Fira Sans Semibold" "FiraCode Nerd Font" "FontAwesome" "Roboto" ];
     size = 12.0;
   };
-  bars = [
-    {
-      colors = {
-        inactiveWorkspace = {
-          background = "#${colors.base05}";
-          border = "#${colors.base05}";
-          text = "#ffffff";
-        };
-        focusedWorkspace = {
-          background = "#${colors.base05}";
-          border = "#${colors.base05}";
-          text = "#ffffff";
-        };
-      };
-    }
-  ];
   colors = {
     focused = {
       background = "#${colors.base0B}";
