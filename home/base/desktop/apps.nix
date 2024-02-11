@@ -15,6 +15,7 @@
 in {
   home.packages = [
     obsidian
+    pkgs.telegram-desktop
     pkgs.anki
   ];
 }
