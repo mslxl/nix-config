@@ -26,6 +26,9 @@
         base = true;
         gtk = true;
       };
+      extraOptions = [
+        "--unsupported-gpu"
+      ];
       extraSessionCommands = ''
         export QT_QPA_PLATFORM=wayland-egl
         export _JAVA_AWT_WM_NONREPARENTING=1

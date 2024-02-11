@@ -5,18 +5,33 @@
   ...
 } @args : with lib; {
 
+  options.modules.desktop.sway.extraConfig = mkOption {
+    default = "";
+    type = types.str;
+    description = ''
+      Host related config
+    '';
+  };
+
+
+
   config = mkIf config.modules.desktop.sway.enable {
     xdg.configFile."sway/script/".source = ../../conf/script;
+    home.packages = with pkgs; [
+      flameshot
+    ];
     wayland.windowManager.sway = {
       enable = true;
       package = null;
       extraConfig = ''
-        input "1267:12717:ELAN2841:00_04F3:31AD_Touchpad" {
-          dwt enabled
-          tap enabled
-          natural_scroll enabled
-          middle_emulation enabled
+        input type:touchpad {
+        dwt enabled
+        tap enabled
+        natural_scroll enabled
+        middle_emulation enabled
         }
+        input type:keyboard xkb_numlock enabled
+        ${config.modules.desktop.sway.extraConfig}
       '';
       config = {
         modifier = "Mod4";
@@ -57,6 +72,7 @@
           "${modifier}+p" = "mode passthru";
           "${modifier}+e" = "exec foot yazi";
           "${modifier}+v" = "exec ~/.config/sway/script/cliphist.sh";
+          "${modifier}+PRINT" = "exec flameshot gui";
         }
         // {
           "${modifier}+grave" = "scratchpad show";
