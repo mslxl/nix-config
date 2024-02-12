@@ -13,5 +13,8 @@
     gateway
     datagrip
     clion
-  ];
+  ]
+  ++ (with pkgs; [
+    steam
+  ]);
 }

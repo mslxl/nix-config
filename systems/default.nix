@@ -14,13 +14,25 @@
       nix-colors = inputs.nix-colors;
       pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-19.1.9"
+            "openssl-1.1.1w"
+          ];
+        };
       };
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+        };
       };
       nur-pkgs-mslxl = import inputs.nur-mslxl {
+        pkgs = pkgs-unstable;
+      };
+      nur-pkgs = import inputs.nur {
+        nurpkgs = pkgs-unstable;
         pkgs = pkgs-unstable;
       };
     } // inputs;

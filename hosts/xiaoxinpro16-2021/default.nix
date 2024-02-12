@@ -80,10 +80,12 @@ in {
     glxinfo
   ];
 
+  powerManagement.enable = true;
   services.logind = {
     lidSwitchExternalPower = "lock";
     lidSwitch = "suspend-then-hibernate";
   };
+  services.thermald.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
 
