@@ -7,6 +7,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     nur-mslxl.url = "github:mslxl/nur-pkgs";
+    nur.url = "github:nix-community/NUR";
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";

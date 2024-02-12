@@ -31,7 +31,7 @@
   fileSystems."/mnt/nolebase" =
     { device = "/dev/nvme0n1p4";
       fsType = "ntfs-3g";
-      options = [ "rw" "uid=1000"];
+      options = [ "defaults" "umask=000" "uid=1000" "gid=100" "dmask=027" "fmask=137"];
     };
 
   swapDevices = [

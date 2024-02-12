@@ -17,5 +17,6 @@ in {
     obsidian
     pkgs.telegram-desktop
     pkgs.anki
+    pkgs.ffmpeg-full
   ];
 }
