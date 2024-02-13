@@ -128,7 +128,7 @@
           "${modifier}+Shift+7" = "move container to workspace number 7";
           "${modifier}+Shift+8" = "move container to workspace number 8";
           "${modifier}+Shift+9" = "move container to workspace number 9";
-          "${modifier}+Shift+0" = "move container to workspace number 0";
+          "${modifier}+Shift+0" = "move container to workspace number 10";
           "${modifier}+Tab" = "workspace back_and_forth";
         });
         bars = [
