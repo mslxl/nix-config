@@ -16,5 +16,6 @@
   ]
   ++ (with pkgs; [
     steam
+    geogebra6
   ]);
 }
