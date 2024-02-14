@@ -4,7 +4,7 @@
   pkgs,
   username,
   ...
-} @args: {
+} @args: rec {
   nixpkgs = {
     overlays = import ../overlays args;
     config.allowUnfree = true;
@@ -28,6 +28,7 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   time.timeZone = "Asia/Shanghai";
+  environment.variables.TZ = time.timeZone;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
