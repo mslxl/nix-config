@@ -36,7 +36,7 @@ in {
       package = hyprland.packages.${system}.hyprland;
       settings= {
          env = [
-          "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
+          # "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
           "MOZ_ENABLE_WAYLAND,1" # for firefox to run on wayland
           "MOZ_WEBRENDER,1"
           # misc
@@ -83,14 +83,14 @@ in {
         ${confFile}
         ${cfg.extraConfig}
 
+        exec-once = fcitx5 -d
         exec-once = hyprctl setcursor Bibata-Modern-Ice 24
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet
         exec-once = wl-paste --watch cliphist store
-        exec-once = foot -s
         exec-once = kdeconnect-indicator
         exec-once = bash -c "while true; do waybar; sleep 2; done"
         exec-once = swww query || swww init
-        exec-once = swww img ${config.modules.desktop.background.source}
+        exec-once = bash -c "sleep 2; swww img ${config.modules.desktop.background.source}"
       '';
     };
   };

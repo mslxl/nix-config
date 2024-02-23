@@ -13,14 +13,14 @@ let desktop_base = {
 };
 in {
   xiaoxinpro16-2021 = let
-    background = wallpaper + /nix-wallpaper-dracula.png;
+    background = wallpaper + /keyvisual_1.jpg;
     hyprland = {
-      enable = false;
+      enable = true;
       monitors = [",2560x1600,auto,1"];
       extraConfig = '''';
     };
     sway = {
-      enable = true;
+      enable = false;
     };
     plasma = {
       enable = false;
