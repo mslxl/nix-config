@@ -31,6 +31,11 @@ in {
 
   config = mkIf cfg.enable {
     xdg.configFile."hypr/script".source = ../conf/script;
+    home.packages = with pkgs; [
+      grim
+      slurp
+    ];
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = hyprland.packages.${system}.hyprland;
