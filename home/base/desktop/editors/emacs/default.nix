@@ -42,10 +42,9 @@ in {
   home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
     ${pkgs.rsync}/bin/rsync -avz --chmod=D2755,F744 ${doomemacs}/ ${config.xdg.configHome}/emacs/
   '';
+  services.emacs.enable = true;
 
   programs.git.aliases = {
     ma = "!emacs -nw --eval \"(magit-status)\"";
   };
-
-
 }
