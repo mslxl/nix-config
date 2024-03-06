@@ -16,5 +16,7 @@
   ])
   ++ (with nur-pkgs.repos; [
 	  xddxdd.wechat-uos
+    xddxdd.bilibili
+    linyinfeng.wemeet
   ]);
 }
