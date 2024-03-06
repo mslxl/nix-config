@@ -18,5 +18,7 @@ in {
     pkgs.telegram-desktop
     pkgs.anki
     pkgs.ffmpeg-full
+    pkgs.calibre
+    pkgs.bitwarden
   ];
 }
