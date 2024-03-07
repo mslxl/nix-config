@@ -1,16 +1,26 @@
 {
   wallpaper,
+  nixos-wsl,
   ...
-}:
-let desktop_base = {
-      nixos-modules = [
-        ../modules/base.nix
-        ../modules/nixos/desktop
-      ];
-      home-module.imports = [
-        ../home/linux/desktop.nix
-      ];
-};
+}: let
+  server_base = {
+    nixos-modules = [
+      ../modules/base.nix
+      ../modules/nixos/minimal
+    ];
+    home-module.imports = [
+      ../home/linux/server.nix
+    ];
+  };
+  desktop_base = {
+    nixos-modules = [
+      ../modules/base.nix
+      ../modules/nixos/desktop
+    ];
+    home-module.imports = [
+      ../home/linux/desktop.nix
+    ];
+  };
 in {
   xiaoxinpro16-2021 = let
     background = wallpaper + /keyvisual_1.jpg;
@@ -48,26 +58,40 @@ in {
         }
       ]
       ++ desktop_base.nixos-modules;
-    home-module.imports = [
-      ../hosts/xiaoxinpro16-2021/home.nix
-      {
-        modules.desktop = {
-          background = {
-            source = background;
-            variant = "dark";
+    home-module.imports =
+      [
+        ../hosts/xiaoxinpro16-2021/home.nix
+        {
+          modules.desktop = {
+            background = {
+              source = background;
+              variant = "dark";
+            };
+            hyprland = {
+              inherit (hyprland) enable monitors extraConfig;
+            };
+            sway = {
+              inherit (sway) enable;
+              extraConfig = ''
+                output eDP-1 scale 1.3
+              '';
+            };
           };
-          hyprland = {
-            inherit (hyprland) enable monitors extraConfig;
-          };
-          sway = {
-            inherit (sway) enable;
-            extraConfig = ''
-            output eDP-1 scale 1.3
-            '';
-          };
-        };
-      }
-    ]
-    ++ desktop_base.home-module.imports;
+        }
+      ]
+      ++ desktop_base.home-module.imports;
+  };
+  nixos-wsl = {
+    nixos-modules =
+      [
+        nixos-wsl.nixosModules.wsl
+        ../hosts/nixos-wsl
+      ]
+      ++ server_base.nixos-modules;
+    home-module.imports =
+      [
+        ../hosts/nixos-wsl/home.nix
+      ]
+      ++ server_base.home-module.imports;
   };
 }
