@@ -29,7 +29,6 @@
           "FiraCode"
           "JetBrainsMono"
           "Iosevka"
-
         ];
       })
     ];

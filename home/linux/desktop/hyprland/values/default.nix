@@ -2,7 +2,9 @@
   lib,
   myutils,
   ...
-}@ args: lib.mkMerge (
+} @ args:
+lib.mkMerge (
   map
-    (p: import p args)
-    (myutils.scanPaths ./.))
+  (p: import p args)
+  (myutils.scanPaths ./.)
+)

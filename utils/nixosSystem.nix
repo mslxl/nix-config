@@ -8,22 +8,23 @@
   ...
 }: let
   inherit (specialArgs) username;
-in nixpkgs.lib.nixosSystem {
-  inherit system specialArgs;
-  modules =
-    nixos-modules
-    ++ (
-      if (home-module != null)
-      then [
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+in
+  nixpkgs.lib.nixosSystem {
+    inherit system specialArgs;
+    modules =
+      nixos-modules
+      ++ (
+        if (home-module != null)
+        then [
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-          home-manager.extraSpecialArgs = specialArgs;
-          home-manager.users."${username}" = home-module;
-        }
-      ]
-      else []
-    );
-}
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.users."${username}" = home-module;
+          }
+        ]
+        else []
+      );
+  }

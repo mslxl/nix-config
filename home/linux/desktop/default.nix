@@ -4,8 +4,7 @@
   lib,
   wallpaper,
   ...
-}@args : {
-
+} @ args: {
   imports = [
     ./base
     ./hyprland

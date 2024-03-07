@@ -5,7 +5,8 @@
   config,
   lib,
   ...
-} : with lib; {
+}:
+with lib; {
   options.modules.desktop = {
     hyprland = {
       enable = mkEnableOption "Enable hyprland";
@@ -31,5 +32,4 @@
     };
     security.pam.services.swaylock = {};
   };
-
 }

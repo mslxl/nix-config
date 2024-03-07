@@ -1,19 +1,23 @@
-{lib, ...}:
-{
+{lib, ...}: {
   attrs = import ./attrs.nix {inherit lib;};
   nixosSystem = import ./nixosSystem.nix;
   scanPaths = path:
     builtins.map
-      (f: (path + "/${f}"))
-      (builtins.attrNames
-        (lib.attrsets.filterAttrs
-          (path: _type:
+    (f: (path + "/${f}"))
+    (
+      builtins.attrNames
+      (
+        lib.attrsets.filterAttrs
+        (
+          path: _type:
             (_type == "directory")
-            || (path != "default.nix"
-                && (lib.strings.hasSuffix ".nix" path)
+            || (
+              path
+              != "default.nix"
+              && (lib.strings.hasSuffix ".nix" path)
             )
-          )
-          (builtins.readDir path)
         )
-      );
+        (builtins.readDir path)
+      )
+    );
 }

@@ -4,7 +4,8 @@
   config,
   lib,
   ...
-}: with lib; {
+}:
+with lib; {
   options.modules.desktop.plasma = {
     enable = mkEnableOption "Enable plasma";
   };
