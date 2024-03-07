@@ -5,7 +5,9 @@
 }: let
   inherit (inputs.nixpkgs) lib;
   myutils = import ../utils {inherit lib;};
-  profiles = import ./profiles.nix { inherit (inputs) wallpaper; };
+  profiles = import ./profiles.nix {
+    inherit (inputs) wallpaper nixos-wsl;
+  };
   specialArgsForSystem = system:
     rec {
       inherit system;
@@ -35,19 +37,19 @@
         nurpkgs = pkgs-unstable;
         pkgs = pkgs-unstable;
       };
-    } // inputs;
+    }
+    // inputs;
   allSystemSpecialArgs = myutils.attrs.mapAttrs (_: specialArgsForSystem) constants.allSystemAttrs;
   args = myutils.attrs.mergeAttrsList [
     inputs
     constants
     profiles
-    {inherit self lib myutils allSystemSpecialArgs; }
+    {inherit self lib myutils allSystemSpecialArgs;}
   ];
 in {
-  nixosConfigurations =
-    with args;
-    with myutils;
-    with allSystemAttrs; let
+  nixosConfigurations = with args;
+  with myutils;
+  with allSystemAttrs; let
     base_args = {
       inherit home-manager;
       inherit nixpkgs;
@@ -56,5 +58,7 @@ in {
     };
   in {
     mslxl-xiaoxinpro16-2021 = nixosSystem (profiles.xiaoxinpro16-2021 // base_args);
+    nixos-wsl = nixosSystem (profiles.nixos-wsl // base_args);
+    # TODO: generate it via map function
   };
 }

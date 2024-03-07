@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.dunst = {
     enable = true;
     settings = {
@@ -33,7 +32,7 @@
         font = "\"Fira Sans Semibold\" 11";
         line_height = 3;
         markup = "full";
-        format ="<b>%s</b>\n%b";
+        format = "<b>%s</b>\n%b";
         alignment = "left";
         vertical_alignment = "center";
         show_age_threshold = 60;

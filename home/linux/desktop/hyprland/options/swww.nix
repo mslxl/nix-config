@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: with lib; let
+}:
+with lib; let
   cfg = config.modules.desktop.hyprland;
 in {
   config = mkIf cfg.enable {

@@ -1,7 +1,7 @@
 {
   imports = [
     ../base/core.nix
-    ../server
+    ../base/server
     ./server
   ];
 }

@@ -4,11 +4,13 @@
   config,
   pkgs,
   ...
-}: let 
-colors = ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
-  path = config.modules.desktop.background.source;
-  variant = config.modules.desktop.background.variant;
-}).palette;
+}: let
+  colors =
+    ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
+      path = config.modules.desktop.background.source;
+      variant = config.modules.desktop.background.variant;
+    })
+    .palette;
 in {
   window = {
     border = 3;
@@ -18,7 +20,7 @@ in {
   #   outer = 14;
   # };
   fonts = {
-    names = [ "Fira Sans Semibold" "FiraCode Nerd Font" "FontAwesome" "Roboto" ];
+    names = ["Fira Sans Semibold" "FiraCode Nerd Font" "FontAwesome" "Roboto"];
     size = 12.0;
   };
   colors = {

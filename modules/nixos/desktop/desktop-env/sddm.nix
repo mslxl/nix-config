@@ -5,7 +5,8 @@
   lib,
   nix-colors,
   ...
-} : with lib; {
+}:
+with lib; {
   options.modules.desktop = {
     sddm = {
       enable = mkEnableOption "Enable sddm";
@@ -25,16 +26,19 @@
       (callPackage ../../../../pkgs/sddm-themes.nix {
         backgroundPicture = config.modules.desktop.sddm.bg;
         colors = let
-          scheme = ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
-            path = config.modules.desktop.sddm.bg;
-            variant = config.modules.desktop.sddm.variant;
-          }).palette;
+          scheme =
+            ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
+              path = config.modules.desktop.sddm.bg;
+              variant = config.modules.desktop.sddm.variant;
+            })
+            .palette;
         in {
           main = "white";
           accent = "#${scheme.base0E}";
-          background ="#${scheme.base07}";
+          background = "#${scheme.base07}";
         };
-      }).sddm-sugar-dark
+      })
+      .sddm-sugar-dark
       libsForQt5.qt5.qtgraphicaleffects #required for sugar candy
       brightnessctl
       wl-clipboard
@@ -51,5 +55,4 @@
       };
     };
   };
-
 }

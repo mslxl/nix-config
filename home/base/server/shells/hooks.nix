@@ -15,9 +15,4 @@
     git = true;
     icons = true;
   };
-  programs.zellij = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
 }
