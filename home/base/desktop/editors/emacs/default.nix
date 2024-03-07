@@ -46,6 +46,4 @@ in {
   programs.git.aliases = {
     ma = "!emacs -nw --eval \"(magit-status)\"";
   };
-
-
 }

@@ -4,8 +4,9 @@
   lib,
   config,
   ...
-}@args : with lib; {
-  imports = [ ./options ];
+} @ args:
+with lib; {
+  imports = [./options];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "Enable hyprland";

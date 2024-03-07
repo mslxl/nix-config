@@ -2,11 +2,13 @@
   lib,
   myutils,
   ...
-}@ args: lib.mkMerge (
+} @ args:
+lib.mkMerge (
   map
-    (p: import p args)
-    [
-      ./dunst.nix
-      ./foot.nix
-      ./swaylock.nix
-    ])
+  (p: import p args)
+  [
+    ./dunst.nix
+    ./foot.nix
+    ./swaylock.nix
+  ]
+)
