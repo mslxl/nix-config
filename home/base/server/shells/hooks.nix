@@ -19,5 +19,8 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    settings = {
+      pane_frames = false;
+    };
   };
 }
