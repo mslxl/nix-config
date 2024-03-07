@@ -6,9 +6,13 @@
   backgroundPicture,
   colors,
   ...
-}:
-let
-  buildTheme = { name, version, src, themeIni ? [] }:
+}: let
+  buildTheme = {
+    name,
+    version,
+    src,
+    themeIni ? [],
+  }:
     stdenv.mkDerivation rec {
       pname = "sddm-theme-${name}";
       inherit version src;
@@ -30,9 +34,10 @@ let
         chmod 777 $dir/theme.conf
 
         ${lib.concatMapStringsSep "\n" (e: ''
-          ${crudini}/bin/crudini --set --inplace $dir/theme.conf \
-            "${e.section}" "${e.key}" "${e.value}"
-        '') themeIni}
+            ${crudini}/bin/crudini --set --inplace $dir/theme.conf \
+              "${e.section}" "${e.key}" "${e.value}"
+          '')
+          themeIni}
       '';
     };
 in {
@@ -46,10 +51,26 @@ in {
       sha256 = "0gx0am7vq1ywaw2rm1p015x90b75ccqxnb1sz3wy8yjl27v82yhb";
     };
     themeIni = [
-      { section = "General"; key = "background"; value = backgroundPicture; }
-      { section = "General"; key = "MainColor"; value = colors.main; }
-      { section = "General"; key = "AccentColor"; value = colors.accent; }
-      { section = "General"; key = "BackgroundColor"; value = colors.background; }
+      {
+        section = "General";
+        key = "background";
+        value = backgroundPicture;
+      }
+      {
+        section = "General";
+        key = "MainColor";
+        value = colors.main;
+      }
+      {
+        section = "General";
+        key = "AccentColor";
+        value = colors.accent;
+      }
+      {
+        section = "General";
+        key = "BackgroundColor";
+        value = colors.background;
+      }
     ];
   };
 }

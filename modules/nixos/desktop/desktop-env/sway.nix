@@ -4,7 +4,8 @@
   config,
   lib,
   ...
-} : with lib; {
+}:
+with lib; {
   options.modules.desktop = {
     sway = {
       enable = mkEnableOption "Enable sway";
@@ -36,5 +37,4 @@
     };
     security.pam.services.swaylock = {};
   };
-
 }

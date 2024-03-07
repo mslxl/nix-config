@@ -1,9 +1,12 @@
-{myutils, pkgs, ...}:
 {
+  myutils,
+  pkgs,
+  ...
+}: {
   imports = myutils.scanPaths ./.;
 
   home.packages = with pkgs; [
-    (vivaldi.override{
+    (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
     })

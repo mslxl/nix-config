@@ -1,16 +1,19 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   hostName = "mslxl-xiaoxinpro16-2021";
 in {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./tlp.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./tlp.nix
+  ];
 
   boot.loader = {
     grub = {
@@ -46,8 +49,7 @@ in {
     };
   };
 
-
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
   boot.kernelParams = [
     # fix touchpad not work
@@ -63,7 +65,7 @@ in {
 
   networking = {
     inherit hostName;
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -97,7 +99,7 @@ in {
   };
   services.thermald.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  services.xserver.videoDrivers = ["nvidia" "amdgpu"];
 
   hardware.nvidia = {
     open = false;
@@ -135,7 +137,7 @@ in {
   # started in user sessions.
   programs.mtr.enable = true;
 
-  nix.settings.substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store"  ];
+  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
