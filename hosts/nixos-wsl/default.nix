@@ -15,8 +15,11 @@ in {
   wsl = {
     enable = true;
     defaultUser = username;
-    wslConf.automount.root = "/mnt";
-    startMenuLaunchers = true;
+    wslConf = {
+      automount.root = "/mnt";
+      interop.appendWindowsPath = false;
+    };
+    startMenuLaunchers = false;
   };
 
   hardware.opengl.enable = true;
