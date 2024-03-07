@@ -91,6 +91,7 @@ in {
         exec-once = fcitx5 -d
         exec-once = hyprctl setcursor Bibata-Modern-Ice 24
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet
+        exec-once = ${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent
         exec-once = wl-paste --watch cliphist store
         exec-once = kdeconnect-indicator
         exec-once = bash -c "while true; do waybar; sleep 2; done"
