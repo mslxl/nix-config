@@ -13,6 +13,7 @@ in  {
         fcitx5-configtool
         fcitx5-gtk
       ];
+      waylandFrontend = config.modules.desktop.hyprland.enable || config.modules.desktop.sway.enable;
     };
   };
 }
