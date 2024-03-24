@@ -11,7 +11,8 @@
   };
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
     git = true;
     icons = true;
   };

@@ -13,7 +13,9 @@
       clion
     ]
     ++ (with pkgs; [
+      zathura
       steam
       geogebra6
+      appimage-run
     ]);
 }

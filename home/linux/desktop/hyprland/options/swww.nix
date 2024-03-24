@@ -12,7 +12,7 @@ in {
       swww
     ];
     home.activation.swww-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run bash -c "${pkgs.swww}/bin/swww img ${config.modules.desktop.background.source}; echo a"
+      run bash -c "${pkgs.swww}/bin/swww img ${config.modules.desktop.background.source} || true"
     '';
   };
 }

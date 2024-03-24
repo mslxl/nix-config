@@ -6,7 +6,7 @@
   server_base = {
     nixos-modules = [
       ../modules/base.nix
-      ../modules/nixos/minimal
+      ../modules/nixos/base
     ];
     home-module.imports = [
       ../home/linux/server.nix
@@ -16,6 +16,7 @@
     nixos-modules = [
       ../modules/base.nix
       ../modules/nixos/desktop
+      ../modules/nixos/base
     ];
     home-module.imports = [
       ../home/linux/desktop.nix

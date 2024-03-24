@@ -140,7 +140,7 @@ with lib; {
             });
           bars = [
             {
-              command = "${pkgs.waybar}/bin/waybar";
+              command = "waybar";
               position = "top";
             }
           ];

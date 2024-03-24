@@ -9,6 +9,7 @@
     bat
     wpsoffice
     cmus
+    clang-tools
   ]
   ++ (with nur-pkgs-mslxl; [
     dida365

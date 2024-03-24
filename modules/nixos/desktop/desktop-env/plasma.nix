@@ -13,11 +13,8 @@ with lib; {
   config = mkIf config.modules.desktop.plasma.enable {
     services.power-profiles-daemon.enable = true;
     services.tlp.enable = mkForce false;
-    services.xserver = {
-      enable = true;
-      desktopManager.plasma5.enable = true;
-    };
-    environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    services.desktopManager.plasma6.enable = true;
+    environment.plasma6.excludePackages = with pkgs.libsForQt6; [
       plasma-browser-integration
       konsole
       oxygen

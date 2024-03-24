@@ -35,6 +35,8 @@ in {
     home.packages = with pkgs; [
       grim
       slurp
+      swappy
+      pngquant
     ];
 
     wayland.windowManager.hyprland = {
@@ -98,7 +100,7 @@ in {
         exec-once = kdeconnect-indicator
         exec-once = bash -c "while true; do waybar; sleep 2; done"
         exec-once = swww query || swww init
-        exec-once = bash -c "sleep 2; swww img ${config.modules.desktop.background.source}"
+        exec-once = swww img "${config.modules.desktop.background.source}"
       '';
     };
   };
