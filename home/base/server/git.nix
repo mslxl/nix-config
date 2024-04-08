@@ -23,6 +23,7 @@
       lz = "!lazygit";
       ck = "checkout";
       br = "branch";
+      fomo = "!git fetch origin main && git rebase origin/main";
     };
 
     ignores = [
