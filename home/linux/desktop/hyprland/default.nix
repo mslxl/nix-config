@@ -6,10 +6,12 @@
   ...
 } @ args:
 with lib; {
-  imports = [./options];
+  imports = [
+    ./options
+  ];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "Enable hyprland";
   };
-  config = mkIf config.modules.desktop.hyprland.enable ((import ./values args) // (import ../base-wayland-tile args));
+  config = mkIf config.modules.desktop.hyprland.enable ((import ./values args) // (import ./apps args));
 }

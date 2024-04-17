@@ -36,12 +36,12 @@
         "wlr/taskbar",
         // END TASK TOOGLE
         "group/quicklinks",
-        "sway/window"
+        "hyprland/window"
     ],
 
     // Modules Center
     "modules-center": [
-        "sway/workspaces"
+        "hyprland/workspaces"
     ],
 
     // Modules Right    

@@ -76,15 +76,15 @@ in {
         /*
          * theme variant
          */
-        ${lib.readFile ../../../base-wayland-tile/waybar/themes/${cfg.waybar.theme}/${cfg.waybar.variant}/style.css}
+        ${lib.readFile ./themes/${cfg.waybar.theme}/${cfg.waybar.variant}/style.css}
       ''
       + (
-        if (lib.pathExists ../../../base-wayland-tile/waybar/themes/${cfg.waybar.theme}/style.css)
+        if (lib.pathExists ./themes/${cfg.waybar.theme}/style.css)
         then ''
           /*
            * component theme
            */
-          ${lib.readFile ../../../base-wayland-tile/waybar/themes/${cfg.waybar.theme}/style.css}
+          ${lib.readFile ./themes/${cfg.waybar.theme}/style.css}
         ''
         else ""
       );

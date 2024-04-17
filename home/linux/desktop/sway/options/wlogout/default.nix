@@ -1,45 +1,20 @@
 {
   pkgs,
-  nix-colors,
-  config,
   lib,
+  config,
+  nix-colors,
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.hyprland;
+  cfg = config.modules.desktop.sway;
 in {
-  options.modules.desktop.hyprland.waybar = {
-    theme = mkOption {
-      type = types.str;
-      default = "ml4w";
-      description = ''
-        theme inside ./themes folder
-      '';
-    };
-    variant = mkOption {
-      type = types.str;
-      default = "light";
-    };
-  };
-
   config = mkIf cfg.enable {
-    programs.waybar = {
-      enable = true;
-    };
+    programs.wlogout.enable = true;
 
-    home.activation.waybar-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run bash -c "${pkgs.procps}/bin/pkill waybar || true"
-    '';
-
-    home.packages = with pkgs; [
-      pavucontrol
-      blueman
-    ];
-
-    xdg.configFile."waybar/modules.json".source = ./modules.json;
-    xdg.configFile."waybar/config".source = ./themes/${cfg.waybar.theme}/config;
-
-    xdg.configFile."waybar/style.css".text = let
+    xdg.configFile."wlogout/icons".source = ./icons;
+    xdg.configFile."wlogout/layout".source = ./layout;
+    xdg.configFile."wlogout/noise.png".source = ./noise.png;
+    xdg.configFile."wlogout/style.css".text = let
       colors =
         ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
           path = config.modules.desktop.background.source;
@@ -72,21 +47,6 @@ in {
         @define-color color14 #${colors.base0E};
         @define-color color15 #${colors.base0F};
       ''
-      + ''
-        /*
-         * theme variant
-         */
-        ${lib.readFile ./themes/${cfg.waybar.theme}/${cfg.waybar.variant}/style.css}
-      ''
-      + (
-        if (lib.pathExists ./themes/${cfg.waybar.theme}/style.css)
-        then ''
-          /*
-           * component theme
-           */
-          ${lib.readFile ./themes/${cfg.waybar.theme}/style.css}
-        ''
-        else ""
-      );
+      + builtins.readFile ./style.css;
   };
 }

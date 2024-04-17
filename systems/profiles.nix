@@ -32,12 +32,12 @@ in {
         "HDMI-A-1,1920x1080,64x1280,1"
       ];
       extraConfig = ''
-      xwayland {
-        force_zero_scaling = 1
-      }
+        xwayland {
+          force_zero_scaling = 1
+        }
 
-      # default is 96, 96 * 1.25 is 120
-      exec = bash -c "echo 'Xft.dpi: 120' | xrdb -merge"
+        # default is 96, 96 * 1.25 is 120
+        exec = bash -c "echo 'Xft.dpi: 120' | xrdb -merge"
       '';
     };
     sway = {
