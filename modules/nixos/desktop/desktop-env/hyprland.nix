@@ -25,6 +25,11 @@ with lib; {
       ];
     };
 
+    environment.systemPackages = with pkgs; [
+      wl-clipboard
+      cliphist
+    ];
+
     programs.hyprland = {
       enable = true;
       package = hyprland.packages.${system}.hyprland;

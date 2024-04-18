@@ -41,18 +41,15 @@ with lib; {
       .sddm-sugar-dark
       libsForQt5.qt5.qtgraphicaleffects #required for sugar candy
       brightnessctl
-      wl-clipboard
-      cliphist
     ];
 
-    services.xserver = {
+
+    services.xserver.enable = true;
+    services.displayManager.sddm = {
       enable = true;
-      displayManager.sddm = {
-        enable = true;
-        # wayland.enable = true;
-        autoNumlock = true;
-        theme = "sugar-dark";
-      };
+      # wayland.enable = true;
+      autoNumlock = true;
+      theme = "sugar-dark";
     };
   };
 }

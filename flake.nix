@@ -24,11 +24,6 @@
       flake = false;
     };
 
-    wallpaper = {
-      url = "git+ssh://git@github.com/mslxl/wallpaper.git?shallow=1";
-      flake = false;
-    };
-
     hyprland.url = "github:hyprwm/Hyprland";
   };
   outputs = {

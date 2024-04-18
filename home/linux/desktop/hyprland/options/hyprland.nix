@@ -99,8 +99,7 @@ in {
         exec-once = wl-paste --watch cliphist store
         exec-once = kdeconnect-indicator
         exec-once = bash -c "while true; do waybar; sleep 2; done"
-        exec-once = swww query || swww init
-        exec-once = swww img "${config.modules.desktop.background.source}"
+        exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
       '';
     };
   };

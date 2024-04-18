@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  home.packages = with pkgs.jetbrains;
+{pkgs, pkgs-stable, ...}: {
+  home.packages = with pkgs-stable.jetbrains;
     [
       webstorm
       rust-rover

@@ -21,6 +21,11 @@ with lib; {
       ];
     };
 
+    environment.systemPackages = with pkgs; [
+      wl-clipboard
+      cliphist
+    ];
+
     programs.sway = {
       enable = true;
       wrapperFeatures = {

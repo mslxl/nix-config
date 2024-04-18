@@ -24,7 +24,7 @@
   };
 in {
   xiaoxinpro16-2021 = let
-    background = wallpaper + /keyvisual_1.jpg;
+    background = ../wallpaper/pixiv-104537131.png;
     hyprland = {
       enable = true;
       monitors = [
