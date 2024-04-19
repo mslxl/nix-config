@@ -42,5 +42,20 @@
       formatter = forEachSystem (
         system: nixpkgs.legacyPackages.${system}.alejandra
       );
+      devShells = forEachSystem (system: let
+        devPkgs = import inputs.nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+        };
+      in {
+        default = devPkgs.mkShell {
+          packages = with devPkgs; [
+            just
+            nushell
+          ];
+        };
+      });
     };
 }
