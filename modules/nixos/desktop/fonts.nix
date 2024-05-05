@@ -50,7 +50,7 @@
       }
     ];
     extraOptions = "--term xterm-256color";
-    extraConfig = "font-size=12";
+    extraConfig = "font-size=18";
     hwRender = true;
   };
 }

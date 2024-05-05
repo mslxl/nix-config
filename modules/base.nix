@@ -14,7 +14,7 @@
   programs.zsh.enable = true;
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["networkmanager" "wheel" "video"]; # Enable ‘sudo’ for the user.
     uid = 1000;
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
@@ -39,7 +39,6 @@
   environment.systemPackages = with pkgs; [
     tree
     git
-    gnumake
     connect
     htop
 

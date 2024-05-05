@@ -1,7 +1,15 @@
 {pkgs, ...}: {
   modules.desktop = {
     hyprland = {
+      enable = false;
+    };
+    xmonad = {
       enable = true;
+      startupOnce = ''
+        xrandr --output eDP --scale 0.8
+        fcitx5 -d &
+        ${pkgs.networkmanagerapplet}/bin/nm-applet &
+      '';
     };
     sddm = {
       enable = true;

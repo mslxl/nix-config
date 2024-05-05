@@ -14,7 +14,7 @@ with lib; {
     services.power-profiles-daemon.enable = true;
     services.tlp.enable = mkForce false;
     services.desktopManager.plasma6.enable = true;
-    environment.plasma6.excludePackages = with pkgs.libsForQt6; [
+    environment.plasma6.excludePackages = with pkgs.libsForQt5; [
       plasma-browser-integration
       konsole
       oxygen
