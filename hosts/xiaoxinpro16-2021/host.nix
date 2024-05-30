@@ -6,14 +6,15 @@
     xmonad = {
       enable = true;
       startupOnce = ''
-        xrandr --output eDP --scale 0.8
+        xrandr --output eDP --scale 0.75
+        bash -c "echo 'Xft.dpi: 96' | xrdb -merge"
         fcitx5 -d &
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
       '';
     };
     sddm = {
       enable = true;
-      bg = ../../wallpaper/pixiv-104537131.png;
+      bg = ../../wallpaper/northern-night.jpg;
     };
     sway = {
       enable = false;

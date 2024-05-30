@@ -11,7 +11,7 @@
 
     desktop = {
       background = {
-        source = ../../wallpaper/pixiv-104537131.png;
+        source = ../../wallpaper/northern-night.jpg;
         variant = "dark";
       };
       hyprland = {
@@ -37,21 +37,32 @@
       };
     };
   };
-  home.packages = with pkgs.jetbrains;
+  home.packages = with pkgs-stable;
     [
-      webstorm
-      rust-rover
-      pycharm-professional
-      mps
-      idea-ultimate
-      idea-community
-      goland
-      gateway
-      datagrip
+      android-studio
+
+      jetbrains.webstorm
+      jetbrains.rust-rover
+      jetbrains.pycharm-professional
+      jetbrains.mps
+      jetbrains.idea-ultimate
+      jetbrains.idea-community
+      jetbrains.goland
+      jetbrains.gateway
+      jetbrains.datagrip
     ]
     ++ (with pkgs; [
       zathura
       geogebra6
+      zotero
+      cpeditor
       appimage-run
+      typora
     ]);
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
 }

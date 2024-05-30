@@ -5,6 +5,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }: let
   hostName = "mslxl-xiaoxinpro16-2021";
@@ -23,12 +24,6 @@ in {
       efiSupport = true;
       configurationLimit = 15;
       useOSProber = false;
-      extraEntries = ''
-        menuentry "Microsoft Windows 11" --class windows {
-          search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
-          chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
       theme = pkgs.stdenv.mkDerivation {
         pname = "distro-grub-themes";
         version = "3.2";
@@ -63,6 +58,7 @@ in {
   ];
 
   time.hardwareClockInLocalTime = true;
+  users.users.${username}.extraGroups = [ "networkmanager" ];
 
   networking = {
     inherit hostName;
@@ -84,8 +80,24 @@ in {
     cifs-utils
   ];
 
-  fileSystems."/mnt/samba" = {
+  fileSystems."/mnt/secret" = {
     device = "//192.168.1.128/secret";
+    fsType = "cifs";
+    options = let
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+    in ["${automount_opts},credentials=/mnt/samba-secret,uid=1000,gid=100"];
+    # TODO: setup secret via agenix
+  };
+  fileSystems."/mnt/public" = {
+    device = "//192.168.1.128/public";
+    fsType = "cifs";
+    options = let
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+    in ["${automount_opts},credentials=/mnt/samba-secret,uid=1000,gid=100"];
+    # TODO: setup secret via agenix
+  };
+  fileSystems."/mnt/home" = {
+    device = "//192.168.1.128/home";
     fsType = "cifs";
     options = let
       automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
@@ -103,7 +115,7 @@ in {
   services.xserver.videoDrivers = ["nvidia" "amdgpu"];
 
   hardware.nvidia = {
-    open = false;
+    open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
     powerManagement = {

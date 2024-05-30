@@ -19,7 +19,6 @@
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [
-            "electron-19.1.9"
             "openssl-1.1.1w"
           ];
         };
@@ -28,6 +27,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "openssl-1.1.1w"
+          ];
         };
       };
       nur-pkgs-mslxl = import inputs.nur-mslxl {
