@@ -25,9 +25,9 @@ import XMonad.Hooks.ManageHelpers (isDialog, doCenterFloat)
 
 myWorkspaces = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-myTerminal = "alacritty"
+myTerminal = "wezterm"
 
-myBroswer = "vivaldi"
+myBroswer = "firefox"
 
 myLayoutHook = smartBorders $ avoidStruts $ toggleLayouts full tall
   where
@@ -95,9 +95,9 @@ myConfig =
         checkKeymap myConfig keymap
         spawnOnce "bash -c \"cat <SPAWN_ONCE_ON_STARTUP> | bash\""
         spawn "bash -c \"cat <SPAWN_ON_STARTUP> | bash\""
-        spawn "bash -c \"echo 'Xft.dpi: 96' | xrdb -merge\""
         spawn "sleep 2; feh --bg-fill ~/.wallpaper"
         spawn "xsetroot -cursor_name left_ptr"
+        spawnOnce "flameshot"
     }
   where
     keymap = myKeys myConfig

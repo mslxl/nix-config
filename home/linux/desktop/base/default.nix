@@ -5,13 +5,6 @@
 }: {
   imports = myutils.scanPaths ./.;
 
-  home.packages = with pkgs; [
-    (vivaldi.override {
-      proprietaryCodecs = true;
-      enableWidevine = true;
-    })
-  ];
-
   services.kdeconnect = {
     enable = true;
     indicator = true;

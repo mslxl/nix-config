@@ -10,15 +10,17 @@
       bat
       wpsoffice
       cmus
-      clang-tools
+
+      firefox
+      thunderbird
     ]
     ++ (with nur-pkgs-mslxl; [
       dida365
       liteloader-qqnt
     ])
     ++ (with nur-pkgs.repos; [
-      xddxdd.wechat-uos
+      # xddxdd.wechat-uos
       xddxdd.bilibili
-      linyinfeng.wemeet
+      # linyinfeng.wemeet
     ]);
 }

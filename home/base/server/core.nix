@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{pkgs, system, ...}: {
   home.packages = with pkgs; [
     pfetch
-    neofetch
-    yazi
     bottom
+    difftastic
+    yazi
   ];
 }

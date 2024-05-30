@@ -31,15 +31,16 @@ with lib; {
       dmenu
       dunst
       xmobar
-      alacritty
+      wezterm
       flameshot
     ];
+
+    services.libinput.touchpad.naturalScrolling = true;
 
     services.xserver = {
       displayManager = {
         startx.enable = true;
       };
-      libinput.touchpad.naturalScrolling = true;
 
       excludePackages = [pkgs.xterm];
       windowManager.xmonad = {

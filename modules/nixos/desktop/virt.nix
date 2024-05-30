@@ -5,7 +5,7 @@
   username,
   ...
 }: {
-  users.users.${username}.extraGroups = ["docker"];
+  users.users.${username}.extraGroups = ["docker" "libvirtd"];
   virtualisation = {
     docker = {
       enable = true;
@@ -20,18 +20,26 @@
       # This is required for containers which are created with the `--restart=always` flag to work.
       enableOnBoot = true;
     };
-    waydroid.enable = true;
+    waydroid.enable = false;
     libvirtd = {
       enable = true;
       # hanging this option to false may cause file permission issues for existing guests.
       # To fix these, manually change ownership of affected files in /var/lib/libvirt/qemu to qemu-libvirtd.
-      qemu.runAsRoot = true;
+      qemu = {
+        runAsRoot = true;
+        swtpm.enable = true;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
     };
-    lxd.enable = true;
+    spiceUSBRedirection.enable = true;
+    # lxd.enable = true;
   };
+  services.spice-vdagentd.enable = true;
   environment.systemPackages = with pkgs; [
     # Need to add [File (in the menu bar) -> Add connection] when start for the first time
     virt-manager
+    virt-viewer
 
     # QEMU/KVM(HostCpuOnly), provides:
     #   qemu-storage-daemon qemu-edid qemu-ga
@@ -47,5 +55,12 @@
     #   qemu-system-xtensa qemu-xtensa qemu-system-xtensaeb qemu-xtensaeb
     #   ......
     qemu
+
+    virtiofsd
+    spice
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
   ];
 }
