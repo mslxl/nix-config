@@ -1,21 +1,25 @@
 {
+  system,
+
   pkgs,
   pkgs-stable,
+  sticky-bucket,
   ...
 }: {
   modules = {
     game = {
-      minecraft.enable = true;
+      minecraft.enable = false;
       steam.enable = true;
+      osu.enable = true;
     };
 
     desktop = {
       background = {
-        source = ../../wallpaper/northern-night.jpg;
+        source = ../../wallpaper/stargazer.jpg;
         variant = "dark";
       };
       hyprland = {
-        enable = false;
+        enable = true;
         monitors = [
           "eDP-1,2560x1600,0x0,1.25"
           "HDMI-A-1,1920x1080,64x1280,1"
@@ -49,15 +53,21 @@
       jetbrains.idea-community
       jetbrains.goland
       jetbrains.gateway
+      jetbrains.clion
       jetbrains.datagrip
     ]
     ++ (with pkgs; [
+      wine
+      winetricks
+
       zathura
       geogebra6
       zotero
       cpeditor
       appimage-run
       typora
+
+      sticky-bucket.packages.${system}.default
     ]);
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

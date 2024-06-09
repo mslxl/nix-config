@@ -9,6 +9,8 @@
       trash-cli
       bat
       wpsoffice
+      xarchiver
+      okular
       cmus
 
       firefox

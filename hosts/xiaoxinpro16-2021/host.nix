@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   modules.desktop = {
     hyprland = {
-      enable = false;
+      enable = true;
     };
     xmonad = {
-      enable = true;
+      enable = false;
       startupOnce = ''
         xrandr --output eDP --scale 0.75
         bash -c "echo 'Xft.dpi: 96' | xrdb -merge"
@@ -14,7 +14,7 @@
     };
     sddm = {
       enable = true;
-      bg = ../../wallpaper/northern-night.jpg;
+      bg = ../../wallpaper/nix-wallpaper-dracula.png;
     };
     sway = {
       enable = false;

@@ -150,7 +150,11 @@ in {
   # started in user sessions.
   programs.mtr.enable = true;
 
-  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
+  nix.settings.substituters = [
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    "https://mirrors.cernet.edu.cn/nix-channels/store"
+    # "https://mirror.sjtu.edu.cn/nix-channels/store"
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

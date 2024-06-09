@@ -3,6 +3,7 @@
     pfetch
     bottom
     difftastic
+    unar
     yazi
   ];
 }
