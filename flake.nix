@@ -29,7 +29,8 @@
       flake = false;
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    sticky-bucket.url = "github:mslxl/sticky-bucket";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
   outputs = {
     self,
