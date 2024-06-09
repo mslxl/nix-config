@@ -11,7 +11,6 @@
       wpsoffice
       xarchiver
       okular
-      cmus
 
       firefox
       thunderbird

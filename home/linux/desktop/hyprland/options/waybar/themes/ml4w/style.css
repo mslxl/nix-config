@@ -205,6 +205,20 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
+ * MPD
+ * ----------------------------------------------------- */
+#mpd {
+    background-color: @backgrounddark;
+    font-size: 16px;
+    color: @textcolor1;
+    border-radius: 15px;
+    padding: 0px 10px 0px 10px;
+    margin: 3px 15px 3px 14px;
+    opacity:0.8;
+    border:3px solid @bordercolor;
+}
+
+/* -----------------------------------------------------
  * Custom Modules
  * ----------------------------------------------------- */
 
@@ -320,6 +334,7 @@ window#waybar.empty #window {
     background-color: @backgrounddark;
     color: @textcolor1;
 }
+
 
 /* -----------------------------------------------------
  * Network

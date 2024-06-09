@@ -32,6 +32,10 @@
           # default is 96, 96 * 1.25 is 120
           exec = bash -c "echo 'Xft.dpi: 120' | xrdb -merge"
         '';
+        waybar = {
+          theme = "ml4w";
+          variant = "colored";
+        };
       };
       sway = {
         enable = false;
