@@ -58,7 +58,7 @@ in {
   ];
 
   time.hardwareClockInLocalTime = true;
-  users.users.${username}.extraGroups = [ "networkmanager" ];
+  users.users.${username}.extraGroups = ["networkmanager"];
 
   networking = {
     inherit hostName;
