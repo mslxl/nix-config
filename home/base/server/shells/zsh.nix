@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    pfetch
     git
     tokei
   ];
@@ -19,13 +18,15 @@
       enable = true;
     };
     enableCompletion = true;
-    defaultKeymap = "viins";
+    enableVteIntegration = true;
     shellAliases = {
       g = "git";
     };
+    localVariables = {
+    };
     initExtra = ''
       if [[ $(tty) == *"pts"* ]] {
-         pfetch
+         ${pkgs.fastfetch}/bin/fastfetch --cpu-temp --gpu-temp --battery-temp
       }
     '';
     oh-my-zsh = {
@@ -35,6 +36,7 @@
         "safe-paste"
         "git"
         "extract"
+        "vi-mode"
       ];
     };
   };
