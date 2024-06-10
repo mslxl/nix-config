@@ -1,0 +1,70 @@
+{
+	// Place your nixos workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"mkOption": {
+		"scope": "nix",
+		"prefix": "mkOpt",
+		"body": [
+			"lib.mkOption {",
+			"\ttype = lib.types.${1|bool,boolByOr,path,pathInStore,package,enum [],anything,raw,optionType,attrs,pkgs,int,ints.s8,ints.s16,ints.s32,ints.unsigned,ints.u8,ints.u16,ints.u32,ints.between low high,ints.positive,port,float,number,numbers.between low high,numbers.nonnegative,numbers.positive,str,separatedString \"sep\",lines,commas,envVar,strMatching \"regex\",listOf t,attrsOf t,lazyAttrsOf t,nullOr t,uniq t,oneOf [],either t1 t2|};",
+			"\tdefault = $2;",
+			"\tdescription = ''",
+			"\t\t$3",
+			"\t'';",
+			"};"
+		]
+	},
+	"mkBoolOpt": {
+		"scope": "nix",
+		"prefix": "mkBoolOpt",
+		"body": [
+			"lib.mkOption {",
+			"\ttype = lib.types.bool;",
+			"\tdefault = ${1|true, false|};",
+			"\tdescription = ''",
+			"\t\t$2",
+			"\t'';",
+			"};"
+		]
+	},
+	"mkStrOpt": {
+		"scope": "nix",
+		"prefix": "mkStrOpt",
+		"body": [
+			"lib.mkOption {",
+			"\ttype = lib.types.str;",
+			"\tdefault = \"${1}\";",
+			"\tdescription = ''",
+			"\t\t$2",
+			"\t'';",
+			"};"
+		]
+	},
+	"mkKMOpt": {
+		"scope": "nix",
+		"prefix": "mkKMOpt",
+		"body": [
+			"lib.mkOption {",
+			"\ttype = lib.types.strMatching \"0|([0-9]+(K|M))\";",
+			"\tdefault = \"${1|0|}\";",
+			"\tdescription = ''",
+			"\t\t$2",
+			"\t'';",
+			"};"
+		]
+	}
+}

@@ -1,7 +1,12 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    aria
-    ariang
-  ];
-  # TODO: setup aria deamon
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  config = lib.mkIf config.modules.aria.daemon.enable {
+    home.packages = with pkgs; [
+      ariang
+    ];
+  };
 }

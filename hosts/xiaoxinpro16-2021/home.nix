@@ -1,6 +1,5 @@
 {
   system,
-
   pkgs,
   pkgs-stable,
   sticky-bucket,
@@ -11,6 +10,20 @@
       minecraft.enable = false;
       steam.enable = true;
       osu.enable = true;
+    };
+
+    aria = {
+      enable = true;
+      daemon = {
+        enable = true;
+        max-concurrent-downloads = 32;
+        max-connection-per-server = 16;
+        split = 64;
+        disable-ipv6 = true;
+        no-netrc = true;
+        bt-max-peers = 128;
+        rpc-allow-origin-all = false;
+      };
     };
 
     desktop = {
