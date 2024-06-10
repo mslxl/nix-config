@@ -29,7 +29,7 @@ gitgc:
 	git gc --prune=now
 
 update input:
-	nix flake update {{input}}
+	nix flake lock --update-input {{input}}
 
 update-all:
 	nix flake update

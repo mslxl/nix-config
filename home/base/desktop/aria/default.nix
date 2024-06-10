@@ -2,11 +2,12 @@
   pkgs,
   config,
   lib,
+  nur-pkgs-mslxl,
   ...
 }: {
   config = lib.mkIf config.modules.aria.daemon.enable {
-    home.packages = with pkgs; [
-      ariang
+    home.packages = [
+      nur-pkgs-mslxl.ariang-native
     ];
   };
 }

@@ -585,11 +585,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1717077222,
-        "narHash": "sha256-G1N+Tqmfszx4QRvbh81DlC+0LhUZbB6tQBReIS8p2ws=",
+        "lastModified": 1718036904,
+        "narHash": "sha256-8/R6S9xv6waXjM9m0oHIpb76qJuLvjjgKXTtzF5szuI=",
         "owner": "mslxl",
         "repo": "nur-pkgs",
-        "rev": "10ce916e373249ae5c880696f371b3fd946b14a0",
+        "rev": "ac466cb79c8a14a10106ad550f10990695576516",
         "type": "github"
       },
       "original": {
