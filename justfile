@@ -14,9 +14,25 @@ sudo:
 		 exit 1\
 	}
 
-gc: sudo
+# Remove all generations older than 7 days
+clean: sudo
+	nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+
+# Garbage collect all unused nix store entries
+gc: clean
 	nix store gc --debug
 	nix-collect-garbage --delete-old
 
-update:
+# Remove all reflog entries and prune unreachable objects
+gitgc:
+	git reflog expire --expire-unreachable=now --all
+	git gc --prune=now
+
+update input:
+	nix flake update {{input}}
+
+update-all:
 	nix flake update
+
+log:
+	nix profile history --profile /nix/var/nix/profiles/system
