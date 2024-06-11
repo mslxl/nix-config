@@ -1,10 +1,10 @@
 {
-  wallpaper,
-  nixos-wsl,
+  inputs,
   ...
 }: let
   server_base = {
     nixos-modules = [
+      ../secrets/nixos-system.nix
       ../modules/base.nix
       ../modules/nixos/base
     ];
@@ -14,6 +14,7 @@
   };
   desktop_base = {
     nixos-modules = [
+      ../secrets/nixos-system.nix
       ../modules/base.nix
       ../modules/nixos/desktop
       ../modules/nixos/base
@@ -38,7 +39,7 @@ in {
   nixos-wsl = {
     nixos-modules =
       [
-        nixos-wsl.nixosModules.wsl
+        inputs.nixos-wsl.nixosModules.wsl
         ../hosts/nixos-wsl
       ]
       ++ server_base.nixos-modules;

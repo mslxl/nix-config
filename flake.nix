@@ -17,6 +17,13 @@
 
     nur-mslxl.url = "github:mslxl/nur-pkgs";
     nur.url = "github:nix-community/NUR";
+
+    agenix.url = "github:ryantm/agenix";
+    secrets = {
+      url = "git+ssh://git@github.com/mslxl/secrets.git?shallow=1";
+      flake = false;
+    };
+
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";

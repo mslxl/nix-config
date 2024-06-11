@@ -6,7 +6,7 @@
   inherit (inputs.nixpkgs) lib;
   myutils = import ../utils {inherit lib;};
   profiles = import ./profiles.nix {
-    inherit (inputs) wallpaper nixos-wsl;
+    inherit inputs;
   };
   specialArgsForSystem = system:
     rec {
@@ -18,18 +18,12 @@
         inherit system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "openssl-1.1.1w"
-          ];
         };
       };
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "openssl-1.1.1w"
-          ];
         };
       };
       nur-pkgs-mslxl = import inputs.nur-mslxl {
@@ -52,15 +46,16 @@ in {
   nixosConfigurations = with args;
   with myutils;
   with allSystemAttrs; let
-    base_args = {
-      inherit home-manager;
-      inherit nixpkgs;
-      system = x64_system;
-      specialArgs = allSystemSpecialArgs.x64_system;
-    };
+    base_args =
+      myutils.attrs.mapAttrs (system-key: (system: {
+        inherit home-manager;
+        inherit nixpkgs;
+        inherit system;
+        specialArgs = allSystemSpecialArgs.${system-key};
+      }))
+      allSystemAttrs;
   in {
-    mslxl-xiaoxinpro16-2021 = nixosSystem (profiles.xiaoxinpro16-2021 // base_args);
-    nixos-wsl = nixosSystem (profiles.nixos-wsl // base_args);
-    # TODO: generate it via map function
+    mslxl-xiaoxinpro16-2021 = nixosSystem (profiles.xiaoxinpro16-2021 // base_args.x64_system);
+    nixos-wsl = nixosSystem (profiles.nixos-wsl // base_args.x64_system);
   };
 }

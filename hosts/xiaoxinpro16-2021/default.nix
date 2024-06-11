@@ -6,6 +6,7 @@
   lib,
   pkgs,
   username,
+  myutils,
   ...
 }: let
   hostName = "mslxl-xiaoxinpro16-2021";
@@ -80,30 +81,19 @@ in {
     cifs-utils
   ];
 
-  fileSystems."/mnt/secret" = {
-    device = "//192.168.1.128/secret";
-    fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-    in ["${automount_opts},credentials=/mnt/samba-secret,uid=1000,gid=100"];
-    # TODO: setup secret via agenix
-  };
-  fileSystems."/mnt/public" = {
-    device = "//192.168.1.128/public";
-    fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-    in ["${automount_opts},credentials=/mnt/samba-secret,uid=1000,gid=100"];
-    # TODO: setup secret via agenix
-  };
-  fileSystems."/mnt/home" = {
-    device = "//192.168.1.128/home";
-    fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-    in ["${automount_opts},credentials=/mnt/samba-secret,uid=1000,gid=100"];
-    # TODO: setup secret via agenix
-  };
+  fileSystems = let
+    bindDir = name: {
+      name = "/mnt/${name}";
+      value = {
+        device = "//192.168.1.128/${name}";
+        fsType = "cifs";
+        options = let
+          automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+        in ["${automount_opts},credentials=${config.age.secrets."samba-kamoi".path},uid=1000,gid=100"];
+      };
+    };
+  in
+    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home"]);
 
   powerManagement.enable = true;
   services.logind = {
