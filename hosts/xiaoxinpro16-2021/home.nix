@@ -3,6 +3,7 @@
   pkgs,
   pkgs-stable,
   sticky-bucket,
+  wallpapers,
   ...
 }: {
   modules = {
@@ -28,7 +29,7 @@
 
     desktop = {
       background = {
-        source = ../../wallpaper/stargazer.jpg;
+        source = "${wallpapers}/stargazer.jpg";
         variant = "dark";
       };
       hyprland = {

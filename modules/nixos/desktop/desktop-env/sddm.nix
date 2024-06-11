@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  wallpaper,
+  wallpapers,
   lib,
   nix-colors,
   ...
@@ -12,7 +12,7 @@ with lib; {
       enable = mkEnableOption "Enable sddm";
       bg = mkOption {
         type = types.path;
-        default = ../../../nix-wallpaper-dracula.png;
+        default = "${wallpapers}/nix-wallpaper-dracula.jpg";
       };
       variant = lib.mkOption {
         type = with lib.types; enum ["dark" "light"];

@@ -36,6 +36,10 @@
       flake = false;
     };
 
+    wallpapers = {
+      url = "https://github.com/mslxl/wallpapers/archive/main.tar.gz";
+      flake = false;
+    };
     sticky-bucket.url = "github:mslxl/sticky-bucket";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };

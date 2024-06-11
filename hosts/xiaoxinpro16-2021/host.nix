@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  wallpapers,
+  ...
+}: {
   modules.desktop = {
     hyprland = {
       enable = true;
@@ -14,7 +18,7 @@
     };
     sddm = {
       enable = true;
-      bg = ../../wallpaper/nix-wallpaper-dracula.png;
+      bg = "${wallpapers}/nix-wallpaper-dracula.jpg";
     };
     sway = {
       enable = false;

@@ -827,6 +827,19 @@
         "type": "github"
       }
     },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718083647,
+        "narHash": "sha256-LI+Sb2xHpcggbnJceCjlNFmOpt1F2Z3Bl9nPr/zBRqE=",
+        "type": "tarball",
+        "url": "https://github.com/mslxl/wallpapers/archive/main.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/mslxl/wallpapers/archive/main.tar.gz"
+      }
+    },
     "xdph": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
