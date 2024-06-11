@@ -113,6 +113,22 @@
         "type": "github"
       }
     },
+    "flake-compat_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_3"
@@ -591,6 +607,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1716948383,
+        "narHash": "sha256-SzDKxseEcHR5KzPXLwsemyTR/kaM9whxeiJohbL04rs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ad57eef4ef0659193044870c731987a6df5cf56b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nmd": {
       "flake": false,
       "locked": {
@@ -647,11 +679,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1717982699,
-        "narHash": "sha256-9DF23Rb/w332Psu5vsoPtOKe/jx2lb7uxEt7lVk31HY=",
+        "lastModified": 1718083203,
+        "narHash": "sha256-EbV/EWO3VBjZMhY+yrtTay5xGAxS4bnvIg7jPbgYEZU=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "d785bdebf0cf91e848c98106c28494de108e3eeb",
+        "rev": "574fe531cb78197ba6d97e2d0f12d9ae7e4798fd",
         "type": "github"
       },
       "original": {
@@ -665,11 +697,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1718036904,
-        "narHash": "sha256-8/R6S9xv6waXjM9m0oHIpb76qJuLvjjgKXTtzF5szuI=",
+        "lastModified": 1718086134,
+        "narHash": "sha256-a3oejIwMvs6yzQZ0X8RlYJmoYU8jlmSKRAq2Bk+B+1I=",
         "owner": "mslxl",
         "repo": "nur-pkgs",
-        "rev": "ac466cb79c8a14a10106ad550f10990695576516",
+        "rev": "98e340696dc63e2cc1d7a819541781d55907d2b7",
         "type": "github"
       },
       "original": {
@@ -694,7 +726,8 @@
         "nur-mslxl": "nur-mslxl",
         "secrets": "secrets",
         "sticky-bucket": "sticky-bucket",
-        "wallpapers": "wallpapers"
+        "wallpapers": "wallpapers",
+        "waybar": "waybar"
       }
     },
     "rust-analyzer-src": {
@@ -838,6 +871,25 @@
       "original": {
         "type": "tarball",
         "url": "https://github.com/mslxl/wallpapers/archive/main.tar.gz"
+      }
+    },
+    "waybar": {
+      "inputs": {
+        "flake-compat": "flake-compat_2",
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1718048281,
+        "narHash": "sha256-OMK4BB/a63LQ/2Lh4WvHOfRvTIh043H4Mxro62ue4Ec=",
+        "owner": "Alexays",
+        "repo": "Waybar",
+        "rev": "0251e25f234d24300b9f1063896e13a188fda03c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Alexays",
+        "repo": "Waybar",
+        "type": "github"
       }
     },
     "xdph": {

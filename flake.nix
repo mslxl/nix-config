@@ -42,6 +42,7 @@
     };
     sticky-bucket.url = "github:mslxl/sticky-bucket";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    waybar.url = "github:Alexays/Waybar";
   };
   outputs = {
     self,

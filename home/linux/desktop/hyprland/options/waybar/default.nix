@@ -3,6 +3,8 @@
   nix-colors,
   config,
   lib,
+  waybar,
+  system,
   ...
 }:
 with lib; let
@@ -25,6 +27,7 @@ in {
   config = mkIf cfg.enable {
     programs.waybar = {
       enable = true;
+      package = waybar.packages.${system}.waybar;
     };
 
     home.activation.waybar-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
