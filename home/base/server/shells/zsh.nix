@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  shellAliases = {
+    g = "git";
+  };
+in {
   home.packages = with pkgs; [
     git
     tokei
@@ -7,7 +11,33 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     nix-direnv.enable = true;
+  };
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
+    settings = {
+      time = {
+        disabled = false;
+      };
+    };
+  };
+  programs.nushell = {
+    enable = true;
+    configFile.text = ''
+      $env.config = {
+        show_banner: false
+      }
+    '';
+    extraConfig = ''
+      if (tty | str contains "pts") {
+          ${pkgs.fastfetch}/bin/fastfetch --cpu-temp --gpu-temp --battery-temp
+      }
+    '';
+    inherit shellAliases;
   };
   programs.zsh = {
     enable = true;
@@ -19,11 +49,7 @@
     };
     enableCompletion = true;
     enableVteIntegration = true;
-    shellAliases = {
-      g = "git";
-    };
-    localVariables = {
-    };
+    inherit shellAliases;
     initExtra = ''
       if [[ $(tty) == *"pts"* ]] {
          ${pkgs.fastfetch}/bin/fastfetch --cpu-temp --gpu-temp --battery-temp

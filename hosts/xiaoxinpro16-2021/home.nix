@@ -8,7 +8,7 @@
 }: {
   modules = {
     game = {
-      minecraft.enable = false;
+      minecraft.enable = true;
       steam.enable = true;
       osu.enable = true;
     };

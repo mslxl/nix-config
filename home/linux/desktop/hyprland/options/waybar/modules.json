@@ -20,11 +20,11 @@
       "active": "",
       "default": ""
     },
-    "persistent-workspaces": {
-      // START WORKSPACES
-      "*": 5
-      // END WORKSPACES
-    }
+    // "persistent-workspaces": {
+    //   // START WORKSPACES
+    //   "*": 5
+    //   // END WORKSPACES
+    // }
   },
 
   // Taskbar

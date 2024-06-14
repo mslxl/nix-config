@@ -13,8 +13,7 @@
       inherit system;
       inherit (constants) username useremail;
       inherit myutils;
-      nix-colors = inputs.nix-colors;
-      pkgs-unstable = import inputs.nixpkgs-unstable {
+      pkgs-unstable = import inputs.nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;

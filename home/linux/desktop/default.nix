@@ -21,4 +21,12 @@
       default = "dark";
     };
   };
+
+  config = {
+    xdg.mimeApps.enable = true;
+
+    home.packages = with pkgs; [
+      perl538Packages.FileMimeInfo
+    ];
+  };
 }

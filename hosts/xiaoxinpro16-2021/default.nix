@@ -88,12 +88,12 @@ in {
         device = "//192.168.1.128/${name}";
         fsType = "cifs";
         options = let
-          automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+          automount_opts = "nobrl,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
         in ["${automount_opts},credentials=${config.age.secrets."samba-kamoi".path},uid=1000,gid=100"];
       };
     };
   in
-    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home"]);
+    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker"]);
 
   powerManagement.enable = true;
   services.logind = {

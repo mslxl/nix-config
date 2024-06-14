@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}: let
+{inputs, ...}: let
   server_base = {
     nixos-modules = [
       ../secrets/nixos-system.nix
