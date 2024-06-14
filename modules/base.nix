@@ -24,7 +24,13 @@
 
   environment.pathsToLink = ["/share/zsh"]; # get completion for system packages in zsh
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings.experimental-features = ["nix-command" "flakes"];
+    extraOptions = ''
+      !include ${config.age.secrets."nix-access-token".path}
+    '';
+  };
+
   time.timeZone = "Asia/Shanghai";
   environment.variables.TZ = time.timeZone;
 

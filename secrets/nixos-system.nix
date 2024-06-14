@@ -2,6 +2,7 @@
   agenix,
   secrets,
   pkgs,
+  username,
   ...
 }: {
   imports = [
@@ -16,6 +17,12 @@
       file = "${secrets}/samba-kamoi.age";
       mode = "0500";
       owner = "root";
+    };
+
+    "nix-access-token" = {
+      file = "${secrets}/nix-access-token.age";
+      mode = "0440";
+      owner = username;
     };
   };
 }
