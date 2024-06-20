@@ -10,6 +10,6 @@
     anki
     ffmpeg-full
     calibre
-    bitwarden
+    qrcp
   ];
 }
