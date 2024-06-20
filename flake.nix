@@ -22,6 +22,9 @@
       url = "git+ssh://git@github.com/mslxl/secrets.git?shallow=1";
       flake = false;
     };
+    yazi.url = "github:sxyazi/yazi";
+
+    scripts.url = "git+ssh://git@github.com/mslxl/scripts.git?shallow=1";
 
     # home-manager, used for managing user configuration
     home-manager = {
@@ -36,7 +39,7 @@
     };
 
     wallpapers = {
-      url = "https://github.com/mslxl/wallpapers/archive/main.tar.gz";
+      url = "https://github.com/mslxl/wallpapers/archive/main.zip";
       flake = false;
     };
     sticky-bucket.url = "github:mslxl/sticky-bucket";
@@ -70,7 +73,6 @@
         default = devPkgs.mkShell {
           packages = with devPkgs; [
             just
-            nushell
           ];
         };
       });

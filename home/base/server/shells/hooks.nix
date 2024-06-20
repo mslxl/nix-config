@@ -28,4 +28,22 @@
       # default_layout = "compact";
     };
   };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+  };
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
+    settings = {
+      time = {
+        disabled = false;
+      };
+    };
+  };
 }

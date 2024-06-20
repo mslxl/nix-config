@@ -3,7 +3,12 @@ set shell := ["nu", "-c"]
 FLAKE_CFG := ".#" + `cat /etc/hostname`
 
 build: sudo
-	nixos-rebuild switch --flake {{FLAKE_CFG}}
+  #!/usr/bin/env nix-shell
+  #! nix-shell -p nix-output-monitor -i bash
+  nixos-rebuild switch --flake {{FLAKE_CFG}} --log-format internal-json -v |& nom --json
+
+build-and-poweroff: build
+  poweroff
 trace-build: sudo
 	nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option eval-cache false
 
@@ -29,10 +34,12 @@ gitgc:
 	git gc --prune=now
 
 update input:
-	nix flake lock --update-input {{input}}
+  ssh-add
+  nix flake lock --update-input {{input}}
 
 update-all:
-	nix flake update
+  ssh-add
+  nix flake update
 
 log:
 	nix profile history --profile /nix/var/nix/profiles/system

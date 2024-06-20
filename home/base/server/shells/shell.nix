@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  scripts,
+  ...
+}: let
   shellAliases = {
     g = "git";
   };
@@ -6,25 +10,10 @@ in {
   home.packages = with pkgs; [
     git
     tokei
+    just
+    scripts.packages.${pkgs.system}.default
   ];
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-    nix-direnv.enable = true;
-  };
-  programs.starship = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = false;
-    enableBashIntegration = false;
-    settings = {
-      time = {
-        disabled = false;
-      };
-    };
-  };
+
   programs.nushell = {
     enable = true;
     configFile.text = ''
@@ -54,6 +43,7 @@ in {
       if [[ $(tty) == *"pts"* ]] {
          ${pkgs.fastfetch}/bin/fastfetch --cpu-temp --gpu-temp --battery-temp
       }
+      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
     oh-my-zsh = {
       enable = true;
