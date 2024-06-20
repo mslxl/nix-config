@@ -44,7 +44,7 @@ in {
       package = hyprland.packages.${system}.hyprland;
       settings = {
         env = [
-          # "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
+          "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
           "MOZ_ENABLE_WAYLAND,1" # for firefox to run on wayland
           "MOZ_WEBRENDER,1"
           # misc
@@ -101,6 +101,7 @@ in {
         exec-once = bash -c "while true; do waybar; sleep 2; done"
         exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
       '';
+      # exec-once = ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy
     };
   };
 }
