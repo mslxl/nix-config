@@ -2,12 +2,15 @@
   config,
   lib,
   pkgs,
+  nur,
   username,
   ...
 } @ args: rec {
   nixpkgs = {
     overlays = import ../overlays args;
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -53,6 +56,9 @@
     unzip
     p7zip
     unar
+
+    nix-tree
+    nix-index
 
     nano
 
