@@ -2,19 +2,29 @@
   pkgs,
   nur-pkgs-mslxl,
   nur-pkgs,
+  myutils,
   ...
 }: {
+  xdg.mimeApps.defaultApplications = (
+    myutils.attrs.listToAttrs [
+      "application/zip"
+      "application/rar"
+    ] (_: ["xarchiver.desktop"])
+  );
+
   home.packages =
     (with pkgs; [
       trash-cli
       bat
       xarchiver
+      wechat-uos
     ])
     ++ (with nur-pkgs-mslxl; [
       dida365
     ])
     ++ (with nur-pkgs.repos; [
-      # xddxdd.wechat-uos
+      # xddxdd.wine-wechat
+
       xddxdd.bilibili
       # linyinfeng.wemeet
     ]);
