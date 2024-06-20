@@ -29,8 +29,8 @@
 
     desktop = {
       background = {
-        source = "${wallpapers}/stargazer.jpg";
-        variant = "dark";
+        source = "${wallpapers}/119718878_p0.jpg";
+        variant = "light";
       };
       hyprland = {
         enable = true;
@@ -47,7 +47,7 @@
           exec = bash -c "echo 'Xft.dpi: 120' | xrdb -merge"
         '';
         waybar = {
-          theme = "ml4w";
+          theme = "ml4w-blur";
           variant = "colored";
         };
       };
