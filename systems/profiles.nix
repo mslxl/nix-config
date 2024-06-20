@@ -1,6 +1,7 @@
 {inputs, ...}: let
   server_base = {
     nixos-modules = [
+      inputs.nur.nixosModules.nur
       ../secrets/nixos-system.nix
       ../modules/base.nix
       ../modules/nixos/base
@@ -11,6 +12,7 @@
   };
   desktop_base = {
     nixos-modules = [
+      inputs.nur.nixosModules.nur
       ../secrets/nixos-system.nix
       ../modules/base.nix
       ../modules/nixos/desktop

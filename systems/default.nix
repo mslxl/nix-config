@@ -8,6 +8,14 @@
   profiles = import ./profiles.nix {
     inherit inputs;
   };
+  nixpkgs-config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      # For pkgs.wechat-uos
+      "openssl"
+      "openssl-1.1.1w"
+    ];
+  };
   specialArgsForSystem = system:
     rec {
       inherit system;
@@ -15,16 +23,13 @@
       inherit myutils;
       pkgs-unstable = import inputs.nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config = nixpkgs-config;
       };
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config = nixpkgs-config;
       };
+      pkgs = pkgs-unstable;
       nur-pkgs-mslxl = import inputs.nur-mslxl {
         pkgs = pkgs-unstable;
       };
