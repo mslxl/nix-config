@@ -47,10 +47,8 @@ in {
     '';
     oh-my-zsh = {
       enable = true;
-      theme = "ys";
       plugins = [
         "safe-paste"
-        "git"
         "extract"
         "vi-mode"
       ];

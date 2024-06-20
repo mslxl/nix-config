@@ -38,8 +38,8 @@
   programs.starship = {
     enable = true;
     enableNushellIntegration = true;
-    enableZshIntegration = false;
-    enableBashIntegration = false;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
     settings = {
       time = {
         disabled = false;
