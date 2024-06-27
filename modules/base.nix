@@ -13,6 +13,7 @@
     };
   };
 
+  home-manager.backupFileExtension = "backup";
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.zsh.enable = true;
   users.users.${username} = {

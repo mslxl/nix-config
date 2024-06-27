@@ -16,6 +16,7 @@ in {
     ./hardware-configuration.nix
     ./tlp.nix
     ./host.nix
+    ./game.nix
   ];
 
   boot.loader = {
@@ -24,7 +25,7 @@ in {
       device = "nodev";
       efiSupport = true;
       configurationLimit = 15;
-      useOSProber = false;
+      useOSProber = true;
       theme = pkgs.stdenv.mkDerivation {
         pname = "distro-grub-themes";
         version = "3.2";
@@ -114,10 +115,13 @@ in {
     };
     prime = {
       allowExternalGpu = true;
+
+      # Use this to save energy
       offload = {
         enable = true;
         enableOffloadCmd = true;
       };
+
       amdgpuBusId = "PCI:1:0:0";
       nvidiaBusId = "PCI:5:0:0";
     };
@@ -125,11 +129,7 @@ in {
   };
   # virtualisation.docker.enableNvidia = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  hardware.graphics.enable = true;
 
   services.v2raya.enable = true;
 
@@ -141,9 +141,9 @@ in {
   programs.mtr.enable = true;
 
   nix.settings.substituters = [
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    # "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://mirrors.cernet.edu.cn/nix-channels/store"
-    # "https://mirror.sjtu.edu.cn/nix-channels/store"
+    "https://mirror.sjtu.edu.cn/nix-channels/store"
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,

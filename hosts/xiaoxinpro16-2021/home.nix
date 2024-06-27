@@ -83,7 +83,6 @@
       zotero
       cpeditor
       appimage-run
-      typora
 
       sticky-bucket.packages.${system}.default
     ]);
