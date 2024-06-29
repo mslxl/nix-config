@@ -17,7 +17,14 @@
       name = "Bibata-Modern-Ice";
     };
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.papirus-icon-theme.overrideAttrs (super: {
+        installPhase = pkgs.lib.concatStringsSep "\n" [
+          ''find . -type f -name "firefox.png" -exec rm -f {} \;''
+          ''find . -type f -name "firefox.svg" -exec rm -f {} \;''
+
+          super.installPhase
+        ];
+      });
       name = "Papirus-Dark";
     };
     gtk3.extraConfig = {
