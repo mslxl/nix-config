@@ -9,6 +9,7 @@
 in {
   home.packages = with pkgs; [
     git
+    lice
     tokei
     just
     scripts.packages.${pkgs.system}.default
