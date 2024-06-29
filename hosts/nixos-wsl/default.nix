@@ -22,7 +22,7 @@ in {
     startMenuLaunchers = false;
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   networking = {
     inherit hostName;
