@@ -391,7 +391,8 @@
             After = ["network.target"];
           };
           Install = {
-            WantedBy = ["multi-user.target"];
+            # WantedBy = ["multi-user.target"];
+            WantedBy = ["default.target"];
           };
           Service = {
             Type = "simple";
