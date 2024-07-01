@@ -7,12 +7,6 @@
   ...
 }: {
   modules = {
-    game = {
-      minecraft.enable = true;
-      steam.enable = true;
-      osu.enable = true;
-    };
-
     aria = {
       enable = true;
       daemon = {
