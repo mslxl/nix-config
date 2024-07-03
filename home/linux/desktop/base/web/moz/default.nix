@@ -50,6 +50,7 @@ in {
 
   home.packages = [
     firefox-kitsune
+    pkgs.chromium # used for debuging on chromium kernel based browsers
     pkgs.thunderbird
     pkgs.tor-browser
   ];
