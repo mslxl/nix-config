@@ -30,10 +30,6 @@ in {
       package = waybar.packages.${system}.waybar;
     };
 
-    home.activation.waybar-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run bash -c "${pkgs.procps}/bin/pkill waybar || true"
-    '';
-
     home.packages = with pkgs; [
       pavucontrol
       blueman
