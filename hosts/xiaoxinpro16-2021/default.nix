@@ -130,14 +130,6 @@ in {
 
   hardware.graphics.enable = true;
 
-  # services.v2raya.enable = true;
-  programs.clash-verge = {
-    enable = true;
-    tunMode = true;
-    autoStart = true;
-    package = pkgs.clash-verge-rev;
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
