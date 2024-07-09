@@ -104,7 +104,19 @@ in {
           pkill waybar
           nohup waybar 2>&1 >/dev/null &
         ''}
-        
+
+        # lol
+        exec-once = clash-verge
+
+        # register in nix modules
+        ${
+          lib.concatStringsSep "\n"
+          (builtins.map (prog: "exec-once = ") config.modules.desktop.exec.once)
+        }
+        ${
+          lib.concatStringsSep "\n"
+          (builtins.map (prog: "exec = ") config.modules.desktop.exec.always)
+        }
       '';
       # exec-once = ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy
     };
