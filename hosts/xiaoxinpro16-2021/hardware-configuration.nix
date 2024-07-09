@@ -7,7 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}: rec {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -37,6 +37,13 @@
       device = "/var/swapfile";
       size = 1024 * 17;
     }
+  ];
+
+  boot.resumeDevice = fileSystems."/".device;
+  # calculate resume_offset using
+  # filefrag -v /var/swapfile | awk '{if($1=="0:"){print $4}}'
+  boot.kernelParams = [
+    "resume_offset=7751680"
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
