@@ -2,7 +2,7 @@
   system,
   pkgs,
   pkgs-stable,
-  sticky-bucket,
+  sticker-bucket,
   wallpapers,
   ...
 }: {
@@ -74,11 +74,11 @@
 
       zathura
       geogebra6
-      zotero
+      zotero-beta
       cpeditor
       appimage-run
 
-      sticky-bucket.packages.${system}.default
+      sticker-bucket.packages.${system}.default
     ]);
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

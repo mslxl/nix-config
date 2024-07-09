@@ -42,7 +42,7 @@
       url = "https://github.com/mslxl/wallpapers/archive/main.zip";
       flake = false;
     };
-    sticky-bucket.url = "github:mslxl/sticky-bucket";
+    sticker-bucket.url = "github:mslxl/sticker-bucket";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     waybar.url = "github:Alexays/Waybar";
   };
