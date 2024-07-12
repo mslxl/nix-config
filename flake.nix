@@ -39,7 +39,7 @@
     };
 
     wallpapers = {
-      url = "https://github.com/mslxl/wallpapers/archive/main.zip";
+      url = "github:mslxl/wallpapers";
       flake = false;
     };
     sticker-bucket.url = "github:mslxl/sticker-bucket";
