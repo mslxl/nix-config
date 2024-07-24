@@ -9,7 +9,7 @@
   myutils,
   ...
 }: let
-  hostName = "mslxl-xiaoxinpro16-2021";
+  hostName = "suzuran";
 in {
   imports = [
     # Include the results of the hardware scan.

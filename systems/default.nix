@@ -59,7 +59,7 @@ in {
       }))
       allSystemAttrs;
   in {
-    mslxl-xiaoxinpro16-2021 = nixosSystem (profiles.xiaoxinpro16-2021 // base_args.x64_system);
+    suzuran = nixosSystem (profiles.suzuran // base_args.x64_system);
     nixos-wsl = nixosSystem (profiles.nixos-wsl // base_args.x64_system);
   };
 }

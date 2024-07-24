@@ -14,8 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur-mslxl.url = "github:mslxl/nur-pkgs";
-    nur.url = "github:nix-community/NUR";
+    nur-mslxl = {
+      url = "github:mslxl/nur-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url  = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     agenix.url = "github:ryantm/agenix";
     secrets = {
@@ -42,9 +48,18 @@
       url = "github:mslxl/wallpapers";
       flake = false;
     };
-    sticker-bucket.url = "github:mslxl/sticker-bucket";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    waybar.url = "github:Alexays/Waybar";
+    sticker-bucket = {
+      url = "github:mslxl/sticker-bucket";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; 
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,

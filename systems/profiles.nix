@@ -23,15 +23,15 @@
     ];
   };
 in {
-  xiaoxinpro16-2021 = {
+  suzuran = {
     nixos-modules =
       [
-        ../hosts/xiaoxinpro16-2021
+        ../hosts/suzuran
       ]
       ++ desktop_base.nixos-modules;
     home-module.imports =
       [
-        ../hosts/xiaoxinpro16-2021/home.nix
+        ../hosts/suzuran/home.nix
       ]
       ++ desktop_base.home-module.imports;
   };
