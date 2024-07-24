@@ -102,10 +102,9 @@ in {
         exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
         exec = ${pkgs.writeShellScript "restart-waybar" ''
           pkill waybar
-          nohup waybar 2>&1 >/dev/null &
+          ${pkgs.waybar}/bin/waybar
         ''}
 
-        # lol
         exec-once = clash-verge
 
         # register in nix modules

@@ -8,8 +8,6 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     xdg.configFile."electron-flags.conf".text = ''
-      --enable-features=WaylandWindowDecorations
-      --ozone-platform-hint=auto
       --enable-wayland-im
       --enable-features=UseOzonePlatform
       --ozone-platform=wayland
