@@ -93,7 +93,7 @@ in {
       };
     };
   in
-    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker"]);
+    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker" "music"]);
 
   powerManagement.enable = true;
   services.logind = {

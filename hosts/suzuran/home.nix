@@ -23,7 +23,7 @@
 
     desktop = {
       background = {
-        source = "${wallpapers}/106366043_p0_[L1][x1.50].jpg";
+        source = "${wallpapers}/twitter-1774762746007204094.jpg";
         variant = "light";
       };
       hyprland = {

@@ -63,6 +63,7 @@
 
     nano
 
+    hurl
     curl
     wget
   ];
