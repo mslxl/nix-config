@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     lazygit
     commitizen
+    gh
   ];
 
   programs.git = {
