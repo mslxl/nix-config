@@ -1,6 +1,7 @@
 {
   pkgs,
   nur-pkgs-mslxl,
+  ayugram-desktop,
   ...
 }: {
   xdg.mimeApps.defaultApplications = {
@@ -9,6 +10,7 @@
   };
   home.packages = [
     pkgs.telegram-desktop
+    ayugram-desktop.packages.${pkgs.system}.default
     pkgs.discord
     nur-pkgs-mslxl.liteloader-qqnt
   ];

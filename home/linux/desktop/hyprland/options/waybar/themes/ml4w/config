@@ -31,7 +31,7 @@
 
     // Modules Left
     "modules-left": [
-        "mpd",
+        // "mpd",
         // START TASK TOOGLE
         "wlr/taskbar",
         // END TASK TOOGLE

@@ -30,6 +30,9 @@
     };
     yazi.url = "github:sxyazi/yazi";
 
+    ayugram-desktop.url = "git+https://github.com/kaeeraa/ayugram-desktop?submodules=1";
+  
+
     scripts.url = "git+ssh://git@github.com/mslxl/scripts.git?shallow=1";
 
     # home-manager, used for managing user configuration
@@ -47,10 +50,6 @@
     wallpapers = {
       url = "github:mslxl/wallpapers";
       flake = false;
-    };
-    sticker-bucket = {
-      url = "github:mslxl/sticker-bucket";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

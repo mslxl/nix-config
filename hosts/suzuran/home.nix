@@ -2,7 +2,6 @@
   system,
   pkgs,
   pkgs-stable,
-  sticker-bucket,
   wallpapers,
   ...
 }: {
@@ -20,6 +19,7 @@
         rpc-allow-origin-all = false;
       };
     };
+    game.minecraft.enable = true;
 
     desktop = {
       background = {
@@ -77,8 +77,6 @@
       zotero-beta
       cpeditor
       appimage-run
-
-      sticker-bucket.packages.${system}.default
     ]);
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

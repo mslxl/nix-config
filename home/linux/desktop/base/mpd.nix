@@ -11,7 +11,7 @@
     mpc-cli
   ];
   services.mpd = {
-    enable = true;
+    enable = false;
     package = pkgs-unstable.mpd;
     musicDirectory = "${config.xdg.userDirs.music}";
     extraConfig = ''
