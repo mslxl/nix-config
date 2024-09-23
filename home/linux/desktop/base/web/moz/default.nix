@@ -139,19 +139,11 @@ in {
           };
         };
         userChrome = ''
-          #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar>.toolbar-items {
-            opacity: 0;
-            pointer-events: none;
-          }
-
-          #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
-            visibility: collapse !important;
-          }
-
-          .tab {
-            margin-left: 1px;
-            margin-right: 1px;
-          }
+          ${builtins.readFile ./userChrome.notitlebar.css}
+          ${builtins.readFile ./userChrome.pengufox.css}
+        '';
+        userContent = ''
+          ${builtins.readFile ./userContent.pengufox.css}
         '';
 
         settings = {

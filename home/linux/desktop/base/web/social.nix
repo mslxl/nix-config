@@ -10,7 +10,8 @@
   };
   home.packages = [
     pkgs.telegram-desktop
-    ayugram-desktop.packages.${pkgs.system}.default
+    # TODO: its hash check failure
+    # ayugram-desktop.packages.${pkgs.system}.default
     pkgs.discord
     nur-pkgs-mslxl.liteloader-qqnt
   ];
