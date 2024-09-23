@@ -2,6 +2,6 @@
     "recommendations": [
         "editorconfig.editorconfig",
         "mkhl.direnv",
-        "bbenoist.nix"
+        "jnoortheen.nix-ide"
     ]
 }

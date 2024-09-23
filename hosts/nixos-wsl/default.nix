@@ -17,7 +17,7 @@ in {
     defaultUser = username;
     wslConf = {
       automount.root = "/mnt";
-      interop.appendWindowsPath = false;
+      interop.appendWindowsPath = true;
     };
     startMenuLaunchers = false;
   };
