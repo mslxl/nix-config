@@ -7,7 +7,7 @@
 }: {
   modules = {
     aria = {
-      enable = true;
+      enable = false;
       daemon = {
         enable = true;
         max-concurrent-downloads = 32;
