@@ -47,6 +47,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    nil
     tree
     git
     connect

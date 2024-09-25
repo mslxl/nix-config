@@ -30,7 +30,7 @@
     geoclue2.enable = true; # Enable geolocation services.
 
     udev.packages = with pkgs; [
-      gnome.gnome-settings-daemon
+      pkgs.gnome-settings-daemon
     ];
 
     # A key remapping daemon for linux.
