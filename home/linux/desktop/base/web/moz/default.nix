@@ -94,31 +94,39 @@ in {
           in
             listToAttrs [
               # GO about:debugging#/runtime/this-firefox to get id
-              (extension "ublock-origin" "uBlock0@raymondhill.net")
-              (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-              (extension "tabliss" "extension@tabliss.io")
-              (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
-              (extension "tampermonkey" "firefox@tampermonkey.net")
-              (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
-              (extension "phtotshow" "{c23d8eea-4e71-4573-a245-4c97f8e1a1e0}")
-              (extension "markdown_here" "markdown-here-webext@adam.pritchard")
+              # (extension "aria2_integration" "{e2488817-3d73-4013-850d-b66c5e42d505}")
               (extension "auto_tab_discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
-              (extension "soundfixer" "soundfixer@unrelenting.technology")
-              (extension "aria2_integration" "{e2488817-3d73-4013-850d-b66c5e42d505}")
-              (extension "surfingkeys_ff" "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}")
-              (extension "user_agent_string_switcher" "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}")
-              (extension "wxif" "{8b3ee44a-0805-4c2c-acef-15aab34fbd20}")
-              (extension "unpaywall" "{f209234a-76f0-4735-9920-eb62507a54cd}")
-              (extension "textarea_cache" "textarea-cache-lite@wildsky.cc")
-              (extension "rsspreview" "{7799824a-30fe-4c67-8b3e-7094ea203c94}")
-              (extension "i_dont_care_about_cookies" "jid1-KKzOGWgsW3Ao4Q@jetpack")
-              (extension "header_editor" "headereditor-amo@addon.firefoxcn.net")
-              (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
+              (exntesion "behind-the-overlay-revival" "{c0e1baea-b4cb-4b62-97f0-278392ff8c37}")
+              (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+              (extension "bilisponsorblock" "{f10c197e-c2a4-43b6-a982-7e186f7c63d9}") #B站空降助手
+              (extension "carrot" "{f0eeb71a-e5d6-48e6-a818-568a6bef1bc0}")
+              (extension "codeforces-practice-tracker" "{26b28813-67de-4a83-9fbe-eaf008f68732}")
+              (extension "competitive-companion" "{74e326aa-c645-4495-9287-b6febc5565a7}")
               (extension "cookie_quick_manager" "{60f82f00-9ad5-4de5-b31c-b16a47c51558}")
-              (extension "wappalyzer" "wappalyzer@crunchlabz.com")
-              (extension "tab-auto-refresh" "{7fee47a1-8299-4576-90bf-5fd88d756926}")
-              (extension "single-file" "{531906d3-e22f-4a6c-a102-8057b88a1a63}")
+              (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
+              (extension "header_editor" "headereditor-amo@addon.firefoxcn.net")
+              (extension "history-autodelete" "{7e79d10d-9667-4d38-838d-471281c568c3}")
+              (extension "i_dont_care_about_cookies" "jid1-KKzOGWgsW3Ao4Q@jetpack")
               (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
+              (extension "markdown_here" "markdown-here-webext@adam.pritchard")
+              (extension "nighttab" "{47bf427e-c83d-457d-9b3d-3db4118574bd}")
+              (extension "pakkujs" "{646d57f4-d65c-4f0d-8e80-5800b92cfdaa}")
+              (extension "phtotshow" "{c23d8eea-4e71-4573-a245-4c97f8e1a1e0}")
+              (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
+              (extension "rsspreview" "{7799824a-30fe-4c67-8b3e-7094ea203c94}")
+              (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
+              (extension "single-file" "{531906d3-e22f-4a6c-a102-8057b88a1a63}")
+              (extension "soundfixer" "soundfixer@unrelenting.technology")
+              (extension "surfingkeys_ff" "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}")
+              (extension "tab-auto-refresh" "{7fee47a1-8299-4576-90bf-5fd88d756926}")
+              # (extension "tabliss" "extension@tabliss.io")
+              (extension "tampermonkey" "firefox@tampermonkey.net")
+              (extension "textarea_cache" "textarea-cache-lite@wildsky.cc")
+              (extension "ublock-origin" "uBlock0@raymondhill.net")
+              (extension "unpaywall" "{f209234a-76f0-4735-9920-eb62507a54cd}")
+              (extension "user_agent_string_switcher" "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}")
+              (extension "wappalyzer" "wappalyzer@crunchlabz.com")
+              (extension "wxif" "{8b3ee44a-0805-4c2c-acef-15aab34fbd20}")
             ]);
       };
 
@@ -346,9 +354,6 @@ in {
   };
 
   home.packages = [
-    # firefox-kitsune
-
-    # pkgs.firefox
     pkgs.ungoogled-chromium # used for debuging on chromium kernel based browsers
     pkgs.thunderbird
     pkgs.tor-browser
