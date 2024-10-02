@@ -7,6 +7,7 @@
   nix-colors,
   myutils,
   pkgs-stable,
+  waybar,
   ...
 }:
 with lib; let
@@ -102,7 +103,7 @@ in {
         exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
         exec = ${pkgs.writeShellScript "restart-waybar" ''
           pkill waybar
-          ${pkgs.waybar}/bin/waybar
+          ${waybar.packages.${system}.waybar}/bin/waybar
         ''}
 
         exec-once = clash-verge
