@@ -14,6 +14,7 @@
       # For pkgs.wechat-uos
       "openssl"
       "openssl-1.1.1w"
+      "electron-29.4.6"
     ];
   };
   specialArgsForSystem = system:

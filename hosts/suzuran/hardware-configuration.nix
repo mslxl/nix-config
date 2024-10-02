@@ -27,6 +27,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/nolebase" = {
+    device = "/dev/disk/by-uuid/9103-5832";
+    fsType = "vfat";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/CCD8-B1BA";
     fsType = "vfat";
