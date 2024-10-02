@@ -17,6 +17,9 @@
     ]
   );
 
+  # It can not use binary cache
+  # which caused the build extremely slow
+  # TODO: find a better way to override icon
   firefox-kitsune = (pkgs.wrapFirefox) (pkgs.firefox-unwrapped.overrideAttrs (super: {
     nativeBuildInputs =
       super.nativeBuildInputs
@@ -25,6 +28,7 @@
       ];
     postInstall = "${super.postInstall}\n${patchIcon}";
   })) {};
+
 in {
   xdg.mimeApps.defaultApplications =
     (myutils.attrs.listToAttrs [
@@ -51,7 +55,7 @@ in {
   programs = {
     firefox = {
       enable = true;
-      package = firefox-kitsune;
+      # package = firefox-kitsune;
       languagePacks = [
         "zh-CN"
         "en-US"

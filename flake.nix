@@ -30,9 +30,6 @@
     };
     yazi.url = "github:sxyazi/yazi";
 
-    ayugram-desktop.url = "git+https://github.com/kaeeraa/ayugram-desktop?submodules=1";
-  
-
     scripts.url = "git+ssh://git@github.com/mslxl/scripts.git?shallow=1";
 
     # home-manager, used for managing user configuration
