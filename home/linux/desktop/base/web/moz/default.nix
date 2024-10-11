@@ -97,6 +97,7 @@ in {
               # (extension "aria2_integration" "{e2488817-3d73-4013-850d-b66c5e42d505}")
               (extension "auto_tab_discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
               (exntesion "behind-the-overlay-revival" "{c0e1baea-b4cb-4b62-97f0-278392ff8c37}")
+              (extension "bewlybewly" "addon@bewlybewly.com")
               (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
               (extension "bilisponsorblock" "{f10c197e-c2a4-43b6-a982-7e186f7c63d9}") #B站空降助手
               (extension "carrot" "{f0eeb71a-e5d6-48e6-a818-568a6bef1bc0}")
