@@ -23,7 +23,7 @@
 
     desktop = {
       background = {
-        source = "${wallpapers}/twitter-1774762746007204094.jpg";
+        source = "${wallpapers}/nix-wallpaper-dracula.jpg";
         variant = "light";
       };
       hyprland = {
@@ -51,6 +51,12 @@
           output eDP-1 scale 1.3
         '';
       };
+    };
+
+    music = {
+      enable = false;
+      ncmpcpp.enable = true;
+      ario.enable = false;
     };
   };
   home.packages = with pkgs-stable;

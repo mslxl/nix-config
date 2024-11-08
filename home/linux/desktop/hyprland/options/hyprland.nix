@@ -99,7 +99,9 @@ in {
         exec-once = ${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent
         exec-once = wl-paste --watch cliphist store
         exec-once = kdeconnect-indicator
-        exec-once = ${pkgs.wlsunset}/bin/wlsunset -l 36.6 -L 117
+        ${
+          "#comment this line without install wlsunset" #exec-once = ${pkgs.wlsunset}/bin/wlsunset -l 36.6 -L 117
+        }
         exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
         exec = ${pkgs.writeShellScript "restart-waybar" ''
           pkill waybar
