@@ -17,12 +17,12 @@
     enableZshIntegration = true;
     enableNushellIntegration = true;
     git = true;
-    icons = true;
+    icons = "auto";
   };
   programs.zellij = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
     settings = {
       simplified_ui = true;
       # default_layout = "compact";

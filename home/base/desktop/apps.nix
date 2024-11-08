@@ -5,7 +5,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    logseq
+    obsidian
     anki
     ffmpeg-full
     calibre
