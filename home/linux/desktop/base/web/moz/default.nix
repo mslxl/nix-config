@@ -128,6 +128,7 @@ in {
               (extension "unpaywall" "{f209234a-76f0-4735-9920-eb62507a54cd}")
               (extension "user_agent_string_switcher" "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}")
               (extension "vimium-ff" "{d7742d87-e61d-4b78-b8a1-b469842139fa}")
+              (extension "wakatimes" "addons@wakatime.com")
               (extension "wappalyzer" "wappalyzer@crunchlabz.com")
               (extension "wxif" "{8b3ee44a-0805-4c2c-acef-15aab34fbd20}")
             ]);
