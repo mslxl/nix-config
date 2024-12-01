@@ -22,15 +22,10 @@
       source-han-serif
       liberation_ttf_v2
 
-      (nerdfonts.override {
-        fonts = [
-          "NerdFontsSymbolsOnly"
-
-          "FiraCode"
-          "JetBrainsMono"
-          "Iosevka"
-        ];
-      })
+      nerd-fonts.symbols-only
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
     ];
 
     fontconfig.defaultFonts = {
