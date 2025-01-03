@@ -1,8 +1,4 @@
-{
-  pkgs,
-  scripts,
-  ...
-}: let
+{pkgs, ...}: let
   shellAliases = {
     g = "git";
   };
@@ -12,7 +8,6 @@ in {
     lice
     tokei
     just
-    scripts.packages.${pkgs.system}.default
   ];
 
   programs.nushell = {

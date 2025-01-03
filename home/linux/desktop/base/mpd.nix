@@ -5,7 +5,6 @@
   config,
   ...
 }: {
-
   options.modules.music = {
     enable = lib.mkEnableOption "Enable mpd services";
     ncmpcpp.enable = lib.mkEnableOption "Enable ncmpcpp";

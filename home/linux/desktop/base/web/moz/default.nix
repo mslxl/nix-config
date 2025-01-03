@@ -28,7 +28,6 @@
       ];
     postInstall = "${super.postInstall}\n${patchIcon}";
   })) {};
-
 in {
   xdg.mimeApps.defaultApplications =
     (myutils.attrs.listToAttrs [
@@ -178,11 +177,10 @@ in {
           "intl.accept_languages" = "zh-cn,en-us,jp";
           "signon.autofillForms" = false;
           "browser.translations.panelShown" = false;
-          "devtools.chrome.enabled" = true; # Allow executing JS in the dev console 
+          "devtools.chrome.enabled" = true; # Allow executing JS in the dev console
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Allow userCrome.css
           # Why the fuck can my search window make bell sounds
           "accessibility.typeaheadfind.enablesound" = false;
-
 
           # Privacy
           "privacy.donottrackheader.enabled" = true;
