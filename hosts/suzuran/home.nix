@@ -20,6 +20,7 @@
       };
     };
     game.minecraft.enable = true;
+    wakatime.enable = true;
 
     desktop = {
       background = {
