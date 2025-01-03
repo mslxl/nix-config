@@ -116,7 +116,7 @@ in {
               (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
               (extension "markdown_here" "markdown-here-webext@adam.pritchard")
               (extension "nighttab" "{47bf427e-c83d-457d-9b3d-3db4118574bd}")
-              (extension "web-clipper-obsidian" "clipper@obsidian.md")
+              # (extension "web-clipper-obsidian" "clipper@obsidian.md")
               (extension "pakkujs" "{646d57f4-d65c-4f0d-8e80-5800b92cfdaa}")
               (extension "phtotshow" "{c23d8eea-4e71-4573-a245-4c97f8e1a1e0}")
               (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
