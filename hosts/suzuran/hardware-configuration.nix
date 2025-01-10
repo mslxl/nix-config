@@ -28,8 +28,8 @@
   };
 
   fileSystems."/mnt/nolebase" = {
-    device = "/dev/disk/by-uuid/9103-5832";
-    fsType = "vfat";
+    device = "/dev/disk/by-uuid/2464DF3A64DF0D84";
+    fsType = "ntfs-3g";
   };
 
   fileSystems."/boot" = {
