@@ -1,7 +1,15 @@
 // Define main function (script entry)
 
 function main(config, profileName) {
-  
+  // Netease Mumu Player 12 Ad-Blocker
+  [ "DOMAIN,shence-api.mumu.163.com,REJECT"
+  , "DOMAIN,nemu.fp.ps.netease.com,REJECT"
+  , "DOMAIN,mumu.nie.netease.com,REJECT"
+  , "DOMAIN,hubble.netease.com,REJECT"
+  , "DOMAIN,store-api.mumu.163.com,REJECT"
+  ].map(rule=>config['rules'].splice(1, 0, rule))
+
+
   // Github API Rate Limits
   config['proxy-groups'].push({
     name:'GitHub API',
