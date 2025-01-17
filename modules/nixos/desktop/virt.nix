@@ -20,7 +20,7 @@
       # This is required for containers which are created with the `--restart=always` flag to work.
       enableOnBoot = true;
     };
-    waydroid.enable = false;
+    waydroid.enable = true;
     libvirtd = {
       enable = true;
       # hanging this option to false may cause file permission issues for existing guests.

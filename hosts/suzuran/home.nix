@@ -30,8 +30,9 @@
       hyprland = {
         enable = true;
         monitors = [
+          "HDMI-A-1,1920x1080,2048x100,1"
           "eDP-1,2560x1600,0x0,1.25"
-          "HDMI-A-1,1920x1080,64x1280,1"
+          # "HDMI-A-1,1920x1080,64x1280,1"
         ];
         extraConfig = ''
           xwayland {
@@ -64,16 +65,18 @@
     [
       android-studio
 
-      jetbrains.webstorm
+      # jetbrains.webstorm
       jetbrains.rust-rover
-      jetbrains.pycharm-professional
-      jetbrains.mps
+      # jetbrains.pycharm-professional
+      # jetbrains.mps
       jetbrains.idea-ultimate
-      jetbrains.idea-community
+      # jetbrains.idea-community
       jetbrains.goland
-      jetbrains.gateway
-      jetbrains.clion
+      jetbrains.rider
+      # jetbrains.gateway
+      # jetbrains.clion
       jetbrains.datagrip
+      
     ]
     ++ (with pkgs; [
       wine

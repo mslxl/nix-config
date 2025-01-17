@@ -28,7 +28,6 @@
       url = "git+ssh://git@github.com/mslxl/secrets.git?shallow=1";
       flake = false;
     };
-    yazi.url = "github:sxyazi/yazi";
 
     ayugram-desktop.url = "github:/ayugram-port/ayugram-desktop/release?submodules=1";
 

@@ -25,7 +25,7 @@ clean: sudo
 
 # Garbage collect all unused nix store entries
 gc: clean
-	nix store gc --debug
+	nix store gc
 	nix-collect-garbage --delete-old
 
 # Remove all reflog entries and prune unreachable objects
