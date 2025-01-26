@@ -25,13 +25,13 @@
           super.installPhase
         ];
       });
-      name = "Papirus-Dark";
+      name = "Papirus";
     };
     gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
+      gtk-application-prefer-dark-theme = false;
     };
     gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
+      gtk-application-prefer-dark-theme = false;
     };
   };
 }
