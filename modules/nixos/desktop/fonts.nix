@@ -16,6 +16,8 @@
       noto-fonts-emoji
 
       fira
+      maple-mono-NF
+      jetbrains-mono
       source-sans
       source-serif
       source-han-sans

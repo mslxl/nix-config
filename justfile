@@ -19,12 +19,8 @@ sudo:
 		 exit 1\
 	}
 
-# Remove all generations older than 7 days
-clean: sudo
-	nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
-
 # Garbage collect all unused nix store entries
-gc: clean
+gc: 
 	nix store gc
 	nix-collect-garbage --delete-old
 

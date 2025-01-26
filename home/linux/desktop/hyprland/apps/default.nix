@@ -9,7 +9,8 @@ lib.mkMerge (
   (p: import p args)
   [
     ./dunst.nix
-    ./foot.nix
+    # ./foot.nix
+    ./ghostty.nix
     ./swaylock.nix
   ]
 )
