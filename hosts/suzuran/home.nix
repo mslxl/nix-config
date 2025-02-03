@@ -64,20 +64,19 @@
   home.packages = with pkgs-stable;
     [
       android-studio
-
-      # jetbrains.webstorm
-      jetbrains.rust-rover
-      # jetbrains.pycharm-professional
-      # jetbrains.mps
-      jetbrains.idea-ultimate
-      # jetbrains.idea-community
-      jetbrains.goland
-      jetbrains.rider
-      # jetbrains.gateway
-      # jetbrains.clion
-      jetbrains.datagrip
-      
     ]
+    ++ (with pkgs-stable.jetbrains; [
+      # webstorm
+      rust-rover
+      # pycharm-professional
+      # mps
+      # idea-community
+      goland
+      rider
+      # gateway
+      # clion
+      datagrip
+    ])
     ++ (with pkgs; [
       wine
       winetricks
@@ -87,6 +86,8 @@
       zotero-beta
       cpeditor
       appimage-run
+
+      jetbrains.idea-ultimate
     ]);
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

@@ -37,6 +37,8 @@
   };
   services.spice-vdagentd.enable = true;
   environment.systemPackages = with pkgs; [
+    docker-compose
+
     # Need to add [File (in the menu bar) -> Add connection] when start for the first time
     virt-manager
     virt-viewer
