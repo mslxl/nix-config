@@ -19,6 +19,7 @@
       ../modules/nixos/base
     ];
     home-module.imports = [
+      inputs.plasma-manager.homeManagerModules.plasma-manager
       ../home/linux/desktop.nix
     ];
   };
