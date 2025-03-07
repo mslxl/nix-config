@@ -1,12 +1,12 @@
 {
   pkgs,
-  pkgs-unstable,
+  pkgs-stable,
   lib,
   ...
 }: {
   home.packages = with pkgs; [
     # obsidian
-    logseq
+    pkgs-stable.logseq
     anki
     ffmpeg-full
     calibre

@@ -2,7 +2,8 @@ set shell := ["nu", "-c"]
 
 FLAKE_CFG := ".#" + `cat /etc/hostname`
 
-build: sudo
+
+build: sudo clean
   #!/usr/bin/env nix-shell
   #! nix-shell -p nix-output-monitor -i bash
   nixos-rebuild switch --flake {{FLAKE_CFG}} --log-format internal-json -v |& nom --json
@@ -18,6 +19,11 @@ sudo:
 		 echo "You must be root to perform this action.";\
 		 exit 1\
 	}
+
+clean:
+  #!/usr/bin/env bash
+  if [ -f "$HOME/.gtkrc-2.0.backup" ] ; then rm "$HOME/.gtkrc-2.0.backup"; fi
+  if [ -f "$HOME/.gtkrc-2.0" ] ; then rm "$HOME/.gtkrc-2.0"; fi
 
 # Garbage collect all unused nix store entries
 gc: 
