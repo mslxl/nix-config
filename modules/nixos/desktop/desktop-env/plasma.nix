@@ -16,6 +16,7 @@ with lib; {
     services.desktopManager.plasma6.enable = true;
     environment.systemPackages = with pkgs; [
       ghostty
+      wl-clipboard
     ];
 
     environment.plasma6.excludePackages = with pkgs.libsForQt5; [

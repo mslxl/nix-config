@@ -5,7 +5,7 @@
 }: {
   modules.desktop = {
     hyprland = {
-      enable = true;
+      enable = false;
     };
     xmonad = {
       enable = false;
@@ -24,7 +24,7 @@
       enable = false;
     };
     plasma = {
-      enable = false;
+      enable = true;
     };
   };
 
