@@ -12,13 +12,17 @@
     }
     // (myutils.attrs.listToAttrs [
       "application/pdf"
+    ] (_: ["org.kde.okular.desktop"]))
+    // (myutils.attrs.listToAttrs [
       "application/epub+zip"
       "application/vnd.comicbook+zip"
       "application/vnd.comicbook-rar"
-    ] (_: ["org.kde.okular.desktop"]));
+    ] (_: ["koreader.desktop"]))
+    ;
 
   home.packages = with pkgs; [
-    okular
+    kdePackages.okular
+    koreader
     wpsoffice
   ];
 }
