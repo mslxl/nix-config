@@ -4,7 +4,7 @@
   ...
 }: {
   xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/file" = ["yazi.desktop"];
+    # "x-scheme-handler/file" = ["yazi.desktop"];
     "inode/directory" = ["yazi.desktop"];
   };
   programs.yazi = {
