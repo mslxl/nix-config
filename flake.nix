@@ -43,12 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # do you like emacs :)
-    doomemacs = {
-      url = "github:doomemacs/doomemacs";
-      flake = false;
-    };
-
     wallpapers = {
       url = "github:mslxl/wallpapers";
       flake = false;

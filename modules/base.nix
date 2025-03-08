@@ -6,12 +6,8 @@
   username,
   ...
 } @ args: rec {
-  nixpkgs = {
-    overlays = import ../overlays args;
-    config = {
-      allowUnfree = true;
-    };
-  };
+
+  nix.package = pkgs.nixVersions.latest;
 
   home-manager.backupFileExtension = "backup";
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -48,6 +44,7 @@
 
   environment.systemPackages = with pkgs; [
     nil
+    fd
     tree
     git
     connect
