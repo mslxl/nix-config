@@ -17,6 +17,10 @@
 
       # For logseq
       "electron-27.3.11"
+
+      # For fluffychat
+      "fluffychat-linux-1.23.0"
+      "olm-3.2.16"
     ];
   };
   specialArgsForSystem = system:
@@ -26,10 +30,12 @@
       inherit myutils;
       pkgs-unstable = import inputs.nixpkgs {
         inherit system;
+        overlays = import ../overlays args;
         config = nixpkgs-config;
       };
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
+        overlays = import ../overlays args;
         config = nixpkgs-config;
       };
       pkgs = pkgs-unstable;

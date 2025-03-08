@@ -12,10 +12,11 @@
   };
   home.packages = [
     # pkgs.telegram-desktop
-    # pkgs.fluffychat
+    # pkgs.element-desktop
+    pkgs.fluffychat
 
     pkgs.discord
-    pkgs.follow
+    # pkgs.follow
     nur-pkgs-mslxl.liteloader-qqnt
     ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
   ];
