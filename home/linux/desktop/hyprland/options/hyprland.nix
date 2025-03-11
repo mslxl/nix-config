@@ -93,7 +93,10 @@ in {
         ${confFile}
         ${cfg.extraConfig}
 
-        exec-once = fcitx5 -d
+        exec-once=fcitx5-remote -r
+        exec-once=fcitx5 -d --replace
+        exec-once=fcitx5-remote -r
+
         exec-once = hyprctl setcursor Bibata-Modern-Ice 24
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet
         exec-once = ${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent
@@ -103,12 +106,16 @@ in {
           "#comment this line without install wlsunset" #exec-once = ${pkgs.wlsunset}/bin/wlsunset -l 36.6 -L 117
         }
         exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
+
         exec = ${pkgs.writeShellScript "restart-waybar" ''
           pkill waybar
-          ${waybar.packages.${system}.waybar}/bin/waybar
+          waybar
         ''}
 
-        exec-once = clash-verge
+        exec = ${pkgs.writeShellScript "restart-clash-verge" ''
+          pkill clash-verge
+          clash-verge
+        ''}
 
         # register in nix modules
         ${
