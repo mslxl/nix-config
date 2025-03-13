@@ -46,7 +46,7 @@ in {
       rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
 
       # https://github.com/fcitx/fcitx5-rime/issues/54#issuecomment-1736621316
-      ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:""
+      ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:"" || true
     fi
   '';
 }
