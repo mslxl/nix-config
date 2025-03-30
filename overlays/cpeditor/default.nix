@@ -1,19 +1,20 @@
 {lib, ...}: (_: super: let 
-  tools = with super; [ wakatime ];
-  gcc = with super; [ gcc clang-tools ];
-  jdk = with super; [ openjdk_headless java-language-server ];
-  py = with super; [ python3 pylyzer ];
+  tools = [ super.wakatime ];
+  gcc = [ super.gcc super.clang-tools ];
+  jdk = [ super.openjdk_headless super.java-language-server ];
+  py = [ super.python3 super.pylyzer ];
+
+  deps = lib.lists.flatten [ gcc jdk py tools ];
 in {
   cpeditor = super.cpeditor.overrideAttrs (super:{
-      buildInputs = super.buildInputs ++ [ gcc jdk py ];
+      buildInputs = super.buildInputs  ++ deps;
 
       postFixup =
         super.postFixup
         or ""
         + ''
           wrapProgram "$out/bin/cpeditor" \
-            --set JAVA_HOME ${jdk} \
-            --set PATH ${lib.makeBinPath (lib.lists.flatten [ gcc jdk py tools ])}
+            --set PATH ${lib.makeBinPath deps}
         '';
   });
 })
