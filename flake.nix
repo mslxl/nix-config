@@ -29,8 +29,6 @@
       flake = false;
     };
 
-    ayugram-desktop.url = "github:/ayugram-port/ayugram-desktop/release?submodules=1";
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";

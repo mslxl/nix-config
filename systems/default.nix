@@ -17,10 +17,6 @@
 
       # For logseq
       "electron-27.3.11"
-
-      # For fluffychat
-      "fluffychat-linux-1.23.0"
-      "olm-3.2.16"
     ];
   };
   specialArgsForSystem = system:

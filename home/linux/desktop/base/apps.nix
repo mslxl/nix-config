@@ -14,6 +14,7 @@
 
   home.packages =
     (with pkgs; [
+      zenity
       trash-cli
       bat
       xarchiver

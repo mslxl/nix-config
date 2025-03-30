@@ -11,15 +11,14 @@
     "x-scheme-handler/follow" = ["follow.desktop"];
   };
   home.packages = [
-    # pkgs.telegram-desktop
-    # pkgs.element-desktop
-    pkgs.fluffychat
+    pkgs.element-desktop
 
     pkgs.discord
-    # pkgs.follow
+    pkgs.follow
     nur-pkgs-mslxl.liteloader-qqnt
 
-    (ayugram-desktop.packages.${pkgs.system}.ayugram-desktop.overrideAttrs (super: {
+    # pkgs.telegram-desktop
+    (pkgs.ayugram-desktop.overrideAttrs (super: {
       buildInputs = super.buildInputs ++ [pkgs.makeWrapper];
 
       postInstall =
