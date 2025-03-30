@@ -2,33 +2,8 @@
   pkgs,
   myutils,
   ...
-}: let
-  patchIcon = pkgs.lib.concatStringsSep "\n" (
-    builtins.map (den: ''
-      TARGET_${den}=$out/lib/firefox/browser/chrome/icons/default/default${den}.png
-      [ -f "$TARGET_${den}" ] && rm "$TARGET_${den}"
-      convert ${./kitsune.png} -resize ${den}x${den}  "$TARGET_${den}"
-    '') [
-      "16"
-      "32"
-      "48"
-      "64"
-      "128"
-    ]
-  );
-
-  # It can not use binary cache
-  # which caused the build extremely slow
-  # TODO: find a better way to override icon
-  firefox-kitsune = (pkgs.wrapFirefox) (pkgs.firefox-unwrapped.overrideAttrs (super: {
-    nativeBuildInputs =
-      super.nativeBuildInputs
-      ++ [
-        pkgs.imagemagick
-      ];
-    postInstall = "${super.postInstall}\n${patchIcon}";
-  })) {};
-in {
+}: 
+{
   xdg.mimeApps.defaultApplications =
     (myutils.attrs.listToAttrs [
       "text/html"
@@ -54,7 +29,6 @@ in {
   programs = {
     firefox = {
       enable = true;
-      # package = firefox-kitsune;
       languagePacks = [
         "zh-CN"
         "en-US"
@@ -80,7 +54,7 @@ in {
         SearchBar = "unified";
         ExtensionSettings =
           {
-            # "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+            "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
             "zotero@chnm.gmu.edu" = {
               install_url = "https://www.zotero.org/download/connector/dl?browser=firefox";
               installation_mode = "force_installed";
@@ -199,7 +173,7 @@ in {
           "app.normandy.enabled" = false;
           "app.shield.optoutstudies.enabled" = false;
 
-          "beacon.enabled" = false; # No bluetooth location BS in my webbrowser please
+          "beacon.enabled" = true; # No bluetooth location BS in my webbrowser please, but leetcode require this
           "device.sensors.enabled" = false; # This isn't a phone
           "geo.enabled" = false; # Disable geolocation alltogether
 
@@ -243,12 +217,12 @@ in {
         };
         search = {
           force = true;
-          default = "Google";
+          default = "google";
           engines = {
-            "Google".metaData.alias = "@g";
-            "Bing".metaData.alias = "@bing";
-            "DuckDuckGo".metaData.alias = "@ddg";
-            "Wikipedia".metaData.alias = "@wiki";
+            "google".metaData.alias = "@g";
+            "bing".metaData.alias = "@bing";
+            "ddg".metaData.alias = "@ddg";
+            "wiki".metaData.alias = "@wiki";
             "Baidu" = {
               urls = [
                 {
@@ -261,7 +235,7 @@ in {
                   ];
                 }
               ];
-              iconUpdateURL = "https://www.baidu.com/favicon.ico";
+              icon = "https://www.baidu.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = ["@bd"];
             };
@@ -279,7 +253,7 @@ in {
               ];
               definedAliases = ["@bili"];
               updateInterval = 24 * 60 * 60 * 1000;
-              iconUpdateURL = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
+              icon = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
             };
             "Youtube" = {
               urls = [
@@ -295,7 +269,7 @@ in {
               ];
               definedAliases = ["@ytb"];
               updateInterval = 24 * 60 * 60 * 1000;
-              iconUpdateURL = "https://www.youtube.com/s/desktop/ef8ce500/img/favicon.ico";
+              icon = "https://www.youtube.com/s/desktop/ef8ce500/img/favicon.ico";
             };
             "Moegirl Wiki" = {
               urls = [
@@ -311,7 +285,7 @@ in {
               ];
               definedAliases = ["@moe"];
               updateInterval = 24 * 60 * 60 * 1000;
-              iconUpdateURL = "https://img.moegirl.org.cn/favicon.ico";
+              icon = "https://img.moegirl.org.cn/favicon.ico";
             };
             "GitHub" = {
               urls = [
@@ -331,7 +305,7 @@ in {
               ];
               definedAliases = ["@gh"];
               updateInterval = 24 * 60 * 60 * 1000;
-              iconUpdateURL = "https://github.githubassets.com/favicons/favicon.svg";
+              icon = "https://github.githubassets.com/favicons/favicon.svg";
             };
             "Nix Packages" = {
               urls = [
@@ -361,9 +335,22 @@ in {
       };
     };
   };
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      { id = "chejfhdknideagdnddjpgamkchefjhoi"; } # VertiTab
+      { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # Surfingkey
+      { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
+      { id = "kbfnbcaeplbcioakkpcpgfkobkghlhen"; } # Grammarly
+      { id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh"; } # Immersive Translate
+      { id = "mgpdnhlllbpncjpgokgfogidhoegebod"; } # Photo Show
+      { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # Tampermonkey
+    ];
+
+  };
 
   home.packages = [
-    pkgs.ungoogled-chromium # used for debuging on chromium kernel based browsers
     pkgs.thunderbird
     pkgs.tor-browser
   ];
