@@ -20,15 +20,26 @@ sudo:
 		 exit 1\
 	}
 
+nosudo:
+	@echo ("uid: " + (id -u))
+	@if (id -u) == "0" { \
+		 echo "You must not be root to perform this action.";\
+		 exit 1\
+	}
+
+
 clean:
   #!/usr/bin/env bash
   if [ -f "$HOME/.gtkrc-2.0.backup" ] ; then rm "$HOME/.gtkrc-2.0.backup"; fi
   if [ -f "$HOME/.gtkrc-2.0" ] ; then rm "$HOME/.gtkrc-2.0"; fi
 
 # Garbage collect all unused nix store entries
-gc: 
-	nix store gc
-	nix-collect-garbage --delete-old
+gc: nosudo 
+  sudo nix store gc
+  sudo nix-collect-garbage --delete-old
+  just gitgc
+  nix store gc
+  nix-collect-garbage --delete-old
 
 # Remove all reflog entries and prune unreachable objects
 gitgc:

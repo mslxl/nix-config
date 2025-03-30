@@ -1,14 +1,17 @@
-{pkgs, ...}: let
+{pkgs,nur-pkgs-mslxl, ...}: let
   shellAliases = {
     g = "git";
   };
 in {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     git
     lice
     tokei
     just
-  ];
+  ]) ++ (with nur-pkgs-mslxl; [
+    trzsz-ssh 
+    trzsz-go
+  ]);
 
   programs.nushell = {
     enable = true;
