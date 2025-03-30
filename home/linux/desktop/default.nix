@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  wallpaper,
+  wallpapers,
   ...
 } @ args: {
   imports = [
@@ -15,7 +15,7 @@
     background = {
       source = lib.mkOption {
         type = lib.types.path;
-        default = ../../../nix-wallpaper-dracula.png;
+        default = "${wallpapers}/nix-wallpaper-dracula.png";
       };
       variant = lib.mkOption {
         type = with lib.types; enum ["dark" "light"];

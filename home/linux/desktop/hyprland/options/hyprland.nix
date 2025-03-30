@@ -38,6 +38,18 @@ in {
       slurp
       swappy
       pngquant
+
+      # ((flameshot.overrideAttrs(super: {
+      #   postFixup =
+      #     super.postFixup
+      #     or ""
+      #     + ''
+      #       wrapProgram "$out/bin/flameshot" \
+      #         --set XDG_CURRENT_DESKTOP Sway
+      #     '';
+      # })).override {
+      #   enableWlrSupport = true;
+      # })
     ];
 
     wayland.windowManager.hyprland = {
@@ -93,10 +105,6 @@ in {
         ${confFile}
         ${cfg.extraConfig}
 
-        exec-once=fcitx5-remote -r
-        exec-once=fcitx5 -d --replace
-        exec-once=fcitx5-remote -r
-
         exec-once = hyprctl setcursor Bibata-Modern-Ice 24
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet
         exec-once = ${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent
@@ -116,6 +124,19 @@ in {
           pkill clash-verge
           clash-verge
         ''}
+
+        exec = ${pkgs.writeShellScript "deploy-fcitx" ''
+          pkill fcitx
+          if [ -d "${config.xdg.dataHome}/fcitx5/rime/" ]; then
+            rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
+          fi
+          ${pkgs.fcitx5} -d --replace
+          sleep 2
+
+          # https://github.com/fcitx/fcitx5-rime/issues/54#issuecomment-1736621316
+          ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:"" || true
+        ''
+        }
 
         # register in nix modules
         ${

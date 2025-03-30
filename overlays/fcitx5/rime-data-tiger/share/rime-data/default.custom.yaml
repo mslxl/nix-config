@@ -7,12 +7,11 @@
 patch:
   schema_list:
     - {schema: tiger}
-    # - {schema: tigress}
+    - {schema: tigress}
     - {schema: PY_c}
     - {schema: japanese}
     - {schema: esperanto}
   switcher:
-    candidate_layout: [schema_list, config]
     hotkeys:  # 将默认的 F4热键 更改为ctrl+`
       - "Control+grave"
       - "Control+F8"
