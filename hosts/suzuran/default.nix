@@ -93,7 +93,7 @@ in {
       };
     };
   in
-    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker" "music" "calibre"]);
+    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker" "music" "calibre" "backup"]);
 
   powerManagement.enable = true;
   services.logind = {
@@ -138,8 +138,8 @@ in {
   programs.mtr.enable = true;
 
   nix.settings.substituters = [
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
     # "https://mirrors.cernet.edu.cn/nix-channels/store"
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
     # "https://mirror.sjtu.edu.cn/nix-channels/store"
   ];
 

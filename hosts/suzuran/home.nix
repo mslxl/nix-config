@@ -1,4 +1,5 @@
 {
+  lib,
   system,
   pkgs,
   pkgs-stable,
@@ -25,16 +26,22 @@
     desktop = {
       background = {
         source = "${wallpapers}/nix-wallpaper-dracula.jpg";
+        # source = pkgs.fetchurl {
+        #   # https://www.reddit.com/r/NixOS/comments/166r8n7/anime_nix_wallpaper_i_created/#lightbox
+        #   url = "https://i.redd.it/0f6oxa9y9jlb1.png";
+        #   hash = "sha256-2V9CNXJn7fg4aSfDE6frXZtZ3bd1HnatqQP41+qJ9dw=";
+        # };
         variant = "light";
       };
       hyprland = {
-        enable = false;
+        enable = true;
         monitors = [
           "HDMI-A-1,1920x1080,2048x100,1"
-          "eDP-1,2560x1600,0x0,1.25"
+          "eDP-1,2560x1600,0x0,1.5"
           # "HDMI-A-1,1920x1080,64x1280,1"
         ];
         extraConfig = ''
+          debug:disable_scale_checks = true
           xwayland {
             force_zero_scaling = 1
           }
@@ -50,7 +57,7 @@
       sway = {
         enable = false;
         extraConfig = ''
-          output eDP-1 scale 1.3
+          output eDP-1 scale 1.5
         '';
       };
     };
