@@ -858,10 +858,10 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1721229576,
-        "narHash": "sha256-l6iAI63CmmYYQLd9CfuDAg6sRvXzkiqvRqTWKBhecjE=",
+        "lastModified": 1743474876,
+        "narHash": "sha256-gy49ukGK3wy4D9iVRG7cOzd2l+Voi9onTIPEv5Rtm3k=",
         "ref": "refs/heads/main",
-        "rev": "fe112deb2cc0eb21338207096945aa68f69d5138",
+        "rev": "c9f174c30648103493218e07cf9752418f14ca0b",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/mslxl/secrets.git"

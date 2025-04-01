@@ -31,7 +31,10 @@ in {
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
-  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
+  nix.settings.substituters = [
+    "https://mirror.sjtug.edu.cn/nix-channels/store"
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
