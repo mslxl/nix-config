@@ -94,6 +94,7 @@
               # (extension "web-clipper-obsidian" "clipper@obsidian.md")
               (extension "pakkujs" "{646d57f4-d65c-4f0d-8e80-5800b92cfdaa}")
               (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
+              (extension "refined-github-" "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}")
               (extension "rsspreview" "{7799824a-30fe-4c67-8b3e-7094ea203c94}")
               (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
               (extension "single-file" "{531906d3-e22f-4a6c-a102-8057b88a1a63}")
