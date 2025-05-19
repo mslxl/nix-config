@@ -108,6 +108,7 @@
               (extension "ublock-origin" "uBlock0@raymondhill.net")
               (extension "unpaywall" "{f209234a-76f0-4735-9920-eb62507a54cd}")
               (extension "user_agent_string_switcher" "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}")
+              (extension "utags" "{a0b2a0f8-83a5-449a-8e47-3b257da0bb37}")
               # alternative of surfingkeys
               # (extension "vimium-ff" "{d7742d87-e61d-4b78-b8a1-b469842139fa}")
               (extension "wakatimes" "addons@wakatime.com")
