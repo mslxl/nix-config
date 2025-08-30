@@ -7,6 +7,14 @@
   # fix for `sudo xxx` in kitty/wezterm and other modern terminal emulators
   security.sudo.keepTerminfo = true;
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
+  environment.systemPackages = with pkgs; [
+    gnumake
+    wl-clipboard
+  ];
+
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images

@@ -18,32 +18,6 @@ in {
     ./host.nix
   ];
 
-  boot.loader = {
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      configurationLimit = 15;
-      useOSProber = true;
-    };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-  };
-
-  boot.supportedFilesystems = ["ntfs"];
-
-  boot.kernelParams = [
-    # fix touchpad not work
-    # see https://discourse.nixos.org/t/touchpad-click-not-working/12276
-    "psmouse.synaptics_intertouch=0"
-
-    # fix black screen when exit session
-    # see https://nixos.wiki/wiki/Nvidia#Graphical_Corruption_and_System_Crashes_on_Suspend.2FResume
-    # "module_blacklist=amdgpu"
-  ];
-
   time.hardwareClockInLocalTime = true;
   users.users.${username}.extraGroups = ["networkmanager"];
 
@@ -67,19 +41,19 @@ in {
     cifs-utils
   ];
 
-  fileSystems = let
-    bindDir = name: {
-      name = "/mnt/kamoi/${name}";
-      value = {
-        device = "//192.168.1.128/${name}";
-        fsType = "cifs";
-        options = let
-          automount_opts = "nobrl,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-        in ["${automount_opts},credentials=${config.age.secrets."samba-kamoi".path},uid=1000,gid=100"];
-      };
-    };
-  in
-    builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker" "music" "calibre" "backup"]);
+  # fileSystems = let
+  #   bindDir = name: {
+  #     name = "/mnt/kamoi/${name}";
+  #     value = {
+  #       device = "//192.168.1.128/${name}";
+  #       fsType = "cifs";
+  #       options = let
+  #         automount_opts = "nobrl,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+  #       in ["${automount_opts},credentials=${config.age.secrets."samba-kamoi".path},uid=1000,gid=100"];
+  #     };
+  #   };
+  # in
+  #   builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker" "music" "calibre" "backup"]);
 
   powerManagement.enable = true;
   services.logind.settings = {
@@ -118,17 +92,9 @@ in {
 
   hardware.graphics.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
-
-  nix.settings.substituters = [
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
-  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

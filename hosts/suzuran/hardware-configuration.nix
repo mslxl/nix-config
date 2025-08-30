@@ -12,10 +12,41 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    systemd-boot.enable = true;
+  };
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.supportedFilesystems = [
+    "ext4"
+    "btrfs"
+    "xfs"
+    "ntfs"
+    "fat"
+    "vfat"
+    "exfat"
+  ];
+
+  boot.kernelParams = [
+    # fix touchpad not work
+    # see https://discourse.nixos.org/t/touchpad-click-not-working/12276
+    "psmouse.synaptics_intertouch=0"
+
+    # fix black screen when exit session
+    # see https://nixos.wiki/wiki/Nvidia#Graphical_Corruption_and_System_Crashes_on_Suspend.2FResume
+    # "module_blacklist=amdgpu"
+  ];
+
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.tmp.cleanOnBoot = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7f1bd730-0a8b-4874-b738-1f963ce08ff3";

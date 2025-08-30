@@ -28,13 +28,6 @@
     };
   };
 
-  # services.v2raya.enable = true;
-  programs.clash-verge = {
-    enable = true;
-    autoStart = true;
-    package = pkgs.clash-verge-rev;
-  };
-
   nix.settings = {
     max-jobs = 12; # leave 4 CPU for other work, which would make computer available when rebuild
     cores = 12;

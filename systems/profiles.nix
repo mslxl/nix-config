@@ -2,11 +2,13 @@
   server_base = {
     nixos-modules = [
       inputs.nur.modules.nixos.default
+      inputs.sops-nix.nixosModules.sops
       ../secrets/nixos-system.nix
       ../modules/base.nix
       ../modules/nixos/base
     ];
     home-module.imports = [
+      inputs.sops-nix.homeManagerModules.sops
       ../home/linux/server.nix
     ];
   };
@@ -14,9 +16,7 @@
     nixos-modules = [
       inputs.nur.modules.nixos.default
       ../secrets/nixos-system.nix
-      ../modules/base.nix
-      ../modules/nixos/desktop
-      ../modules/nixos/base
+      ../modules/nixos/desktop.nix
     ];
     home-module.imports = [
       inputs.plasma-manager.homeManagerModules.plasma-manager
