@@ -4,6 +4,7 @@
   ...
 }: {
   modules.desktop = {
+    wayland.enable = true;
     hyprland = {
       enable = true;
     };
@@ -15,10 +16,6 @@
         fcitx5 -d &
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
       '';
-    };
-    sddm = {
-      enable = true;
-      bg = "${wallpapers}/nix-wallpaper-dracula.jpg";
     };
     sway = {
       enable = false;

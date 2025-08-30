@@ -68,18 +68,15 @@
       ario.enable = false;
     };
   };
-  home.packages = with pkgs-stable;
+  home.packages = with pkgs-stable.jetbrains;
     [
-      # android-studio
-    ]
-    ++ (with pkgs-stable.jetbrains; [
       # pycharm-professional
       idea-ultimate
       pycharm-professional
       goland
       rider
       datagrip
-    ])
+    ]
     ++ (with pkgs; [
       wine
       winetricks

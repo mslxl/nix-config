@@ -64,32 +64,6 @@ in {
   };
   services.thermald.enable = true;
 
-  services.xserver.videoDrivers = ["nvidia" "amdgpu"];
-
-  hardware.nvidia = {
-    open = true;
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    powerManagement = {
-      enable = true;
-      finegrained = true;
-    };
-    prime = {
-      allowExternalGpu = true;
-
-      # Use this to save energy
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-
-      amdgpuBusId = "PCI:1:0:0";
-      nvidiaBusId = "PCI:5:0:0";
-    };
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
-  # virtualisation.docker.enableNvidia = true;
-
   hardware.graphics.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

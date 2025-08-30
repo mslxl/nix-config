@@ -51,6 +51,7 @@
     # spiceUSBRedirection.enable = true;
     # lxd.enable = true;
   };
+
   services.spice-vdagentd.enable = false;
   environment.systemPackages = with pkgs; [
     # docker-compose

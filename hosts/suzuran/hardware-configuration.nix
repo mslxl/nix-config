@@ -36,10 +36,6 @@
     # fix touchpad not work
     # see https://discourse.nixos.org/t/touchpad-click-not-working/12276
     "psmouse.synaptics_intertouch=0"
-
-    # fix black screen when exit session
-    # see https://nixos.wiki/wiki/Nvidia#Graphical_Corruption_and_System_Crashes_on_Suspend.2FResume
-    # "module_blacklist=amdgpu"
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
