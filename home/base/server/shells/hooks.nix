@@ -3,19 +3,16 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
   };
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
   };
   programs.eza = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
     git = true;
     icons = "auto";
   };
@@ -32,12 +29,10 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
     nix-direnv.enable = true;
   };
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
     settings = {

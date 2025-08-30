@@ -17,8 +17,7 @@
       "application/epub+zip"
       "application/vnd.comicbook+zip"
       "application/vnd.comicbook-rar"
-    ] (_: ["koreader.desktop"]))
-    ;
+    ] (_: ["koreader.desktop"]));
 
   home.packages = with pkgs; [
     kdePackages.okular

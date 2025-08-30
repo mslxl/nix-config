@@ -17,13 +17,6 @@ with lib; let
     fcitx5-gtk
     libsForQt5.fcitx5-qt
   ];
-
-  fcitx5Package =
-    if plasma6Support then
-      pkgs.qt6Packages.fcitx5-with-addons.override { inherit addons; }
-    else
-      pkgs.libsForQt5.fcitx5-with-addons.override { inherit addons; };
-
 in {
   xdg.configFile."fcitx5/profile" = {
     source = ./profile;
@@ -32,12 +25,11 @@ in {
   xdg.configFile."fcitx5/conf/classicui.conf".source = ./classicui.conf;
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5 = {
       inherit addons;
-      fcitx5-with-addons = fcitx5Package;
       waylandFrontend = true;
     };
   };
-
 }

@@ -3,7 +3,7 @@
 PROXY=$1
 
 mkdir -p /run/systemd/system/nix-daemon.service.d/
-cat <<EOF >/run/systemd/system/nix-daemon.service.d/proxy-override.conf
+tee /run/systemd/system/nix-daemon.service.d/proxy-override.conf <<EOF
 [Service]
 Environment="http_proxy=$PROXY"
 Environment="https_proxy=$PROXY"

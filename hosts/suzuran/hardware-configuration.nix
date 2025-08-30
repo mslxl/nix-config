@@ -7,7 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}: rec {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -18,37 +18,31 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/fb8cc39e-a1a7-4f33-9881-2f70680e8a9c";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/7f1bd730-0a8b-4874-b738-1f963ce08ff3";
+    fsType = "btrfs";
+    options = ["subvol=root" "compress=zstd"];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/fe77dd85-6e9e-4e6f-8e5f-786aeab5e8ef";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/7f1bd730-0a8b-4874-b738-1f963ce08ff3";
+    fsType = "btrfs";
+    options = ["subvol=home" "compress=zstd"];
   };
 
-  fileSystems."/mnt/nolebase" = {
-    device = "/dev/disk/by-uuid/2464DF3A64DF0D84";
-    fsType = "ntfs-3g";
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/7f1bd730-0a8b-4874-b738-1f963ce08ff3";
+    fsType = "btrfs";
+    options = ["subvol=nix" "compress=zstd" "noatime"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/CCD8-B1BA";
+    device = "/dev/disk/by-uuid/0342-2F8B";
     fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
   };
 
   swapDevices = [
-    {
-      device = "/var/swapfile";
-      size = 1024 * 17;
-    }
-  ];
-
-  boot.resumeDevice = fileSystems."/".device;
-  # calculate resume_offset using
-  # filefrag -v /var/swapfile | awk '{if($1=="0:"){print $4}}'
-  boot.kernelParams = [
-    "resume_offset=7751680"
+    {device = "/dev/disk/by-uuid/23e59381-5591-474c-93b4-af1bd1295752";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

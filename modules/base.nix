@@ -6,7 +6,6 @@
   username,
   ...
 } @ args: rec {
-
   nix.package = pkgs.nixVersions.latest;
 
   home-manager.backupFileExtension = "backup";
@@ -57,11 +56,10 @@
     unar
 
     nix-tree
-    nix-index
 
     nano
 
-    hurl
+    # hurl
     curl
     wget
   ];

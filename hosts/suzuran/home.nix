@@ -70,18 +70,14 @@
   };
   home.packages = with pkgs-stable;
     [
-      android-studio
+      # android-studio
     ]
     ++ (with pkgs-stable.jetbrains; [
-      # webstorm
-      rust-rover
       # pycharm-professional
-      # mps
-      # idea-community
+      idea-ultimate
+      pycharm-professional
       goland
       rider
-      # gateway
-      # clion
       datagrip
     ])
     ++ (with pkgs; [
@@ -89,12 +85,9 @@
       winetricks
 
       zathura
-      geogebra6
       zotero-beta
       cpeditor
       appimage-run
-
-      jetbrains.idea-ultimate
     ]);
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

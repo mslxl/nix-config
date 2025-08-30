@@ -2,8 +2,7 @@
   pkgs,
   myutils,
   ...
-}: 
-{
+}: {
   xdg.mimeApps.defaultApplications =
     (myutils.attrs.listToAttrs [
       "text/html"
@@ -340,16 +339,15 @@
   programs.chromium = {
     enable = true;
     extensions = [
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
-      { id = "chejfhdknideagdnddjpgamkchefjhoi"; } # VertiTab
-      { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # Surfingkey
-      { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      { id = "kbfnbcaeplbcioakkpcpgfkobkghlhen"; } # Grammarly
-      { id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh"; } # Immersive Translate
-      { id = "mgpdnhlllbpncjpgokgfogidhoegebod"; } # Photo Show
-      { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # Tampermonkey
+      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+      {id = "chejfhdknideagdnddjpgamkchefjhoi";} # VertiTab
+      {id = "gfbliohnnapiefjpjlpjnehglfpaknnc";} # Surfingkey
+      {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
+      {id = "kbfnbcaeplbcioakkpcpgfkobkghlhen";} # Grammarly
+      {id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh";} # Immersive Translate
+      {id = "mgpdnhlllbpncjpgokgfogidhoegebod";} # Photo Show
+      {id = "dhdgffkkebhmkfjojejmpbldmpobfkfo";} # Tampermonkey
     ];
-
   };
 
   home.packages = [

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     function proxyEnv(){
       ip=$(ip route show | grep -i default | awk '{ print $3}')
       port=20171

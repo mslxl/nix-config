@@ -13,7 +13,7 @@
   config = lib.mkMerge [
     (lib.mkIf config.modules.game.minecraft.enable {
       home.packages = with pkgs; [
-        (prismlauncher.override {jdks = [zulu8 zulu17 jdk21];})
+        (prismlauncher.override {jdks = [zulu8 jdk21];})
       ];
     })
 

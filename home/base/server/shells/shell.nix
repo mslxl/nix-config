@@ -1,32 +1,24 @@
-{pkgs,nur-pkgs-mslxl, ...}: let
+{
+  pkgs,
+  nur-pkgs-mslxl,
+  ...
+}: let
   shellAliases = {
     g = "git";
   };
 in {
-  home.packages = (with pkgs; [
-    git
-    lice
-    tokei
-    just
-  ]) ++ (with nur-pkgs-mslxl; [
-    trzsz-ssh 
-    trzsz-go
-  ]);
+  home.packages =
+    (with pkgs; [
+      git
+      lice
+      tokei
+      just
+    ])
+    ++ (with nur-pkgs-mslxl; [
+      trzsz-ssh
+      trzsz-go
+    ]);
 
-  programs.nushell = {
-    enable = true;
-    configFile.text = ''
-      $env.config = {
-        show_banner: false
-      }
-    '';
-    extraConfig = ''
-      if (tty | str contains "pts") {
-          ${pkgs.fastfetch}/bin/fastfetch --cpu-temp --gpu-temp --battery-temp
-      }
-    '';
-    inherit shellAliases;
-  };
   programs.zsh = {
     enable = true;
     autosuggestion = {
@@ -38,11 +30,10 @@ in {
     enableCompletion = true;
     enableVteIntegration = true;
     inherit shellAliases;
-    initExtra = ''
+    initContent = ''
       if [[ $(tty) == *"pts"* ]] {
-         ${pkgs.fastfetch}/bin/fastfetch --cpu-temp --gpu-temp --battery-temp
+         ${pkgs.fastfetch}/bin/fastfetch
       }
-      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
     oh-my-zsh = {
       enable = true;

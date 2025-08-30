@@ -25,20 +25,6 @@ in {
       efiSupport = true;
       configurationLimit = 15;
       useOSProber = true;
-      theme = pkgs.stdenv.mkDerivation {
-        pname = "distro-grub-themes";
-        version = "3.2";
-        src = pkgs.fetchFromGitHub {
-          owner = "AdisonCavani";
-          repo = "distro-grub-themes";
-          rev = "v3.2";
-          hash = "sha256-U5QfwXn4WyCXvv6A/CYv9IkR/uDx4xfdSgbXDl5bp9M=";
-        };
-        installPhase = ''
-          mkdir -p $out
-          tar xvf themes/nixos.tar -C $out
-        '';
-      };
     };
     efi = {
       canTouchEfiVariables = true;
@@ -96,9 +82,11 @@ in {
     builtins.listToAttrs (builtins.map bindDir ["secret" "public" "home" "docker" "music" "calibre" "backup"]);
 
   powerManagement.enable = true;
-  services.logind = {
-    lidSwitchExternalPower = "lock";
-    lidSwitch = "suspend-then-hibernate";
+  services.logind.settings = {
+    Login = {
+      HandleLidSwitchExternalPower = "lock";
+      HandleLidSwitch = "suspend-then-hibernate";
+    };
   };
   services.thermald.enable = true;
 
@@ -138,7 +126,7 @@ in {
   programs.mtr.enable = true;
 
   nix.settings.substituters = [
-    "https://mirror.sjtug.edu.cn/nix-channels/store"
+    "https://mirror.sjtu.edu.cn/nix-channels/store"
     "https://mirrors.ustc.edu.cn/nix-channels/store"
   ];
 

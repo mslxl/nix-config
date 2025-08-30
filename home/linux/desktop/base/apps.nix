@@ -26,7 +26,6 @@
     ++ (with nur-pkgs.repos; [
       # xddxdd.wine-wechat
 
-      xddxdd.bilibili
       # linyinfeng.wemeet
     ]);
 }

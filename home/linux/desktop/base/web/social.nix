@@ -1,7 +1,6 @@
 {
   pkgs,
   nur-pkgs-mslxl,
-  ayugram-desktop,
   ...
 }: {
   xdg.mimeApps.defaultApplications = {
@@ -11,12 +10,12 @@
     "x-scheme-handler/follow" = ["follow.desktop"];
   };
   home.packages = [
-    pkgs.element-desktop
+    # pkgs.element-desktop
 
     pkgs.discord
-    pkgs.follow
-    nur-pkgs-mslxl.liteloader-qqnt
-
+    pkgs.folo
+    # nur-pkgs-mslxl.liteloader-qqnt
+    nur-pkgs-mslxl.qqnt
     # pkgs.telegram-desktop
     (pkgs.ayugram-desktop.overrideAttrs (super: {
       buildInputs = super.buildInputs ++ [pkgs.makeWrapper];
@@ -26,7 +25,7 @@
         or ""
         + ''
           chmod a+rwx "$out/bin/"
-          wrapProgram "$out/bin/ayugram-desktop" --set GTK_IM_MODULE fcitx --set QT_IM_MODULE fcitx
+          wrapProgram "$out/bin/AyuGram" --set GTK_IM_MODULE fcitx --set QT_IM_MODULE fcitx
         '';
     }))
   ];

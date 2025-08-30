@@ -1,5 +1,3 @@
-set shell := ["nu", "-c"]
-
 FLAKE_CFG := ".#" + `cat /etc/hostname`
 
 
@@ -14,18 +12,18 @@ trace-build: sudo
 	nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option eval-cache false
 
 sudo:
-	@echo ("uid: " + (id -u))
-	@if (id -u) != "0" { \
+	@echo "uid: $(id -u)"
+	@if [[ "$(id -u)" -ne "0" ]]; then \
 		 echo "You must be root to perform this action.";\
-		 exit 1\
-	}
+		 exit 1;\
+	fi
 
 nosudo:
-	@echo ("uid: " + (id -u))
-	@if (id -u) == "0" { \
+	@echo "uid: $(id -u)"
+	@if [[ "$(id -u)" -eq "0" ]]; then \
 		 echo "You must not be root to perform this action.";\
-		 exit 1\
-	}
+		 exit 1;\
+	fi
 
 
 clean:
