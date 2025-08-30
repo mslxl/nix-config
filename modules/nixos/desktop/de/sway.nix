@@ -23,6 +23,7 @@ with lib; {
 
     environment.systemPackages = with pkgs; [
       wl-clipboard
+      brightnessctl
       cliphist
     ];
 
