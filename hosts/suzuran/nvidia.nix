@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   boot.kernelParams = [
     # Since NVIDIA does not load kernel mode setting by default,
@@ -6,9 +7,9 @@
 
     # fix black screen when exit session
     # see https://nixos.wiki/wiki/Nvidia#Graphical_Corruption_and_System_Crashes_on_Suspend.2FResume
-    "module_blacklist=amdgpu"
+    # "module_blacklist=amdgpu"
   ];
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     open = true;

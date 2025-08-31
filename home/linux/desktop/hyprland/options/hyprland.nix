@@ -139,7 +139,6 @@ in {
           #   fi
           #   ${pkgs.fcitx5} -d --replace
           #   sleep 2
-
           #   # https://github.com/fcitx/fcitx5-rime/issues/54#issuecomment-1736621316
           #   ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:"" || true
           # ''

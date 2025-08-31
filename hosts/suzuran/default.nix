@@ -8,19 +8,22 @@
   username,
   myutils,
   ...
-}: let
+}:
+let
   hostName = "suzuran";
-in {
+in
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./tlp.nix
     ./host.nix
+    ./nvidia.nix
     ./gaming.nix
   ];
 
   time.hardwareClockInLocalTime = true;
-  users.users.${username}.extraGroups = ["networkmanager"];
+  users.users.${username}.extraGroups = [ "networkmanager" ];
 
   networking = {
     inherit hostName;
@@ -64,8 +67,6 @@ in {
     };
   };
   services.thermald.enable = true;
-
-  hardware.graphics.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

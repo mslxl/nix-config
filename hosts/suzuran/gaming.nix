@@ -47,6 +47,7 @@
     mangohud
     # a GUI game launcher for Steam/GoG/Epic
     lutris
+    gamescope
   ];
 
   # Optimise Linux system performance on demand
@@ -58,4 +59,8 @@
   #      https://github.com/FeralInteractive/GameMode#apps-with-gamemode-integration
   #      simply running the game will automatically activate GameMode.
   programs.gamemode.enable = pkgs.stdenv.isx86_64;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = false;
+  };
 }
