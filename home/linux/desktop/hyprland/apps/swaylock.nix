@@ -8,7 +8,7 @@
     package = pkgs.swaylock-effects;
     settings = {
       ignore-empty-password = true;
-      font = "Fira Sans Semibold";
+      font = "Maple Mono NF CN";
       clock = true;
       timestr = "%R";
       datestr = "%a, %e of %B";

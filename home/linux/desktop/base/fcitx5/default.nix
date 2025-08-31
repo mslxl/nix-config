@@ -5,8 +5,6 @@
   ...
 }:
 with lib; let
-  plasma6Support = false;
-
   addons = with pkgs; [
     fcitx5-rime
 
@@ -16,6 +14,7 @@ with lib; let
     fcitx5-lua
     fcitx5-gtk
     libsForQt5.fcitx5-qt
+    kdePackages.fcitx5-qt
   ];
 in {
   xdg.configFile."fcitx5/profile" = {

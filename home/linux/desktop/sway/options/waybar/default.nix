@@ -7,7 +7,7 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.sway;
+  cfg = config.modules.desktop;
 in {
   options.modules.desktop.sway.waybar = {
     theme = mkOption {
@@ -23,7 +23,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.type == "sway") {
     programs.waybar = {
       enable = true;
       package = waybar.packages.${pkgs.system}.waybar;
@@ -39,7 +39,7 @@ in {
     ];
 
     xdg.configFile."waybar/modules.json".source = ./modules.json;
-    xdg.configFile."waybar/config".source = ./themes/${cfg.waybar.theme}/config;
+    xdg.configFile."waybar/config".source = ./themes/${cfg.sway.waybar.theme}/config;
 
     xdg.configFile."waybar/style.css".text = let
       colors =
@@ -78,15 +78,15 @@ in {
         /*
          * theme variant
          */
-        ${lib.readFile ./themes/${cfg.waybar.theme}/${cfg.waybar.variant}/style.css}
+        ${lib.readFile ./themes/${cfg.sway.waybar.theme}/${cfg.sway.waybar.variant}/style.css}
       ''
       + (
-        if (lib.pathExists ./themes/${cfg.waybar.theme}/style.css)
+        if (lib.pathExists ./themes/${cfg.sway.waybar.theme}/style.css)
         then ''
           /*
            * component theme
            */
-          ${lib.readFile ./themes/${cfg.waybar.theme}/style.css}
+          ${lib.readFile ./themes/${cfg.sway.waybar.theme}/style.css}
         ''
         else ""
       );

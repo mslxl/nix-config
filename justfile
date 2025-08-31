@@ -28,7 +28,7 @@ nosudo:
 
 clean:
   #!/usr/bin/env bash
-  if [ -f "$HOME/.gtkrc-2.0.backup" ] ; then rm "$HOME/.gtkrc-2.0.backup"; fi
+  if [ -f "$HOME/.gtkrc-2.0.hm.backup" ] ; then rm "$HOME/.gtkrc-2.0.hm.backup"; fi
   if [ -f "$HOME/.gtkrc-2.0" ] ; then rm "$HOME/.gtkrc-2.0"; fi
 
 # Garbage collect all unused nix store entries

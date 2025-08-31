@@ -10,8 +10,5 @@ with lib; {
     ./options
   ];
 
-  options.modules.desktop.hyprland = {
-    enable = mkEnableOption "Enable hyprland";
-  };
-  config = mkIf config.modules.desktop.hyprland.enable ((import ./values args) // (import ./apps args));
+  config = mkIf (config.modules.desktop.type == "hyprland") (import ./apps args);
 }

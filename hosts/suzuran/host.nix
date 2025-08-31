@@ -5,15 +5,7 @@
 }: {
   modules.desktop = {
     wayland.enable = true;
-    hyprland = {
-      enable = true;
-    };
-    sway = {
-      enable = false;
-    };
-    plasma = {
-      enable = false;
-    };
+    type = "hyprland";
   };
 
   nix.settings = {

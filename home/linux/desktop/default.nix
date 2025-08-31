@@ -9,6 +9,7 @@
     ./base
     ./hyprland
     ./sway
+    ./plasma
   ];
 
   options.modules.desktop = {
@@ -21,6 +22,9 @@
         type = with lib.types; enum ["dark" "light"];
         default = "dark";
       };
+    };
+    type = lib.mkOption {
+      type = lib.types.enum ["hyprland" "sway" "plasma"];
     };
     exec = {
       once = lib.mkOption {

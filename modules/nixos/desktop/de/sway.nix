@@ -3,16 +3,11 @@
   system,
   config,
   lib,
+  username,
   ...
 }:
 with lib; {
-  options.modules.desktop = {
-    sway = {
-      enable = mkEnableOption "Enable sway";
-    };
-  };
-
-  config = mkIf config.modules.desktop.sway.enable {
+  config = mkIf (config.modules.desktop.type == "sway") {
     xdg.portal = {
       enable = true;
       wlr.enable = true;
@@ -24,8 +19,17 @@ with lib; {
     environment.systemPackages = with pkgs; [
       wl-clipboard
       brightnessctl
-      cliphist
+      bottom
     ];
+
+    programs.nm-applet = {
+      enable = true;
+      indicator = true;
+    };
+
+    home-manager.users.${username} = {
+      modules.desktop.type = "sway";
+    };
 
     programs.sway = {
       enable = true;

@@ -16,6 +16,7 @@ in {
     ./hardware-configuration.nix
     ./tlp.nix
     ./host.nix
+    ./gaming.nix
   ];
 
   time.hardwareClockInLocalTime = true;

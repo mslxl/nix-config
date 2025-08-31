@@ -20,6 +20,7 @@ in
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm.backup";
 
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.users."${username}" = home-module;

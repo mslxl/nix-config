@@ -8,7 +8,7 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.hyprland;
+  cfg = config.modules.desktop;
 in {
   options.modules.desktop.hyprland.waybar = {
     theme = mkOption {
@@ -24,7 +24,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.type == "hyprland") {
     programs.waybar = {
       enable = true;
       package = waybar.packages.${system}.waybar;
@@ -36,7 +36,7 @@ in {
     ];
 
     xdg.configFile."waybar/modules.json".source = ./modules.json;
-    xdg.configFile."waybar/config".source = ./themes/${cfg.waybar.theme}/config;
+    xdg.configFile."waybar/config".source = ./themes/${cfg.hyprland.waybar.theme}/config;
 
     xdg.configFile."waybar/style.css".text = let
       colors =
@@ -75,15 +75,15 @@ in {
         /*
          * theme variant
          */
-        ${lib.readFile ./themes/${cfg.waybar.theme}/${cfg.waybar.variant}/style.css}
+        ${lib.readFile ./themes/${cfg.hyprland.waybar.theme}/${cfg.hyprland.waybar.variant}/style.css}
       ''
       + (
-        if (lib.pathExists ./themes/${cfg.waybar.theme}/style.css)
+        if (lib.pathExists ./themes/${cfg.hyprland.waybar.theme}/style.css)
         then ''
           /*
            * component theme
            */
-          ${lib.readFile ./themes/${cfg.waybar.theme}/style.css}
+          ${lib.readFile ./themes/${cfg.hyprland.waybar.theme}/style.css}
         ''
         else ""
       );

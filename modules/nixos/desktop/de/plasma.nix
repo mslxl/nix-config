@@ -3,27 +3,29 @@
   pkgs,
   config,
   lib,
+  username,
   ...
 }:
 with lib; {
-  options.modules.desktop.plasma = {
-    enable = mkEnableOption "Enable plasma";
-  };
-
-  config = mkIf config.modules.desktop.plasma.enable {
+  config = mkIf (config.modules.desktop.type == "plasma") {
     services.power-profiles-daemon.enable = true;
     services.tlp.enable = mkForce false;
     services.desktopManager.plasma6.enable = true;
     environment.systemPackages = with pkgs; [
       ghostty
       wl-clipboard
+      bottom
     ];
+    home-manager.users.${username} = {
+      modules.desktop.type = "plasma";
+    };
 
-    environment.plasma6.excludePackages = with pkgs.libsForQt5; [
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
       konsole
       kmail
       kate
+      kwallet
       okular
       elisa
     ];

@@ -31,14 +31,15 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
-    xdg.configFile."hypr/script".source = ../conf/script;
+  config = mkIf (config.modules.desktop.type == "hyprland") {
+    xdg.configFile."hypr/script".source = ./script;
     home.packages = with pkgs; [
       grim
       slurp
       swappy
       pngquant
-
+      swww
+      cliphist
       # ((flameshot.overrideAttrs(super: {
       #   postFixup =
       #     super.postFixup
@@ -52,6 +53,16 @@ in {
       # })
     ];
 
+    home.activation.swww-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run bash -c "${pkgs.swww}/bin/swww img ${config.modules.desktop.background.source} || true"
+    '';
+    # NOTE: this executable is used by greetd to start a wayland session when system boot up
+    # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config in NixOS module
+
+    home.file.".wayland-session" = {
+      source = "${hyprland.packages.${system}.hyprland}/bin/Hyprland";
+      executable = true;
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = hyprland.packages.${system}.hyprland;
@@ -71,7 +82,7 @@ in {
 
       extraConfig = let
         monitorSection = builtins.concatStringsSep "\n" (map (field: "monitor=" + field) cfg.monitors);
-        confFile = builtins.readFile ../conf/hyprland.conf;
+        confFile = builtins.readFile ./hyprland.conf;
 
         colorScheme =
           ((nix-colors.lib.contrib {inherit pkgs;}).colorSchemeFromPicture {
@@ -113,16 +124,11 @@ in {
         ${
           "#comment this line without install wlsunset" #exec-once = ${pkgs.wlsunset}/bin/wlsunset -l 36.6 -L 117
         }
-        exec-once = (swww query || swww init) && swww img "${config.modules.desktop.background.source}"
+        exec-once = (swww query || swww-daemon) && swww img "${config.modules.desktop.background.source}"
 
         exec = ${pkgs.writeShellScript "restart-waybar" ''
           pkill waybar
           waybar
-        ''}
-
-        exec = ${pkgs.writeShellScript "restart-clash-verge" ''
-          pkill clash-verge
-          clash-verge
         ''}
 
         exec = ${

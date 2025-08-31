@@ -4,12 +4,10 @@
   lib,
   config,
   ...
-} @ args:
-with lib; {
-  imports = [./options];
+} @ args: {
+  imports = [
+    ./options
+  ];
 
-  options.modules.desktop.sway = {
-    enable = mkEnableOption "Enable sway";
-  };
-  config = mkIf config.modules.desktop.sway.enable ((import ./values args) // (import ./apps args));
+  config = lib.mkIf (config.modules.desktop.type == "sway") (import ./apps args);
 }

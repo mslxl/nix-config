@@ -1,14 +1,14 @@
 {
   myutils,
   pkgs,
+  lib,
   ...
 }: {
   imports = myutils.scanPaths ./.;
-  environment.systemPackages = with pkgs; [
-    bottom
-  ];
-  programs.nm-applet = {
-    enable = true;
-    indicator = true;
+
+  options.modules.desktop = {
+    type = lib.mkOption {
+      type = lib.types.enum ["hyprland" "sway" "plasma"];
+    };
   };
 }

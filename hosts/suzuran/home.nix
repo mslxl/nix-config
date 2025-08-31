@@ -24,6 +24,11 @@
     wakatime.enable = true;
 
     desktop = {
+      exec = {
+        once = [
+          "clash-verge"
+        ];
+      };
       background = {
         source = "${wallpapers}/nix-wallpaper-dracula.jpg";
         # source = pkgs.fetchurl {
@@ -34,7 +39,6 @@
         variant = "light";
       };
       hyprland = {
-        enable = true;
         monitors = [
           "HDMI-A-1,1920x1080,2048x100,1"
           "eDP-1,2560x1600,0x0,1.5"
@@ -55,7 +59,6 @@
         };
       };
       sway = {
-        enable = false;
         extraConfig = ''
           output eDP-1 scale 1.5
         '';

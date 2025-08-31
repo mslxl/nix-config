@@ -1,8 +1,10 @@
 {
   imports = [
-    ../base/core.nix
-    ../base/server
-    ../base/desktop
+    ../base/core
+    ../base/tui
+    ../base/gui
+
+    ../base/home.nix
 
     ./server
     ./desktop

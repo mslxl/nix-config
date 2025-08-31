@@ -4,16 +4,11 @@
   system,
   config,
   lib,
+  username,
   ...
 }:
 with lib; {
-  options.modules.desktop = {
-    hyprland = {
-      enable = mkEnableOption "Enable hyprland";
-    };
-  };
-
-  config = mkIf config.modules.desktop.hyprland.enable {
+  config = mkIf (config.modules.desktop.type == "hyprland") {
     xdg.portal = {
       enable = true;
 
@@ -28,10 +23,18 @@ with lib; {
       ];
     };
 
+    programs.nm-applet = {
+      enable = true;
+      indicator = true;
+    };
+    home-manager.users.${username} = {
+      modules.desktop.type = "hyprland";
+    };
+
     environment.systemPackages = with pkgs; [
       wl-clipboard
       brightnessctl
-      cliphist
+      bottom
     ];
 
     programs.hyprland = {
