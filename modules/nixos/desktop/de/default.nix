@@ -8,7 +8,7 @@
 
   options.modules.desktop = {
     type = lib.mkOption {
-      type = lib.types.enum ["hyprland" "sway" "plasma"];
+      type = lib.types.enum ["hyprland" "sway" "plasma" "niri"];
     };
   };
 }

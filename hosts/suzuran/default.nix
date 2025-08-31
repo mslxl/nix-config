@@ -8,11 +8,9 @@
   username,
   myutils,
   ...
-}:
-let
+}: let
   hostName = "suzuran";
-in
-{
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -23,7 +21,7 @@ in
   ];
 
   time.hardwareClockInLocalTime = true;
-  users.users.${username}.extraGroups = [ "networkmanager" ];
+  users.users.${username}.extraGroups = ["networkmanager"];
 
   networking = {
     inherit hostName;

@@ -3,7 +3,6 @@
     nixos-modules = [
       inputs.nur.modules.nixos.default
       inputs.sops-nix.nixosModules.sops
-      ../secrets/nixos-system.nix
       ../modules/base.nix
       ../modules/nixos/base
     ];
@@ -15,11 +14,11 @@
   desktop_base = {
     nixos-modules = [
       inputs.nur.modules.nixos.default
-      ../secrets/nixos-system.nix
       ../modules/nixos/desktop.nix
     ];
     home-module.imports = [
       inputs.plasma-manager.homeManagerModules.plasma-manager
+      inputs.niri.homeModules.niri
       ../home/linux/desktop.nix
     ];
   };

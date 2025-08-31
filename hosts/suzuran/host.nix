@@ -5,7 +5,7 @@
 }: {
   modules.desktop = {
     wayland.enable = true;
-    type = "hyprland";
+    type = "niri";
   };
 
   nix.settings = {

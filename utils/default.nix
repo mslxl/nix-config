@@ -3,22 +3,16 @@
   nixosSystem = import ./nixosSystem.nix;
   nixOnDroidSystem = import ./nixOnDroidSystem.nix;
   scanPaths = path:
-    builtins.map
-    (f: (path + "/${f}"))
-    (
-      builtins.attrNames
-      (
-        lib.attrsets.filterAttrs
-        (
+    builtins.map (f: (path + "/${f}")) (
+      builtins.attrNames (
+        lib.attrsets.filterAttrs (
           path: _type:
-            (_type == "directory")
+            (_type == "directory") # include directories
             || (
-              path
-              != "default.nix"
-              && (lib.strings.hasSuffix ".nix" path)
+              (path != "default.nix") # ignore default.nix
+              && (lib.strings.hasSuffix ".nix" path) # include .nix files
             )
-        )
-        (builtins.readDir path)
+        ) (builtins.readDir path)
       )
     );
 }

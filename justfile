@@ -46,7 +46,7 @@ gitgc:
 
 update input:
   ssh-add
-  nix flake lock --update-input {{input}}
+  nix flake update {{input}}
 
 update-all:
   ssh-add
