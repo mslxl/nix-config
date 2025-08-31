@@ -132,27 +132,28 @@ in {
         ''}
 
         exec = ${
-          pkgs.writeShellScript "deploy-fcitx" ''
-            pkill fcitx
-            if [ -d "${config.xdg.dataHome}/fcitx5/rime/" ]; then
-              rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
-            fi
-            ${pkgs.fcitx5} -d --replace
-            sleep 2
+          # pkgs.writeShellScript "deploy-fcitx" ''
+          #   pkill fcitx
+          #   if [ -d "${config.xdg.dataHome}/fcitx5/rime/" ]; then
+          #     rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
+          #   fi
+          #   ${pkgs.fcitx5} -d --replace
+          #   sleep 2
 
-            # https://github.com/fcitx/fcitx5-rime/issues/54#issuecomment-1736621316
-            ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:"" || true
-          ''
+          #   # https://github.com/fcitx/fcitx5-rime/issues/54#issuecomment-1736621316
+          #   ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:"" || true
+          # ''
+          "${pkgs.fcitx5} -d --replace"
         }
 
         # register in nix modules
         ${
           lib.concatStringsSep "\n"
-          (builtins.map (prog: "exec-once = ") config.modules.desktop.exec.once)
+          (builtins.map (prog: "exec-once = ${prog}") config.modules.desktop.exec.once)
         }
         ${
           lib.concatStringsSep "\n"
-          (builtins.map (prog: "exec = ") config.modules.desktop.exec.always)
+          (builtins.map (prog: "exec = ${prog}") config.modules.desktop.exec.always)
         }
       '';
       # exec-once = ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy
