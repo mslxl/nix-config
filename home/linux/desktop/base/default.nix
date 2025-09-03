@@ -1,6 +1,7 @@
 {
   myutils,
   pkgs,
+  config,
   ...
 }: {
   imports = myutils.scanPaths ./.;
@@ -29,21 +30,24 @@
     indicator = true;
   };
 
+  # # set dpi for 4k monitor
+  # xresources.properties = {
+  #   # dpi for Xorg's font
+  #   "Xft.dpi" = 150;
+  #   # or set a generic dpi
+  #   "*.dpi" = 150;
+  # };
+
   gtk = {
     enable = true;
-    cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
+
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
+    font = {
+      name = "Noto Sans";
+      package = pkgs.noto-fonts;
+      size = 11;
     };
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus";
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = false;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = false;
-    };
+
   };
 }

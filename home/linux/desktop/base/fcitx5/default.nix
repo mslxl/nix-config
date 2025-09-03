@@ -9,7 +9,7 @@ with lib; let
     fcitx5-rime
 
     # fcitx5-configtool
-    fcitx5-fluent
+    # fcitx5-fluent
 
     fcitx5-lua
     fcitx5-gtk
@@ -21,7 +21,6 @@ in {
     source = ./profile;
     force = true;
   };
-  xdg.configFile."fcitx5/conf/classicui.conf".source = ./classicui.conf;
 
   i18n.inputMethod = {
     enable = true;

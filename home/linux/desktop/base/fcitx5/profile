@@ -1,6 +1,6 @@
 [Groups/0]
 # Group Name
-Name=Other
+Name=Default
 # Layout
 Default Layout=us
 # Default Input Method
@@ -19,4 +19,4 @@ Name=rime
 Layout=
 
 [GroupOrder]
-0=Other
+0=Default
