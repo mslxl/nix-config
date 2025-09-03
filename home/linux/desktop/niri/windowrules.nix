@@ -45,18 +45,27 @@ niri: {
     # ])
 
     # --------------- Chatting ---------------
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "org.telegram.desktop";})
-    #   (leaf "open-on-workspace" "3chat")
-    # ])
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "wechat";})
-    #   (leaf "open-on-workspace" "3chat")
-    # ])
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "QQ";})
-    #   (leaf "open-on-workspace" "3chat")
-    # ])
+    (plain "window-rule" [
+      (leaf "match" {app-id = "org.telegram.desktop";})
+      (leaf "open-on-workspace" "1msg")
+    ])
+    (plain "window-rule" [
+      (leaf "match" {app-id = "com.ayugram.desktop";})
+      (leaf "open-on-workspace" "1msg")
+    ])
+    (plain "window-rule" [
+      (leaf "match" {app-id = "wechat";})
+      (leaf "open-on-workspace" "1msg")
+      (leaf "open-floating" false)
+    ])
+    (plain "window-rule" [
+      (leaf "match" {app-id = "thunderbird";})
+      (leaf "open-on-workspace" "1msg")
+    ])
+    (plain "window-rule" [
+      (leaf "match" {app-id = "QQ";})
+      (leaf "open-on-workspace" "1msg")
+    ])
 
     # --------------- Networking ---------------
 

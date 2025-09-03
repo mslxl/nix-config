@@ -159,7 +159,7 @@ niri: {
       #
       # For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
       # will all refer to the 3rd workspace.
-      (plain "Mod+1" [(leaf "focus-workspace" 1)])
+      (plain "Mod+1" [(leaf "focus-workspace" "1msg")])
       (plain "Mod+2" [(leaf "focus-workspace" 2)])
       (plain "Mod+3" [(leaf "focus-workspace" 3)])
       (plain "Mod+4" [(leaf "focus-workspace" 4)])
@@ -168,8 +168,8 @@ niri: {
       (plain "Mod+7" [(leaf "focus-workspace" 7)])
       (plain "Mod+8" [(leaf "focus-workspace" 8)])
       (plain "Mod+9" [(leaf "focus-workspace" 9)])
-      (plain "Mod+0" [(leaf "focus-workspace" "0other")])
-      (plain "Mod+Shift+1" [(leaf "move-column-to-workspace" 1)])
+      (plain "Mod+0" [(leaf "focus-workspace" 10)])
+      (plain "Mod+Shift+1" [(leaf "move-column-to-workspace" "1msg")])
       (plain "Mod+Shift+2" [(leaf "move-column-to-workspace" 2)])
       (plain "Mod+Shift+3" [(leaf "move-column-to-workspace" 3)])
       (plain "Mod+Shift+4" [(leaf "move-column-to-workspace" 4)])
@@ -178,7 +178,7 @@ niri: {
       (plain "Mod+Shift+7" [(leaf "move-column-to-workspace" 7)])
       (plain "Mod+Shift+8" [(leaf "move-column-to-workspace" 8)])
       (plain "Mod+Shift+9" [(leaf "move-column-to-workspace" 9)])
-      (plain "Mod+Shift+0" [(leaf "move-column-to-workspace" 0)])
+      (plain "Mod+Shift+0" [(leaf "move-column-to-workspace" 10)])
 
       # Alternatively, there are commands to move just a single window:
       # (plain "Mod+Ctrl+1" [(leaf "move-window-to-workspace" 1)])

@@ -112,6 +112,8 @@
           #     y = 0;
           #   })
           # ])
+          # ============= Named Workspaces =============
+          (node "workspace" "1msg" [(leaf "open-on-output" "eDP-1")])
         ];
       };
 
