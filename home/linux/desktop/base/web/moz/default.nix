@@ -1,6 +1,7 @@
 {
   pkgs,
   myutils,
+  config,
   ...
 }: {
   xdg.mimeApps.defaultApplications =
@@ -25,7 +26,11 @@
       "x-scheme-handler/mailto"
     ] (_: ["thunderbird.deskto"]));
 
-  catppuccin.firefox.enable = false;
+  catppuccin.firefox = {
+    enable = true;
+    profiles = {};
+  };
+
   programs = {
     firefox = {
       enable = true;
