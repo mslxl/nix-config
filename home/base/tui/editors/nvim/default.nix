@@ -18,6 +18,8 @@
     };
   };
 
+  catppuccin.nvim.enable = false;
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
