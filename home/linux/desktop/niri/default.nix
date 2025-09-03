@@ -7,8 +7,21 @@
   ...
 } @ args: let
   cfg = config.modules.desktop.niri;
-  # niri-pkg = niri.packages.${pkgs.system}.niri-stable;
-  niri-pkg = pkgs.niri;
+  niri-pkg = niri.packages.${pkgs.system}.niri-stable.overrideAttrs (super: {
+    # preBuild =
+    #   ''
+    #     ulimit -Sn 8192
+    #   ''
+    #   + (super.preBuild or "");
+    patches = [
+      # Fix wemeet screenshare
+      (pkgs.fetchpatch {
+        url = "https://github.com/YaLTeR/niri/pull/1791.patch";
+        hash = "sha256-dbxN3aZ2fyokQ5L2v4CO8nt+RbVAY0CArzRMwpybvhk=";
+      })
+    ];
+  });
+  # niri-pkg = pkgs.niri;
 in {
   options.modules.desktop.niri = {
     enable = lib.mkEnableOption "niri compositor";

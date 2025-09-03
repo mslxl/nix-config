@@ -15,6 +15,25 @@
     wl-clipboard
   ];
 
+  # systemd.services.nix-daemon.serviceConfig = {
+  #   # WARNING: THIS makes nix-daemon build extremely slow
+  #   LimitNOFILE = lib.mkForce ;
+  # };
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      item = "nofile";
+      type = "-";
+      value = "32768";
+    }
+    {
+      domain = "*";
+      item = "memlock";
+      type = "-";
+      value = "32768";
+    }
+  ];
+
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
