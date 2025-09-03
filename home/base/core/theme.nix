@@ -1,4 +1,4 @@
-{ ...}: {
+{...}: {
   catppuccin = {
     # The default `enable` value for all available programs.
     enable = true;

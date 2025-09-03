@@ -14,10 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur-mslxl = {
-      url = "github:mslxl/nur-pkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  nur-pkgs-mslxl,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages =
     (with pkgs; [
       fzf
@@ -24,10 +20,10 @@
       bottom
       difftastic
     ])
-    ++ (with nur-pkgs-mslxl; [
-      trzsz-ssh
-      trzsz-go
-    ]);
+    ++ [
+      (pkgs.callPackage ../../../pkgs/trzsz-ssh.nix {})
+      (pkgs.callPackage ../../../pkgs/trzsz-go.nix {})
+    ];
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;

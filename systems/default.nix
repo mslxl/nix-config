@@ -23,9 +23,6 @@
         overlays = import ../overlays args;
         config.allowUnfree = true;
       };
-      nur-pkgs-mslxl = import inputs.nur-mslxl {
-        pkgs = pkgs-unstable;
-      };
       nur-pkgs = import inputs.nur {
         nurpkgs = pkgs-unstable;
         pkgs = pkgs-unstable;

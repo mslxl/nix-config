@@ -1,6 +1,5 @@
 {
   pkgs,
-  nur-pkgs-mslxl,
   config,
   ...
 }: let

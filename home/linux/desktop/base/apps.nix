@@ -1,6 +1,5 @@
 {
   pkgs,
-  nur-pkgs-mslxl,
   nur-pkgs,
   myutils,
   ...
@@ -20,9 +19,9 @@
       xarchiver
       wechat-uos
     ])
-    ++ (with nur-pkgs-mslxl; [
-      dida365
-    ])
+    ++ [
+      (pkgs.callPackage ../../../../pkgs/dida365.nix {})
+    ]
     ++ (with nur-pkgs.repos; [
       # xddxdd.wine-wechat
 

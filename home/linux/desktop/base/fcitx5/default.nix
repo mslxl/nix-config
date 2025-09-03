@@ -8,7 +8,7 @@ with lib; let
   addons = with pkgs; [
     fcitx5-rime
 
-    # fcitx5-configtool
+    fcitx5-configtool
     # fcitx5-fluent
 
     fcitx5-lua
