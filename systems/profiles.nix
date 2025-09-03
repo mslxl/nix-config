@@ -14,11 +14,13 @@
   desktop_base = {
     nixos-modules = [
       inputs.nur.modules.nixos.default
+      inputs.catppuccin.nixosModules.catppuccin
       ../modules/nixos/desktop.nix
     ];
     home-module.imports = [
       inputs.plasma-manager.homeManagerModules.plasma-manager
       inputs.niri.homeModules.niri
+      inputs.catppuccin.homeModules.catppuccin
       ../home/linux/desktop.nix
     ];
   };

@@ -19,6 +19,9 @@
     "SDL_VIDEODRIVER" = "wayland";
     "GDK_BACKEND" = "wayland";
     "XDG_SESSION_TYPE" = "wayland";
+
+    "GTK_IM_MODULE" = "fcitx";
+    "QT_IM_MODULE" = "fcitx";
   };
 
   services.kdeconnect = {

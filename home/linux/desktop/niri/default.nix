@@ -65,23 +65,25 @@ in {
         xdg.configFile."waybar".source = ./conf/waybar;
         xdg.configFile."wlogout".source = ./conf/wlogout;
         xdg.configFile."hypr/hypridle.conf".source = ./conf/hypridle.conf;
-          
 
         # status bar
         programs.waybar = {
           enable = true;
           systemd.enable = true;
         };
+        catppuccin.waybar.enable = false;
         # screen locker
         programs.swaylock.enable = true;
 
         # Logout Menu
         programs.wlogout.enable = true;
+        catppuccin.wlogout.enable = false;
         # Hyprland idle daemon
         services.hypridle.enable = true;
 
         # notification daemon, the same as dunst
         services.mako.enable = true;
+        catppuccin.mako.enable = false;
       }
       {
         home.packages = with pkgs; [

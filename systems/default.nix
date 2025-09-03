@@ -8,17 +8,6 @@
   profiles = import ./profiles.nix {
     inherit inputs;
   };
-  nixpkgs-config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      # For pkgs.wechat-uos
-      "openssl"
-      "openssl-1.1.1w"
-
-      # For logseq
-      "electron-27.3.11"
-    ];
-  };
   specialArgsForSystem = system:
     rec {
       inherit system;
@@ -27,14 +16,13 @@
       pkgs-unstable = import inputs.nixpkgs {
         inherit system;
         overlays = import ../overlays args;
-        config = nixpkgs-config;
+        config.allowUnfree = true;
       };
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
         overlays = import ../overlays args;
-        config = nixpkgs-config;
+        config.allowUnfree = true;
       };
-      pkgs = pkgs-unstable;
       nur-pkgs-mslxl = import inputs.nur-mslxl {
         pkgs = pkgs-unstable;
       };

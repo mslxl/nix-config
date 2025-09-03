@@ -59,22 +59,21 @@ niri: {
       ])
 
       (plain "XF86MonBrightnessUp" [
-          (leaf "spawn" [
-            "brightnessctl"
-            "-q"
-            "s"
-            "+10%"
-          ])
+        (leaf "spawn" [
+          "brightnessctl"
+          "-q"
+          "s"
+          "+10%"
+        ])
       ])
       (plain "XF86MonBrightnessDown" [
-          (leaf "spawn" [
-            "brightnessctl"
-            "-q"
-            "s"
-            "10%-"
-          ])
+        (leaf "spawn" [
+          "brightnessctl"
+          "-q"
+          "s"
+          "10%-"
+        ])
       ])
-
 
       (plain "Mod+Shift+C" [(flag "close-window")])
 
@@ -136,8 +135,8 @@ niri: {
 
       (plain "Mod+Page_Down" [(flag "focus-workspace-down")])
       (plain "Mod+Page_Up" [(flag "focus-workspace-up")])
-      (plain "Mod+U" [(flag "focus-workspace-down")])
-      (plain "Mod+I" [(flag "focus-workspace-up")])
+      (plain "Mod+I" [(flag "focus-workspace-down")])
+      (plain "Mod+U" [(flag "focus-workspace-up")])
       (plain "Mod+Shift+Page_Down" [(flag "move-column-to-workspace-down")])
       (plain "Mod+Shift+Page_Up" [(flag "move-column-to-workspace-up")])
       (plain "Mod+Shift+I" [(flag "move-column-to-workspace-down")])
@@ -227,7 +226,6 @@ niri: {
       (plain "Alt+Print" [(flag "screenshot-window")])
 
       (plain "Mod+Shift+E" [(leaf "spawn" ["wlogout"])])
-
 
       (plain "Mod+Shift+P" [(flag "power-off-monitors")])
 

@@ -144,6 +144,7 @@
       zathura
       zotero-beta
       cpeditor
+      synology-drive-client
       appimage-run
     ]);
   dconf.settings = {

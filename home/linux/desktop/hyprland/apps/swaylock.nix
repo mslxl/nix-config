@@ -3,6 +3,7 @@
     grim
     swayidle
   ];
+  catppuccin.swaylock.enable = false;
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;

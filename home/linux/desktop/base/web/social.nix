@@ -15,18 +15,18 @@
     pkgs.discord
     pkgs.folo
     # nur-pkgs-mslxl.liteloader-qqnt
-    nur-pkgs-mslxl.qqnt
+    # nur-pkgs-mslxl.qqnt
+    (pkgs.qq.override {
+      commandLineArgs = [
+        # Force to run on Wayland
+        # "--ozone-platform-hint=auto"
+        # "--ozone-platform=wayland"
+        "--enable-wayland-ime"
+        "--wayland-text-input-version=3"
+      ];
+    })
+    pkgs.wechat
     # pkgs.telegram-desktop
-    (pkgs.ayugram-desktop.overrideAttrs (super: {
-      buildInputs = super.buildInputs ++ [pkgs.makeWrapper];
-
-      postInstall =
-        super.postInstall
-        or ""
-        + ''
-          chmod a+rwx "$out/bin/"
-          wrapProgram "$out/bin/AyuGram" --set GTK_IM_MODULE fcitx --set QT_IM_MODULE fcitx
-        '';
-    }))
+    pkgs.ayugram-desktop
   ];
 }
