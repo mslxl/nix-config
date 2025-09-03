@@ -58,7 +58,6 @@ in {
           wf-recorder # screen recording
           # audio
           alsa-utils # provides amixer/alsamixer/...
-          networkmanagerapplet # provide GUI app: nm-connection-editor
         ];
 
         home.activation.swww-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''

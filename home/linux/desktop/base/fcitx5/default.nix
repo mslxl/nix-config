@@ -22,6 +22,12 @@ in {
     force = true;
   };
 
+  home.activation.clean-fcitx-rime-data = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ -d "${config.xdg.dataHome}/fcitx5/rime/" ]; then
+      rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
+    fi
+  '';
+
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";

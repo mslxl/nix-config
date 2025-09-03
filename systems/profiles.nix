@@ -3,7 +3,6 @@
     nixos-modules = [
       inputs.nur.modules.nixos.default
       inputs.sops-nix.nixosModules.sops
-      ../modules/base.nix
       ../modules/nixos/base
     ];
     home-module.imports = [
@@ -15,6 +14,7 @@
     nixos-modules = [
       inputs.nur.modules.nixos.default
       inputs.catppuccin.nixosModules.catppuccin
+      ../modules/nixos/base
       ../modules/nixos/desktop.nix
     ];
     home-module.imports = [
