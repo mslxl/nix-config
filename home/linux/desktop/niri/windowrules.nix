@@ -1,84 +1,97 @@
 niri: {
-  programs.niri.config = let
-    inherit
-      (niri.lib.kdl)
-      node
-      plain
-      leaf
-      flag
-      ;
-  in [
-    # ============= Window Rules =============
-    # Get all the window's information via:
-    #   niri msg windows
+  programs.niri.config =
+    let
+      inherit (niri.lib.kdl)
+        node
+        plain
+        leaf
+        flag
+        ;
+    in
+    [
+      # ============= Window Rules =============
+      # Get all the window's information via:
+      #   niri msg windows
 
-    # --------------- Terminal ---------------
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "foot";})
-    #   (leaf "open-on-workspace" "1terminal")
-    #   (leaf "open-maximized" true)
-    # ])
+      # --------------- Terminal ---------------
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "foot";})
+      #   (leaf "open-on-workspace" "1terminal")
+      #   (leaf "open-maximized" true)
+      # ])
 
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "Alacritty";})
-    #   (leaf "open-on-workspace" "1terminal")
-    #   (leaf "open-maximized" true)
-    # ])
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "Alacritty";})
+      #   (leaf "open-on-workspace" "1terminal")
+      #   (leaf "open-maximized" true)
+      # ])
 
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "com.mitchellh.ghostty";})
-    #   (leaf "open-on-workspace" "1terminal")
-    #   (leaf "open-maximized" true)
-    # ])
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "com.mitchellh.ghostty";})
+      #   (leaf "open-on-workspace" "1terminal")
+      #   (leaf "open-maximized" true)
+      # ])
 
-    # --------------- Browser ---------------
+      # --------------- Browser ---------------
 
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "firefox";})
-    #   (leaf "open-on-workspace" "2browser")
-    #   (leaf "open-maximized" true)
-    # ])
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "google-chrome";})
-    #   (leaf "open-on-workspace" "2browser")
-    #   (leaf "open-maximized" true)
-    # ])
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "firefox";})
+      #   (leaf "open-on-workspace" "2browser")
+      #   (leaf "open-maximized" true)
+      # ])
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "google-chrome";})
+      #   (leaf "open-on-workspace" "2browser")
+      #   (leaf "open-maximized" true)
+      # ])
 
-    # --------------- Chatting ---------------
-    (plain "window-rule" [
-      (leaf "match" {app-id = "org.telegram.desktop";})
-      (leaf "open-on-workspace" "1msg")
-    ])
-    (plain "window-rule" [
-      (leaf "match" {app-id = "com.ayugram.desktop";})
-      (leaf "open-on-workspace" "1msg")
-    ])
-    (plain "window-rule" [
-      (leaf "match" {app-id = "wechat";})
-      (leaf "open-on-workspace" "1msg")
-      (leaf "open-floating" false)
-    ])
-    (plain "window-rule" [
-      (leaf "match" {app-id = "thunderbird";})
-      (leaf "open-on-workspace" "1msg")
-    ])
-    (plain "window-rule" [
-      (leaf "match" {app-id = "QQ";})
-      (leaf "open-on-workspace" "1msg")
-    ])
+      # --------------- Chatting ---------------
+      (plain "window-rule" [
+        (leaf "match" { app-id = "org.telegram.desktop"; })
+        (leaf "open-on-workspace" "1msg")
+      ])
+      (plain "window-rule" [
+        (leaf "match" { app-id = "com.ayugram.desktop"; })
+        (leaf "open-on-workspace" "1msg")
+      ])
+      (plain "window-rule" [
+        (leaf "match" { app-id = "wechat"; })
+        (leaf "open-on-workspace" "1msg")
+        (leaf "open-floating" false)
+      ])
+      (plain "window-rule" [
+        (leaf "match" { app-id = "thunderbird"; })
+        (leaf "open-on-workspace" "1msg")
+        (leaf "open-maximized" true)
+      ])
+      (plain "window-rule" [
+        (leaf "match" { app-id = "dida"; })
+        (leaf "open-on-workspace" "1msg")
+        (leaf "open-maximized" true)
+      ])
+      (plain "window-rule" [
+        (leaf "match" { app-id = "QQ"; })
+        (leaf "open-on-workspace" "1msg")
+        (leaf "open-floating" false)
+      ])
+      (plain "window-rule" [
+        (leaf "match" { app-id = "Zotero"; })
+        (leaf "open-floating" false)
+        (leaf "open-maximized" true)
+      ])
 
-    # --------------- Networking ---------------
+      # --------------- Networking ---------------
 
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "clash-verge";})
-    #   (leaf "open-on-workspace" "0other")
-    # ])
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "clash-verge";})
+      #   (leaf "open-on-workspace" "0other")
+      # ])
 
-    # --------------- Meeting ---------------
+      # --------------- Meeting ---------------
 
-    # (plain "window-rule" [
-    #   (leaf "match" {app-id = "Zoom Workplace";})
-    #   (leaf "open-on-workspace" "0other")
-    # ])
-  ];
+      # (plain "window-rule" [
+      #   (leaf "match" {app-id = "Zoom Workplace";})
+      #   (leaf "open-on-workspace" "0other")
+      # ])
+    ];
 }

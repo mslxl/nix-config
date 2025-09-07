@@ -19,6 +19,7 @@
     }))
     calibre
     anki
+    remnote
   ];
   # programs.anki = {
   #   enable = true;

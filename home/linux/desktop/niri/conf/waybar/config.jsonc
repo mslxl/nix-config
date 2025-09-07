@@ -114,6 +114,7 @@
   "temperature": {
     "format": "\uf2c9 {temperatureC}\u00b0C",
     "tooltip": false,
+    "hwmon-path-abs":"/sys/devices/pci0000:00/0000:00:18.3/hwmon",
   },
   "backlight": {
     "format": "{icon} {percent}%",

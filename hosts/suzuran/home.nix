@@ -28,6 +28,7 @@
       exec = {
         once = [
           "clash-verge"
+          "kdeconnect-indicator"
         ];
       };
       background = {

@@ -17,7 +17,6 @@
       trash-cli
       bat
       xarchiver
-      wechat-uos
     ])
     ++ [
       (pkgs.callPackage ../../../../pkgs/dida365.nix {})
