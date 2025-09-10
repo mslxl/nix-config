@@ -3,8 +3,10 @@
   anyrun,
   ...
 }: {
+  # catppuccin.anyrun.enable = false;
   programs.anyrun = {
     enable = true;
+    # package = anyrun.packages.${pkgs.system}.anyrun;
     config = {
       plugins = with anyrun.packages.${pkgs.system}; [
         applications

@@ -9,6 +9,7 @@ niri: {
       ;
   in [
     (plain "input" [
+      (flag "workspace-auto-back-and-forth")
       (plain "keyboard" [
         (plain "xkb" [
           # You can set rules, model, layout, variant and options.

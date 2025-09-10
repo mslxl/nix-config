@@ -22,11 +22,19 @@ in {
     force = true;
   };
 
-  home.activation.clean-fcitx-rime-data = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [ -d "${config.xdg.dataHome}/fcitx5/rime/" ]; then
-      rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
-    fi
-  '';
+  # home.activation.clean-fcitx-rime-data = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #   if [ -d "${config.xdg.dataHome}/fcitx5/rime/" ]; then
+  #     rm -rf "${config.xdg.dataHome}/fcitx5/rime/"
+  #   fi
+  #   if pgrep -f "fcitx5" > /dev/null ; then
+  #     ${pkgs.libnotify}/bin/notify-send fcitx5 "Restarting..."
+  #     pkill fcitx5
+  #     fcitx5 -d --replace
+  #     sleep 3
+  #     # https://github.com/fcitx/fcitx5-rime/issues/54#issuecomment-1736621316
+  #     ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig string:fcitx://config/addon/rime/deploy variant:string:"" || true
+  #   fi
+  # '';
 
   i18n.inputMethod = {
     enable = true;

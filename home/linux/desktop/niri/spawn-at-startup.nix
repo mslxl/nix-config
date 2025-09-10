@@ -20,6 +20,7 @@
         (let
           prog-seq = pkgs.writeShellScript "delay-launch-msg-prog" (builtins.concatStringsSep "\nsleep 1\n" [
             "thunderbird &"
+            "${pkgs.gtk3}/bin/gtk-launch folo &"
             "${pkgs.gtk3}/bin/gtk-launch dida &"
             "AyuGram &"
             "${pkgs.gtk3}/bin/gtk-launch wechat &"

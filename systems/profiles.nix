@@ -18,7 +18,7 @@
       ../modules/nixos/desktop.nix
     ];
     home-module.imports = [
-      inputs.plasma-manager.homeManagerModules.plasma-manager
+      inputs.plasma-manager.homeModules.plasma-manager
       inputs.niri.homeModules.niri
       inputs.catppuccin.homeModules.catppuccin
       ../home/linux/desktop.nix

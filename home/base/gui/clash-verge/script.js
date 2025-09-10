@@ -1,6 +1,17 @@
 // Define main function (script entry)
 
 function main(config, profileName) {
+  // No Free
+  const isStringNotIncludeFree = (s)=>!/[(Free)(免费)]/.test(s);
+  config['proxies'] = config['proxies']
+    .filter((p)=>isStringNotIncludeFree(p.name));
+  config['proxy-groups'] = config['proxy-groups'].map((group)=>{
+    return {
+      ...group,
+      proxies: group['proxies'].filter(isStringNotIncludeFree),
+    }
+  });
+
   // Netease Mumu Player 12 Ad-Blocker
   [ "DOMAIN,shence-api.mumu.163.com"
   , "DOMAIN,nemu.fp.ps.netease.com"
@@ -69,7 +80,7 @@ function main(config, profileName) {
   , "DOMAIN-SUFFIX,gtnewhorizons.com"
   ].forEach(rule=>config['rules'].splice(1, 0, `${rule},userScript.AutoProxies`));
 
-  // Japan Blacklist Website
+  // Asia Blacklist Website
   config['proxy-groups'].push({
     name:'userScript.NoAsiaProxies',
     type: 'url-test',
@@ -109,7 +120,7 @@ function main(config, profileName) {
   , "DOMAIN-SUFFIX,dlsite.com"
   ].forEach(rule=>config['rules'].splice(1, 0, `${rule},userScript.JapanProxies`));
 
-  // Japan Website
+  // US Website
   config['proxy-groups'].push((()=>{
     const p = {
       name:'userScript.USAProxies',
@@ -131,19 +142,35 @@ function main(config, profileName) {
     "DOMAIN-SUFFIX,truthsocial.com"
   , "DOMAIN-SUFFIX,donaldjtrump.com"
   , "DOMAIN-SUFFIX,winred.com"
+  // ChatGPT
   , "DOMAIN,chatgpt.com"
   , "DOMAIN,chat.openai.com"
-  , "DOMAIN-SUFFIX,openai.com",
+  , "DOMAIN-SUFFIX,openai.com"
+  // Tiktok
   , "DOMAIN-SUFFIX,tiktok.com"
   , "DOMAIN-SUFFIX,tiktokcdn-us.com"
   , "DOMAIN-SUFFIX,tiktokcdn.com"
   , "DOMAIN-SUFFIX,tiktokw.us"
   , "DOMAIN-SUFFIX,tiktokv.us"
-  , "DOMAIN-SUFFIX,blob.core.windows.net" // GitHub Assets/Release,
+  // GitHub Assets/Release
+  , "DOMAIN-SUFFIX,blob.core.windows.net"
+  // Cursor
   , "DOMAIN-SUFFIX,cursor.com"
   , "DOMAIN-SUFFIX,cursor.sh"
+  // Gemini Rules
+  , "DOMAIN,ai.google.dev"
+  , "DOMAIN,alkalimakersuite-pa.clients6.google.com"
+  , "DOMAIN,makersuite.google.com"
+  , "DOMAIN-SUFFIX,bard.google.com"
+  , "DOMAIN-SUFFIX,deepmind.com"
+  , "DOMAIN-SUFFIX,deepmind.google"
   , "DOMAIN-SUFFIX,gemini.google.com"
-  , "DOMAIN-SUFFIX,aistudio.google.com"
+  , "DOMAIN-SUFFIX,generativeai.google"
+  , "DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com"
+  , "DOMAIN-SUFFIX,apis.google.com"
+  , "DOMAIN-KEYWORD,colab"
+  , "DOMAIN-KEYWORD,developerprofiles"
+  , "DOMAIN-KEYWORD,generativelanguage"
   ].forEach(rule=>config['rules'].splice(1, 0, `${rule},userScript.USAProxies`));
 
   // Adobe Auth Blocker

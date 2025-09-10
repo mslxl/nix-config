@@ -88,6 +88,7 @@
               (extension "competitive-companion" "{74e326aa-c645-4495-9287-b6febc5565a7}")
               (extension "cookie_quick_manager" "{60f82f00-9ad5-4de5-b31c-b16a47c51558}")
               (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
+              (extension "easyscholar" "{47163005-a10b-4a41-9abd-ab3c5840e075}")
               (extension "grammarly-1" "87677a2c52b84ad3a151a4a72f5bd3c4@jetpack")
               (extension "header_editor" "headereditor-amo@addon.firefoxcn.net")
               (extension "history-autodelete" "{7e79d10d-9667-4d38-838d-471281c568c3}")
