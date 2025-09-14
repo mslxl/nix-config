@@ -2,19 +2,12 @@
   config,
   lib,
   pkgs,
+  username,
   ...
-}: {
+}:
+{
   # fix for `sudo xxx` in kitty/wezterm and other modern terminal emulators
   security.sudo.keepTerminfo = true;
-
-  programs.zsh.enable = true;
-  environment.pathsToLink = ["/share/zsh"]; # get completion for system packages in zsh
-  users.defaultUserShell = pkgs.zsh;
-
-  environment.systemPackages = with pkgs; [
-    gnumake
-    wl-clipboard
-  ];
 
   # systemd.services.nix-daemon.serviceConfig = {
   #   # WARNING: THIS makes nix-daemon build extremely slow

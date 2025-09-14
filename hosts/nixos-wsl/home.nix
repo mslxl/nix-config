@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
+
+  modules = {
+    aria.enable = false;
+    wakatime.enable = true;
+  };
   programs.zsh.initContent = ''
     function proxyEnv(){
       ip=$(ip route show | grep -i default | awk '{ print $3}')
