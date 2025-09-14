@@ -9,9 +9,11 @@
   pkgs,
   username,
   ...
-}: let
+}:
+let
   hostName = "nixos-wsl";
-in {
+in
+{
   wsl = {
     enable = true;
     defaultUser = username;
@@ -23,6 +25,9 @@ in {
   };
 
   hardware.graphics.enable = true;
+
+  # Fix VSCode Remote
+  programs.nix-ld.enable = true;
 
   networking = {
     inherit hostName;
