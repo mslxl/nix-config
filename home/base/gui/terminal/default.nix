@@ -1,7 +1,7 @@
 {
-  myutils,
+  mylib,
   config,
   ...
 }: {
-  imports = myutils.scanPaths ./.;
+  imports = mylib.scanPaths ./.;
 }

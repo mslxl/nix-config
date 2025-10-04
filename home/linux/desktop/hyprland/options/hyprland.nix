@@ -5,7 +5,7 @@
   lib,
   config,
   nix-colors,
-  myutils,
+  mylib,
   pkgs-stable,
   waybar,
   ...

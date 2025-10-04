@@ -1,10 +1,10 @@
 {
   lib,
-  myutils,
+  mylib,
   ...
 } @ args:
 lib.mkMerge (
   map
   (p: import p args)
-  (myutils.scanPaths ./.)
+  (mylib.scanPaths ./.)
 )

@@ -1,5 +1,5 @@
 {
-  myutils,
+  mylib,
   pkgs,
   lib,
   config,

@@ -7,16 +7,18 @@
   config,
   lib,
   pkgs,
-  username,
+  myvars,
+  nixos-wsl,
   ...
-}:
-let
+}: let
   hostName = "nixos-wsl";
-in
-{
+in {
+  imports = [
+    nixos-wsl.nixosModules.wsl
+  ];
   wsl = {
     enable = true;
-    defaultUser = username;
+    defaultUser = myvars.username;
     wslConf = {
       automount.root = "/mnt";
       interop.appendWindowsPath = true;

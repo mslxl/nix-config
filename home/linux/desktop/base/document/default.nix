@@ -1,6 +1,6 @@
 {
   pkgs,
-  myutils,
+  mylib,
   ...
 }: {
   xdg.mimeApps.defaultApplications =
@@ -10,10 +10,10 @@
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = ["wps-office-et.desktop"];
       "text/csv" = ["wps-office-et.desktop"];
     }
-    // (myutils.attrs.listToAttrs [
+    // (mylib.attrs.listToAttrs [
       "application/pdf"
     ] (_: ["org.kde.okular.desktop"]))
-    // (myutils.attrs.listToAttrs [
+    // (mylib.attrs.listToAttrs [
       "application/epub+zip"
       "application/vnd.comicbook+zip"
       "application/vnd.comicbook-rar"

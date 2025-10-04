@@ -1,10 +1,10 @@
 {
-  myutils,
+  mylib,
   pkgs,
   config,
   ...
 }: {
-  imports = myutils.scanPaths ./.;
+  imports = mylib.scanPaths ./.;
 
   # wayland related
   home.sessionVariables = {

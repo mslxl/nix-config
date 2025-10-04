@@ -1,6 +1,6 @@
 {
   pkgs,
-  myutils,
+  mylib,
   config,
   nix-colors,
   ...
@@ -38,7 +38,7 @@
     }
   '';
 in {
-  xdg.configFile = myutils.attrs.mergeAttrsList (
+  xdg.configFile = mylib.attrs.mergeAttrsList (
     map
     (
       name: {

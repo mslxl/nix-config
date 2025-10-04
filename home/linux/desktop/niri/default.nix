@@ -1,5 +1,5 @@
 {
-  myutils,
+  mylib,
   pkgs,
   niri,
   lib,
@@ -45,6 +45,10 @@ in {
       default = {};
     };
   };
+
+  imports = [
+    niri.homeModules.niri
+  ];
 
   config = lib.mkIf (config.modules.desktop.type == "niri") (
     lib.mkMerge [

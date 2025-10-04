@@ -3,10 +3,13 @@
   pkgs,
   config,
   lib,
-  username,
+  myvars,
   ...
 }:
 with lib; {
+  imports = [
+    inputs.plasma-manager.homeModules.plasma-manager
+  ];
   config = mkIf (config.modules.desktop.type == "plasma") {
     services.power-profiles-daemon.enable = true;
     services.tlp.enable = mkForce false;
@@ -16,7 +19,7 @@ with lib; {
       wl-clipboard
       bottom
     ];
-    home-manager.users.${username} = {
+    home-manager.users.${myvars.username} = {
       modules.desktop.type = "plasma";
     };
 

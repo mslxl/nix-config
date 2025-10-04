@@ -1,19 +1,16 @@
 {
   description = "Mslxl's NixOS Configuration";
+
+  outputs = inputs: import ./outputs inputs;
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nix-colors.url = "github:misterio77/nix-colors";
 
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -46,7 +42,7 @@
     };
     # anyrun - a wayland launcher
     anyrun = {
-      url = "github:Kirottu/anyrun";
+      url = "github:Kirottu/anyrun/v25.9.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:sodiboo/niri-flake";
@@ -64,36 +60,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-  };
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    ...
-  } @ inputs: let
-    constants = import ./constants.nix;
-    forEachSystem = func: (nixpkgs.lib.genAttrs constants.allSystems func);
-    allSystemConfigurations = import ./systems {inherit self inputs constants;};
-  in
-    allSystemConfigurations
-    // {
-      formatter = forEachSystem (
-        system: nixpkgs.legacyPackages.${system}.alejandra
-      );
-      devShells = forEachSystem (system: let
-        devPkgs = import inputs.nixpkgs {
-          inherit system;
-          config = {
-            allowUnfree = true;
-          };
-        };
-      in {
-        default = devPkgs.mkShell {
-          packages = with devPkgs; [
-            just
-          ];
-        };
-      });
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    # generate iso/qcow2/docker/... image from nixos configuration
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 }

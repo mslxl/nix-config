@@ -1,6 +1,6 @@
 {
   pkgs,
-  myutils,
+  mylib,
   ...
 }: {
   programs.obs-studio = {
@@ -11,7 +11,7 @@
       "image/x-xcf" = ["gimp.desktop"];
       "video/*" = ["mpv.desktop"];
     }
-    // (myutils.attrs.listToAttrs [
+    // (mylib.attrs.listToAttrs [
       "image/jpeg"
       "image/png"
       "image/gif"

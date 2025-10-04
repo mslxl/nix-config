@@ -1,3 +1,11 @@
-{myutils, ...}: {
-  imports = myutils.scanPaths ./.;
+{
+  mylib,
+  catppuccin,
+  ...
+}: {
+  imports =
+    [
+      catppuccin.nixosModules.catppuccin
+    ]
+    ++ (mylib.scanPaths ./.);
 }

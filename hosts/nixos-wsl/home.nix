@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   modules = {
     aria.enable = false;
     wakatime.enable = true;

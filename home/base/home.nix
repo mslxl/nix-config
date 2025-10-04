@@ -1,6 +1,6 @@
-{username, ...}: {
+{myvars, ...}: {
   home = {
-    inherit username;
+    username = myvars.username;
 
     stateVersion = "23.11";
   };

@@ -1,9 +1,9 @@
 {
-  myutils,
+  mylib,
   config,
   ...
 }: {
-  imports = myutils.scanPaths ./.;
+  imports = mylib.scanPaths ./.;
 
   config = {
     home.file.".wallpaper".source = config.modules.desktop.background.source;

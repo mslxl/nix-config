@@ -2,8 +2,7 @@
   config,
   lib,
   pkgs,
-  username,
-  useremail,
+  myvars,
   ...
 }: {
   home.packages = with pkgs; [
@@ -29,8 +28,8 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = username;
-    userEmail = useremail;
+    userName = myvars.username;
+    userEmail = myvars.useremail;
     aliases = {
       st = "status";
       lg = "log --graph --decorate --oneline";
@@ -64,7 +63,7 @@
     };
     extraConfig = {
       user = {
-        signingkey = useremail;
+        signingkey = myvars.useremail;
       };
       init = {
         defaultBranch = "main";

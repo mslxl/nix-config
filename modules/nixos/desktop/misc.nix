@@ -2,10 +2,9 @@
   config,
   lib,
   pkgs,
-  username,
+  myvars,
   ...
-}:
-{
+}: {
   # fix for `sudo xxx` in kitty/wezterm and other modern terminal emulators
   security.sudo.keepTerminfo = true;
 

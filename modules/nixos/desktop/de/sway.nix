@@ -3,7 +3,7 @@
   system,
   config,
   lib,
-  username,
+  myvars,
   ...
 }:
 with lib; {
@@ -27,7 +27,7 @@ with lib; {
       indicator = true;
     };
 
-    home-manager.users.${username} = {
+    home-manager.users.${myvars.username} = {
       modules.desktop.type = "sway";
     };
 

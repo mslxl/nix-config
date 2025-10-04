@@ -1,7 +1,10 @@
 {lib, ...}: {
-  attrs = import ./attrs.nix {inherit lib;};
   nixosSystem = import ./nixosSystem.nix;
-  nixOnDroidSystem = import ./nixOnDroidSystem.nix;
+
+  attrs = import ./attrs.nix {inherit lib;};
+
+  # use path relative to the root of the project
+  relativeToRoot = lib.path.append ../.;
   scanPaths = path:
     builtins.map (f: (path + "/${f}")) (
       builtins.attrNames (

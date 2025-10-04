@@ -1,11 +1,11 @@
 {
   pkgs,
   nur-pkgs,
-  myutils,
+  mylib,
   ...
 }: {
   xdg.mimeApps.defaultApplications = (
-    myutils.attrs.listToAttrs [
+    mylib.attrs.listToAttrs [
       "application/zip"
       "application/rar"
     ] (_: ["xarchiver.desktop"])

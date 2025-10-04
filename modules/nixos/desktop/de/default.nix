@@ -1,10 +1,10 @@
 {
-  myutils,
+  mylib,
   pkgs,
   lib,
   ...
 }: {
-  imports = myutils.scanPaths ./.;
+  imports = mylib.scanPaths ./.;
 
   options.modules.desktop = {
     type = lib.mkOption {

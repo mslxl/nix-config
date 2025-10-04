@@ -1,7 +1,6 @@
 {
   secrets,
   pkgs,
-  username,
   ...
 }: {
 }

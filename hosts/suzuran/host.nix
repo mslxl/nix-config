@@ -1,7 +1,7 @@
 {
   pkgs,
   wallpapers,
-  username,
+  myvars,
   ...
 }: {
   modules.desktop = {
@@ -9,7 +9,7 @@
     type = "niri";
   };
 
-  fileSystems."/home/${username}/nolebase" = {
+  fileSystems."/home/${myvars.username}/nolebase" = {
     device = "/dev/nvme0n1p5";
     fsType = "ntfs";
     options = [
@@ -17,7 +17,7 @@
       "exec"
     ];
   };
-  fileSystems."/run/media/${username}/source" = {
+  fileSystems."/run/media/${myvars.username}/source" = {
     device = "/dev/nvme0n1p4";
     fsType = "ntfs";
     options = [

@@ -1,11 +1,11 @@
 {
   pkgs,
-  myutils,
+  mylib,
   config,
   ...
 }: {
   xdg.mimeApps.defaultApplications =
-    (myutils.attrs.listToAttrs [
+    (mylib.attrs.listToAttrs [
       "text/html"
       "x-scheme-handler/http"
       "x-scheme-handler/https"
@@ -17,7 +17,7 @@
       "application/x-extension-xhtml"
       "application/x-extension-xht"
     ] (_: ["firefox.desktop"]))
-    // (myutils.attrs.listToAttrs [
+    // (mylib.attrs.listToAttrs [
       "application/x-extension-rss=userapp"
       "application/rss+xml"
       "x-scheme-handler/feed"

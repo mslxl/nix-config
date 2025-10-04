@@ -5,8 +5,8 @@
   config,
   lib,
   pkgs,
-  username,
-  myutils,
+  myvars,
+  mylib,
   ...
 }: let
   hostName = "suzuran";
@@ -21,7 +21,7 @@ in {
   ];
 
   time.hardwareClockInLocalTime = true;
-  users.users.${username}.extraGroups = ["networkmanager"];
+  users.users.${myvars.username}.extraGroups = ["networkmanager"];
 
   networking = {
     inherit hostName;
