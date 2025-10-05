@@ -4,8 +4,5 @@
   ...
 }: {
   imports =
-    [
-      catppuccin.nixosModules.catppuccin
-    ]
-    ++ (mylib.scanPaths ./.);
+    mylib.scanPaths ./.;
 }

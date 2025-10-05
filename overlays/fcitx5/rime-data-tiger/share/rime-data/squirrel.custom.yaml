@@ -1,0 +1,15 @@
+patch:
+  style:
+    # color_scheme: dark_temple # 默认皮肤在squirrel.yaml中查看
+    # horizontal: true # 水平/竖直显示
+    inline_preedit: true
+    corner_radius: 5
+    border_height: 0
+    border_width: 0
+    line_spacing: 1
+    spacing: 5  # space between preedit and candidates in non-inline mode
+    #candidate_format: '%c. %@ '
+    font_face: 'Lucida Grande'
+    font_point: 16 
+    #label_font_face: 'STHeitiTC-Medium'
+    #label_font_point: 18a

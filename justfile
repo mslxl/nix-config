@@ -1,13 +1,26 @@
 FLAKE_CFG := ".#" + `cat /etc/hostname`
 
 
-build: sudo clean
+[linux]
+build: sudo
   #!/usr/bin/env nix-shell
   #! nix-shell -p nix-output-monitor -i bash
   nixos-rebuild switch --flake {{FLAKE_CFG}} --log-format internal-json -v |& nom --json
 
+[macos]
+build-macos:
+	nix build .#darwinConfigurations.aquamarine.system --extra-experimental-features 'nix-command flakes'
+	sudo -E ./result/sw/bin/darwin-rebuild switch --flake .#aquamarine
+
+[linux]
+first-build: sudo
+	nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option --extra-experimental-features nix-command --option --extra-experimental-features flakes
+
+[linux]
 build-and-poweroff: build
   poweroff
+
+[linux]
 trace-build: sudo
 	nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option eval-cache false
 
@@ -26,6 +39,7 @@ nosudo:
 	fi
 
 
+[linux]
 clean:
   #!/usr/bin/env bash
   if [ -f "$HOME/.gtkrc-2.0.hm.backup" ] ; then rm "$HOME/.gtkrc-2.0.hm.backup"; fi
@@ -52,5 +66,6 @@ update-all:
   ssh-add
   nix flake update
 
+[linux]
 log:
 	nix profile history --profile /nix/var/nix/profiles/system

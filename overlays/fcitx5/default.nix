@@ -3,4 +3,7 @@ _: (_: super: let
 in {
   rime-data = using-rime-data;
   fcitx5-rime = super.fcitx5-rime.override {rimeDataPkgs = [using-rime-data];};
+
+  # used by macOS Squirrel
+  tiger-squirrel = ./rime-data-tiger;
 })

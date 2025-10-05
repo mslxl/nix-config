@@ -16,8 +16,6 @@
     just # justfile
     git # used by nix flakes
     git-lfs # used by huggingface models
-    wget
-    curl
 
     # archives
     zip

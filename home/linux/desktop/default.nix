@@ -45,6 +45,7 @@
     };
   };
   config = {
+    home.file.".wallpaper".source = config.modules.desktop.background.source;
     xdg.mimeApps.enable = true;
 
     home.packages = with pkgs; [

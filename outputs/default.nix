@@ -45,11 +45,15 @@
   nixosSystems = {
     x86_64-linux = import ./x86_64-linux (args // {system = "x86_64-linux";});
   };
+  darwinSystems = {
+    aarch64-darwin = import ./aarch64-darwin (args // {system = "aarch64-darwin";});
+  };
 
-  allSystems = nixosSystems;
+  allSystems = nixosSystems // darwinSystems;
   allSystemNames = builtins.attrNames allSystems;
   nixosSystemValues = builtins.attrValues nixosSystems;
-  allSystemValues = nixosSystemValues;
+  darwinSystemValues = builtins.attrValues darwinSystems;
+  allSystemValues = nixosSystemValues ++ darwinSystemValues;
 
   # Helper function to generate a set of attributes for each system
   forAllSystems = func: (nixpkgs.lib.genAttrs allSystemNames func);
@@ -58,6 +62,7 @@ in {
   debugAttrs = {
     inherit
       nixosSystems
+      darwinSystems
       allSystems
       allSystemNames
       ;
@@ -66,6 +71,11 @@ in {
   # NixOS Hosts
   nixosConfigurations = lib.attrsets.mergeAttrsList (
     map (it: it.nixosConfigurations or {}) nixosSystemValues
+  );
+
+  # macOS Hosts
+  darwinConfigurations = lib.attrsets.mergeAttrsList (
+    map (it: it.darwinConfigurations or {}) darwinSystemValues
   );
 
   # Packages

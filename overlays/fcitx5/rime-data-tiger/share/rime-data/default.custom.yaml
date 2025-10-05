@@ -1,16 +1,10 @@
-# customization:
-#   distribution_code_name: Weasel
-#   distribution_version: 0.14.3
-#   generator: "Rime::SwitcherSettings"
-#   modified_time: "Fri Sep 23 08:36:10 2022"
-#   rime_version: 1.7.3
 patch:
   schema_list:
-    - {schema: tiger}
-    - {schema: tigress}
-    - {schema: PY_c}
-    - {schema: japanese}
-    - {schema: esperanto}
+    - schema: tiger
+    - schema: tigress
+    - schema: PY_c
+    - schema: japanese
+    - schema: esperanto
   switcher:
     hotkeys:  # 将默认的 F4热键 更改为ctrl+`
       - "Control+grave"
