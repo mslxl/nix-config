@@ -180,6 +180,7 @@ in {
       "remnote"
       "folo"
       "ticktick"
+      # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
       "calibre"
       "synology-drive"
@@ -209,7 +210,7 @@ in {
       # "zoom" # meeting
 
       # Misc
-      # "iina" # video player
+      "iina" # video player
       # "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
       "stats" # beautiful system status monitor in menu bar
       "jordanbaird-ice" # Powerful menu bar manager for macOS

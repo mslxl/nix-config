@@ -8,13 +8,12 @@ build: sudo
   nixos-rebuild switch --flake {{FLAKE_CFG}} --log-format internal-json -v |& nom --json
 
 [macos]
-build-macos:
+build-aquamarine:
 	nix build .#darwinConfigurations.aquamarine.system --extra-experimental-features 'nix-command flakes'
 	sudo -E ./result/sw/bin/darwin-rebuild switch --flake .#aquamarine
 
-[linux]
-first-build: sudo
-	nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option --extra-experimental-features nix-command --option --extra-experimental-features flakes
+fmt:
+	nix fmt . --extra-experimental-features 'nix-command flakes'
 
 [linux]
 build-and-poweroff: build
