@@ -14,6 +14,7 @@
       gnupg
       gnumake
       just
+      yt-dlp
 
       nix-tree
       nix-melt
@@ -24,20 +25,16 @@
       (pkgs.callPackage ../../../pkgs/trzsz-ssh.nix {})
       (pkgs.callPackage ../../../pkgs/trzsz-go.nix {})
     ];
-  programs.atuin = {
-    enable = true;
+
+  home.shell = {
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
+  programs.atuin.enable = true;
+  programs.zoxide.enable = true;
   programs.eza = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
     git = true;
     icons = "auto";
   };
@@ -59,8 +56,6 @@
   programs.fzf.enable = true;
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
   programs.tealdeer = {
@@ -79,8 +74,6 @@
   };
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
     settings = {
       time = {
         disabled = false;

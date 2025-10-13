@@ -5,7 +5,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    zotero
     (pkgs-stable.logseq.overrideAttrs (super: {
       buildInputs = (super.buildInputs or []) ++ [pkgs.makeWrapper];
 

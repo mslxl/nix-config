@@ -21,6 +21,7 @@
       calibre
       anki
       remnote
+      zotero
     ])
     ++ [
       (pkgs.callPackage ../../../../pkgs/dida365.nix {})

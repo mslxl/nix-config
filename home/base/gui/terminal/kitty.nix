@@ -19,7 +19,10 @@
     font = {
       name = "Maple Mono NF CN";
       # use different font size on macOS
-      size = 12;
+      size =
+        if pkgs.stdenv.isDarwin
+        then 18
+        else 12;
     };
 
     # consistent with other terminal emulators
@@ -30,16 +33,26 @@
 
     settings = {
       # do not show title bar & window title
-      hide_window_decorations = "titlebar-and-corners";
+      hide_window_decorations =
+        if pkgs.stdenv.isDarwin
+        then "no"
+        else "titlebar-and-corners";
       macos_show_window_title_in = "none";
 
       background_opacity = "0.93";
       macos_option_as_alt = true; # Option key acts as Alt on macOS
       enable_audio_bell = false;
       tab_bar_edge = "top"; # tab bar on top
+      window_padding_width = 8; # padding between window border and terminal content
+
+      #  To resolve issues:
+      #    1. https://github.com/ryan4yin/nix-config/issues/26
+      #    2. https://github.com/ryan4yin/nix-config/issues/8
+      #  Spawn a nushell in login mode via `bash`
+      shell = "${pkgs.bash}/bin/bash --login -c 'nu --login --interactive'";
     };
 
     # macOS specific settings
-    darwinLaunchOptions = ["--start-as=maximized"];
+    # darwinLaunchOptions = ["--start-as=maximized"];
   };
 }

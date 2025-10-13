@@ -149,6 +149,7 @@ in {
 
     brews = [
       # `brew install`
+      "telnet"
       "wget" # download tool
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
       "aria2" # download tool
@@ -183,6 +184,7 @@ in {
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
       "calibre"
+      "zotero"
       "synology-drive"
       # "firefox"
       "floorp"
@@ -190,6 +192,7 @@ in {
 
       # code editor
       "visual-studio-code"
+      "typora"
       "jetbrains-toolbox"
       "orbstack"
       # "zed"
@@ -205,22 +208,24 @@ in {
       "ayugram"
       "qq"
       "discord" # update too frequently, use the web version instead
-      "rustdesk" # meeting
+      # "rustdesk" # meeting
+      "sunlogincontrol"
       "tencent-meeting"
       # "zoom" # meeting
 
       # Misc
       "iina" # video player
-      # "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
-      "stats" # beautiful system status monitor in menu bar
+      "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
+      # "stats" # beautiful system status monitor in menu bar
       "jordanbaird-ice" # Powerful menu bar manager for macOS
 
       # "reaper"  # audio editor
       # "sonic-pi" # music programming
+      # "app-cleaner"
       # "tencent-lemon" # macOS cleaner
       # "neteasemusic" # music
       # "blender@lts" # 3D creation suite
-      "clash-verge-rev" # the same as mihomo-party
+      # "clash-verge-rev" # the same as mihomo-party
 
       # Development
       "mitmproxy" # HTTP/HTTPS traffic inspector
