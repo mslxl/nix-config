@@ -16,6 +16,7 @@ in
     modules =
       darwin-modules
       ++ [
+        inputs.mac-app-util.darwinModules.default
         (
           {lib, ...}: {
             nixpkgs.pkgs = import nixpkgs-darwin {
@@ -35,6 +36,9 @@ in
             home-manager.backupFileExtension = "home-manager.backup";
 
             home-manager.extraSpecialArgs = specialArgs;
+            home-manager.sharedModules = [
+              inputs.mac-app-util.homeManagerModules.default
+            ];
             home-manager.users."${myvars.username}".imports = home-modules;
           }
         ]
