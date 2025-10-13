@@ -12,9 +12,16 @@ visibility: collapse !important;
 #main-window:not([tabsintitlebar="true"]) #TabsToolbar > .titlebar-buttonbox-container {
 display: flex;
 width: 100%;
-justify-content: end;
+justify-content: start;
 align-items: center;
 height: 2.7em; /* Default tab lable height */
+}
+
+/* Move the window control buttons to the right side on non-macOS platforms */
+@media not (-moz-platform: macos) {
+    #main-window:not([tabsintitlebar="true"]) #TabsToolbar > .titlebar-buttonbox-container {
+        justify-content: end;
+    }
 }
 
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header,

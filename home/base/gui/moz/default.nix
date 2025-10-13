@@ -84,11 +84,12 @@
               (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
               (extension "bilisponsorblock" "{f10c197e-c2a4-43b6-a982-7e186f7c63d9}") #B站空降助手
               (extension "carrot" "{f0eeb71a-e5d6-48e6-a818-568a6bef1bc0}")
+              (extension "ccfrank" "{cc79b7c3-7c57-4051-a3cc-9e9fccf5855b}")
               (extension "codeforces-practice-tracker" "{26b28813-67de-4a83-9fbe-eaf008f68732}")
               (extension "competitive-companion" "{74e326aa-c645-4495-9287-b6febc5565a7}")
               (extension "cookie_quick_manager" "{60f82f00-9ad5-4de5-b31c-b16a47c51558}")
               (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
-              (extension "easyscholar" "{47163005-a10b-4a41-9abd-ab3c5840e075}")
+              # (extension "easyscholar" "{47163005-a10b-4a41-9abd-ab3c5840e075}")
               (extension "grammarly-1" "87677a2c52b84ad3a151a4a72f5bd3c4@jetpack")
               (extension "header_editor" "headereditor-amo@addon.firefoxcn.net")
               (extension "history-autodelete" "{7e79d10d-9667-4d38-838d-471281c568c3}")
@@ -100,7 +101,7 @@
               # (extension "web-clipper-obsidian" "clipper@obsidian.md")
               (extension "pakkujs" "{646d57f4-d65c-4f0d-8e80-5800b92cfdaa}")
               (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
-              (extension "refined-github-" "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}")
+              # (extension "refined-github-" "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}")
               (extension "rsspreview" "{7799824a-30fe-4c67-8b3e-7094ea203c94}")
               (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
               (extension "single-file" "{531906d3-e22f-4a6c-a102-8057b88a1a63}")
@@ -343,22 +344,7 @@
       };
     };
   };
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
-      {id = "chejfhdknideagdnddjpgamkchefjhoi";} # VertiTab
-      {id = "gfbliohnnapiefjpjlpjnehglfpaknnc";} # Surfingkey
-      {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
-      {id = "kbfnbcaeplbcioakkpcpgfkobkghlhen";} # Grammarly
-      {id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh";} # Immersive Translate
-      {id = "mgpdnhlllbpncjpgokgfogidhoegebod";} # Photo Show
-      {id = "dhdgffkkebhmkfjojejmpbldmpobfkfo";} # Tampermonkey
-    ];
-  };
-
   home.packages = [
     pkgs.thunderbird
-    pkgs.tor-browser
   ];
 }

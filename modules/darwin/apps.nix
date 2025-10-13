@@ -187,7 +187,6 @@ in {
       "zotero"
       "synology-drive"
       # "firefox"
-      "floorp"
       "google-chrome"
 
       # code editor
