@@ -21,38 +21,39 @@
         overlays = [fenix.overlays.default];
       };
       toolchain = pkgs.fenix.complete;
-      buildInputs = with pkgs; [
-        # js
-        nodejs
-        nodejs.pkgs.pnpm
+      buildInputs = with pkgs;
+        [
+          # js
+          nodejs
+          nodejs.pkgs.pnpm
 
-        # rust
-        (with toolchain; [
-          cargo
-          rustc
-          rust-src
-          clippy
-          rustfmt
-        ])
-        pkg-config
-        openssl
-        diesel-cli
-        cargo-tauri
+          # rust
+          (with toolchain; [
+            cargo
+            rustc
+            rust-src
+            clippy
+            rustfmt
+          ])
+          pkg-config
+          openssl
+          diesel-cli
+          cargo-tauri
 
-        zig
-      ]
-      ++ (lib.optional pkgs.stdenv.isLinux (with pkgs;[
-        gtk3
-        webkitgtk
-        dbus
-        libayatana-appindicator.dev
-        alsa-lib.dev
-      ]))
-      ++ (lib.optional pkgs.stdenv.isDarwin (with pkgs;[
-        libiconv
-        apple-sdk
-        apple-sdk
-      ])); 
+          zig
+        ]
+        ++ (lib.optional pkgs.stdenv.isLinux (with pkgs; [
+          gtk3
+          webkitgtk
+          dbus
+          libayatana-appindicator.dev
+          alsa-lib.dev
+        ]))
+        ++ (lib.optional pkgs.stdenv.isDarwin (with pkgs; [
+          libiconv
+          apple-sdk
+          apple-sdk
+        ]));
     in {
       # Used by `nix develop`
       devShell = pkgs.mkShell {
