@@ -118,8 +118,10 @@ in {
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
     masApps = {
-      # Xcode = 497799835;
+      Xcode = 497799835;
       Wechat = 836500024;
+      TickTick = 966085870;
+      Bitwarden = 1352778147;
     };
 
     taps = [
@@ -161,7 +163,6 @@ in {
       "anki"
       "remnote"
       "folo"
-      "ticktick"
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
       "calibre"
@@ -176,7 +177,7 @@ in {
       "jetbrains-toolbox"
       "orbstack"
       # "zed"
-      "cursor" # cursor ai editor
+      # "cursor" # cursor ai editor
 
       # "ghostty" # terminal emulator
 
@@ -196,7 +197,7 @@ in {
       # Misc
       "iina" # video player
       "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
-      # "stats" # beautiful system status monitor in menu bar
+      "stats" # beautiful system status monitor in menu bar
       "jordanbaird-ice" # Powerful menu bar manager for macOS
 
       # "reaper"  # audio editor
@@ -216,7 +217,7 @@ in {
       # "miniforge" # Miniconda's community-driven distribution
 
       # Setup macfuse: https://github.com/macfuse/macfuse/wiki/Getting-Started
-      "macfuse" # for rclone to mount a fuse filesystem
+      # "macfuse" # for rclone to mount a fuse filesystem
     ];
   };
 }

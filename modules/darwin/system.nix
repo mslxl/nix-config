@@ -74,7 +74,7 @@
         AppleInterfaceStyle = null; # or "Dark" for dark mode
 
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
-        ApplePressAndHoldEnabled = true; # enable press and hold
+        ApplePressAndHoldEnabled = false; # enable press and hold, but it may prevent key repeat, which is bad for vim user
 
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
@@ -150,7 +150,7 @@
 
       loginwindow = {
         GuestEnabled = false; # disable guest user
-        SHOWFULLNAME = true; # show full name in login window
+        SHOWFULLNAME = false; # show full name in login window
       };
     };
 
