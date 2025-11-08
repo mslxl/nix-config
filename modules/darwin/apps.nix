@@ -118,10 +118,11 @@ in {
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
     masApps = {
-      Xcode = 497799835;
+      Xcode = 497799835; # 11 GiB, a giant man
       Wechat = 836500024;
       TickTick = 966085870;
       Bitwarden = 1352778147;
+      KDEConnect = 1580245991;
     };
 
     taps = [
@@ -138,6 +139,11 @@ in {
       "aria2" # download tool
       "httpie" # http client
       "wireguard-tools" # wireguard
+
+      # For the system Java wrappers to find this JDK, symlink it with
+      # sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+      "openjdk" # java runtime
+      "gradle" # build tool for java/kotlin
 
       # Usage:
       #  https://github.com/tailscale/tailscale/wiki/Tailscaled-on-macOS#run-the-tailscaled-daemon
@@ -162,22 +168,24 @@ in {
     casks = [
       "anki"
       "remnote"
-      "folo"
+      "netnewswire"
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
-      "calibre"
+      # "calibre"
       "zotero"
       "synology-drive"
       # "firefox"
       "google-chrome"
+      "drawio"
 
       # code editor
       "visual-studio-code"
       "typora"
       "jetbrains-toolbox"
       "orbstack"
+      "keka"
       # "zed"
-      # "cursor" # cursor ai editor
+      "cursor" # cursor ai editor
 
       # "ghostty" # terminal emulator
 
@@ -190,7 +198,7 @@ in {
       "qq"
       "discord" # update too frequently, use the web version instead
       # "rustdesk" # meeting
-      "sunlogincontrol"
+      "sunloginclient"
       "tencent-meeting"
       # "zoom" # meeting
 
@@ -212,6 +220,7 @@ in {
       "mitmproxy" # HTTP/HTTPS traffic inspector
       "insomnia" # REST client
       "wireshark-app" # network analyzer
+      "chatwise"
       # "jdk-mission-control" # Java Mission Control
       # "google-cloud-sdk" # Google Cloud SDK
       # "miniforge" # Miniconda's community-driven distribution

@@ -68,7 +68,9 @@
       NSGlobalDomain = {
         # `defaults read NSGlobalDomain "xxx"`
         "com.apple.swipescrolldirection" = true; # enable natural scrolling(default to true)
-        "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
+        "com.apple.sound.beep.feedback" = 1; # beep sound when pressing volume up/down key
+
+        "com.apple.keyboard.fnState" = false; # Use F1, F2 etc. keys as standard function keys
 
         # Appearance
         AppleInterfaceStyle = null; # or "Dark" for dark mode
@@ -123,7 +125,7 @@
           # Display have separate spaces
           #   true => disable this feature
           #   false => enable this feature
-          "spans-displays" = true;
+          "spans-displays" = false;
         };
         "com.apple.WindowManager" = {
           EnableStandardClickToShowDesktop = 0; # Click wallpaper to reveal desktop
@@ -150,7 +152,7 @@
 
       loginwindow = {
         GuestEnabled = false; # disable guest user
-        SHOWFULLNAME = false; # show full name in login window
+        SHOWFULLNAME = true; # show full name in login window
       };
     };
 
