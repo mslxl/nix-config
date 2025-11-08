@@ -200,6 +200,7 @@ in {
       # "rustdesk" # meeting
       "sunloginclient"
       "tencent-meeting"
+      "whatsapp"
       # "zoom" # meeting
 
       # Misc
@@ -210,8 +211,7 @@ in {
 
       # "reaper"  # audio editor
       # "sonic-pi" # music programming
-      # "app-cleaner"
-      # "tencent-lemon" # macOS cleaner
+      "tencent-lemon" # macOS cleaner
       # "neteasemusic" # music
       # "blender@lts" # 3D creation suite
       # "clash-verge-rev" # the same as mihomo-party
