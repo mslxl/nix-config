@@ -122,7 +122,7 @@ in {
       Wechat = 836500024;
       TickTick = 966085870;
       Bitwarden = 1352778147;
-      KDEConnect = 1580245991;
+      # KDEConnect = 1580245991;
     };
 
     taps = [

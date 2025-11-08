@@ -35,12 +35,13 @@ in {
       if [[ $(tty) == *"pts"* ]] {
          ${pkgs.fastfetch}/bin/fastfetch
       }
-
-      
-    '' ++ (lib.optionalString pkgs.stdenv.isDarwin ''
-    # Useful support for interacting with Terminal.app or other terminal programs
-    [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
-    '');
+      ${
+        pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+          # Useful support for interacting with Terminal.app or other terminal programs
+          [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
+        ''
+      }
+    '';
     oh-my-zsh = {
       enable = true;
       plugins = [
