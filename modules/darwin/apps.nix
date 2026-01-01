@@ -118,10 +118,11 @@ in {
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
     masApps = {
-      Xcode = 497799835; # 11 GiB, a giant man
+      # Xcode = 497799835; # 11 GiB, a giant man
       Wechat = 836500024;
       TickTick = 966085870;
       Bitwarden = 1352778147;
+      Qianji = 1473785373;
       # KDEConnect = 1580245991;
     };
 
@@ -129,10 +130,13 @@ in {
       # "hashicorp/tap"
       # "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       # "lixKratz/formulae" # janky borders - highlight active window borders
+      "tw93/tap"
     ];
 
     brews = [
       # `brew install`
+      "mole"
+      "act"
       "telnet"
       "wget" # download tool
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
@@ -173,7 +177,7 @@ in {
       "squirrel-app" # input method for Chinese, rime-squirrel
       # "calibre"
       "zotero"
-      "synology-drive"
+      # "synology-drive"
       # "firefox"
       "google-chrome"
       "drawio"
@@ -185,7 +189,7 @@ in {
       "orbstack"
       "keka"
       # "zed"
-      "cursor" # cursor ai editor
+      # "cursor" # cursor ai editor
 
       # "ghostty" # terminal emulator
 
@@ -198,7 +202,7 @@ in {
       "qq"
       "discord" # update too frequently, use the web version instead
       # "rustdesk" # meeting
-      "sunloginclient"
+      "awesun"
       "tencent-meeting"
       "whatsapp"
       # "zoom" # meeting
@@ -207,11 +211,11 @@ in {
       "iina" # video player
       "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
       "stats" # beautiful system status monitor in menu bar
-      "jordanbaird-ice" # Powerful menu bar manager for macOS
+      # "jordanbaird-ice" # Powerful menu bar manager for macOS
 
       # "reaper"  # audio editor
       # "sonic-pi" # music programming
-      "tencent-lemon" # macOS cleaner
+      # "tencent-lemon" # macOS cleaner
       # "neteasemusic" # music
       # "blender@lts" # 3D creation suite
       # "clash-verge-rev" # the same as mihomo-party
@@ -220,7 +224,10 @@ in {
       "mitmproxy" # HTTP/HTTPS traffic inspector
       "insomnia" # REST client
       "wireshark-app" # network analyzer
-      "chatwise"
+      # "chatwise"
+      "cherry-studio"
+      "codex"
+      # "claude-code"
       # "jdk-mission-control" # Java Mission Control
       # "google-cloud-sdk" # Google Cloud SDK
       # "miniforge" # Miniconda's community-driven distribution

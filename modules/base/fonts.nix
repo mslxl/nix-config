@@ -8,13 +8,13 @@
     fonts.packages = with pkgs; [
       # microsoft fonts for school work
       corefonts
-      vistafonts
+      vista-fonts
 
       # icons & emoji
       material-design-icons
       font-awesome
       font-awesome_5
-      noto-fonts-emoji
+      noto-fonts-color-emoji
 
       # 霞鹜文楷 屏幕阅读版
       # https://github.com/lxgw/LxgwWenKai-Screen

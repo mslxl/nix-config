@@ -9,7 +9,7 @@
       gping
       hyperfine
       gdu
-      du-dust
+      dust
       duf
       gnupg
       gnumake

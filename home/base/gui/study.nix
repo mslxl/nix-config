@@ -4,7 +4,8 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [
+  # I want to use logseq-db in macos, but it need to install maunally
+  home.packages = lib.optional (!pkgs.stdenv.isDarwin) (with pkgs; [
     (pkgs-stable.logseq.overrideAttrs (super: {
       buildInputs = (super.buildInputs or []) ++ [pkgs.makeWrapper];
 
@@ -16,5 +17,5 @@
             --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--enable-wayland-ime --wayland-text-input-version=3}}" \
         '';
     }))
-  ];
+  ]);
 }

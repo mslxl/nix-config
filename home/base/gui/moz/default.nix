@@ -83,6 +83,7 @@
               (extension "bewlybewly" "addon@bewlybewly.com")
               (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
               (extension "bilisponsorblock" "{f10c197e-c2a4-43b6-a982-7e186f7c63d9}") #B站空降助手
+              (extension "browser-control-mcp" "{6ba257e0-fbce-4d50-8471-25de7f024c1e}")
               (extension "carrot" "{f0eeb71a-e5d6-48e6-a818-568a6bef1bc0}")
               (extension "ccfrank" "{cc79b7c3-7c57-4051-a3cc-9e9fccf5855b}")
               (extension "codeforces-practice-tracker" "{26b28813-67de-4a83-9fbe-eaf008f68732}")
@@ -95,7 +96,8 @@
               (extension "history-autodelete" "{7e79d10d-9667-4d38-838d-471281c568c3}")
               (extension "i_dont_care_about_cookies" "jid1-KKzOGWgsW3Ao4Q@jetpack")
               (extension "imagus" "{00000f2a-7cde-4f20-83ed-434fcb420d71}")
-              (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
+              # (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
+              (extension "kiss-translator" "{fb25c100-22ce-4d5a-be7e-75f3d6f0fc13}")
               (extension "markdown_here" "markdown-here-webext@adam.pritchard")
               (extension "mergease" "{b5371a03-0432-4f66-951f-07bd6c4465a9}")
               # (extension "web-clipper-obsidian" "clipper@obsidian.md")
@@ -113,12 +115,12 @@
               (extension "textarea_cache" "textarea-cache-lite@wildsky.cc")
               (extension "tampermonkey" "firefox@tampermonkey.net")
               (extension "ublock-origin" "uBlock0@raymondhill.net")
-              (extension "unpaywall" "{f209234a-76f0-4735-9920-eb62507a54cd}")
+              # (extension "unpaywall" "{f209234a-76f0-4735-9920-eb62507a54cd}")
               (extension "user_agent_string_switcher" "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}")
               (extension "utags" "{a0b2a0f8-83a5-449a-8e47-3b257da0bb37}")
               # alternative of surfingkeys
               # (extension "vimium-ff" "{d7742d87-e61d-4b78-b8a1-b469842139fa}")
-              (extension "wakatimes" "addons@wakatime.com")
+              # (extension "wakatimes" "addons@wakatime.com")
               (extension "wappalyzer" "wappalyzer@crunchlabz.com")
               (extension "wxif" "{8b3ee44a-0805-4c2c-acef-15aab34fbd20}")
             ]);
