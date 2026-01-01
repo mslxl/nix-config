@@ -51,8 +51,6 @@
         ]))
         ++ (lib.optional pkgs.stdenv.isDarwin (with pkgs; [
           libiconv
-          apple-sdk
-          apple-sdk
         ]));
     in {
       # Used by `nix develop`
