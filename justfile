@@ -1,16 +1,28 @@
+HOSTNAME := `cat /etc/hostname`
 FLAKE_CFG := ".#" + `cat /etc/hostname`
+
+_default:
+  just --choose
 
 
 [linux]
-build: sudo
+build-nom: _nosudo
   #!/usr/bin/env nix-shell
   #! nix-shell -p nix-output-monitor -i bash
-  nixos-rebuild switch --flake {{FLAKE_CFG}} --log-format internal-json -v |& nom --json
+  just clean
+  sudo nixos-rebuild switch --flake {{FLAKE_CFG}} --log-format internal-json -v |& nom --json
 
 [macos]
-build-aquamarine:
-	nix build .#darwinConfigurations.aquamarine.system --extra-experimental-features 'nix-command flakes'
-	sudo -E ./result/sw/bin/darwin-rebuild switch --flake .#aquamarine
+build-nom: _nosudo
+  #!/usr/bin/env nix-shell
+  #! nix-shell -p nix-output-monitor -i bash
+  nix build .#darwinConfigurations.{{HOSTNAME}}.system --extra-experimental-features 'nix-command flakes'  --log-format internal-json -v |& nom --json
+  sudo -E ./result/sw/bin/darwin-rebuild switch --flake {{FLAKE_CFG}}
+
+[macos]
+build: _nosudo
+  nix build .#darwinConfigurations.aquamarine.system --extra-experimental-features 'nix-command flakes'
+  sudo -E ./result/sw/bin/darwin-rebuild switch --flake .#aquamarine
 
 fmt:
 	nix fmt . --extra-experimental-features 'nix-command flakes'
@@ -20,23 +32,19 @@ build-and-poweroff: build
   poweroff
 
 [linux]
-trace-build: sudo
-	nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option eval-cache false
+trace-build:
+	sudo nixos-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option eval-cache false
 
-sudo:
-	@echo "uid: $(id -u)"
-	@if [[ "$(id -u)" -ne "0" ]]; then \
-		 echo "You must be root to perform this action.";\
-		 exit 1;\
-	fi
+[macos]
+trace-build:
+	sudo darwin-rebuild switch --flake {{FLAKE_CFG}} --show-trace --option eval-cache false
 
-nosudo:
+_nosudo:
 	@echo "uid: $(id -u)"
 	@if [[ "$(id -u)" -eq "0" ]]; then \
 		 echo "You must not be root to perform this action.";\
 		 exit 1;\
 	fi
-
 
 [linux]
 clean:
@@ -45,17 +53,13 @@ clean:
   if [ -f "$HOME/.gtkrc-2.0" ] ; then rm "$HOME/.gtkrc-2.0"; fi
 
 # Garbage collect all unused nix store entries
-gc: nosudo 
+gc: _nosudo 
   sudo nix store gc
   sudo nix-collect-garbage --delete-old
-  just gitgc
   nix store gc
   nix-collect-garbage --delete-old
-
-# Remove all reflog entries and prune unreachable objects
-gitgc:
-	git reflog expire --expire-unreachable=now --all
-	git gc --prune=now
+  git reflog expire --expire-unreachable=now --all
+  git gc --prune=now
 
 update input:
   ssh-add
