@@ -9,7 +9,6 @@
     # pkgs.element-desktop
 
     pkgs.discord
-    pkgs.folo
     (pkgs.qq.override {
       commandLineArgs = [
         # Force to run on Wayland
