@@ -130,12 +130,12 @@ in {
       # "hashicorp/tap"
       # "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       # "lixKratz/formulae" # janky borders - highlight active window borders
-      "tw93/tap"
     ];
 
     brews = [
       # `brew install`
-      "mole"
+      "tw93/tap/mole"
+
       "act"
       "telnet"
       "wget" # download tool
@@ -227,7 +227,8 @@ in {
       # "chatwise"
       "cherry-studio"
       "codex"
-      # "claude-code"
+      "claude-code"
+      "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI. 
       # "jdk-mission-control" # Java Mission Control
       # "google-cloud-sdk" # Google Cloud SDK
       # "miniforge" # Miniconda's community-driven distribution

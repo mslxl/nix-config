@@ -15,7 +15,8 @@
 ###########################################################
 {
   programs.kitty = {
-    enable = true;
+    # enable = true;
+    enable = pkgs.stdenv.isLinux; # disable kitty on macOS, use ghostty instead
     font = {
       name = "Maple Mono NF CN";
       # use different font size on macOS
