@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   mylib,
   config,
@@ -34,6 +35,7 @@
   programs = {
     firefox = {
       enable = true;
+      # package = pkgs.firefox-bin;
       languagePacks = [
         "zh-CN"
         "en-US"
@@ -80,7 +82,7 @@
               (extension "2fas-two-factor-authentication" "admin@2fas.com")
               (extension "auto_tab_discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
               (extension "behind-the-overlay-revival" "{c0e1baea-b4cb-4b62-97f0-278392ff8c37}")
-              (extension "bewlybewly" "addon@bewlybewly.com")
+              # (extension "bewlybewly" "addon@bewlybewly.com")
               (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
               (extension "bilisponsorblock" "{f10c197e-c2a4-43b6-a982-7e186f7c63d9}") #B站空降助手
               (extension "browser-control-mcp" "{6ba257e0-fbce-4d50-8471-25de7f024c1e}")
@@ -131,16 +133,16 @@
         isDefault = true;
         containersForce = true;
         containers = {
-          Default = {
-            color = "blue";
-            icon = "fingerprint";
-            id = 1;
-          };
-          NSFW = {
-            color = "purple";
-            icon = "chill";
-            id = 2;
-          };
+          # Default = {
+          #   color = "blue";
+          #   icon = "fingerprint";
+          #   id = 1;
+          # };
+          # NSFW = {
+          #   color = "purple";
+          #   icon = "chill";
+          #   id = 2;
+          # };
         };
         userChrome = ''
           ${builtins.readFile ./userChrome.notitlebar.css}
@@ -346,7 +348,7 @@
       };
     };
   };
-  home.packages = [
+  home.packages = lib.optional (!pkgs.stdenv.isDarwin) [
     pkgs.thunderbird
   ];
 }
