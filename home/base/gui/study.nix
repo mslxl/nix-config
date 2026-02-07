@@ -4,18 +4,17 @@
   lib,
   ...
 }: {
-  # I want to use logseq-db in macos, but it need to install maunally
   home.packages = lib.optional (!pkgs.stdenv.isDarwin) (with pkgs; [
-    (pkgs-stable.logseq.overrideAttrs (super: {
-      buildInputs = (super.buildInputs or []) ++ [pkgs.makeWrapper];
+    # (pkgs-stable.logseq.overrideAttrs (super: {
+    #   buildInputs = (super.buildInputs or []) ++ [pkgs.makeWrapper];
 
-      postFixup =
-        super.postFixup
-        or ""
-        + ''
-          wrapProgram "$out/bin/logseq" \
-            --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--enable-wayland-ime --wayland-text-input-version=3}}" \
-        '';
-    }))
+    #   postFixup =
+    #     super.postFixup
+    #     or ""
+    #     + ''
+    #       wrapProgram "$out/bin/logseq" \
+    #         --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--enable-wayland-ime --wayland-text-input-version=3}}" \
+    #     '';
+    # }))
   ]);
 }

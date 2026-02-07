@@ -21,6 +21,7 @@ in {
     '';
   };
   programs.zsh = {
+    dotDir = "${config.xdg.configHome}/zsh"; # adopt the new behavior after home stateVersion >= 26.05
     enable = true;
     autosuggestion = {
       enable = true;

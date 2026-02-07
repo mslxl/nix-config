@@ -20,7 +20,7 @@
 
       calibre
       anki
-      remnote
+      # remnote
       zotero
     ])
     ++ [
