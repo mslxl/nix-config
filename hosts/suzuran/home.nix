@@ -23,6 +23,7 @@
     };
     game.minecraft.enable = true;
     wakatime.enable = true;
+    writing.enable = true;
 
     desktop = {
       exec = {

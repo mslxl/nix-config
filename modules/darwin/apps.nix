@@ -55,9 +55,10 @@ let
 
   homebrew_env_script = lib.attrsets.foldlAttrs (
     acc: name: value:
-      acc + "\nexport ${name}=${value}"
+    acc + "\nexport ${name}=${value}"
   ) "" (homebrew_mirror_env // local_proxy_env);
-in {
+in
+{
   # Install packages from nix's official package repository.
   #
   # The packages installed here are available to all users, and are reproducible across machines, and are rollbackable.
@@ -72,20 +73,17 @@ in {
     gnutar # replacee macos's tar
 
     # darwin only apps
-    utm # virtual machine
+    # utm # virtual machine
   ];
 
-  environment.variables =
-    {
-      # Fix https://github.com/LnL7/nix-darwin/wiki/Terminfo-issues
-      TERMINFO_DIRS =
-        map (path: path + "/share/terminfo") config.environment.profiles
-        ++ [
-          "/usr/share/terminfo"
-        ];
-    }
-    # Set variables for you to manually install homebrew packages.
-    // homebrew_mirror_env;
+  environment.variables = {
+    # Fix https://github.com/LnL7/nix-darwin/wiki/Terminfo-issues
+    TERMINFO_DIRS = map (path: path + "/share/terminfo") config.environment.profiles ++ [
+      "/usr/share/terminfo"
+    ];
+  }
+  # Set variables for you to manually install homebrew packages.
+  // homebrew_mirror_env;
 
   # Set environment variables for nix-darwin before run `brew bundle`.
   system.activationScripts.homebrew.text = lib.mkBefore ''
@@ -134,7 +132,7 @@ in {
 
     brews = [
       # `brew install`
-      "tw93/tap/mole"
+      # "tw93/tap/mole"
 
       "act"
       "telnet"
@@ -161,6 +159,9 @@ in {
       # commands like `gsed` `gtar` are required by some tools
       "gnu-sed"
       "gnu-tar"
+      "mpv"
+
+      "opencode"
 
       # misc that nix do not have cache for.
       "git-trim"
@@ -171,7 +172,7 @@ in {
     # `brew install --cask`
     casks = [
       "anki"
-      "remnote"
+      # "remnote"
       "netnewswire"
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
@@ -202,7 +203,8 @@ in {
       "qq"
       "discord" # update too frequently, use the web version instead
       # "rustdesk" # meeting
-      "awesun"
+      # "awesun"
+      "rustdesk"
       "tencent-meeting"
       "whatsapp"
       # "zoom" # meeting
@@ -215,7 +217,7 @@ in {
 
       # "reaper"  # audio editor
       # "sonic-pi" # music programming
-      # "tencent-lemon" # macOS cleaner
+      "tencent-lemon" # macOS cleaner
       # "neteasemusic" # music
       # "blender@lts" # 3D creation suite
       # "clash-verge-rev" # the same as mihomo-party
@@ -227,8 +229,7 @@ in {
       # "chatwise"
       "cherry-studio"
       "codex"
-      "claude-code"
-      "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI. 
+      "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control
       # "google-cloud-sdk" # Google Cloud SDK
       # "miniforge" # Miniconda's community-driven distribution
