@@ -17,12 +17,6 @@
       url = "github:/nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-    mac-app-util = {
-      url = "github:hraban/mac-app-util";
-      # inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs?rev=a84b0a7c509bdbaafbe6fe6e947bdaa98acafb99";
-      # inputs.cl-nix-lite.url = "github:r4v3n6101/cl-nix-lite/url-fix";
-    };
 
     nur = {
       url = "github:nix-community/NUR";

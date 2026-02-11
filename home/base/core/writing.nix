@@ -8,7 +8,8 @@
 
   config = lib.mkIf config.modules.writing.enable {
     home.packages = with pkgs; [
-      texlive.combined.scheme-full
+      # texlive.combined.scheme-full
+      tectonic
       typst
     ];
   };

@@ -41,6 +41,13 @@
         lz = "!lazygit";
         ck = "checkout";
         br = "branch";
+        wt = "worktree";
+        wta = "worktree add";
+        wtr = "worktree remove";
+        bi = "bisect";
+        good = "bisect good";
+        bad = "bisect bad";
+
         fomo = "!git fetch origin main && git rebase origin/main";
         # 删除最近的提交，保留文件修改
         undo = "reset --soft HEAD^";
