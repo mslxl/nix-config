@@ -213,6 +213,9 @@ in
       "iina" # video player
       "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
       "stats" # beautiful system status monitor in menu bar
+      # Quick Look extension for highlight source code files on macOS 10.15 and later. 
+      # You need enable quick look ext manually, see https://github.com/sbarex/SourceCodeSyntaxHighlight?tab=readme-ov-file#enable-the-quick-look-extension
+      "syntax-highlight" 
       # "jordanbaird-ice" # Powerful menu bar manager for macOS
 
       # "reaper"  # audio editor
@@ -227,7 +230,7 @@ in
       "insomnia" # REST client
       "wireshark-app" # network analyzer
       # "chatwise"
-      "cherry-studio"
+      # "cherry-studio"
       "codex"
       "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control

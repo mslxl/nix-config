@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    cherry-studio
+    # cherry-studio
     synology-drive-client
 
     android-tools
