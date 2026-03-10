@@ -59,9 +59,9 @@ engine:
     - uniquifier
 
 speller:
-  __include: kagiroi:/alphabet/3_dan_hira
+  # __include: kagiroi:/alphabet/3_dan_hira
   # use 4_dan_hira if you want to use ansikana or other layout that requires 4 rows of keys
-  # __include: kagiroi:/alphabet/4_dan_hira
+  __include: kagiroi:/alphabet/4_dan_hira
 
 translator:
   dictionary: kagiroi
@@ -79,9 +79,9 @@ custom_phrase:
 
 punctuator:
   __patch:
-    - kagiroi:/punct/3_dan
+    # - kagiroi:/punct/3_dan
     # use 4_dan if you want to use ansikana or other layout that requires 4 rows of keys
-    # - kagiroi:/punct/4_dan
+    - kagiroi:/punct/4_dan
 
 recognizer:
   import_preset: default
@@ -141,12 +141,12 @@ kagiroi:
   #  - szromaji: A custom, extended Romaji layout. (Note: Currently in early development)
   #  - ansikana: Kana input (like a Japanese physical keyboard) adapted for a standard ANSI keyboard
   #    (Note: Kana input will need a 4-dan alphabet/punctuator`)
-  layout: romaji
+  layout: ansikana
   
   speller:
-    __include: kagiroi:/alphabet/3_dan
+    # __include: kagiroi:/alphabet/3_dan
     # use 4_dan if you want to use ansikana or other layout that requires 4 rows of keys
-    # __include: kagiroi:/alphabet/4_dan
+    __include: kagiroi:/alphabet/4_dan
   
   translator:
     sentence: 
