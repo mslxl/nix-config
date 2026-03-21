@@ -122,6 +122,8 @@ in
       Bitwarden = 1352778147;
       Qianji = 1473785373;
       # KDEConnect = 1580245991;
+      Readest = 6738622779;
+      MarginNote = 1531657269;
     };
 
     taps = [
@@ -176,7 +178,7 @@ in
       "netnewswire"
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
-      # "calibre"
+      "calibre"
       "zotero"
       # "synology-drive"
       # "firefox"
@@ -202,7 +204,6 @@ in
       "ayugram"
       "qq"
       "discord" # update too frequently, use the web version instead
-      # "rustdesk" # meeting
       # "awesun"
       "rustdesk"
       "tencent-meeting"
@@ -210,6 +211,7 @@ in
       # "zoom" # meeting
 
       # Misc
+      "lihaoyun6/tap/airbattery"
       "iina" # video player
       "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
       "stats" # beautiful system status monitor in menu bar
@@ -230,7 +232,7 @@ in
       "insomnia" # REST client
       "wireshark-app" # network analyzer
       # "chatwise"
-      # "cherry-studio"
+      "cherry-studio"
       "codex"
       "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control
