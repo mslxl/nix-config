@@ -118,12 +118,12 @@ in
     masApps = {
       # Xcode = 497799835; # 11 GiB, a giant man
       Wechat = 836500024;
-      TickTick = 966085870;
+      # TickTick = 966085870;
       Bitwarden = 1352778147;
       Qianji = 1473785373;
       # KDEConnect = 1580245991;
       Readest = 6738622779;
-      MarginNote = 1531657269;
+      # MarginNote = 1531657269;
     };
 
     taps = [
@@ -163,7 +163,7 @@ in
       "gnu-tar"
       "mpv"
 
-      "opencode"
+      # "opencode"
 
       # misc that nix do not have cache for.
       "git-trim"
@@ -200,8 +200,8 @@ in
       # "netbirdio/tap/netbird-ui" # netbird gui app
 
       # IM & audio & remote desktop & meeting
-      # "telegram"
-      "ayugram"
+      "telegram"
+      # "ayugram"
       "qq"
       "discord" # update too frequently, use the web version instead
       # "awesun"
@@ -211,9 +211,9 @@ in
       # "zoom" # meeting
 
       # Misc
-      "lihaoyun6/tap/airbattery"
+      # "lihaoyun6/tap/airbattery"
       "iina" # video player
-      "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
+      # "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
       "stats" # beautiful system status monitor in menu bar
       # Quick Look extension for highlight source code files on macOS 10.15 and later. 
       # You need enable quick look ext manually, see https://github.com/sbarex/SourceCodeSyntaxHighlight?tab=readme-ov-file#enable-the-quick-look-extension
@@ -229,11 +229,13 @@ in
 
       # Development
       "mitmproxy" # HTTP/HTTPS traffic inspector
-      "insomnia" # REST client
-      "wireshark-app" # network analyzer
+      # "insomnia" # REST client
+      # "wireshark-app" # network analyzer
       # "chatwise"
-      "cherry-studio"
+      # "cherry-studio"
       "codex"
+      "codex-app"
+      "chatgpt"
       "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control
       # "google-cloud-sdk" # Google Cloud SDK
