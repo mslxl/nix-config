@@ -26,7 +26,6 @@
       maple-mono.NF-CN-unhinted
 
       fira
-      jetbrains-mono
       source-sans
       source-serif
       source-han-sans
@@ -37,6 +36,10 @@
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
       nerd-fonts.iosevka
+    ]
+    ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+      # The non-Nerd package currently trips a transitive build failure on Darwin.
+      jetbrains-mono
     ];
   };
 }
