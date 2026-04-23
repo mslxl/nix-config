@@ -194,8 +194,6 @@ in
       # "zed"
       # "cursor" # cursor ai editor
 
-      "ghostty" # terminal emulator
-
       # "tailscale-app" # tailscale macos app (with gui)
       # "netbirdio/tap/netbird-ui" # netbird gui app
 

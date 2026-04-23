@@ -15,7 +15,6 @@ with lib; {
     services.tlp.enable = mkForce false;
     services.desktopManager.plasma6.enable = true;
     environment.systemPackages = with pkgs; [
-      ghostty
       wl-clipboard
       bottom
     ];

@@ -24,9 +24,9 @@ niri: {
       (plain "Mod+Shift+Slash" [(flag "show-hotkey-overlay")])
 
       # Suggested binds for running programs: terminal, app launcher, screen locker.
-      (plain "Mod+Return" [(leaf "spawn" ["kitty"])])
+      (plain "Mod+Return" [(leaf "spawn" ["ghostty"])])
       (plain "Mod+Ctrl+Return" [(leaf "spawn" ["anyrun"])])
-      (plain "Mod+E" [(leaf "spawn" ["kitty yazi"])])
+      (plain "Mod+E" [(leaf "spawn" ["ghostty" "-e" "yazi"])])
       (plain "Ctrl+Alt+L" [(leaf "spawn" ["swaylock"])])
 
       # You can also use a shell:
