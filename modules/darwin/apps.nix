@@ -55,10 +55,9 @@ let
 
   homebrew_env_script = lib.attrsets.foldlAttrs (
     acc: name: value:
-    acc + "\nexport ${name}=${value}"
+      acc + "\nexport ${name}=${value}"
   ) "" (homebrew_mirror_env // local_proxy_env);
-in
-{
+in {
   # Install packages from nix's official package repository.
   #
   # The packages installed here are available to all users, and are reproducible across machines, and are rollbackable.
@@ -71,19 +70,25 @@ in
     nushell # my custom shell
     gnugrep # replacee macos's grep
     gnutar # replacee macos's tar
+    act # run GitHub Actions locally
+    httpie
+    wireguard-tools # wireguard
 
     # darwin only apps
     # utm # virtual machine
   ];
 
-  environment.variables = {
-    # Fix https://github.com/LnL7/nix-darwin/wiki/Terminfo-issues
-    TERMINFO_DIRS = map (path: path + "/share/terminfo") config.environment.profiles ++ [
-      "/usr/share/terminfo"
-    ];
-  }
-  # Set variables for you to manually install homebrew packages.
-  // homebrew_mirror_env;
+  environment.variables =
+    {
+      # Fix https://github.com/LnL7/nix-darwin/wiki/Terminfo-issues
+      TERMINFO_DIRS =
+        map (path: path + "/share/terminfo") config.environment.profiles
+        ++ [
+          "/usr/share/terminfo"
+        ];
+    }
+    # Set variables for you to manually install homebrew packages.
+    // homebrew_mirror_env;
 
   # Set environment variables for nix-darwin before run `brew bundle`.
   system.activationScripts.homebrew.text = lib.mkBefore ''
@@ -117,12 +122,11 @@ in
     # For details, see https://github.com/mas-cli/mas
     masApps = {
       # Xcode = 497799835; # 11 GiB, a giant man
-      Wechat = 836500024;
       # TickTick = 966085870;
-      Bitwarden = 1352778147;
-      Qianji = 1473785373;
-      # KDEConnect = 1580245991;
       Readest = 6738622779;
+      Qianji = 1473785373;
+      TencentMeeting = 1484048379;
+      # KDEConnect = 1580245991;
       # MarginNote = 1531657269;
     };
 
@@ -136,13 +140,8 @@ in
       # `brew install`
       # "tw93/tap/mole"
 
-      "act"
       "telnet"
-      "wget" # download tool
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
-      "aria2" # download tool
-      "httpie" # http client
-      "wireguard-tools" # wireguard
 
       # For the system Java wrappers to find this JDK, symlink it with
       # sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
@@ -155,12 +154,9 @@ in
       # 2. `tailscale up --accept-routes`
       # "tailscale" # tailscale cli version
 
-      # https://github.com/rgcr/m-cli
+      # Keep this on Homebrew so it can be updated independently of flake.lock.
       "m-cli" #  Swiss Army Knife for macOS
 
-      # commands like `gsed` `gtar` are required by some tools
-      "gnu-sed"
-      "gnu-tar"
       "mpv"
 
       # "opencode"
@@ -173,24 +169,17 @@ in
 
     # `brew install --cask`
     casks = [
-      "anki"
+      "calibre"
       # "remnote"
       "netnewswire"
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
-      "calibre"
-      "zotero"
       # "synology-drive"
       # "firefox"
       "google-chrome"
-      "drawio"
 
       # code editor
-      "visual-studio-code"
-      "typora"
       "jetbrains-toolbox"
-      "orbstack"
-      "keka"
       # "zed"
       # "cursor" # cursor ai editor
 
@@ -198,24 +187,18 @@ in
       # "netbirdio/tap/netbird-ui" # netbird gui app
 
       # IM & audio & remote desktop & meeting
-      "telegram"
       # "ayugram"
-      "qq"
-      "discord" # update too frequently, use the web version instead
       # "awesun"
       "rustdesk"
-      "tencent-meeting"
       "whatsapp"
       # "zoom" # meeting
 
       # Misc
       # "lihaoyun6/tap/airbattery"
-      "iina" # video player
       # "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
-      "stats" # beautiful system status monitor in menu bar
-      # Quick Look extension for highlight source code files on macOS 10.15 and later. 
+      # Quick Look extension for highlight source code files on macOS 10.15 and later.
       # You need enable quick look ext manually, see https://github.com/sbarex/SourceCodeSyntaxHighlight?tab=readme-ov-file#enable-the-quick-look-extension
-      "syntax-highlight" 
+      "syntax-highlight"
       # "jordanbaird-ice" # Powerful menu bar manager for macOS
 
       # "reaper"  # audio editor
@@ -231,9 +214,7 @@ in
       # "wireshark-app" # network analyzer
       # "chatwise"
       # "cherry-studio"
-      "codex"
-      "codex-app"
-      "chatgpt"
+      "codex-app" # GUI app; the nix package `codex` is terminal-only.
       "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control
       # "google-cloud-sdk" # Google Cloud SDK
