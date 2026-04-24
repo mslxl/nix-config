@@ -4,7 +4,7 @@
   outputs = inputs: import ./outputs inputs;
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nix-colors.url = "github:misterio77/nix-colors";
 
@@ -12,7 +12,8 @@
       url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-darwin.follows = "nixpkgs-unstable";
+
+    nixpkgs-darwin.follows = "nixpkgs";
     nix-darwin = {
       url = "github:/nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
@@ -49,7 +50,7 @@
     };
     # anyrun - a wayland launcher
     anyrun = {
-      url = "github:Kirottu/anyrun/v25.9.0";
+      url = "github:Kirottu/anyrun/v25.12.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:sodiboo/niri-flake";

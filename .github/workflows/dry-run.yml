@@ -1,0 +1,76 @@
+name: Configuration Dry Run
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eval-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    name: Discover Hosts
+    runs-on: ubuntu-latest
+    outputs:
+      linux_hosts: ${{ steps.hosts.outputs.linux_hosts }}
+      darwin_hosts: ${{ steps.hosts.outputs.darwin_hosts }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Discover host matrices
+        id: hosts
+        run: |
+          echo "linux_hosts=$(nix eval --json --override-input secrets path:./secrets .#nixosConfigurations --apply builtins.attrNames --extra-experimental-features 'nix-command flakes')" >> "$GITHUB_OUTPUT"
+          echo "darwin_hosts=$(nix eval --json --override-input secrets path:./secrets .#darwinConfigurations --apply builtins.attrNames --extra-experimental-features 'nix-command flakes')" >> "$GITHUB_OUTPUT"
+
+  eval-linux:
+    name: Linux Dry Run (${{ matrix.host }})
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJSON(needs.discover.outputs.linux_hosts) }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dry-run build host
+        run: |
+          nix build --dry-run --no-link --override-input secrets path:./secrets .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --extra-experimental-features 'nix-command flakes'
+
+  eval-darwin:
+    name: Darwin Dry Run (${{ matrix.host }})
+    needs: discover
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJSON(needs.discover.outputs.darwin_hosts) }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dry-run build host
+        run: |
+          nix build --dry-run --no-link --override-input secrets path:./secrets .#darwinConfigurations.${{ matrix.host }}.system --extra-experimental-features 'nix-command flakes'
