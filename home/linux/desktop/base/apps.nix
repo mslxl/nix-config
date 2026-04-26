@@ -13,6 +13,7 @@
 
   home.packages =
     (with pkgs; [
+      anki
       zenity
       trash-cli
       bat

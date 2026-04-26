@@ -169,6 +169,7 @@ in {
 
     # `brew install --cask`
     casks = [
+      "anki"
       "calibre"
       # "remnote"
       "netnewswire"
