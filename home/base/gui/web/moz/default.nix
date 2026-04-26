@@ -80,6 +80,7 @@
               # GO about:debugging#/runtime/this-firefox to get Extension ID
               # (extension "aria2_integration" "{e2488817-3d73-4013-850d-b66c5e42d505}")
               (extension "2fas-two-factor-authentication" "admin@2fas.com")
+              (extension "asbplayer-language-learning" "{e4b27483-2e73-4762-b2ec-8d988a143a40}")
               (extension "auto_tab_discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
               (extension "behind-the-overlay-revival" "{c0e1baea-b4cb-4b62-97f0-278392ff8c37}")
               # (extension "bewlybewly" "addon@bewlybewly.com")
@@ -126,6 +127,7 @@
               # (extension "wakatimes" "addons@wakatime.com")
               (extension "wappalyzer" "wappalyzer@crunchlabz.com")
               (extension "wxif" "{8b3ee44a-0805-4c2c-acef-15aab34fbd20}")
+              (extension "yomitan" "{6b733b82-9261-47ee-a595-2dda294a4d08}")
             ]);
       };
 
