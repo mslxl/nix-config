@@ -27,11 +27,5 @@ in {
       in
         lib.genAttrs brokenPackages removeUnwantedPackages
     )
-    (_: super: {
-      # direnv's fish tests are currently unstable on Darwin and get killed mid-build.
-      direnv = super.direnv.overrideAttrs (_: {
-        doCheck = false;
-      });
-    })
   ];
 }
