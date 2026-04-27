@@ -11,7 +11,6 @@
   home.packages = with pkgs; [
     discord
     qq
-    telegram-desktop
     (
       if pkgs.stdenv.isDarwin
       then wechat

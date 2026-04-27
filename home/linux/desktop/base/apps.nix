@@ -18,6 +18,7 @@
       trash-cli
       bat
       xarchiver
+      telegram-desktop
       readest
       calibre
     ]);

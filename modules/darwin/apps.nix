@@ -168,6 +168,8 @@ in {
     ];
 
     # `brew install --cask`
+    # Keep these GUI apps on Homebrew when nixpkgs lacks a proper macOS app
+    # bundle or has weaker desktop integration on Darwin.
     casks = [
       "anki"
       "calibre"
@@ -190,6 +192,7 @@ in {
       # IM & audio & remote desktop & meeting
       # "ayugram"
       # "awesun"
+      "telegram"
       "rustdesk"
       "whatsapp"
       # "zoom" # meeting
