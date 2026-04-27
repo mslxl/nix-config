@@ -10,11 +10,13 @@
   ...
 }: let
   inherit (inputs) nixpkgs-darwin home-manager nix-darwin;
+  agenixModules = import ./agenix.nix {inherit inputs;};
 in
   nix-darwin.lib.darwinSystem {
     inherit system specialArgs;
     modules =
-      darwin-modules
+      agenixModules.darwinModules
+      ++ darwin-modules
       ++ [
         (
           {lib, ...}: {

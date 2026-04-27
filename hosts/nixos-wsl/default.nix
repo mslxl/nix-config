@@ -42,6 +42,9 @@ in {
     "https://mirror.sjtu.edu.cn/nix-channels/store"
     "https://mirrors.ustc.edu.cn/nix-channels/store"
   ];
+  nix.extraOptions = ''
+    !include ${config.age.secrets.nix-access-token.path}
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

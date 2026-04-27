@@ -10,11 +10,13 @@
   ...
 }: let
   inherit (inputs) nixpkgs home-manager nixos-generators;
+  agenixModules = import ./agenix.nix {inherit inputs;};
 in
   nixpkgs.lib.nixosSystem {
     inherit system specialArgs;
     modules =
-      nixos-modules
+      agenixModules.nixosModules
+      ++ nixos-modules
       ++ [
         nixos-generators.nixosModules.all-formats
       ]

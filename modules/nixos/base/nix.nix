@@ -8,7 +8,11 @@
   # do garbage collection weekly to keep disk usage low
   nix.gc = {
     automatic = lib.mkDefault true;
-    dates = lib.mkDefault "weekly";
+    interval = lib.mkDefault [{
+      Hour = 0;
+      Minute = 0;
+      Weekday = 7;
+    }]; 
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
@@ -17,8 +21,8 @@
   nix.settings.auto-optimise-store = true;
 
   nix.channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
-  # TODO
-  # nix.extraOptions = ''
-  #   !include ${config.age.secrets.nix-access-tokens.path}
-  # '';
+
+  nix.extraOptions = ''
+    !include ${config.age.secrets.nix-access-token.path}
+  '';
 }
