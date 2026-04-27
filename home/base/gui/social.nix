@@ -11,18 +11,5 @@
   home.packages = with pkgs; [
     discord
     qq
-    (
-      if pkgs.stdenv.isDarwin
-      then wechat
-      else wechat.overrideAttrs (super: {
-        buildInputs = [pkgs.makeWrapper];
-
-        postInstall =
-          (super.postInstall or "")
-          + ''
-            wrapProgram $out/bin/wechat --set GTK_IM_MODULE fcitx --set QT_IM_MODULE fcitx
-          '';
-      })
-    )
   ];
 }

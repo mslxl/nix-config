@@ -19,6 +19,15 @@
       bat
       xarchiver
       telegram-desktop
+      (wechat.overrideAttrs (super: {
+        buildInputs = [pkgs.makeWrapper];
+
+        postInstall =
+          (super.postInstall or "")
+          + ''
+            wrapProgram $out/bin/wechat --set GTK_IM_MODULE fcitx --set QT_IM_MODULE fcitx
+          '';
+      }))
       readest
       calibre
     ]);

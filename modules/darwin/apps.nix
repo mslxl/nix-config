@@ -126,6 +126,7 @@ in {
       Readest = 6738622779;
       Qianji = 1473785373;
       TencentMeeting = 1484048379;
+      WeChat = 836500024;
       # KDEConnect = 1580245991;
       # MarginNote = 1531657269;
     };
