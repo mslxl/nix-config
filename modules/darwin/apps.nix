@@ -178,7 +178,8 @@ in {
       "netnewswire"
       # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
-      # "synology-drive"
+      "obs"
+      "synology-drive" # Desktop sync client; MAS only provides the mobile Synology Drive app.
       # "firefox"
       "google-chrome"
 
@@ -219,6 +220,7 @@ in {
       # "wireshark-app" # network analyzer
       # "chatwise"
       # "cherry-studio"
+      "codex" # TUI; keep this on Homebrew for faster updates on macOS.
       "codex-app" # GUI app; the nix package `codex` is terminal-only.
       "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control

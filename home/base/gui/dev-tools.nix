@@ -5,7 +5,6 @@
 }: {
   home.packages = with pkgs;
     [
-      codex
       mitmproxy # http/https proxy tool
       wireshark # network analyzer
 
