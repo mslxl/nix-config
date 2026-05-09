@@ -14,14 +14,13 @@
       pkgs = import nixpkgs {
         inherit system;
       };
-      buildInputs = with pkgs;
-        [
-          nodejs
-          nodejs.pkgs.pnpm
+      buildInputs = with pkgs; [
+        nodejs
+        nodejs.pkgs.pnpm
 
-          just
-          nushell
-        ];
+        just
+        nushell
+      ];
     in {
       formatter = pkgs.alejandra;
       # Used by `nix develop`

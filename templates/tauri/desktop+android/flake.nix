@@ -63,7 +63,7 @@
 
       androidJdk = pkgs.jdk17;
 
-      androidPackage = android-nixpkgs.sdk.${pkgs.system} (
+      androidPackage = android-nixpkgs.sdk.${pkgs.stdenv.hostPlatform.system} (
         sdkPkgs:
           with sdkPkgs; [
             platform-tools

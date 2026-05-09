@@ -6,9 +6,9 @@
   # catppuccin.anyrun.enable = false;
   programs.anyrun = {
     enable = true;
-    # package = anyrun.packages.${pkgs.system}.anyrun;
+    # package = anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun;
     config = {
-      plugins = with anyrun.packages.${pkgs.system}; [
+      plugins = with anyrun.packages.${pkgs.stdenv.hostPlatform.system}; [
         applications
         randr
         rink

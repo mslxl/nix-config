@@ -7,7 +7,7 @@
   ...
 }: {
   environment.systemPackages = [
-    agenix.packages.${pkgs.system}.default
+    agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   age.identityPaths = lib.mkDefault [

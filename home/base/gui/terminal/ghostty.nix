@@ -85,9 +85,11 @@ in {
         macos-titlebar-style = "tabs";
         macos-option-as-alt = true;
         command = "${pkgs.zsh}/bin/zsh --login -c 'exec nu --login --interactive'";
-        keybind = commonSettings.keybind ++ [
-          "global:super+grave_accent=toggle_quick_terminal"
-        ];
+        keybind =
+          commonSettings.keybind
+          ++ [
+            "global:super+grave_accent=toggle_quick_terminal"
+          ];
       };
   };
 }

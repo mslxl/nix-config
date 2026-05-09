@@ -26,7 +26,7 @@ in {
   config = mkIf (cfg.type == "sway") {
     programs.waybar = {
       enable = true;
-      package = waybar.packages.${pkgs.system}.waybar;
+      package = waybar.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
     };
 
     home.activation.waybar-refresh = lib.hm.dag.entryAfter ["writeBoundary"] ''

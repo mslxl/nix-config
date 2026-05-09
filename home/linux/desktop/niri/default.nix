@@ -7,7 +7,7 @@
   ...
 } @ args: let
   cfg = config.modules.desktop.niri;
-  niri-pkg = niri.packages.${pkgs.system}.niri-stable.overrideAttrs (super: {
+  niri-pkg = niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable.overrideAttrs (super: {
     # preBuild =
     #   ''
     #     ulimit -Sn 8192
