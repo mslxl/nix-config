@@ -19,8 +19,6 @@
 
     lice
 
-    claude-code
-    pi-coding-agent
 
     tokei # count lines of code, alternative to cloc
 

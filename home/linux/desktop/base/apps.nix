@@ -29,5 +29,6 @@
     }))
     readest
     calibre
+    chatgpt
   ];
 }
