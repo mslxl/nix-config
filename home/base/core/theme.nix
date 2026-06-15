@@ -3,6 +3,8 @@
     catppuccin.homeModules.catppuccin
   ];
   catppuccin = {
+    # Keep current explicit enrollment behavior before upstream flips defaults.
+    autoEnable = true;
     # The default `enable` value for all available programs.
     enable = true;
     # one of "latte", "frappe", "macchiato", "mocha"

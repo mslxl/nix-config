@@ -4,35 +4,33 @@
 
     # default config
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      forwardAgent = false;
+    settings."*" = {
+      ForwardAgent = false;
       # "a private key that is used during authentication will be added to ssh-agent if it is running"
-      addKeysToAgent = "yes";
-      compression = true;
-      serverAliveInterval = 0;
-      serverAliveCountMax = 3;
-      hashKnownHosts = false;
-      userKnownHostsFile = "~/.ssh/known_hosts";
-      controlMaster = "no";
-      controlPath = "~/.ssh/master-%r@%n:%p";
-      controlPersist = "no";
-      setEnv = {
+      AddKeysToAgent = "yes";
+      Compression = true;
+      ServerAliveInterval = 0;
+      ServerAliveCountMax = 3;
+      HashKnownHosts = false;
+      UserKnownHostsFile = "~/.ssh/known_hosts";
+      ControlMaster = "no";
+      ControlPath = "~/.ssh/master-%r@%n:%p";
+      ControlPersist = "no";
+      SetEnv = {
         TERM = "xterm-256color";
       };
     };
 
-    matchBlocks = {
-      "github.com" = {
-        # "Using SSH over the HTTPS port for GitHub"
-        # "(port 22 is banned by some proxies / firewalls)"
-        hostname = "ssh.github.com";
-        port = 443;
-        user = "git";
+    settings."github.com" = {
+      # "Using SSH over the HTTPS port for GitHub"
+      # "(port 22 is banned by some proxies / firewalls)"
+      HostName = "ssh.github.com";
+      Port = 443;
+      User = "git";
 
-        # Specifies that ssh should only use the identity file explicitly configured above
-        # required to prevent sending default identity files first.
-        identitiesOnly = true;
-      };
+      # Specifies that ssh should only use the identity file explicitly configured above
+      # required to prevent sending default identity files first.
+      IdentitiesOnly = true;
     };
   };
 }
