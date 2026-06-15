@@ -18,7 +18,7 @@ build-nom: _nosudo
   #!/usr/bin/env nix-shell
   #! nix-shell -p nix-output-monitor -i bash
   set -euo pipefail
-  nix build .#darwinConfigurations.{{HOSTNAME}}.system --extra-experimental-features 'nix-command flakes'  --log-format internal-json -v |& nom --json
+  nix build .#darwinConfigurations.{{HOSTNAME}}.system --extra-experimental-features 'nix-command flakes' --no-warn-dirty --log-format internal-json -v |& nom --json
   sudo -E ./result/sw/bin/darwin-rebuild switch --flake {{FLAKE_CFG}}
 
 [macos]
