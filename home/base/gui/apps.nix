@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   home.packages = with pkgs; [
-    bitwarden-desktop
+    pkgs-stable.bitwarden-desktop
     zotero
   ];
 }

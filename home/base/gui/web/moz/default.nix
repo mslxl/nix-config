@@ -80,7 +80,7 @@
               # GO about:debugging#/runtime/this-firefox to get Extension ID
               # (extension "aria2_integration" "{e2488817-3d73-4013-850d-b66c5e42d505}")
               (extension "2fas-two-factor-authentication" "admin@2fas.com")
-              (extension "asbplayer-language-learning" "{e4b27483-2e73-4762-b2ec-8d988a143a40}")
+              # (extension "asbplayer-language-learning" "{e4b27483-2e73-4762-b2ec-8d988a143a40}")
               (extension "auto_tab_discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
               (extension "behind-the-overlay-revival" "{c0e1baea-b4cb-4b62-97f0-278392ff8c37}")
               # (extension "bewlybewly" "addon@bewlybewly.com")
@@ -100,7 +100,8 @@
               (extension "history-autodelete" "{7e79d10d-9667-4d38-838d-471281c568c3}")
               (extension "i_dont_care_about_cookies" "jid1-KKzOGWgsW3Ao4Q@jetpack")
               (extension "imagus" "{00000f2a-7cde-4f20-83ed-434fcb420d71}")
-              (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
+              # (extension "immersive-translate" "{5efceaa7-f3a2-4e59-a54b-85319448e305}")
+              (extension "read-frog-open-ai-translator" "{bd311a81-4530-4fcc-9178-74006155461b}")
               # (extension "kiss-translator" "{fb25c100-22ce-4d5a-be7e-75f3d6f0fc13}")
               (extension "markdown_here" "markdown-here-webext@adam.pritchard")
               (extension "mergease" "{b5371a03-0432-4f66-951f-07bd6c4465a9}")
@@ -127,7 +128,7 @@
               # (extension "wakatimes" "addons@wakatime.com")
               (extension "wappalyzer" "wappalyzer@crunchlabz.com")
               (extension "wxif" "{8b3ee44a-0805-4c2c-acef-15aab34fbd20}")
-              (extension "yomitan" "{6b733b82-9261-47ee-a595-2dda294a4d08}")
+              # (extension "yomitan" "{6b733b82-9261-47ee-a595-2dda294a4d08}")
             ]);
       };
 

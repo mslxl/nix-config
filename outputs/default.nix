@@ -14,6 +14,11 @@
     // (let
       config = {
         allowUnfree = true;
+        # Temporary: pkgs-stable.bitwarden-desktop is pinned to electron_39,
+        # and nixpkgs marks electron-39.8.10 insecure because it is EOL.
+        permittedInsecurePackages = [
+          "electron-39.8.10"
+        ];
       };
     in rec {
       inherit mylib myvars;
