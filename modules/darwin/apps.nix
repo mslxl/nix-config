@@ -127,6 +127,14 @@ in {
       Qianji = 1473785373;
       TencentMeeting = 1484048379;
       WeChat = 836500024;
+      OneDrive = 823766827;
+      
+      MSExcel = 462058435;
+      MSPowerPoint = 462062816;
+      MSWord = 462054704;
+
+      # WPSOffice = 1443749478;
+
       # KDEConnect = 1580245991;
       # MarginNote = 1531657269;
     };
@@ -205,7 +213,6 @@ in {
       # Quick Look extension for highlight source code files on macOS 10.15 and later.
       # You need enable quick look ext manually, see https://github.com/sbarex/SourceCodeSyntaxHighlight?tab=readme-ov-file#enable-the-quick-look-extension
       "syntax-highlight"
-      # "jordanbaird-ice" # Powerful menu bar manager for macOS
 
       # "reaper"  # audio editor
       # "sonic-pi" # music programming
