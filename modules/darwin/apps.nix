@@ -204,7 +204,7 @@ in {
       # "awesun"
       "telegram"
       "rustdesk"
-      "whatsapp"
+      # "whatsapp"
       # "zoom" # meeting
 
       # Misc
@@ -229,7 +229,8 @@ in {
       # "cherry-studio"
       "codex" # TUI; keep this on Homebrew for faster updates on macOS.
       "codex-app" # GUI app; the nix package `codex` is terminal-only.
-      "claude-code"
+      "claude"
+      # "claude-code"
       "chatgpt"
       "alma"
 
