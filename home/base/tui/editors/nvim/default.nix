@@ -12,12 +12,6 @@
     ${pkgs.rsync}/bin/rsync -avz --chmod=D2755,F744 ${./nvim}/ ${config.xdg.configHome}/nvim/
   '';
 
-  xdg.mimeApps = {
-    defaultApplications = {
-      "text/plain" = ["neovide.desktop"];
-    };
-  };
-
   catppuccin.nvim.enable = false;
 
   programs.neovim = {
