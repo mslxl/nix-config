@@ -192,7 +192,7 @@ in {
       "google-chrome"
 
       # code editor
-      "jetbrains-toolbox"
+      # "jetbrains-toolbox"
       # "zed"
       # "cursor" # cursor ai editor
 
@@ -202,6 +202,7 @@ in {
       # IM & audio & remote desktop & meeting
       # "ayugram"
       # "awesun"
+      "paseo"
       "telegram"
       "rustdesk"
       # "whatsapp"
@@ -229,10 +230,10 @@ in {
       # "cherry-studio"
       "codex" # TUI; keep this on Homebrew for faster updates on macOS.
       "codex-app" # GUI app; the nix package `codex` is terminal-only.
-      "claude"
+      # "claude" # GUI app
       # "claude-code"
-      "chatgpt"
-      "alma"
+      "vivaldi"
+      "craft-agents"
 
       "farion1231/ccswitch/cc-switch" # A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
       # "jdk-mission-control" # Java Mission Control

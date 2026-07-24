@@ -10,7 +10,7 @@
     drawio
     iina
     keka
-    orbstack
+    # orbstack
     stats
   ];
 }

@@ -28,13 +28,13 @@
     ] (_: ["thunderbird.deskto"]));
 
   catppuccin.firefox = {
-    enable = true;
+    enable = false;
     profiles = {};
   };
 
   programs = {
     firefox = {
-      enable = true;
+      enable = false;
       # package = pkgs.firefox-bin;
       languagePacks = [
         "zh-CN"
