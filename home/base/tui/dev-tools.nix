@@ -17,7 +17,7 @@
   home.packages = with pkgs; [
     # colmena # nixos's remote deployment tool
 
-    lice
+    # lice #TODO
 
 
     tokei # count lines of code, alternative to cloc
@@ -36,6 +36,7 @@
     bfg-repo-cleaner # remove large files from git history
     k6 # load testing tool
     protobuf # protocol buffer compiler
+    kubectl
 
     # solve coding extercises - learn by doing
     exercism
