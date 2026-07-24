@@ -31,7 +31,12 @@
     enableZshIntegration = true;
     enableNushellIntegration = true;
   };
-  programs.atuin.enable = true;
+  programs.atuin = {
+    enable = true;
+    settings = {
+      sync_address = "https://atuin.mslxl.com";
+    };
+  };
   programs.zoxide.enable = true;
   programs.eza = {
     enable = true;
@@ -53,7 +58,10 @@
       pager = "less -FR";
     };
   };
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    historyWidget.command = "";
+  };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
