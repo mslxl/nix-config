@@ -128,7 +128,7 @@ in {
       TencentMeeting = 1484048379;
       WeChat = 836500024;
       OneDrive = 823766827;
-      
+
       MSExcel = 462058435;
       MSPowerPoint = 462062816;
       MSWord = 462054704;
