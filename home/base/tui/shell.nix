@@ -3,7 +3,14 @@
   pkgs-unstable,
   ...
 }: let
-  inherit (pkgs-unstable) nu_scripts;
+  nu_scripts = pkgs-unstable.nu_scripts.overrideAttrs (old: {
+    postPatch =
+      (old.postPatch or "")
+      + ''
+        substituteInPlace modules/kubernetes/{env,utils}.nu \
+          --replace-fail "str downcase" "str lowercase"
+      '';
+  });
 in {
   programs.nushell = {
     # load the alias file for work
@@ -37,7 +44,9 @@ in {
       use aliases/bat/bat-aliases.nu *
 
       # modules
-      use modules/argx *
+      # Keep `parse` namespaced as `argx parse`; importing every export would
+      # shadow Nushell's built-in `parse` command used by fzf integration.
+      use modules/argx
       use modules/lg *
       use modules/kubernetes *
     '';
