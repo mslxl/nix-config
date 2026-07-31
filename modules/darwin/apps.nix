@@ -121,7 +121,7 @@ in {
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
     masApps = {
-      # Xcode = 497799835; # 11 GiB, a giant man
+      Xcode = 497799835; # 11 GiB, a giant man
       # TickTick = 966085870;
       Readest = 6738622779;
       Qianji = 1473785373;
@@ -182,13 +182,10 @@ in {
     casks = [
       "anki"
       "calibre"
-      # "remnote"
       "netnewswire"
-      # "activitywatch" # intel CPU? wtf
       "squirrel-app" # input method for Chinese, rime-squirrel
       "obs"
       "synology-drive" # Desktop sync client; MAS only provides the mobile Synology Drive app.
-      # "firefox"
       "google-chrome"
 
       # code editor
@@ -198,6 +195,8 @@ in {
 
       # "tailscale-app" # tailscale macos app (with gui)
       # "netbirdio/tap/netbird-ui" # netbird gui app
+      "thaw"
+      "stats"
 
       # IM & audio & remote desktop & meeting
       # "ayugram"
@@ -211,6 +210,7 @@ in {
       # Misc
       # "lihaoyun6/tap/airbattery"
       # "raycast" # (HotKey: alt/option + space)search, calculate and run scripts(with many plugins)
+
       # Quick Look extension for highlight source code files on macOS 10.15 and later.
       # You need enable quick look ext manually, see https://github.com/sbarex/SourceCodeSyntaxHighlight?tab=readme-ov-file#enable-the-quick-look-extension
       "syntax-highlight"
@@ -230,8 +230,8 @@ in {
       # "cherry-studio"
       "codex" # TUI; keep this on Homebrew for faster updates on macOS.
       "codex-app" # GUI app; the nix package `codex` is terminal-only.
-      # "claude" # GUI app
-      # "claude-code"
+      "claude" # GUI app
+      "claude-code"
       "vivaldi"
       "craft-agents"
 

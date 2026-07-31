@@ -8,9 +8,8 @@
 
   home.packages = with pkgs; [
     drawio
-    iina
+    # iina
     keka
     # orbstack
-    stats
   ];
 }
