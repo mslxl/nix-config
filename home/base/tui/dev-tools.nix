@@ -40,6 +40,7 @@
     rtk
     pi-coding-agent # coding agent for pi
     opencode
+    herdr
 
     # solve coding extercises - learn by doing
     exercism
