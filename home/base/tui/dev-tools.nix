@@ -36,7 +36,10 @@
     k6 # load testing tool
     protobuf # protocol buffer compiler
     kubectl
+
+    rtk
     pi-coding-agent # coding agent for pi
+    opencode
 
     # solve coding extercises - learn by doing
     exercism
