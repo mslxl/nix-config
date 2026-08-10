@@ -10,11 +10,7 @@
 
   commonSettings = {
     theme = "TokyoNight Storm";
-    background-opacity = 0.75;
-
-    palette = [
-      "8=#9aa5ce"
-    ];
+    # background-opacity = 0.75;
 
     font-family = "Maple Mono NF CN";
     cursor-style-blink = false;
