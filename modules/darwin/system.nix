@@ -43,7 +43,8 @@
         wvous-tl-corner = 2; # top-left - Mission Control
         wvous-tr-corner = 4; # top-right - Desktop
         wvous-bl-corner = 3; # bottom-left - Application Windows
-        wvous-br-corner = 13; # bottom-right - Lock Screen
+        # wvous-br-corner = 13; # bottom-right - Lock Screen
+        wvous-br-corner = 2; # bottom-right - Lock Screen
       };
 
       # customize finder
