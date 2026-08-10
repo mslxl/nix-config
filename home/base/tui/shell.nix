@@ -3,14 +3,7 @@
   pkgs-unstable,
   ...
 }: let
-  nu_scripts = pkgs-unstable.nu_scripts.overrideAttrs (old: {
-    postPatch =
-      (old.postPatch or "")
-      + ''
-        substituteInPlace modules/kubernetes/{env,utils}.nu \
-          --replace-fail "str downcase" "str lowercase"
-      '';
-  });
+  nu_scripts = pkgs-unstable.nu_scripts;
 in {
   programs.nushell = {
     # load the alias file for work
