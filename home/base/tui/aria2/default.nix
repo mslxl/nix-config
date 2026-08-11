@@ -258,7 +258,7 @@
   config = lib.mkMerge [
     (lib.mkIf config.modules.aria.enable {
       home.packages = with pkgs; [
-        aria
+        aria2
       ];
     })
 

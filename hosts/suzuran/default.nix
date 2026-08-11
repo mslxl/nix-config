@@ -39,7 +39,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     lshw
-    glxinfo
+    mesa-demos
     cifs-utils
   ];
 

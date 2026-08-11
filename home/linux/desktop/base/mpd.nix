@@ -14,8 +14,7 @@
   config = lib.mkMerge [
     (lib.mkIf config.modules.music.enable {
       home.packages = with pkgs; [
-        mpc-cli
-        cli-visualizer
+        mpc
       ];
       services.mpd = {
         enable = true;
