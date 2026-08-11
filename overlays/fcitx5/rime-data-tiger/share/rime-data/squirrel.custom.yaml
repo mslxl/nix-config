@@ -3,6 +3,8 @@ patch:
   style:
     color_scheme: mac_blue
     color_scheme_dark: mac_dark
+    font_face: "PingFang SC, Jigmo, Jigmo2, Jigmo3, HanaMinA, HanaMinB, BabelStone Han"
+    comment_font_face: "PingFang SC, Jigmo, Jigmo2, Jigmo3, HanaMinA, HanaMinB, BabelStone Han"
     # font_face: Hei                  # 候选词字体（可以使用 macOS 自带的“字体册.app”检索）
     # font_point: 16                  # 候选词大小
     # label_font_face: Hei            # 候选词编号字体
@@ -18,7 +20,8 @@ patch:
       line_spacing: 10   
       border_height: 4   
       border_width: 4
-      font_face: "PingFangSC"
+      font_face: "PingFang SC, Jigmo, HanaMinB, BabelStone Han"
+      comment_font_face: "PingFang SC, Jigmo, HanaMinB, BabelStone Han"
       font_point: 16 
       label_font_point: 13
       text_color: 0x424242  
@@ -36,7 +39,8 @@ patch:
       name: Mac浅蓝
       candidate_format: "%c %@ "    # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间
       corner_radius: 5                             # 窗口圆角
-      font_face: "PingFangSC"                      # 候选词字体
+      font_face: "PingFang SC, Jigmo, HanaMinB, BabelStone Han" # 候选词字体及 CJK 扩展字回退
+      comment_font_face: "PingFang SC, Jigmo, HanaMinB, BabelStone Han"
       font_point: 16                               # 候选字大小
       label_font_point: 13                         # 候选编号大小
       line_spacing: 10                             # 行间距(适用于竖排)

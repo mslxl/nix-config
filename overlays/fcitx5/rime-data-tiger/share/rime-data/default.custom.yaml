@@ -1,8 +1,7 @@
 patch:
   schema_list:
-    - schema: tiger
-    - schema: tigress
-    - schema: kagiroi
+    - schema: tiger_kagiroi
+    - schema: tigress_kagiroi
     - schema: esperanto
   switcher:
     fold_options: true

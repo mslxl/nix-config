@@ -17,9 +17,24 @@ with lib; let
     kdePackages.fcitx5-qt
   ];
 in {
-  xdg.configFile."fcitx5/profile" = {
-    source = ./profile;
-    force = true;
+  xdg.configFile = {
+    "fcitx5/profile" = {
+      source = ./profile;
+      force = true;
+    };
+
+    # Classic UI accepts a Pango font description rather than a Squirrel-style
+    # comma-separated family fallback list. Keep its primary face generic and
+    # let the system fontconfig sans-serif fallback chain provide Jigmo,
+    # Hanazono and BabelStone Han for CJK Extension glyphs.
+    "fcitx5/conf/classicui.conf" = {
+      text = ''
+        Font="sans-serif 12"
+        MenuFont="sans-serif 10"
+        TrayFont="sans-serif Bold 10"
+      '';
+      force = true;
+    };
   };
 
   # home.activation.clean-fcitx-rime-data = lib.hm.dag.entryAfter ["writeBoundary"] ''

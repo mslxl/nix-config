@@ -31,6 +31,13 @@
         source-serif
         source-han-sans
         source-han-serif
+
+        # CJK Extension fonts used as Squirrel candidate-window fallbacks.
+        # Jigmo is Hanazono's successor; the others fill remaining rare glyphs.
+        jigmo
+        hanazono
+        babelstone-han
+
         liberation_ttf_v2
 
         nerd-fonts.symbols-only

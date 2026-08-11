@@ -22,6 +22,14 @@
         "LXGW WenKai Screen" # 霞鹜文楷 屏幕阅读版
         "Source Han Sans SC" # 思源黑体
         "Source Han Sans TC"
+        # CJK 扩展区回退。Fcitx5 Classic UI 使用 Pango/fontconfig，
+        # 缺字时会沿此列表尝试后续字体。
+        "Jigmo"
+        "Jigmo2"
+        "Jigmo3"
+        "HanaMinA"
+        "HanaMinB"
+        "BabelStone Han"
       ];
       monospace = [
         # 中文

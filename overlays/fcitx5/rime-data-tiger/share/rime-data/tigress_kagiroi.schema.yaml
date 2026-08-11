@@ -1,0 +1,210 @@
+schema:
+  schema_id: tigress_kagiroi
+  name: "虎词・カギロイ"
+  version: 0.3.0
+  author:
+    - tlipoca
+  description: |
+    虎码官方词库与 Kagiroi 日语启发式混输。
+    Control+Shift+T 强制当前输入段按虎码解释；
+    Control+Shift+J 强制当前输入段按日语解释。
+  dependencies:
+    - tigress
+    - easy_english
+    - kagiroi
+    - kagiroi_romaji
+    - kagiroi_kanji
+    - kagiroi_matrix
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中日, 西文 ]
+  - name: pinyin
+    reset: 0
+    states: [ 拼, pīn ]
+  - name: emoji_cn
+    reset: 0
+    states: [ 🈚, 🈶 ]
+  - name: chaifen
+    reset: 0
+    states: [ 拆隐, 拆显 ]
+  - name: simplification
+    reset: 0
+    states: [ 简中, 繁中 ]
+  - options: [_keyboard_default, _keyboard_defaultbk, _keyboard_defaultwk]
+    reset: 0
+    states: [ 有刻, 半刻, 无刻 ]
+  - name: charset_comment_filter
+    reset: 0
+    states: [ U区关, U区开 ]
+  - name: udpf_switch
+    reset: 0
+    states: [ U编关, U编开 ]
+  - name: ascii_punct
+    reset: 0
+    states: [ 。，, ．， ]
+  - options: [_keyboard_default, _keyboard_defaultzj]
+    reset: 0
+    states: [ 助记关, 助记开 ]
+  - name: full_shape
+    reset: 0
+    states: [ 半角, 全角 ]
+  - options: [ hiragana, katakana, hw_katakana ]
+    reset: 0
+    states: [ ひらがな, カタカナ, ｶﾀｶﾅ ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - lua_processor@*tiger_kagiroi/mixed*processor
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@easy_english
+    - lua_segmentor@*tiger_kagiroi/segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator@easy_english
+    - lua_translator@*tiger_kagiroi/mixed*translator
+  filters:
+    - simplifier@simplification
+    - simplifier@pinyin
+    - simplifier@chaifen
+    - simplifier@emoji_cn
+    - lua_filter@charset_comment_filter
+    - lua_filter@lua_unicode_display_filter
+    - uniquifier
+
+speller:
+  alphabet: "`zyxwvutsrqponmlkjihgfedcba"
+  initials: zyxwvutsrqponmlkjihgfedcba
+  auto_select: false
+  auto_clear: manual
+  max_code_length: 64
+
+# Keep Tiger's punctuation as the default and append Kagiroi-specific Japanese
+# alternatives after it. This preserves the original Tiger muscle memory while
+# making Japanese punctuation available from the same key.
+punctuator:
+  import_preset: symbols
+  full_shape:
+    ',' : { commit: ， }
+    '.' : { commit: 。 }
+    '<' : [ 《, 〈, «, ‹, ＜ ]
+    '>' : [ 》, 〉, », ›, ＞ ]
+    '/' : [ ／, ÷, ・, …, / ]
+    '\\' : 、
+    '~' : [ ～, 〜, '~' ]
+    '^' : [ ……, ＾ ]
+    '_' : [ ——, ＿ ]
+    '=' : [ ＝, 々, 〃 ]
+    '[' : [ 【, 〔, 「, ［, 〚, 〘 ]
+    ']' : [ 】, 〕, 」, ］, 〛, 〙 ]
+  half_shape:
+    ',' : [ ，, ・ ]
+    '.' : [ 。, …, ．, '.' ]
+    '/' : [ 、, ､, '/', ／, ÷, ・, … ]
+    '\\' : 、
+    '|' : [ '|', ·, ｜, '§', '¦', ・, '‖', ︴ ]
+    '~' : [ '~', ～, 〜, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴ ]
+    '^' : [ ……, ＾ ]
+    '_' : [ ——, ＿ ]
+    '[' : [ 【, 〔, 「, ［, 〚, 〘 ]
+    ']' : [ 】, 〕, 」, ］, 〛, 〙 ]
+
+recognizer:
+  import_preset: default
+  patterns:
+    easy_english: "^`[A-Za-z]*$"
+
+key_binder:
+  import_preset: default
+  bindings:
+    - { when: has_menu, accept: semicolon, send: 2 }
+    - { when: has_menu, accept: apostrophe, send: 3 }
+    - { when: composing, accept: Tab, send: Escape }
+    - { when: has_menu, accept: minus, send: Page_Up }
+    - { when: has_menu, accept: equal, send: Page_Down }
+    - { accept: "Control+o", toggle: simplification, when: composing }
+    - { accept: "Control+p", toggle: pinyin, when: composing }
+    - { accept: "Control+i", toggle: emoji_cn, when: composing }
+    - { accept: "Control+u", toggle: charset_comment_filter, when: composing }
+    - { accept: "Control+y", toggle: udpf_switch, when: composing }
+    - { accept: "Control+j", toggle: chaifen, when: composing }
+    - { when: has_menu, accept: Right, send: Down }
+    - { when: has_menu, accept: Left, send: Up }
+    - { when: always, accept: "Control+period", toggle: ascii_punct }
+
+editor:
+  bindings:
+    Return: commit_raw_input
+
+easy_english:
+  dictionary: easy_english
+  tag: easy_english
+  prefix: "`"
+  tips: 〔En〕
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: 100
+  preedit_format:
+    - "xlit|_| |"
+  comment_format:
+    - "xform/~/ /"
+
+simplification:
+  opencc_config: st_tu.json
+  option_name: simplification
+  tips: all
+
+pinyin:
+  opencc_config: pinyin.json
+  option_name: pinyin
+  show_in_comment: true
+  comment_format:
+    - "xform/&nbsp;/ /"
+  tips: char
+  tags: [ abc, tiger, tigress ]
+
+emoji_cn:
+  opencc_config: emoji.json
+  option_name: emoji_cn
+  tips: all
+
+chaifen:
+  opencc_config: hu_cf.json
+  option_name: chaifen
+  show_in_comment: true
+  comment_format:
+    - "xform/&nbsp;/ /"
+  tags: [ abc, tiger, tigress, reverse_lookup ]
+  tips: all
+
+# Explainable heuristic parameters, intended for tuning from real typing.
+tiger_kagiroi:
+  tiger_schema: tigress
+  tiger_candidate_count: 4
+  japanese_candidate_count: 4
+  japanese_prefix_count: 6
+  language_stickiness: 1
+  # When the fifth letter arrives, commit an unambiguous four-code Tiger
+  # candidate only if its score leads Japanese by at least this margin.
+  auto_commit_margin: 8
+
+# Kagiroi's Viterbi module reads these settings from the active schema.
+kagiroi:
+  translator:
+    sentence:
+      size: 2
+      allow_table_word: false
