@@ -352,7 +352,7 @@
       };
     };
   };
-  home.packages = lib.optional (!pkgs.stdenv.isDarwin) [
+  home.packages = lib.optionals (!pkgs.stdenv.isDarwin) [
     pkgs.thunderbird
   ];
 }

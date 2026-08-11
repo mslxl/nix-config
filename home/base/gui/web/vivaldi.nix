@@ -5,7 +5,7 @@
   config,
   ...
 }: {
-  home.packages = lib.optional pkgs.stdenv.isLinux (with pkgs; [
+  home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
     vivaldi
   ]);
 }

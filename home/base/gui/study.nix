@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.packages = lib.optional (!pkgs.stdenv.isDarwin) (with pkgs; [
+  home.packages = lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     # (pkgs-stable.logseq.overrideAttrs (super: {
     #   buildInputs = (super.buildInputs or []) ++ [pkgs.makeWrapper];
 
