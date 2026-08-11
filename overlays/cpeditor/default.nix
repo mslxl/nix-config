@@ -1,5 +1,5 @@
 {lib, ...}: (_: super: let
-  tools = [super.wakatime];
+  tools = [super.wakatime-cli];
   gcc = [super.gcc super.clang-tools];
   jdk = [super.openjdk_headless super.java-language-server];
   py = [super.python3 super.pylyzer];
