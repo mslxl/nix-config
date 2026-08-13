@@ -15,7 +15,7 @@ local function collect(translation, limit, require_full, input_end)
     return result
   end
   local next_candidate, iterator = translation:iter()
-  while #result < limit do
+  while not limit or #result < limit do
     local candidate = next_candidate(iterator)
     if not candidate then
       break
@@ -78,72 +78,16 @@ local function japanese_candidates(input, parsed, segment, env)
 
   local hiragana = parsed.hiragana
   local result, seen = {}, {}
-  env.viterbi:clear()
-  env.viterbi:analyze(hiragana)
-
-  if parsed.complete then
-    local sentences = env.viterbi:best_n()
-    for _ = 1, env.japanese_candidate_count do
-      local sentence = sentences()
-      if not sentence then break end
-      append_unique(result, seen, japanese_candidate(
-        "tiger_kagiroi_japanese", segment, #input, sentence.candidate))
-    end
-  end
-
-  if parsed.complete then
-    local kanji_segment = Segment(0, #hiragana)
-    kanji_segment.tags = Set({ "abc", "kagiroi" })
-    local kanji = collect(
-      env.kanji_translator:query(hiragana, kanji_segment),
-      env.japanese_candidate_count, true, #hiragana)
-    for _, candidate in ipairs(kanji) do
-      if candidate.type ~= "sentence" then
-        append_unique(result, seen, japanese_candidate(
-          "tiger_kagiroi_japanese", segment, #input, candidate.text))
-      end
-    end
-  end
-
-  -- Analyze every safe romaji/kana boundary as a complete prefix. This makes
-  -- useful selections such as gakkou|desu -> 学校|desu available even when
-  -- Kagiroi's linguistic boundary iterator prefers a shorter prefix.
-  local prefix_count = 0
-  for kana_length = 2, parsed.kana_length do
-    local raw_end = parsed.raw_for_kana[kana_length]
-    if raw_end and raw_end < #input then
-      local surface = utf8_prefix(hiragana, kana_length)
-      env.viterbi:analyze(surface)
-      local sentence = env.viterbi:best_n()()
-      if sentence then
-        local before = #result
-        append_unique(result, seen, japanese_candidate(
-          "tiger_kagiroi_japanese_prefix", segment, raw_end,
-          sentence.candidate, "〔部分〕"))
-        if #result > before then prefix_count = prefix_count + 1 end
-        if prefix_count >= env.japanese_prefix_count then break end
-      end
-    end
-  end
-
-  -- Also retain Kagiroi's language-model-selected boundaries.
-  env.viterbi:analyze(hiragana)
-  local prefixes = env.viterbi:best_n_prefix()
-  for phrase in prefixes do
+  local function append_phrase(phrase)
     local raw_end = raw_end_for_surface(parsed, phrase.surface)
-    if raw_end and raw_end < #input then
-      local before = #result
-      append_unique(result, seen, japanese_candidate(
-        "tiger_kagiroi_japanese_prefix", segment, raw_end,
-        phrase.candidate, "〔部分〕"))
-      if #result > before then prefix_count = prefix_count + 1 end
-      if prefix_count >= env.japanese_prefix_count then break end
-    end
+    if not raw_end then return end
+    local partial = raw_end < #input
+    append_unique(result, seen, japanese_candidate(
+      partial and "tiger_kagiroi_japanese_prefix" or
+        "tiger_kagiroi_japanese",
+      segment, raw_end, phrase.candidate, partial and "〔部分〕" or ""))
   end
 
-  -- Kana is an unconditional Japanese output path, not a dictionary fallback.
-  -- Keep it immediately after the best complete sentence so both conversion
-  -- and direct kana input remain visible on the first page.
   local kana = hiragana
   local kana_type = "tiger_kagiroi_kana"
   local context = env.engine.context
@@ -157,7 +101,87 @@ local function japanese_candidates(input, parsed, segment, env)
   local kana_candidate = japanese_candidate(
     kana_type, segment, parsed.raw_consumed, kana,
     parsed.complete and "" or "〔部分〕")
-  if kana_candidate then table.insert(result, math.min(2, #result + 1), kana_candidate) end
+
+  -- Kagiroi yields katakana before conversion candidates when that mode is on.
+  if kana_type == "tiger_kagiroi_katakana" then
+    append_unique(result, seen, kana_candidate)
+  end
+
+  env.viterbi:clear()
+  env.viterbi:analyze(hiragana)
+
+  -- Match Kagiroi's configured sentence size instead of imposing a separate
+  -- jufufu candidate limit.
+  if parsed.complete then
+    local sentences = env.viterbi:best_n()
+    for _ = 1, env.sentence_size do
+      local sentence = sentences()
+      if not sentence then break end
+      append_phrase(sentence)
+    end
+  end
+
+  -- Match Kagiroi's cost-based merge of Viterbi prefixes and dictionary
+  -- candidates. This keeps kaomoji and symbols in their native order.
+  local kanji_segment = Segment(0, #hiragana)
+  kanji_segment.tags = Set({ "abc", "kagiroi" })
+  local translation = parsed.complete and
+    env.kanji_translator:query(hiragana, kanji_segment) or nil
+  local next_kanji, kanji_iterator
+  if translation then
+    next_kanji, kanji_iterator = translation:iter()
+  end
+  local function take_kanji()
+    while next_kanji do
+      local candidate = next_kanji(kanji_iterator)
+      if not candidate then return nil end
+      if candidate.type ~= "sentence" then return candidate end
+    end
+  end
+
+  local kanji = take_kanji()
+  local prefixes = env.viterbi:best_n_prefix()
+  local threshold_0, threshold_1 = 10000, 245546
+  for phrase in prefixes do
+    while kanji do
+      if phrase.cost > threshold_1 or
+          (phrase.cost > threshold_0 and kanji.preedit == hiragana and
+            phrase.surface ~= hiragana) then
+        append_unique(result, seen, japanese_candidate(
+          "tiger_kagiroi_japanese", segment, #input, kanji.text))
+        kanji = take_kanji()
+      else
+        break
+      end
+    end
+    append_phrase(phrase)
+  end
+  while kanji do
+    append_unique(result, seen, japanese_candidate(
+      "tiger_kagiroi_japanese", segment, #input, kanji.text))
+    kanji = take_kanji()
+  end
+
+  -- jufufu additionally checks every safe romaji boundary because Kagiroi's
+  -- preferred linguistic boundaries do not always expose useful selections
+  -- such as gakkou|desu -> 学校|desu.
+  for kana_length = 2, parsed.kana_length do
+    local raw_end = parsed.raw_for_kana[kana_length]
+    if raw_end and raw_end < #input then
+      local surface = utf8_prefix(hiragana, kana_length)
+      env.viterbi:analyze(surface)
+      local sentence = env.viterbi:best_n()()
+      if sentence then
+        append_unique(result, seen, japanese_candidate(
+          "tiger_kagiroi_japanese_prefix", segment, raw_end,
+          sentence.candidate, "〔部分〕"))
+      end
+    end
+  end
+
+  -- Hiragana is normally present in Kagiroi's own stream. Keep an
+  -- unconditional fallback for parsable romaji without changing native order.
+  append_unique(result, seen, kana_candidate)
   return result
 end
 
@@ -311,8 +335,7 @@ end
 function M.translator_init(env)
   local config = env.engine.schema.config
   env.tiger_candidate_count = config:get_int("tiger_kagiroi/tiger_candidate_count") or 4
-  env.japanese_candidate_count = config:get_int("tiger_kagiroi/japanese_candidate_count") or 4
-  env.japanese_prefix_count = config:get_int("tiger_kagiroi/japanese_prefix_count") or 6
+  env.sentence_size = config:get_int("kagiroi/translator/sentence/size") or 2
   env.language_stickiness = config:get_int("tiger_kagiroi/language_stickiness") or 1
   env.auto_commit_margin = config:get_int("tiger_kagiroi/auto_commit_margin") or 8
   env.tiger_schema = config:get_string("tiger_kagiroi/tiger_schema") or "tiger"

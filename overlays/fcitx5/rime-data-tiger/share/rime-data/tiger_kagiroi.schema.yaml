@@ -195,8 +195,6 @@ chaifen:
 tiger_kagiroi:
   tiger_schema: tiger
   tiger_candidate_count: 4
-  japanese_candidate_count: 4
-  japanese_prefix_count: 6
   language_stickiness: 1
   # When the fifth letter arrives, commit an unambiguous four-code Tiger
   # candidate only if its score leads Japanese by at least this margin.
